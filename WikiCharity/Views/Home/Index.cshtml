@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@using WikiCharity.Models;
+@model IEnumerable<CharityModel>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<div class="jumbotron">
+    <h1>Find charity suits you</h1>
+    
+</div>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+            table th {
+                background-color: #B8DBFD;
+                color: #333;
+                font-weight: bold;
+            }
+
+            table th, table td {
+                padding: 5px;
+                border: 1px solid #ccc;
+            }
+
+            table, table table td {
+                border: 0px solid #ccc;
+            }
+    </style>
+</head>
+
+<body>
+
+    @if (Model.Count() > 0)
+    {
+        <hr />
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th>ABN</th>
+                <th>Charity Name</th>
+                <th>Address1</th>
+                <th>Address2</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Postcodee</th>
+                <th>Website</th>
+                <th>Register Date</th>
+                <th>Size</th>
+                <th>Animal</th>
+                <th>Culture</th>
+                <th>Education</th>
+                <th>Health</th>
+                <th>Low</th>
+                <th>Environment</th>
+            </tr>
+            @foreach (CharityModel charity in Model)
+            {
+                <tr>
+                    <td>@charity.ABN</td>
+                    <td>@charity.CharityName</td>
+                    <td>@charity.AddressLine1</td>
+                    <td>@charity.AddressLine2</td>
+                    <td>@charity.TownCity</td>
+                    <td>@charity.State</td>
+                    <td>@charity.Postcode</td>
+                    <td>@charity.Website</td>
+                    <td>@charity.RegisDate</td>
+                    <td>@charity.Size</td>
+                    <td>@charity.Animals</td>
+                    <td>@charity.Culture</td>
+                    <td>@charity.Education</td>
+                    <td>@charity.Health</td>
+                    <td>@charity.GovernLow</td>
+                    <td>@charity.Environment</td>
+                </tr>
+            }
+        </table>
+    }
+</body>
