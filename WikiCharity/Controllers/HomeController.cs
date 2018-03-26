@@ -12,10 +12,53 @@ namespace WikiCharity.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var benes = GetAllBenes();
+            var DGRs = GetAllDGRs();
+            var model = new FilterModel();
+            model.beneficials = GetSelectListItems(benes);
+            //model.isDGRs = GetSelectListItems(DGRs);
+            return View(model);
         }
 
+        [HttpPost]
+        public ActionResult Index(FilterModel model)
+        {
+            if (model.beneficial == null)
+            {
+                return RedirectToAction("Result");
+            }
+            else
+            {
+                var benes = GetAllBenes();
+                var DGRs = GetAllDGRs();
+                model.beneficials = GetSelectListItems(benes);
+                //model.isDGRs = GetSelectListItems(DGRs);
 
+                Session["FilterModel"] = model;
+
+                return RedirectToAction("FilterResult");
+            }
+        }
+
+        public ActionResult FilterResult()
+        {
+            var model = Session["FilterModel"] as FilterModel;
+            List<CharityModel> charities = new List<CharityModel>();
+            List<CharityModel> result = new List<CharityModel>();
+            charities = GetAllCharity();
+            foreach (var charity in charities)
+            {
+                foreach (var t in charity.tags)
+                {
+                    if (t == model.beneficial)
+                    {
+                        result.Add(charity);
+                        break;
+                    }
+                }
+            }
+            return View(result);
+        }
 
         public ActionResult About()
         {
@@ -32,10 +75,51 @@ namespace WikiCharity.Controllers
             return View();
         }
 
+        private IEnumerable<string> GetAllBenes()
+        {
+            return new List<string>
+            {
+                "Animals", "Culture", "Education", "Health", "GovernLow", "Environment", "HumanRights", "GeneralPublic", "MutualRespect",
+                "Religion", "SocialPublicWelfare", "PublicSecurity", "Community", "Aboriginal", "AgedPeople", "Children", "CommunitiesOverseas",
+                "EthnicGroups", "GayLesbianBisexual", "GeneralCommunities", "Men", "MigrantsRefugee", "ReleaseOffenders", "ChronicIllness",
+                "Disabilities", "Homelessness", "Unemployment", "Veterans", "CrimeVictims", "DisasterVictims", "Women", "Youth",
+            };
+        }
+
+        private IEnumerable<string> GetAllDGRs()
+        {
+            return new List<string>
+            {
+                "DGR", "Not DGR",
+            };
+        }
+
+        private IEnumerable<SelectListItem> GetSelectListItems(IEnumerable<string> elements)
+        {
+            var selectList = new List<SelectListItem>();
+            foreach (var element in elements)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = element,
+                    Text = element
+                });
+            }
+            return selectList;
+        }
+
         public ActionResult Result()
         {
             List<CharityModel> charities = new List<CharityModel>();
-            string filePath = Server.MapPath("~/Uploads/Fuck.csv");
+            charities = GetAllCharity();
+            return View(charities);
+        }
+
+
+        private List<CharityModel> GetAllCharity()
+        {
+            List<CharityModel> charities = new List<CharityModel>();
+            string filePath = Server.MapPath("~/Uploads/PartData.csv");
             string csvData = System.IO.File.ReadAllText(filePath);
             foreach (string row in csvData.Split('\n'))
             {
@@ -226,7 +310,7 @@ namespace WikiCharity.Controllers
                     charities.Add(newCharity);
                 }
             }
-            return View(charities);
+            return charities;
         }
     }
 }

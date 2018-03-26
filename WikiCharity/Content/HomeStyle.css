@@ -17,6 +17,16 @@ img {
     color:white;
 }
 
+#drop {
+    position:absolute;
+    bottom:50%;
+    left:31%;
+}
+
+button {
+    align-self:center;
+}
+
 h2 {
     font-size:45px;
     font-weight:bold;

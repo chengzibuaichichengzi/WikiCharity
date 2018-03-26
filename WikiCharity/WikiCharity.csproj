@@ -234,6 +234,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CharityModel.cs" />
+    <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -540,7 +541,6 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Uploads\BackImage.png" />
-    <Content Include="Uploads\BackImage2.png" />
     <Content Include="Uploads\fanren.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -585,8 +585,10 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Uploads\Fuck.csv" />
     <Content Include="Views\Home\Result.cshtml" />
+    <Content Include="Views\Home\FilterResult.cshtml" />
+    <Content Include="Uploads\FinalData4.csv" />
+    <Content Include="Uploads\PartData.csv" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

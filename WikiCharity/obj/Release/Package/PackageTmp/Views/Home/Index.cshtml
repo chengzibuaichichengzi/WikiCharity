@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WikiCharity.Models.CharityModel>
+﻿@model WikiCharity.Models.FilterModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -7,13 +7,30 @@
 
 <link href="~/Content/HomeStyle.css" rel="stylesheet" />
 
+
+    <img src="~/Uploads/fanren.png" alt="backgroung image" style="width:100%;"/>
+    <div id="headContent">
+        <h2>Find charity suits you</h2>
+    </div>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { role = "form" }))
+    {
+        <div class="dropdown" id="drop">
+            <table>
+                <tr>
+                    <td align="left">@Html.DropDownListFor(m => m.beneficial, Model.beneficials, "Select a Beneficial", new { @class = "form-control" })</td>
+                </tr>
+
+            </table>
+            <br />
+            <button type="submit" class="btn btn-primary">Show</button>
+        </div>
+    }
+    
+        
+        
+    
     
 
-
-
-    <h2>Find charity suits you</h2>
-    <div id="background">
-
-    </div>
-
+    
+    
  
