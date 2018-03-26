@@ -12,6 +12,28 @@ namespace WikiCharity.Controllers
     {
         public ActionResult Index()
         {
+            return View();
+        }
+
+
+
+        public ActionResult About()
+        {
+
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult Result()
+        {
             List<CharityModel> charities = new List<CharityModel>();
             string filePath = Server.MapPath("~/Uploads/Fuck.csv");
             string csvData = System.IO.File.ReadAllText(filePath);
@@ -35,7 +57,7 @@ namespace WikiCharity.Controllers
                         newCharity.Animals = true;
                         newCharity.tags.Add("Animals");
                     }
-                    
+
                     if (row.Split(',')[11] != "NA")
                     {
                         newCharity.Culture = true;
@@ -194,34 +216,17 @@ namespace WikiCharity.Controllers
                     if (row.Split(',')[42] != "NA")
                     {
                         newCharity.ABNStatus = true;
-                        
+
                     }
                     if (row.Split(',')[43] != "NA")
                     {
                         newCharity.DGR = true;
-                        
+
                     }
                     charities.Add(newCharity);
                 }
             }
             return View(charities);
-        }
-
-
-
-        public ActionResult About()
-        {
-
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }

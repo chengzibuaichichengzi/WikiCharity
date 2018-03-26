@@ -5,28 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Find charity suits you</h2>
+<link href="~/Content/HomeStyle.css" rel="stylesheet" />
+
     
 
-<table id="example" class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Charity Name</th>
-                    <th>Charity Website</th>
-                    <th>Charity Registed Date</th>
-                    <th>Benificials</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var charity in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => charity.CharityName)</td>
-                        <td><a href="@charity.Website">@charity.Website</a></td>
-                        <td>@Html.DisplayFor(modelItem => charity.RegisDate)</td>
-                        <td>@String.Join(", ", charity.tags.ToArray())</td>
-                    </tr>
-                }
-            </tbody>
-</table>
-   s
+
+
+    <h2>Find charity suits you</h2>
+    <div id="background">
+
+    </div>
+
+ 
