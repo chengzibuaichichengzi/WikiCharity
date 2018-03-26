@@ -22,7 +22,14 @@
                 {
                     <tr>
                         <td>@Html.DisplayFor(modelItem => charity.CharityName)</td>
-                        <td><a href="@charity.Website">@charity.Website</a></td>
+                        @if (charity.Website.Contains("http://"))
+                        {
+                            <td><a href="@charity.Website">@charity.Website</a></td>
+                        }
+                        else
+                        {
+                            <td><a href="http://@charity.Website">@charity.Website</a></td>
+                        }
                         <td>@Html.DisplayFor(modelItem => charity.RegisDate)</td>
                         <td>@String.Join(", ", charity.tags.ToArray())</td>
                     </tr>

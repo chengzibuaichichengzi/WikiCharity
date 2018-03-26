@@ -509,6 +509,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Metadata\deploymentTemplates\apiappconfig.azureresource.json" />
     <Content Include="apiapp.json" />
+    <None Include="Properties\PublishProfiles\WikiCharity20180324033921 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\WikiCharity20180324033921 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
