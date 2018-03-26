@@ -13,7 +13,7 @@ namespace WikiCharity.Controllers
         public ActionResult Index()
         {
             List<CharityModel> charities = new List<CharityModel>();
-            string filePath = Server.MapPath("~/Uploads/FinalData4.csv");
+            string filePath = Server.MapPath("~/Uploads/Fuck.csv");
             string csvData = System.IO.File.ReadAllText(filePath);
             foreach (string row in csvData.Split('\n'))
             {
@@ -33,139 +33,173 @@ namespace WikiCharity.Controllers
                     if (row.Split(',')[10] != "NA")
                     {
                         newCharity.Animals = true;
+                        newCharity.tags.Add("Animals");
                     }
                     
                     if (row.Split(',')[11] != "NA")
                     {
                         newCharity.Culture = true;
+                        newCharity.tags.Add("Culture");
                     }
                     if (row.Split(',')[12] != "NA")
                     {
                         newCharity.Education = true;
+                        newCharity.tags.Add("Education");
                     }
                     if (row.Split(',')[13] != "NA")
                     {
                         newCharity.Health = true;
+                        newCharity.tags.Add("Health");
                     }
                     if (row.Split(',')[14] != "NA")
                     {
                         newCharity.GovernLow = true;
+                        newCharity.tags.Add("GovernLow");
                     }
                     if (row.Split(',')[15] != "NA")
                     {
                         newCharity.Environment = true;
+                        newCharity.tags.Add("Environment");
                     }
                     if (row.Split(',')[16] != "NA")
                     {
                         newCharity.HumanRights = true;
+                        newCharity.tags.Add("HumanRights");
                     }
                     if (row.Split(',')[17] != "NA")
                     {
                         newCharity.GeneralPublic = true;
+                        newCharity.tags.Add("GeneralPublic");
                     }
                     if (row.Split(',')[18] != "NA")
                     {
                         newCharity.MutualRespect = true;
+                        newCharity.tags.Add("MutualRespect");
                     }
                     if (row.Split(',')[19] != "NA")
                     {
                         newCharity.Religion = true;
+                        newCharity.tags.Add("Religion");
                     }
                     if (row.Split(',')[20] != "NA")
                     {
                         newCharity.SocialPublicWelfare = true;
+                        newCharity.tags.Add("SocialPublicWelfare");
                     }
                     if (row.Split(',')[21] != "NA")
                     {
                         newCharity.PublicSecurity = true;
+                        newCharity.tags.Add("PublicSecurity");
                     }
                     if (row.Split(',')[22] != "NA")
                     {
                         newCharity.Community = true;
+                        newCharity.tags.Add("Community");
                     }
                     if (row.Split(',')[23] != "NA")
                     {
                         newCharity.Aboriginal = true;
+                        newCharity.tags.Add("Aboriginal");
                     }
                     if (row.Split(',')[24] != "NA")
                     {
                         newCharity.AgedPeople = true;
+                        newCharity.tags.Add("AgedPeople");
                     }
                     if (row.Split(',')[25] != "NA")
                     {
                         newCharity.Children = true;
+                        newCharity.tags.Add("Children");
                     }
                     if (row.Split(',')[26] != "NA")
                     {
                         newCharity.CommunitiesOverseas = true;
+                        newCharity.tags.Add("CommunitiesOverseas");
                     }
                     if (row.Split(',')[27] != "NA")
                     {
                         newCharity.EthnicGroups = true;
+                        newCharity.tags.Add("EthnicGroups");
                     }
                     if (row.Split(',')[28] != "NA")
                     {
                         newCharity.GayLesbianBisexual = true;
+                        newCharity.tags.Add("GayLesbianBisexual");
                     }
                     if (row.Split(',')[29] != "NA")
                     {
                         newCharity.GeneralCommunities = true;
+                        newCharity.tags.Add("GeneralCommunities");
                     }
                     if (row.Split(',')[30] != "NA")
                     {
                         newCharity.Men = true;
+                        newCharity.tags.Add("Men");
                     }
                     if (row.Split(',')[31] != "NA")
                     {
                         newCharity.MigrantsRefugee = true;
+                        newCharity.tags.Add("MigrantsRefugee");
                     }
                     if (row.Split(',')[32] != "NA")
                     {
                         newCharity.ReleaseOffenders = true;
+                        newCharity.tags.Add("ReleaseOffenders");
                     }
                     if (row.Split(',')[33] != "NA")
                     {
                         newCharity.ChronicIllness = true;
+                        newCharity.tags.Add("ChronicIllness");
                     }
                     if (row.Split(',')[34] != "NA")
                     {
                         newCharity.Disabilities = true;
+                        newCharity.tags.Add("Disabilities");
                     }
                     if (row.Split(',')[35] != "NA")
                     {
                         newCharity.Homelessness = true;
+                        newCharity.tags.Add("Homelessness");
                     }
                     if (row.Split(',')[36] != "NA")
                     {
                         newCharity.Unemployment = true;
+                        newCharity.tags.Add("Unemployment");
                     }
                     if (row.Split(',')[37] != "NA")
                     {
                         newCharity.Veterans = true;
+                        newCharity.tags.Add("Veterans");
                     }
                     if (row.Split(',')[38] != "NA")
                     {
                         newCharity.CrimeVictims = true;
+                        newCharity.tags.Add("CrimeVictims");
                     }
                     if (row.Split(',')[39] != "NA")
                     {
                         newCharity.DisasterVictims = true;
+                        newCharity.tags.Add("DisasterVictims");
                     }
                     if (row.Split(',')[40] != "NA")
                     {
                         newCharity.Women = true;
+                        newCharity.tags.Add("Women");
                     }
                     if (row.Split(',')[41] != "NA")
                     {
                         newCharity.Youth = true;
+                        newCharity.tags.Add("Youth");
                     }
                     if (row.Split(',')[42] != "NA")
                     {
                         newCharity.ABNStatus = true;
+                        
                     }
                     if (row.Split(',')[43] != "NA")
                     {
                         newCharity.DGR = true;
+                        
                     }
                     charities.Add(newCharity);
                 }

@@ -54,6 +54,6 @@ namespace WikiCharity.Models
         public bool ABNStatus { get; set; } = false;
         public bool DGR { get; set; } = false;
 
-
+        public List<string> tags { get; set; } = new List<string>();
     }
 }
