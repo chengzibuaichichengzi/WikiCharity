@@ -5,29 +5,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Filter Result</h2>
+
+<link href="~/Content/ResultTable.css" rel="stylesheet" />
+
 
 <table id="example" class="table table-striped">
     <thead>
         <tr>
             <th>Charity Name</th>
-            <th>Charity Website</th>
-            <th>Charity Registed Date</th>
-            <th>Benificials</th>
-            <th>iS DGR</th>
-            <th>Size</th>
+            <th width="20%">Charity Website</th>
+            
+            <th>Benificiaries</th>
+            <th width="10%">Tax Deductable</th>
+            <th width="10%">Charity Size</th>
         </tr>
     </thead>
-    <tfoot>
-        <tr>
-            <th>Charity Name</th>
-            <th>Charity Website</th>
-            <th>Charity Registed Date</th>
-            <th>Benificials</th>
-            <th>iS DGR</th>
-            <th>Size</th>
-        </tr>
-    </tfoot>
+    
     <tbody>
         @foreach (var charity in Model)
         {
@@ -39,23 +32,23 @@
                 }
                 else if (charity.Website == "NA")
                 {
-                    <td>Website doesn't exist</td>
+                    <td width="10%">Website not listed</td>
                 }
                 else
                 {
-                    <td><a href="http://@charity.Website">@charity.Website</a></td>
+                    <td width="20%"><a href="http://@charity.Website">@charity.Website</a></td>
                 }
-                <td>@Html.DisplayFor(modelItem => charity.RegisDate)</td>
+                
                 <td>@String.Join(", ", charity.tags.ToArray())</td>
                 @if (charity.DGR == true)
                 {
-                    <td>yes</td>
+                    <td width="10%" id="yes">Yes</td>
                 }
                 else
                 {
-                    <td>no</td>
+                    <td width="10%">No</td>
                 }
-                <td>@Html.DisplayFor(modelItem => charity.Size)</td>
+                <td width="10%">@Html.DisplayFor(modelItem => charity.Size)</td>
             </tr>
         }
     </tbody>

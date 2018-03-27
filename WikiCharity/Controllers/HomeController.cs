@@ -60,6 +60,7 @@ namespace WikiCharity.Controllers
             {
                 finalResult = IntersectCharity(SearchByTax(model), finalResult);
             }
+            ViewBag.Count = finalResult.Count();
             return View(finalResult);
         }
 
@@ -146,13 +147,15 @@ namespace WikiCharity.Controllers
 
         private IEnumerable<string> GetAllBenes()
         {
-            return new List<string>
+            List<string> list = new List<string>
             {
                 "Animals", "Culture", "Education", "Health", "GovernLow", "Environment", "HumanRights", "GeneralPublic", "MutualRespect",
                 "Religion", "SocialPublicWelfare", "PublicSecurity", "Community", "Aboriginal", "AgedPeople", "Children", "CommunitiesOverseas",
                 "EthnicGroups", "GayLesbianBisexual", "GeneralCommunities", "Men", "MigrantsRefugee", "ReleaseOffenders", "ChronicIllness",
                 "Disabilities", "Homelessness", "Unemployment", "Veterans", "CrimeVictims", "DisasterVictims", "Women", "Youth",
             };
+            list.Sort();
+            return list;
         }
 
         private IEnumerable<string> GetAllDGRs()

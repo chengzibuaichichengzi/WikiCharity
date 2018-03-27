@@ -10,21 +10,27 @@
 
     <img src="~/Uploads/fanren.png" alt="backgroung image" style="width:100%;"/>
     <div id="headContent">
-        <h2>Find a charity that suits you</h2>
+        <h2>Find a charity that suits you </h2>
     </div>
     @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { role = "form" }))
     {
         <div class="dropdown" id="drop">
-            <table>
-                <tr>
-                    <td align="left">@Html.DropDownListFor(m => m.beneficial, Model.beneficials, "Select a Beneficial", new { @class = "form-control" })</td>
-                    <td align="center">@Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Tax Deduction", new { @class = "form-control" })</td>
-                    <td align="right">@Html.DropDownListFor(m => m.size, Model.sizes, "Size", new { @class = "form-control" })</td>
-                </tr>
+            
+                <table cellpadding="10" border="0">
+                    <tr>
+                        <td >@Html.DropDownListFor(m => m.beneficial, Model.beneficials, "Beneficiaries", new { @class = "form-control" })</td>
+                        <td >@Html.DropDownListFor(m => m.size, Model.sizes, "Charity Size", new { @class = "form-control" })</td>
+                        <td >@Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Tax Deductable", new { @class = "form-control" })</td>
+                        <td >@Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Tax Deductable", new { @class = "form-control" })</td>
+                    </tr>
+                </table>
+               
+                    
 
-            </table>
+                
             <br />
-            <button type="submit" class="btn btn-primary">Show</button>
+            <br />
+            <button type="submit" class="btn btn-warning" style="border-radius:20px;color:black;font-size:16px;font-family:Verdana;">Show charities we find for you</button>
         </div>
     }
     
