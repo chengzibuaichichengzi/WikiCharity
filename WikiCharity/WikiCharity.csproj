@@ -542,6 +542,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Uploads\BackImage.png" />
     <Content Include="Uploads\fanren.png" />
+    <Content Include="Uploads\QingGariLogo.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -5,12 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/HomeStyle.css" rel="stylesheet" />
+
 
 
     <img src="~/Uploads/fanren.png" alt="backgroung image" style="width:100%;"/>
     <div id="headContent">
-        <h2>Find charity suits you</h2>
+        <h2>Find a charity that suits you</h2>
     </div>
     @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { role = "form" }))
     {
@@ -18,6 +18,8 @@
             <table>
                 <tr>
                     <td align="left">@Html.DropDownListFor(m => m.beneficial, Model.beneficials, "Select a Beneficial", new { @class = "form-control" })</td>
+                    <td align="center">@Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Tax Deduction", new { @class = "form-control" })</td>
+
                 </tr>
 
             </table>

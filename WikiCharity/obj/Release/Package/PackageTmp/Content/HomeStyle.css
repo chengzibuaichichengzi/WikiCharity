@@ -2,6 +2,16 @@
   
 }
 
+#logo {
+    border-radius:50%;
+    width:50px;
+    height:50px;
+    position:absolute;
+    top:0;
+    left:80px;
+    
+}
+
 img {
     position:absolute;
     top:0;
@@ -13,7 +23,7 @@ img {
 #headContent {
     position:absolute;
     bottom:70%;
-    left:31%;
+    left:28%;
     color:white;
 }
 
@@ -28,7 +38,7 @@ button {
 }
 
 h2 {
-    font-size:45px;
+    font-size:42px;
     font-weight:bold;
     font-family:Verdana;
 }

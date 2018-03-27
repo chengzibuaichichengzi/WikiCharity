@@ -16,7 +16,7 @@ namespace WikiCharity.Controllers
             var DGRs = GetAllDGRs();
             var model = new FilterModel();
             model.beneficials = GetSelectListItems(benes);
-            //model.isDGRs = GetSelectListItems(DGRs);
+            model.isDGRs = GetSelectListItems(DGRs);
             return View(model);
         }
 
@@ -25,39 +25,95 @@ namespace WikiCharity.Controllers
         {
             if (model.beneficial == null)
             {
-                return RedirectToAction("Result");
+                if (model.isDGR == null)
+                {
+                    return RedirectToAction("Result");
+                    
+                }
+                else
+                {
+                    var DGRs = GetAllDGRs();
+                    model.isDGRs = GetSelectListItems(DGRs);
+                    Session["FilterModel"] = model;
+                    return RedirectToAction("FilterResult");
+                }
             }
             else
             {
-                var benes = GetAllBenes();
-                var DGRs = GetAllDGRs();
-                model.beneficials = GetSelectListItems(benes);
-                //model.isDGRs = GetSelectListItems(DGRs);
-
-                Session["FilterModel"] = model;
-
-                return RedirectToAction("FilterResult");
+                if (model.isDGR != "Yes")
+                {
+                    var benes1 = GetAllBenes();
+                    model.beneficials = GetSelectListItems(benes1);
+                    Session["FilterModel"] = model;
+                    return RedirectToAction("FilterResult");
+                }
+                else
+                {
+                    var benes = GetAllBenes();
+                    var DGRs = GetAllDGRs();
+                    model.beneficials = GetSelectListItems(benes);
+                    model.isDGRs = GetSelectListItems(DGRs);
+                    Session["FilterModel"] = model;
+                    return RedirectToAction("FilterResult");
+                }
+                
             }
         }
 
         public ActionResult FilterResult()
         {
             var model = Session["FilterModel"] as FilterModel;
-            List<CharityModel> charities = new List<CharityModel>();
-            List<CharityModel> result = new List<CharityModel>();
-            charities = GetAllCharity();
-            foreach (var charity in charities)
+            if (model.isDGR != "Yes")
             {
-                foreach (var t in charity.tags)
+                List<CharityModel> charities = new List<CharityModel>();
+                List<CharityModel> result = new List<CharityModel>();
+                charities = GetAllCharity();
+                foreach (var charity in charities)
                 {
-                    if (t == model.beneficial)
+                    foreach (var t in charity.tags)
                     {
-                        result.Add(charity);
-                        break;
+                        if (t == model.beneficial)
+                        {
+                            result.Add(charity);
+                            break;
+                        }
                     }
                 }
+                return View(result);
             }
-            return View(result);
+            else
+            {
+                List<CharityModel> charities = new List<CharityModel>();
+                List<CharityModel> result = new List<CharityModel>();
+                charities = GetAllCharity();
+                foreach (var charity in charities)
+                {
+                    if (charity.DGR == true)
+                    {
+                        result.Add(charity);
+                    }
+                }
+                if (model.beneficial == null)
+                {
+                    return View(result);
+                }
+                else
+                {
+                    List<CharityModel> result1 = new List<CharityModel>();
+                    foreach (var charity in result)
+                    {
+                        foreach (var t in charity.tags)
+                        {
+                            if (t == model.beneficial)
+                            {
+                                result1.Add(charity);
+                                break;
+                            }
+                        }
+                    }
+                    return View(result1);
+                }
+            }
         }
 
         public ActionResult About()
@@ -90,7 +146,7 @@ namespace WikiCharity.Controllers
         {
             return new List<string>
             {
-                "DGR", "Not DGR",
+                "Yes",
             };
         }
 
@@ -299,13 +355,15 @@ namespace WikiCharity.Controllers
                     }
                     if (row.Split(',')[42] != "NA")
                     {
+                        
                         newCharity.ABNStatus = true;
-
+                        
                     }
-                    if (row.Split(',')[43] != "NA")
+                    if (!row.Split(',')[43].Contains("NA"))
                     {
+                        
                         newCharity.DGR = true;
-
+                        
                     }
                     charities.Add(newCharity);
                 }

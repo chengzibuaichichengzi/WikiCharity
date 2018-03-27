@@ -86,6 +86,12 @@ C:\Users\zyua27\Desktop\V1\WikiCharity\WikiCharity\bin\Microsoft.Owin.Security.M
 C:\Users\zyua27\Desktop\V1\WikiCharity\WikiCharity\obj\Debug\WikiCharity.csprojResolveAssemblyReference.cache
 C:\Users\zyua27\Desktop\V1\WikiCharity\WikiCharity\obj\Debug\WikiCharity.dll
 C:\Users\zyua27\Desktop\V1\WikiCharity\WikiCharity\obj\Debug\WikiCharity.pdb
+C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\VBCSCompiler.exe
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\ApplicationInsights.config
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\WikiCharity.dll.config
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\WikiCharity.dll
@@ -96,13 +102,9 @@ C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\csc.rsp
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\csi.exe
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\csi.rsp
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\Microsoft.VisualBasic.Core.targets
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\System.AppContext.dll
@@ -110,11 +112,9 @@ C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\System.Collections.Im
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\System.Diagnostics.StackTrace.dll
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\System.IO.FileSystem.dll
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\System.IO.FileSystem.Primitives.dll
-C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\System.Reflection.Metadata.dll
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\vbc.exe
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\vbc.exe.config
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\vbc.rsp
-C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\VBCSCompiler.exe
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\Antlr3.Runtime.dll
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\EntityFramework.dll
@@ -187,4 +187,3 @@ C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\Microsoft.AspNet.Identity.Ow
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\obj\Debug\WikiCharity.dll
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\obj\Debug\WikiCharity.pdb
-C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\obj\Debug\WikiCharity.csprojResolveAssemblyReference.cache
