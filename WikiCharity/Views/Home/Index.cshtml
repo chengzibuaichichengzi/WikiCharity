@@ -18,11 +18,11 @@
             
                 <table cellpadding="10" border="0">
                     <tr>
+                        <td>@Html.DropDownListFor(m => m.state, Model.states, "State", new { @class = "form-control" })</td>
                         <td >@Html.DropDownListFor(m => m.beneficial, Model.beneficials, "Beneficiaries", new { @class = "form-control" })</td>
                         <td >@Html.DropDownListFor(m => m.size, Model.sizes, "Charity Size", new { @class = "form-control" })</td>
                         <td >@Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Tax Deductable", new { @class = "form-control" })</td>
-                        <td >@Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Tax Deductable", new { @class = "form-control" })</td>
-                    </tr>
+                        </tr>
                 </table>
                
                     

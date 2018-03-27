@@ -14,6 +14,8 @@ namespace WikiCharity.Models
         public IEnumerable<SelectListItem> isDGRs { get; set; }
         public string size { get; set; }
         public IEnumerable<SelectListItem> sizes { get; set; }
+        public string state { get; set; }
+        public IEnumerable<SelectListItem> states { get; set; }
 
     }
 }

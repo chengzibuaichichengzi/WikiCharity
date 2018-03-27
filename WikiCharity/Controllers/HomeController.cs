@@ -15,17 +15,19 @@ namespace WikiCharity.Controllers
             var benes = GetAllBenes();
             var DGRs = GetAllDGRs();
             var sizes = GetAllSizes();
+            var states = GetAllStates();
             var model = new FilterModel();
             model.beneficials = GetSelectListItems(benes);
             model.isDGRs = GetSelectListItems(DGRs);
             model.sizes = GetSelectListItems(sizes);
+            model.states = GetSelectListItems(states);
             return View(model);
         }
 
         [HttpPost]
         public ActionResult Index(FilterModel model)
         {
-            if (model.beneficial == null && model.isDGR == null && model.size == null)
+            if (model.beneficial == null && model.isDGR == null && model.size == null && model.state == null)
             {
                 return RedirectToAction("Result");
             }
@@ -34,9 +36,11 @@ namespace WikiCharity.Controllers
                 var benes = GetAllBenes();
                 var sizes = GetAllSizes();
                 var DGRs = GetAllDGRs();
+                var states = GetAllStates();
                 model.beneficials = GetSelectListItems(benes);
                 model.sizes = GetSelectListItems(sizes);
                 model.isDGRs = GetSelectListItems(DGRs);
+                model.states = GetSelectListItems(states);
                 Session["FilterModel"] = model;
                 return RedirectToAction("FilterResult");
             }
@@ -59,6 +63,10 @@ namespace WikiCharity.Controllers
             if (model.isDGR != null)
             {
                 finalResult = IntersectCharity(SearchByTax(model), finalResult);
+            }
+            if (model.state != null)
+            {
+                finalResult = IntersectCharity(SearchByState(model), finalResult);
             }
             ViewBag.Count = finalResult.Count();
             return View(finalResult);
@@ -130,6 +138,21 @@ namespace WikiCharity.Controllers
             return result;
         }
 
+        private List<CharityModel> SearchByState(FilterModel model)
+        {
+            List<CharityModel> charities = new List<CharityModel>();
+            List<CharityModel> result = new List<CharityModel>();
+            charities = GetAllCharity();
+            foreach (var charity in charities)
+            {
+                if (charity.State == model.state)
+                {
+                    result.Add(charity);
+                }
+            }
+            return result;
+        }
+
         public ActionResult About()
         {
 
@@ -164,6 +187,16 @@ namespace WikiCharity.Controllers
             {
                 "Yes",
             };
+        }
+
+        private IEnumerable<string> GetAllStates()
+        {
+            List<string> list = new List<string>
+            {
+                "NSW", "QLD", "VIC", "ACT", "WA", "SA", "TAS", "NT",
+            };
+            list.Sort();
+            return list;
         }
 
         private IEnumerable<string> GetAllSizes()
