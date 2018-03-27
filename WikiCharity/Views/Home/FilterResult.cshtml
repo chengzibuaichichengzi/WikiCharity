@@ -15,8 +15,19 @@
             <th>Charity Registed Date</th>
             <th>Benificials</th>
             <th>iS DGR</th>
+            <th>Size</th>
         </tr>
     </thead>
+    <tfoot>
+        <tr>
+            <th>Charity Name</th>
+            <th>Charity Website</th>
+            <th>Charity Registed Date</th>
+            <th>Benificials</th>
+            <th>iS DGR</th>
+            <th>Size</th>
+        </tr>
+    </tfoot>
     <tbody>
         @foreach (var charity in Model)
         {
@@ -44,6 +55,7 @@
                 {
                     <td>no</td>
                 }
+                <td>@Html.DisplayFor(modelItem => charity.Size)</td>
             </tr>
         }
     </tbody>

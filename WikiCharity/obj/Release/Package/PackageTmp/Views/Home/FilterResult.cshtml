@@ -14,6 +14,8 @@
             <th>Charity Website</th>
             <th>Charity Registed Date</th>
             <th>Benificials</th>
+            <th>iS DGR</th>
+            <th>Size</th>
         </tr>
     </thead>
     <tbody>
@@ -35,6 +37,15 @@
                 }
                 <td>@Html.DisplayFor(modelItem => charity.RegisDate)</td>
                 <td>@String.Join(", ", charity.tags.ToArray())</td>
+                @if (charity.DGR == true)
+                {
+                    <td>yes</td>
+                }
+                else
+                {
+                    <td>no</td>
+                }
+                <td>@Html.DisplayFor(modelItem => charity.Size)</td>
             </tr>
         }
     </tbody>
