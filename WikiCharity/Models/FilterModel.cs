@@ -16,6 +16,7 @@ namespace WikiCharity.Models
         public IEnumerable<SelectListItem> sizes { get; set; }
         public string state { get; set; }
         public IEnumerable<SelectListItem> states { get; set; }
+        public string countNum { get; set; }
 
     }
 }

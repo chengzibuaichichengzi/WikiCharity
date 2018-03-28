@@ -24,6 +24,8 @@ namespace WikiCharity.Controllers
             return View(model);
         }
 
+        
+
         [HttpPost]
         public ActionResult Index(FilterModel model)
         {
@@ -70,6 +72,36 @@ namespace WikiCharity.Controllers
             }
             ViewBag.Count = finalResult.Count();
             return View(finalResult);
+        }
+
+        [HttpPost]
+        public ActionResult CountResult(string state, string bene, string size, string tax)
+        {
+            var model = new FilterModel();
+            model.state = state;
+            model.beneficial = bene;
+            model.size = size;
+            model.isDGR = tax;
+            List<CharityModel> finalResult = new List<CharityModel>();
+            finalResult = GetAllCharity();
+            if (!string.IsNullOrEmpty(model.beneficial))
+            {
+                finalResult = IntersectCharity(SearchByBene(model), finalResult);
+            }
+            if (!string.IsNullOrEmpty(model.size))
+            {
+                finalResult = IntersectCharity(SearchBySize(model), finalResult);
+            }
+            if (!string.IsNullOrEmpty(model.isDGR))
+            {
+                finalResult = IntersectCharity(SearchByTax(model), finalResult);
+            }
+            if (!string.IsNullOrEmpty(model.state))
+            {
+                finalResult = IntersectCharity(SearchByState(model), finalResult);
+            }
+            model.countNum = finalResult.Count().ToString();
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
 
         private List<CharityModel> IntersectCharity(List<CharityModel> list1, List<CharityModel> list2)
@@ -166,6 +198,20 @@ namespace WikiCharity.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult buttonTest()
+        {
+            var benes = GetAllBenes();
+            var DGRs = GetAllDGRs();
+            var sizes = GetAllSizes();
+            var states = GetAllStates();
+            var model = new FilterModel();
+            model.beneficials = GetSelectListItems(benes);
+            model.isDGRs = GetSelectListItems(DGRs);
+            model.sizes = GetSelectListItems(sizes);
+            model.states = GetSelectListItems(states);
+            return View(model);
         }
 
         private IEnumerable<string> GetAllBenes()

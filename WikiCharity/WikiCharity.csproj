@@ -593,6 +593,7 @@
     <Content Include="Views\Home\FilterResult.cshtml" />
     <Content Include="Uploads\FinalData4.csv" />
     <Content Include="Uploads\PartData.csv" />
+    <Content Include="Views\Home\buttonTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -16,8 +16,9 @@
             <th width="20%">Charity Website</th>
             
             <th>Benificiaries</th>
-            <th width="10%">Tax Deductable</th>
-            <th width="10%">Charity Size</th>
+            <th width="5%">Tax Deductable</th>
+            <th width="5%">Charity Size</th>
+            <th width="5%">State</th>
         </tr>
     </thead>
     
@@ -42,13 +43,14 @@
                 <td>@String.Join(", ", charity.tags.ToArray())</td>
                 @if (charity.DGR == true)
                 {
-                    <td width="10%" id="yes">Yes</td>
+                    <td width="5%" id="yes">Yes</td>
                 }
                 else
                 {
-                    <td width="10%">No</td>
+                    <td width="5%">No</td>
                 }
-                <td width="10%">@Html.DisplayFor(modelItem => charity.Size)</td>
+                <td width="5%">@Html.DisplayFor(modelItem => charity.Size)</td>
+                <td width="5%">@Html.DisplayFor(modelItem => charity.State)</td>
             </tr>
         }
     </tbody>
