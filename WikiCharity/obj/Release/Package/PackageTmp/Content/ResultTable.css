@@ -1,17 +1,58 @@
 ﻿body {
 }
 
-th{
-    background-color:#4F4F4F;
+th {
+    background-color:#2C5473;
     background-clip:border-box;
+    color:white;
     width:30px;
-    color:#FFC529;
+    
 }
 
 #yes {
-    color:#ffc529;
+    color:#2C5473;
    
 }
 
+body {
+}
 
+#filtersection{
+    margin:6px;
+	padding:2px;
+	text-align:center;
+    width:100%
 
+}
+
+#filtertable{
+    margin:0px auto;
+    width:80%;
+    
+    
+}
+
+@media (max-width: 767px) {
+    .table-responsive {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        border: 1px solid #dddddd;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        -webkit-overflow-scrolling: touch;
+    }
+
+        .table-responsive > .table {
+            margin-bottom: 0;
+        }
+
+            .table-responsive > .table > thead > tr > th,
+            .table-responsive > .table > tbody > tr > th,
+            .table-responsive > .table > tfoot > tr > th,
+            .table-responsive > .table > thead > tr > td,
+            .table-responsive > .table > tbody > tr > td,
+            .table-responsive > .table > tfoot > tr > td {
+                white-space: nowrap;
+            }
+}

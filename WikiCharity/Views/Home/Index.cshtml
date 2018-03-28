@@ -1,36 +1,184 @@
 ﻿@model WikiCharity.Models.FilterModel
 
+
 @{
-    ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+
+    <title>WikiCharity</title>
+
+    <!-- Styles -->
+    <link href="~/assets/css/app.min.css" rel="stylesheet">
+    <link href="~/assets/css/thejobs.css" rel="stylesheet">
+    <link href="~/assets/css/custom.css" rel="stylesheet">
 
 
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
 
-    <img src="~/Uploads/fanren.png" alt="backgroung image" style="width:100%;"/>
-    <div id="headContent">
-        <h2>Find a charity that suits you </h2>
-    </div>
-    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { role = "form" }))
-    {
-        <div class="dropdown" id="drop">
-            
-                @Html.DropDownListFor(m => m.state, Model.states, "State", new { @class = "form-control", @id = "state" })
-                @Html.DropDownListFor(m => m.beneficial, Model.beneficials, "Beneficiaries", new { @class = "form-control", @id = "bene" })
-                @Html.DropDownListFor(m => m.size, Model.sizes, "Charity Size", new { @class = "form-control", @id = "size" })
-                @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Tax Deductable", new { @class = "form-control", @id = "tax" })     
-            <br />
-            <br />
-            <button type="submit" class="btn btn-warning" style="border-radius:20px;color:black;font-size:16px;font-family:Verdana;" id="button1">Show 1000 charities we find for you</button>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="~/assets/img/favicon.ico">
+</head>
+
+<body class="nav-on-header smart-nav">
+
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="container">
+
+            <!-- Logo -->
+            <div class="pull-left">
+                <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
+
+                <div class="logo-wrapper">
+                    <img class="logo" src="/assets/img/logo.png" alt="logo">
+                    <img class="logo-alt" src="/assets/img/logo-alt.png" alt="logo-alt">
+                </div>
+
+            </div>
+            <!-- END Logo -->
+            <!-- Navigation menu -->
+            <ul class="nav-menu">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+            <!-- END Navigation menu -->
+
         </div>
-    }
-    
-        
-        
-    
-    
+    </nav>
+    <!-- END Navigation bar -->
+    <!-- Site header -->
+    <header class="site-header size-lg text-center" style="background-image: url(/Uploads/BackImage.png)">
+        <div class="container">
+            <div class="col-xs-12">
+                <br><br>
+                <h2>Find Charities that Suits <mark>You</mark></h2>
+                <h5 class="font-alt">Find your dreaming charity in a minute</h5>
+                <br><br><br>
 
-    
-    
- 
+                <!--Search Bar-->
+
+
+                @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { role = "form" }))
+                {
+
+                    <div class="select-state">
+                        @Html.DropDownListFor(m => m.state, Model.states, "State", new { @class = "form-control", @id = "state" })
+                    </div>
+                    <div class="select-bene">
+                        @Html.DropDownListFor(m => m.beneficial, Model.beneficials, "Beneficiaries", new { @class = "form-control", @id = "bene" })
+                    </div>
+                        <div class="select-size">
+                            @Html.DropDownListFor(m => m.size, Model.sizes, "Charity Size", new { @class = "form-control", @id = "size" })
+                        </div>
+                                <div class="select-tax">
+                                    @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Tax Deductable", new { @class = "form-control", @id = "tax" })
+                                </div>
+
+
+
+                                <br />
+                                <br />
+                                
+                                    <button type="submit" class="btn btn-primary" id="button1">Show 1000 charities we find for you</button>
+                                
+
+                }
+                <!-- END Search Bar-->
+
+
+            </div>
+
+        </div>
+    </header>
+    <!-- END Site header -->
+    <!-- Main container -->
+    <main>
+
+
+        <!-- Facts -->
+        <section class="bg-img bg-repeat no-overlay section-sm" style="background-image: url(~/assets/img/bg-pattern.png)">
+            <div class="container">
+
+                <div class="row">
+                    <div class="counter col-md-6 col-sm-6">
+                        <p><span data-from="0" data-to="56000"></span>56000+</p>
+                        <h6>Charities</h6>
+                    </div>
+
+                    <div class="counter col-md-6 col-sm-6">
+                        <p><span data-from="0" data-to="30"></span>30+</p>
+                        <h6>Beneficiary</h6>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </section>
+        <!-- END Facts -->
+
+    </main>
+    <!-- END Main container -->
+    <!-- Site footer -->
+    <footer class="site-footer">
+
+        <!-- Top section -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>About</h6>
+                    <p class="text-justify">WikiCharity aims to create partnerships between both individuals & business, and charities. With the rise of corporate social responsibility programs in the corporate sector, opportunities arise for charities to build stronger relationships with businesses and thus, have a positive impact on people and the environment. </p>
+                </div>
+
+            </div>
+
+            <hr>
+        </div>
+        <!-- END Top section -->
+        <!-- Bottom section -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+
+                    <p class="copyright-text">Copyrights &copy; @DateTime.Now.Year All Rights Reserved by QingGari</p>
+                </div>
+            </div>
+        </div>
+        <!-- END Bottom section -->
+
+    </footer>
+    <!-- END Site footer -->
+    <!-- Back to top button -->
+    <a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
+    <!-- END Back to top button -->
+    <!-- Scripts -->
+    <script src="~/assets/js/app.min.js"></script>
+    <script src="~/assets/js/thejobs.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/dataTables")
+    @Scripts.Render("~/bundles/site")
+    <script src="~/Scripts/site.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

@@ -29,12 +29,8 @@ namespace WikiCharity.Controllers
         [HttpPost]
         public ActionResult Index(FilterModel model)
         {
-            if (model.beneficial == null && model.isDGR == null && model.size == null && model.state == null)
-            {
-                return RedirectToAction("Result");
-            }
-            else
-            {
+               
+
                 var benes = GetAllBenes();
                 var sizes = GetAllSizes();
                 var DGRs = GetAllDGRs();
@@ -45,7 +41,7 @@ namespace WikiCharity.Controllers
                 model.states = GetSelectListItems(states);
                 Session["FilterModel"] = model;
                 return RedirectToAction("FilterResult");
-            }
+            
         }
 
         public ActionResult FilterResult()
@@ -200,19 +196,13 @@ namespace WikiCharity.Controllers
             return View();
         }
 
-        public ActionResult buttonTest()
+        public ActionResult FAQs()
         {
-            var benes = GetAllBenes();
-            var DGRs = GetAllDGRs();
-            var sizes = GetAllSizes();
-            var states = GetAllStates();
-            var model = new FilterModel();
-            model.beneficials = GetSelectListItems(benes);
-            model.isDGRs = GetSelectListItems(DGRs);
-            model.sizes = GetSelectListItems(sizes);
-            model.states = GetSelectListItems(states);
-            return View(model);
+            ViewBag.Message = "Your FAQs page.";
+
+            return View();
         }
+
 
         private IEnumerable<string> GetAllBenes()
         {
@@ -267,12 +257,7 @@ namespace WikiCharity.Controllers
             return selectList;
         }
 
-        public ActionResult Result()
-        {
-            List<CharityModel> charities = new List<CharityModel>();
-            charities = GetAllCharity();
-            return View(charities);
-        }
+
 
 
         private List<CharityModel> GetAllCharity()

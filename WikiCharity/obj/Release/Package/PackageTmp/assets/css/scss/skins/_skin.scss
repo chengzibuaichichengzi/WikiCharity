@@ -1,0 +1,104 @@
+// Variable
+$color: #f88596 !default;
+
+// Mixins
+@import "../mixins";
+
+//
+// Styles
+//
+::selection {
+  background: lighten($color, 15%);
+}
+
+::-moz-selection {
+  background: lighten($color, 15%);
+}
+
+.btn-primary { @include btn-variation($color); }
+
+// Color
+a,
+a:focus,
+a:hover,
+.page-title a:hover,
+.nav-menu > li:hover > a,
+.nav-menu a:hover, .nav-menu a:focus,
+.nav-menu a.active,
+.search-closer:hover,
+.user-account .dropdown-menu li > a:hover,
+.user-account .dropdown-menu li > a.active,
+.quick-links li a:hover,
+.offcanvas-show .navbar-toggle,
+.site-footer h4,
+.site-footer h5,
+.site-footer h6,
+.footer-links a:hover,
+.footer-links a:focus,
+.footer-links a:active,
+.copyright-text a:hover,
+.copyright-text a:focus,
+.copyright-text a:active,
+.btn-outline.btn-primary,
+.bootstrap-select .dropdown-menu li > a:hover,
+.bootstrap-select .dropdown-menu li > a:focus,
+.faq-items h4,
+.faq-items h5,
+.card-footer a:hover,
+.shot-info a:hover,
+.shot-by-widget .username:hover,
+.comment-pagination a:hover,
+.features .icon,
+.page-links .link-list a.active,
+.page-links .link-list a:hover {
+ color: $color;
+}
+
+// Background color
+.group-title::before,
+.section-header h2::after,
+.section-header h3::after,
+.btn-navbar:hover,
+#scroll-up,
+.shot-preview .label,
+.sidebar-block h6::after,
+.lSSlideOuter .lSPager.lSpg > li.active a,
+.lSSlideOuter .lSPager.lSpg > li:hover a,
+.profile-head .tab-list li::after,
+.social-icons a:hover,
+.social-icons a:focus,
+.social-icons a:active,
+.pagination > li > a:hover,
+.pagination > li > a:focus,
+.pagination > li > span:hover,
+.pagination > li > span:focus,
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus,
+.pager li > a:hover,
+.pager li > a:focus,
+.pager li > span:hover,
+.pager li > span:focus,
+.spinner > span,
+.page-links .link-list a::before {
+  background-color: $color;
+}
+
+// Border color
+.bootstrap-select .btn:hover,
+.bootstrap-select .btn:focus,
+.bootstrap-select.btn-group.open .dropdown-toggle,
+.tag-list a:hover,
+.comment-form .form-control:focus {
+  border-color: $color;
+}
+
+.nav-menu ul,
+.user-account .dropdown-menu {
+  border-top-color: $color;
+}
+
+.shot-by-widget .user-stats a:hover {
+  border-bottom-color: $color;
+}
+

@@ -1,17 +1,153 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    Layout = null;
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Post a job position or create your online resume by TheJobs!">
+    <meta name="keywords" content="">
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <title>WikiCharity - Contact us</title>
+
+    <!-- Styles -->
+    <link href="~/assets/css/app.min.css" rel="stylesheet">
+    <link href="~/assets/css/thejobs.css" rel="stylesheet">
+    <link href="~/assets/css/custom.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="~/assets/img/favicon.ico">
+</head>
+
+<body class="nav-on-header smart-nav">
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="container">
+
+            <!-- Logo -->
+            <div class="pull-left">
+                <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
+
+                <div class="logo-wrapper">
+                    <img class="logo" src="/assets/img/logo.png" alt="logo">
+                    <img class="logo-alt" src="/assets/img/logo-alt.png" alt="logo-alt">
+                </div>
+
+            </div>
+            <!-- END Logo -->
+            <!-- Navigation menu -->
+            <ul class="nav-menu">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+            <!-- END Navigation menu -->
+
+        </div>
+    </nav>
+    <!-- END Navigation bar -->
+    <!-- Site header -->
+    <header class="page-header bg-img size-lg" style="background-image: url(assets/img/bg-banner2.jpg)">
+        <div class="container no-shadow">
+            <h1 class="text-center">Contact us</h1>
+            <p class="lead text-center">Say hi, drop a letter, and follow us in social media websites.</p>
+        </div>
+    </header>
+    <!-- END Site header -->
+    <!-- Main container -->
+    <main>
+
+        <section>
+            <div class="container">
+
+
+                <br><br>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-8">
+                        <h4>Contact form</h4>
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control input-lg" placeholder="Name">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="email" class="form-control input-lg" placeholder="Email">
+                            </div>
+
+                            <div class="form-group">
+                                <textarea class="form-control" rows="5" placeholder="Message"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </form>
+                    </div>
+
+                    <div class="col-sm-12 col-md-4">
+                        <h4>Information</h4>
+                        <div class="highlighted-block">
+                            <dl class="icon-holder">
+
+                                <dt><i class="fa fa-envelope"></i></dt>
+                                <dd>QingGari@gmail.com</dd>
+                            </dl>
+                        </div>
+
+                        <br>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+    </main>
+    <!-- END Main container -->
+    <!-- Site footer -->
+    <footer class="site-footer">
+
+        <!-- Top section -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>About</h6>
+                    <p class="text-justify">WikiCharity aims to create partnerships between both individuals & business, and charities. With the rise of corporate social responsibility programs in the corporate sector, opportunities arise for charities to build stronger relationships with businesses and thus, have a positive impact on people and the environment. </p>
+                </div>
+
+            </div>
+
+            <hr>
+        </div>
+        <!-- END Top section -->
+        <!-- Bottom section -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+
+                    <p class="copyright-text">Copyrights &copy; @DateTime.Now.Year All Rights Reserved by QingGari</p>
+                </div>
+            </div>
+        </div>
+        <!-- END Bottom section -->
+
+    </footer>
+    <!-- END Site footer -->
+    <!-- Back to top button -->
+    <a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
+    <!-- END Back to top button -->
+    <!-- Scripts -->
+    <script src="~/assets/js/app.min.js"></script>
+    <script src="~/assets/js/thejobs.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+
+</body>
+</html>
