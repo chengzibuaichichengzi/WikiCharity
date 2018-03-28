@@ -27,7 +27,7 @@
                 $('#button1').text(text);
             },
             error: function () {
-                alert(ErrorEvent);
+                
             }
         });
     });

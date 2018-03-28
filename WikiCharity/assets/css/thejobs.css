@@ -729,7 +729,8 @@ form .text-muted {
 .select-state,
 .select-bene,
 .select-size,
-.select-tax {
+.select-tax,
+.select-name {
     display: inline-block;
     float: left;
 }
@@ -751,6 +752,11 @@ form .text-muted {
     width: 25%;
 }
 
+.selete-name{
+    position:relative;
+    width:15%;
+}
+
 .header-job-search .input-keyword,
 .header-job-search .input-location {
     position: relative;
@@ -760,7 +766,8 @@ form .text-muted {
 .select-state::before,
 .select-bene::before,
 .select-size::before,
-.select-tax::before {
+.select-tax::before,
+.select-name:before {
     position: absolute;
     top: 0;
     left: 20px;
@@ -835,7 +842,8 @@ form .text-muted {
     .select-state,
     .select-bene,
     .select-size,
-    .select-tax {
+    .select-tax,
+    .select-name {
         display: block;
         width: 100%;
     }
@@ -851,7 +859,8 @@ form .text-muted {
     .select-state,
     .select-bene,
     .select-size,
-    .select-tax {
+    .select-tax,
+    .select-name {
         display: block;
         width: 100%;
         margin-bottom: 20px;
@@ -866,7 +875,8 @@ form .text-muted {
     .select-state::before,
     .select-bene::before,
     .select-size::before,
-    .select-tax::before {
+    .select-tax::before,
+    .select-name::before {
         line-height: 50px;
         font-size: 22px;
     }

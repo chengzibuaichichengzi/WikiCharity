@@ -803,6 +803,8 @@
     <Content Include="Uploads\arrow.png" />
     <Content Include="Uploads\BackImage.png" />
     <Content Include="Uploads\fanren.png" />
+    <Content Include="Uploads\logo.png" />
+    <Content Include="Uploads\logo2.png" />
     <Content Include="Uploads\QingGariLogo.jpg" />
     <Content Include="Uploads\Rectangle4.png" />
     <Content Include="Web.config" />

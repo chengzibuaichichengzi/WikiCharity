@@ -11,39 +11,17 @@
     left:80px;
 }
 
-img {
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
+
+#button1 {
+    border-radius:18px;
 }
 
-#headContent {
-    position:absolute;
-    bottom:70%;
-    left:28%;
-    color:white;
-}
-
-#drop {
-    position:absolute;
-    bottom:50%;
-    left:31%;
-}
-
-#12 {
-    display:inline-block;
-}
-
-h2 {
-    font-size:42px;
-    font-weight:bold;
-    font-family:Verdana;
-}
-
-form-control {
+#name {
+    width:1055px;
     
 }
+
+
+
 
 

@@ -49,7 +49,6 @@ namespace WikiCharity.Controllers
             var model = Session["FilterModel"] as FilterModel;
             List<CharityModel> finalResult = new List<CharityModel>();
             finalResult = GetAllCharity();
-            
             if (model.beneficial != null)
             {
                 finalResult = IntersectCharity(SearchByBene(model), finalResult);
@@ -67,6 +66,12 @@ namespace WikiCharity.Controllers
                 finalResult = IntersectCharity(SearchByState(model), finalResult);
             }
             ViewBag.Count = finalResult.Count();
+            if (!string.IsNullOrEmpty(model.name))
+            {
+                finalResult = IntersectCharity(SearchByName(model), finalResult);
+            }
+
+            
             return View(finalResult);
         }
 
@@ -174,6 +179,21 @@ namespace WikiCharity.Controllers
             foreach (var charity in charities)
             {
                 if (charity.State == model.state)
+                {
+                    result.Add(charity);
+                }
+            }
+            return result;
+        }
+
+        private List<CharityModel> SearchByName(FilterModel model)
+        {
+            List<CharityModel> charities = new List<CharityModel>();
+            List<CharityModel> result = new List<CharityModel>();
+            charities = GetAllCharity();
+            foreach (var charity in charities)
+            {
+                if (charity.CharityName.ToUpper().Contains(model.name.ToUpper()))
                 {
                     result.Add(charity);
                 }

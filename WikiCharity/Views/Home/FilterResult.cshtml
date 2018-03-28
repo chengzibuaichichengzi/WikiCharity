@@ -50,7 +50,7 @@
 
                 <div class="logo-wrapper">
                     <img class="logo" src="/assets/img/logo.png" alt="logo">
-                    <img class="logo-alt" src="/assets/img/logo-alt.png" alt="logo-alt">
+                    <img class="logo-alt" src="~/Uploads/logo2.png" alt="logo-alt" style="width:90px;height:60px;">
                 </div>
 
             </div>
@@ -74,66 +74,72 @@
         </div>
     </header>
     <!-- END Page header -->
-    <!-- Filter Table-->
-    <main>
-        <div id="filtersection">
-            <div class="table-responsive">
-                <div id="filtertable">
-                    <table id="example" class="table-striped">
-                        <thead>
-                            <tr>
-                                <th>Charity Name</th>
-                                <th width="20%">Charity Website</th>
-
-                                <th>Benificiaries</th>
-                                <th width="5%">Tax Deductable</th>
-                                <th width="5%">Charity Size</th>
-                                <th width="5%">State</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            @foreach (var charity in Model)
-            {
+    @if (Model.Count() != 0)
+    {
+        <!-- Filter Table-->
+        <main>
+            <div id="filtersection">
+                <div class="table-responsive">
+                    <div id="filtertable">
+                        <table id="example" class="table-striped">
+                            <thead>
                                 <tr>
-                                    <td>@Html.DisplayFor(modelItem => charity.CharityName)</td>
-                                    @if (charity.Website.Contains("http://"))
-                {
-                                        <td><a href="@charity.Website">@charity.Website</a></td>
-                                    }
-                                    else if (charity.Website == "NA")
-                                    {
-                                        <td width="10%">Website not listed</td>
-                                    }
-                                    else
-                                    {
-                                        <td width="20%"><a href="http://@charity.Website">@charity.Website</a></td>
-                                    }
+                                    <th>Charity Name</th>
+                                    <th width="20%">Charity Website</th>
 
-                                    <td>@String.Join(", ", charity.tags.ToArray())</td>
-                                    @if (charity.DGR == true)
-                {
-                                        <td width="5%" id="yes">Yes</td>
-                                    }
-                                    else
-                                    {
-                                        <td width="5%">No</td>
-                                    }
-                                    <td width="5%">@Html.DisplayFor(modelItem => charity.Size)</td>
-                                    <td width="5%">@Html.DisplayFor(modelItem => charity.State)</td>
+                                    <th>Benificiaries</th>
+                                    <th width="5%">Tax Deductable</th>
+                                    <th width="5%">Charity Size</th>
+                                    <th width="5%">State</th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var charity in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => charity.CharityName)</td>
+                                        @if (charity.Website.Contains("http://"))
+                                        {
+                                            <td><a href="@charity.Website">@charity.Website</a></td>
+                                        }
+                                        else if (charity.Website == "NA")
+                                        {
+                                            <td width="10%">Website not listed</td>
+                                        }
+                                        else
+                                        {
+                                            <td width="20%"><a href="http://@charity.Website">@charity.Website</a></td>
+                                        }
+
+                                        <td>@String.Join(", ", charity.tags.ToArray())</td>
+                                        @if (charity.DGR == true)
+                                        {
+                                            <td width="5%" id="yes">Yes</td>
+                                        }
+                                        else
+                                        {
+                                            <td width="5%">No</td>
+                                        }
+                                        <td width="5%">@Html.DisplayFor(modelItem => charity.Size)</td>
+                                        <td width="5%">@Html.DisplayFor(modelItem => charity.State)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-
-
-
-    </main>
+        </main>
     <!-- END Filter Table-->
     <!-- Site footer -->
+    }
+
+    else
+    {
+        <h3 style="text-align:center;">Sorry, no result. You can try other filters.</h3>
+    }
+
     <footer class="site-footer">
 
         <!-- Top section -->

@@ -8,6 +8,7 @@ namespace WikiCharity.Models
 {
     public class FilterModel
     {
+        public string name { get; set; }
         public string beneficial { get; set; }
         public IEnumerable<SelectListItem> beneficials { get; set; }
         public string isDGR { get; set; }
