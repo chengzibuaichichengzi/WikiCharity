@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using WikiCharity.Models;
+using System.Net.Mail;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace WikiCharity.Controllers
 {
@@ -211,9 +214,34 @@ namespace WikiCharity.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+
+           
 
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Contact(EmailFormModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
+                var message = new MailMessage();
+                message.To.Add(new MailAddress("qinggari@gmail.com"));
+                
+                message.Subject = "Form from WikiCharity";
+                message.Body = string.Format(body, model.name, model.email, model.message);
+                message.IsBodyHtml = true;
+
+                using (var smtp = new SmtpClient())
+                {
+                    
+                    await smtp.SendMailAsync(message);
+                    return View(model);
+                }
+            }
+            return View(model);
         }
 
         public ActionResult FAQs()
