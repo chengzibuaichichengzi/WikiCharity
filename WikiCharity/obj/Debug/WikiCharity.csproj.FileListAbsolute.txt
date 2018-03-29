@@ -185,6 +185,6 @@ C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\System.Web.Optimization.xml
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\obj\Debug\WikiCharity.csprojResolveAssemblyReference.cache
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\obj\Debug\WikiCharity.dll
 C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\obj\Debug\WikiCharity.pdb
+C:\Users\zyua27\Desktop\WikiCharity\WikiCharity\obj\Debug\WikiCharity.csprojResolveAssemblyReference.cache

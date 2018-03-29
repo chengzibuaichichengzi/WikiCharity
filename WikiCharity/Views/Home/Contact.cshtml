@@ -1,4 +1,5 @@
-﻿@{
+﻿@model WikiCharity.Models.EmailFormModel
+@{
     Layout = null;
 }
 
@@ -17,6 +18,7 @@
     <link href="~/assets/css/app.min.css" rel="stylesheet">
     <link href="~/assets/css/thejobs.css" rel="stylesheet">
     <link href="~/assets/css/custom.css" rel="stylesheet">
+ 
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
@@ -36,8 +38,9 @@
                 <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
 
                 <div class="logo-wrapper">
-                    <img class="logo" src="/assets/img/logo.png" alt="logo">
-                    <img class="logo-alt" src="~/Uploads/logo2.png" alt="logo-alt" style="width:90px;height:60px;">
+                    <a href="@Url.Action("Index", "Home", null)">
+                        <img class="logo-alt" src="~/Uploads/logo.png" alt="logo-alt" style="width:90px;height:60px;">
+                    </a>
                 </div>
 
             </div>
@@ -70,25 +73,30 @@
 
 
                 <br><br>
-
+            
                 <div class="row">
                     <div class="col-sm-12 col-md-8">
                         <h4>Contact form</h4>
-                        <form>
+                       
+
                             <div class="form-group">
-                                <input type="text" class="form-control input-lg" placeholder="Name">
+                                @Html.TextBoxFor(m => m.name, new { @class = "form-control input-lg", placeholder = "Name" })
+                               
+                                
                             </div>
 
                             <div class="form-group">
-                                <input type="email" class="form-control input-lg" placeholder="Email">
+                                @Html.TextBoxFor(m => m.email, new { @class = "form-control input-lg", placeholder = "Email" })
+                               
                             </div>
 
                             <div class="form-group">
-                                <textarea class="form-control" rows="5" placeholder="Message"></textarea>
+                                @Html.TextAreaFor(m => m.message, new { @class = "form-control", placeholder = "Message", rows="5" })
+                              
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Send</button>
-                        </form>
+                            <button type="submit" class="btn btn-primary" id="button2">Send</button>
+                        
                     </div>
 
                     <div class="col-sm-12 col-md-4">
@@ -105,6 +113,7 @@
 
                     </div>
                 </div>
+                
 
             </div>
         </section>
@@ -148,6 +157,10 @@
     <script src="~/assets/js/app.min.js"></script>
     <script src="~/assets/js/thejobs.js"></script>
     <script src="~/assets/js/custom.js"></script>
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/dataTables")
+    @Scripts.Render("~/bundles/site")
+    <script src="~/Scripts/site.js"></script>
 </body>
 </html>

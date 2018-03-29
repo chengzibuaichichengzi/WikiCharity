@@ -15,6 +15,8 @@
             'size': size1,
             'tax': tax1
         });
+
+
         
         $.ajax({
             type: 'POST',
@@ -23,13 +25,17 @@
             data: data,
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                var text = "Show " + data.countNum + " charities we find for you"
+                var text = "Show the " + data.countNum + " charities we have found for you"
                 $('#button1').text(text);
             },
             error: function () {
                 
             }
         });
+    });
+
+    $('#button2').click(function () {
+        alert("Your message has been sent");
     });
 });
 
