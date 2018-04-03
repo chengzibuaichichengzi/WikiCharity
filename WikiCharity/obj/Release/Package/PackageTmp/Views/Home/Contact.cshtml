@@ -85,18 +85,18 @@
 
                             <div class="form-group">
                                 @Html.TextBoxFor(m => m.name, new { @class = "form-control input-lg", placeholder = "Name" })
-                                @Html.ValidationMessageFor(m => m.name)
+                                @Html.ValidationMessageFor(m => m.name, "", new {@class = "text-danger"})
                                 
                             </div>
 
                             <div class="form-group">
                                 @Html.TextBoxFor(m => m.email, new { @class = "form-control input-lg", placeholder = "Email" })
-                                @Html.ValidationMessageFor(m => m.email)
+                                @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="form-group">
                                 @Html.TextAreaFor(m => m.message, new { @class = "form-control", placeholder = "Message", rows="5" })
-                                @Html.ValidationMessageFor(m => m.message)
+                                @Html.ValidationMessageFor(m => m.message, "", new { @class = "text-danger" })
                             </div>
 
                             <button type="submit" class="btn btn-primary" id="button2">Send</button>

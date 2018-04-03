@@ -2764,7 +2764,7 @@ dl {
 
 .nav-menu {
     display: block;
-    text-align: center;
+    text-align:center;
 }
 
     .nav-menu > li {

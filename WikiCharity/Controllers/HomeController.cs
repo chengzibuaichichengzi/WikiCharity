@@ -13,6 +13,8 @@ namespace WikiCharity.Controllers
 {
     public class HomeController : Controller
     {
+
+   
         public ActionResult Index()
         {
             var benes = GetAllBenes();
@@ -151,10 +153,21 @@ namespace WikiCharity.Controllers
             charities = GetAllCharity();
             foreach (var charity in charities)
             {
-                if (charity.DGR == true)
+                if (model.isDGR == "Yes")
                 {
-                    result.Add(charity);
+                    if (charity.DGR == true)
+                    {
+                        result.Add(charity);
+                    }
                 }
+                if (model.isDGR == "No")
+                {
+                    if (charity.DGR == false)
+                    {
+                        result.Add(charity);
+                    }
+                }
+                
             }
             return result;
         }
@@ -204,6 +217,7 @@ namespace WikiCharity.Controllers
             return result;
         }
 
+
         public ActionResult About()
         {
 
@@ -211,6 +225,7 @@ namespace WikiCharity.Controllers
 
             return View();
         }
+
 
         public ActionResult Contact()
         {
@@ -244,6 +259,7 @@ namespace WikiCharity.Controllers
             return View(model);
         }
 
+      
         public ActionResult FAQs()
         {
             ViewBag.Message = "Your FAQs page.";
@@ -256,10 +272,10 @@ namespace WikiCharity.Controllers
         {
             List<string> list = new List<string>
             {
-                "Animals", "Culture", "Education", "Health", "GovernLow", "Environment", "HumanRights", "GeneralPublic", "MutualRespect",
-                "Religion", "SocialPublicWelfare", "PublicSecurity", "Community", "Aboriginal", "AgedPeople", "Children", "CommunitiesOverseas",
-                "EthnicGroups", "GayLesbianBisexual", "GeneralCommunities", "Men", "MigrantsRefugee", "ReleaseOffenders", "ChronicIllness",
-                "Disabilities", "Homelessness", "Unemployment", "Veterans", "CrimeVictims", "DisasterVictims", "Women", "Youth",
+                "Animals", "Culture", "Education", "Health", "Government Low", "Environment", "Human Rights", "General Public", "Mutual Respect",
+                "Religion", "Social Public Welfare", "Public Security", "Community", "Aboriginal", "Aged People", "Children", "Communities Overseas",
+                "Ethnic Groups", "Gay Lesbian Bisexual", "General Communities", "Men", "Migrants Refugee", "Release Offenders", "Chronic Illness",
+                "Disabilities", "Homelessness", "Unemployment", "Veterans", "Crime Victims", "Disaster Victims", "Women", "Youth",
             };
             list.Sort();
             return list;
@@ -269,7 +285,7 @@ namespace WikiCharity.Controllers
         {
             return new List<string>
             {
-                "Yes",
+                "Yes", "No",
             };
         }
 
@@ -352,7 +368,7 @@ namespace WikiCharity.Controllers
                     if (row.Split(',')[14] != "NA")
                     {
                         newCharity.GovernLow = true;
-                        newCharity.tags.Add("GovernLow");
+                        newCharity.tags.Add("Government Low");
                     }
                     if (row.Split(',')[15] != "NA")
                     {
@@ -362,17 +378,17 @@ namespace WikiCharity.Controllers
                     if (row.Split(',')[16] != "NA")
                     {
                         newCharity.HumanRights = true;
-                        newCharity.tags.Add("HumanRights");
+                        newCharity.tags.Add("Human Rights");
                     }
                     if (row.Split(',')[17] != "NA")
                     {
                         newCharity.GeneralPublic = true;
-                        newCharity.tags.Add("GeneralPublic");
+                        newCharity.tags.Add("General Public");
                     }
                     if (row.Split(',')[18] != "NA")
                     {
                         newCharity.MutualRespect = true;
-                        newCharity.tags.Add("MutualRespect");
+                        newCharity.tags.Add("Mutual Respect");
                     }
                     if (row.Split(',')[19] != "NA")
                     {
@@ -382,12 +398,12 @@ namespace WikiCharity.Controllers
                     if (row.Split(',')[20] != "NA")
                     {
                         newCharity.SocialPublicWelfare = true;
-                        newCharity.tags.Add("SocialPublicWelfare");
+                        newCharity.tags.Add("Social Public Welfare");
                     }
                     if (row.Split(',')[21] != "NA")
                     {
                         newCharity.PublicSecurity = true;
-                        newCharity.tags.Add("PublicSecurity");
+                        newCharity.tags.Add("Public Security");
                     }
                     if (row.Split(',')[22] != "NA")
                     {
@@ -402,7 +418,7 @@ namespace WikiCharity.Controllers
                     if (row.Split(',')[24] != "NA")
                     {
                         newCharity.AgedPeople = true;
-                        newCharity.tags.Add("AgedPeople");
+                        newCharity.tags.Add("Aged People");
                     }
                     if (row.Split(',')[25] != "NA")
                     {
@@ -412,22 +428,22 @@ namespace WikiCharity.Controllers
                     if (row.Split(',')[26] != "NA")
                     {
                         newCharity.CommunitiesOverseas = true;
-                        newCharity.tags.Add("CommunitiesOverseas");
+                        newCharity.tags.Add("Communities Overseas");
                     }
                     if (row.Split(',')[27] != "NA")
                     {
                         newCharity.EthnicGroups = true;
-                        newCharity.tags.Add("EthnicGroups");
+                        newCharity.tags.Add("Ethnic Groups");
                     }
                     if (row.Split(',')[28] != "NA")
                     {
                         newCharity.GayLesbianBisexual = true;
-                        newCharity.tags.Add("GayLesbianBisexual");
+                        newCharity.tags.Add("Gay Lesbian Bisexual");
                     }
                     if (row.Split(',')[29] != "NA")
                     {
                         newCharity.GeneralCommunities = true;
-                        newCharity.tags.Add("GeneralCommunities");
+                        newCharity.tags.Add("General Communities");
                     }
                     if (row.Split(',')[30] != "NA")
                     {
@@ -437,17 +453,17 @@ namespace WikiCharity.Controllers
                     if (row.Split(',')[31] != "NA")
                     {
                         newCharity.MigrantsRefugee = true;
-                        newCharity.tags.Add("MigrantsRefugee");
+                        newCharity.tags.Add("Migrants Refugee");
                     }
                     if (row.Split(',')[32] != "NA")
                     {
                         newCharity.ReleaseOffenders = true;
-                        newCharity.tags.Add("ReleaseOffenders");
+                        newCharity.tags.Add("Release Offenders");
                     }
                     if (row.Split(',')[33] != "NA")
                     {
                         newCharity.ChronicIllness = true;
-                        newCharity.tags.Add("ChronicIllness");
+                        newCharity.tags.Add("Chronic Illness");
                     }
                     if (row.Split(',')[34] != "NA")
                     {
@@ -472,12 +488,12 @@ namespace WikiCharity.Controllers
                     if (row.Split(',')[38] != "NA")
                     {
                         newCharity.CrimeVictims = true;
-                        newCharity.tags.Add("CrimeVictims");
+                        newCharity.tags.Add("Crime Victims");
                     }
                     if (row.Split(',')[39] != "NA")
                     {
                         newCharity.DisasterVictims = true;
-                        newCharity.tags.Add("DisasterVictims");
+                        newCharity.tags.Add("Disaster Victims");
                     }
                     if (row.Split(',')[40] != "NA")
                     {
