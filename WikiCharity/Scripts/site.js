@@ -25,7 +25,7 @@
             data: data,
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                var text = "Show the " + data.countNum + " charities we have found for you"
+                var text = "Show the " + data.countNum + " charities"
                 $('#button1').text(text);
             },
             error: function () {

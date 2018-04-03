@@ -46,7 +46,7 @@
                     <a href="@Url.Action("Index", "Home", null)">
                         <img class="logo-alt" src="~/Uploads/logo.png" alt="logo-alt" style="width:90px;height:60px;">
                     </a>
-                    
+
                 </div>
 
             </div>
@@ -85,25 +85,24 @@
                     <div class="select-bene">
                         @Html.DropDownListFor(m => m.beneficial, Model.beneficials, "Beneficiaries", new { @class = "form-control", @id = "bene" })
                     </div>
-                        <div class="select-size">
-                            @Html.DropDownListFor(m => m.size, Model.sizes, "Charity Size", new { @class = "form-control", @id = "size" })
+                    <div class="select-size">
+                        @Html.DropDownListFor(m => m.size, Model.sizes, "Charity Size", new { @class = "form-control", @id = "size" })
+                    </div>
+                    <div class="select-tax">
+                        @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Tax Deductable", new { @class = "form-control", @id = "tax" })
+
+                    </div>
+                    <div class="input-search">
+                        @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name" })
+                    </div>
+
+                    <br />
+                    <br />
+
+                        <div class="btn-search">
+                            <button type="submit" class="btn btn-primary" id="button1">Show the 1000 charities</button>
+
                         </div>
-                                <div class="select-tax">
-                                    @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Tax Deductable", new { @class = "form-control", @id = "tax" })
-                                    
-                                </div>
-                            
-                                @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder="Search by name" })
-                            
-
-                                
-                                    
-                                
-
-                                <br />
-                                <br />
-                                
-                                    <button type="submit" class="btn btn-primary" id="button1">Show the 1000 charities we have found for you</button>
 
 
                 }
