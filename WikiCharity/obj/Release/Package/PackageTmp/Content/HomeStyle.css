@@ -16,9 +16,8 @@
     border-radius:18px;
 }
 
-#name {
-    width:1055px;
-    
+#tax ::after {
+    content:"Test";
 }
 
 

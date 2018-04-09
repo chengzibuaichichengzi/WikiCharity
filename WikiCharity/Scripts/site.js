@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
-    $('#example').DataTable({
-    });
+
     
+
 
     $('.select-state, .select-bene, .select-size, .select-tax').change(function () {
         var state1 = $('#state').val();
@@ -9,14 +9,15 @@
         var size1 = $("#size").val();
         var tax1 = $("#tax").val();
 
+
+        
+
         var data = JSON.stringify({
             'state': state1,
             'bene': bene1,
             'size': size1,
             'tax': tax1
         });
-
-
         
         $.ajax({
             type: 'POST',

@@ -719,12 +719,14 @@ form .text-muted {
     margin-top: 50px;
 }
 
-    .header-job-search .input-keyword,
-    .header-job-search .input-location,
     .header-job-search .btn-search {
         display: inline-block;
         float: left;
     }
+
+.btn-search{
+    margin-top:100px;
+}
 
 .select-state,
 .select-bene,
@@ -735,26 +737,34 @@ form .text-muted {
     float: left;
 }
 
-.select-state{
+.input-search{
+    display:inline-block;
+    float: left;
+}
+
+.select-state {
     position: relative;
-    width:15%;
+    width: 15%;
 }
-.select-bene{
-    position:relative;
-    width:35%;
+
+.select-bene {
+    position: relative;
+    width: 40%;
 }
-.select-size{
-    position:relative;
-    width:20%;
+
+.select-size {
+    position: relative;
+    width: 20%;
 }
+
 .select-tax {
     position: relative;
     width: 25%;
 }
 
-.selete-name{
+.input-search{
     position:relative;
-    width:15%;
+    width:100%;
 }
 
 .header-job-search .input-keyword,
@@ -763,6 +773,7 @@ form .text-muted {
     width: 40%;
 }
 
+.input-search::before,
 .select-state::before,
 .select-bene::before,
 .select-size::before,
@@ -839,6 +850,7 @@ form .text-muted {
         width: 100%;
     }
 
+    .input-search,
     .select-state,
     .select-bene,
     .select-size,
@@ -856,6 +868,7 @@ form .text-muted {
         margin-bottom: 20px;
     }
 
+    .input-search,
     .select-state,
     .select-bene,
     .select-size,
@@ -872,6 +885,7 @@ form .text-muted {
         font-size: 22px;
     }
 
+    .input-search::before,
     .select-state::before,
     .select-bene::before,
     .select-size::before,
