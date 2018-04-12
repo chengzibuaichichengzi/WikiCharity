@@ -4,14 +4,8 @@
     Layout = null;
 }
 
-<link href="~/Content/ResultTable.css" rel="stylesheet" />
-@Styles.Render("~/Content/css")
-@Styles.Render("~/Content/DataTables")
-@Scripts.Render("~/bundles/modernizr")
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@Scripts.Render("~/bundles/dataTables")
-@Scripts.Render("~/bundles/site")
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,8 +20,11 @@
     <title>WikiCharity - Charity list</title>
 
     <!-- Styles -->
+
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/ResultTable.css" rel="stylesheet" />
 
+    
     <link href="~/assets/css/app.min.css" rel="stylesheet">
     <link href="~/assets/css/thejobs.css" rel="stylesheet">
     <link href="~/assets/css/custom.css" rel="stylesheet">
@@ -68,7 +65,7 @@
         </div>
     </nav>
     <!-- END Navigation bar -->
-    <header class="page-header bg-img" style="background-image: url(assets/img/bg-banner1.jpg);">
+    <header class="page-header bg-img">
         <div class="container page-name">
             <h1 class="text-center">Charity Lists</h1>
             <p class="lead text-center">Finding the charity that fits you better</p>
@@ -82,51 +79,20 @@
             <div id="filtersection">
                 <div class="table-responsive">
                     <div id="filtertable">
-                        <table id="example" class="table-striped">
+                        <table id="example">
                             <thead>
                                 <tr>
                                     <th>Charity Name</th>
-                                    <th width="20%">Charity Website</th>
-
                                     <th>Benificiaries</th>
-                                    <th width="5%">Tax Deductable</th>
-                                    <th width="5%">Charity Size</th>
-                                    <th width="5%">State</th>
+                                    <th width="15%">Tax Deductable</th>
+                                    <th width="15%">Charity Size</th>
+                                    <th>State</th>
                                 </tr>
                             </thead>
 
-                            <tbody>
-                                @foreach (var charity in Model)
-                                {
-                                    <tr>
-                                        <td>@Html.DisplayFor(modelItem => charity.CharityName)</td>
-                                        @if (charity.Website.Contains("http://"))
-                                        {
-                                            <td><a href="@charity.Website">@charity.Website</a></td>
-                                        }
-                                        else if (charity.Website == "NA")
-                                        {
-                                            <td width="10%">Website not listed</td>
-                                        }
-                                        else
-                                        {
-                                            <td width="20%"><a href="http://@charity.Website">@charity.Website</a></td>
-                                        }
 
-                                        <td>@String.Join(", ", charity.tags.ToArray())</td>
-                                        @if (charity.DGR == true)
-                                        {
-                                            <td width="5%" id="yes">Yes</td>
-                                        }
-                                        else
-                                        {
-                                            <td width="5%">No</td>
-                                        }
-                                        <td width="5%">@Html.DisplayFor(modelItem => charity.Size)</td>
-                                        <td width="5%">@Html.DisplayFor(modelItem => charity.State)</td>
-                                    </tr>
-                                }
-                            </tbody>
+                           
+
                         </table>
                     </div>
                 </div>
@@ -175,9 +141,9 @@
     <!-- Scripts -->
   
     <!--<script src="~/assets/js/app.min.js"></script>-->
-
-    <script src="~/assets/js/thejobs.js"></script>
-    <script src="~/assets/js/custom.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/cusTable.js"></script>
+    
 </body>
 </html>

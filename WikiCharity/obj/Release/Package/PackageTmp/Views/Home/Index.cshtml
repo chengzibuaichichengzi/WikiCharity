@@ -80,19 +80,24 @@
                 {
 
                     <div class="select-state">
+                        <!--<label style="color:cornflowerblue;font-size:18px;text-align:left;position:inherit;">State</label>-->
                         @Html.DropDownListFor(m => m.state, Model.states, "State", new { @class = "form-control", @id = "state" })
                     </div>
                     <div class="select-bene">
+                        
                         @Html.DropDownListFor(m => m.beneficial, Model.beneficials, "Beneficiaries", new { @class = "form-control", @id = "bene" })
                     </div>
                     <div class="select-size">
+                        
                         @Html.DropDownListFor(m => m.size, Model.sizes, "Charity Size", new { @class = "form-control", @id = "size" })
                     </div>
                     <div class="select-tax">
+                        
                         @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Tax Deductable", new { @class = "form-control", @id = "tax" })
 
                     </div>
                     <div class="input-search">
+                        
                         @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name" })
                     </div>
 
@@ -124,12 +129,12 @@
 
                 <div class="row">
                     <div class="counter col-md-6 col-sm-6">
-                        <p><span data-from="0" data-to="1000"></span>1000+</p>
+                        <p><span data-from="0" data-to="1000"></span>+</p>
                         <h6>Charities</h6>
                     </div>
 
                     <div class="counter col-md-6 col-sm-6">
-                        <p><span data-from="0" data-to="30"></span>30+</p>
+                        <p><span data-from="0" data-to="30"></span>+</p>
                         <h6>Beneficiaries</h6>
                     </div>
 

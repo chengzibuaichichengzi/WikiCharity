@@ -8,13 +8,15 @@ using WikiCharity.Models;
 using System.Net.Mail;
 using System.Net;
 using System.Threading.Tasks;
+using System.Linq.Dynamic;
 
 namespace WikiCharity.Controllers
 {
     public class HomeController : Controller
     {
 
-   
+        private const int TOTAL_ROWS = 1000;
+        
         public ActionResult Index()
         {
             var benes = GetAllBenes();
@@ -53,32 +55,102 @@ namespace WikiCharity.Controllers
         {
             var model = Session["FilterModel"] as FilterModel;
             List<CharityModel> finalResult = new List<CharityModel>();
+            finalResult = getFinalList();
+            return View(finalResult);
+        }
+
+        public List<CharityModel> getFinalList()
+        {
+            var model = Session["FilterModel"] as FilterModel;
+            List<CharityModel> finalResult = new List<CharityModel>();
             finalResult = GetAllCharity();
-            if (model.beneficial != null)
+            if (!string.IsNullOrEmpty(model.beneficial))
             {
-                finalResult = IntersectCharity(SearchByBene(model), finalResult);
+                //finalResult = IntersectCharity(SearchByBene(model), finalResult);
+                finalResult = finalResult.Where(x => x.tags.Contains(model.beneficial)).ToList<CharityModel>();
             }
-            if (model.size != null)
+            if (!string.IsNullOrEmpty(model.size))
             {
-                finalResult = IntersectCharity(SearchBySize(model), finalResult);
+                //finalResult = IntersectCharity(SearchBySize(model), finalResult);
+                finalResult = finalResult.Where(x => x.Size.Contains(model.size)).ToList<CharityModel>();
             }
-            if (model.isDGR != null)
+            if (!string.IsNullOrEmpty(model.isDGR))
             {
-                finalResult = IntersectCharity(SearchByTax(model), finalResult);
+                if (model.isDGR == "Yes")
+                {
+                    finalResult = finalResult.Where(x => x.DGR == true).ToList<CharityModel>();
+                }
+                //finalResult = IntersectCharity(SearchByTax(model), finalResult);
+                else
+                {
+                    finalResult = finalResult.Where(x => x.DGR == false).ToList<CharityModel>();
+                }
             }
-            if (model.state != null)
+            if (!string.IsNullOrEmpty(model.state))
             {
-                finalResult = IntersectCharity(SearchByState(model), finalResult);
+                finalResult = finalResult.Where(x => x.State.Contains(model.state)).ToList<CharityModel>();
             }
             ViewBag.Count = finalResult.Count();
             if (!string.IsNullOrEmpty(model.name))
             {
-                finalResult = IntersectCharity(SearchByName(model), finalResult);
+                finalResult = finalResult.Where(x => x.CharityName.ToLower().Contains(model.name.ToLower())).ToList<CharityModel>();
+            }
+            return finalResult;
+        }
+
+        [HttpPost]
+        public ActionResult AjaxGetJsonData()
+        {
+            var model = Session["FilterModel"] as FilterModel;
+            List<CharityModel> finalResult = new List<CharityModel>();
+            finalResult = getFinalList();
+            List<TableResultModel> list = new List<TableResultModel>();
+            foreach (var i in finalResult)
+            {
+                TableResultModel result = new TableResultModel();
+                result.Name = i.CharityName;
+                result.Beneficiaries = String.Join(", ", i.tags.ToArray());
+                if (i.DGR == true)
+                {
+                    result.Tax = "Yes";
+                }
+                else
+                {
+                    result.Tax = "No";
+                }
+                result.Size = i.Size;
+                result.State = i.State;
+                list.Add(result);
             }
 
-            
-            return View(finalResult);
+            //server side parameters
+            int start = Convert.ToInt32(Request["start"]);
+            int length = Convert.ToInt32(Request["length"]);
+            string searchValue = Request["search[value]"];
+            string sortColumnName = Request["columns[" + Request["order[0][column]"] + "][name]"];
+            string sortDirection = Request["order[0][dir]"];
+            int totalRows = list.Count;
+            //do filtering
+            if (!string.IsNullOrEmpty(searchValue))
+            {
+                list = list.Where(x => x.Name.ToLower().Contains(searchValue.ToLower()) ||
+                x.Beneficiaries.ToLower().Contains(searchValue.ToLower()) ||
+                x.Tax.ToLower().Contains(searchValue.ToLower()) ||
+                x.Size.ToLower().Contains(searchValue.ToLower()) ||
+                x.State.ToLower().Contains(searchValue.ToLower())).ToList<TableResultModel>();
+            }
+            int totalRowsAfter = list.Count; 
+
+            //do sorting
+            list = list.OrderBy(sortColumnName + " " + sortDirection).ToList<TableResultModel>();
+
+            //do paging
+            list = list.Skip(start).Take(length).ToList<TableResultModel>();
+ 
+            return Json(new { data = list, draw = Request["draw"], recordsTotal = totalRows, recordsFiltered = totalRowsAfter }, JsonRequestBehavior.AllowGet);
         }
+
+       
 
         [HttpPost]
         public ActionResult CountResult(string state, string bene, string size, string tax)
@@ -92,19 +164,30 @@ namespace WikiCharity.Controllers
             finalResult = GetAllCharity();
             if (!string.IsNullOrEmpty(model.beneficial))
             {
-                finalResult = IntersectCharity(SearchByBene(model), finalResult);
+                //finalResult = IntersectCharity(SearchByBene(model), finalResult);
+                finalResult = finalResult.Where(x => x.tags.Contains(model.beneficial)).ToList<CharityModel>();
             }
             if (!string.IsNullOrEmpty(model.size))
             {
-                finalResult = IntersectCharity(SearchBySize(model), finalResult);
+                //finalResult = IntersectCharity(SearchBySize(model), finalResult);
+                finalResult = finalResult.Where(x => x.Size.Contains(model.size)).ToList<CharityModel>();
             }
-            if (!string.IsNullOrEmpty(model.isDGR))
+            if (!string.IsNullOrEmpty(model.isDGR) )
             {
-                finalResult = IntersectCharity(SearchByTax(model), finalResult);
+                if (model.isDGR == "Yes")
+                {
+                    finalResult = finalResult.Where(x => x.DGR == true).ToList<CharityModel>();
+                }
+                //finalResult = IntersectCharity(SearchByTax(model), finalResult);
+                else
+                {
+                    finalResult = finalResult.Where(x => x.DGR == false).ToList<CharityModel>();
+                }
             }
             if (!string.IsNullOrEmpty(model.state))
             {
-                finalResult = IntersectCharity(SearchByState(model), finalResult);
+                //finalResult = IntersectCharity(SearchByState(model), finalResult);
+                finalResult = finalResult.Where(x => x.State.Contains(model.state)).ToList<CharityModel>();
             }
             model.countNum = finalResult.Count().ToString();
             return Json(model, JsonRequestBehavior.AllowGet);
@@ -327,7 +410,7 @@ namespace WikiCharity.Controllers
         private List<CharityModel> GetAllCharity()
         {
             List<CharityModel> charities = new List<CharityModel>();
-            string filePath = Server.MapPath("~/Uploads/PartData.csv");
+            string filePath = Server.MapPath("~/Uploads/FinalData4.csv");
             string csvData = System.IO.File.ReadAllText(filePath);
             foreach (string row in csvData.Split('\n'))
             {
@@ -522,5 +605,9 @@ namespace WikiCharity.Controllers
             }
             return charities;
         }
+
+       
+
+
     }
 }

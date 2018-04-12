@@ -728,6 +728,8 @@ form .text-muted {
     margin-top:100px;
 }
 
+
+
 .select-state,
 .select-bene,
 .select-size,
@@ -746,6 +748,7 @@ form .text-muted {
     position: relative;
     width: 15%;
 }
+
 
 .select-bene {
     position: relative;

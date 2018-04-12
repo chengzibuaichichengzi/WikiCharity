@@ -1,8 +1,5 @@
 ﻿$(document).ready(function () {
 
-    
-
-
     $('.select-state, .select-bene, .select-size, .select-tax').change(function () {
         var state1 = $('#state').val();
         var bene1 = $("#bene").val();
