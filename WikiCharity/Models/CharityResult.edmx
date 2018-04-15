@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CharityTableDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Charities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="ABN" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="State" Type="nvarchar" MaxLength="100" />
+          <Property Name="TownCity" Type="nvarchar(max)" />
+          <Property Name="AddressLine1" Type="nvarchar(max)" />
+          <Property Name="AddressLine2" Type="nvarchar(max)" />
+          <Property Name="Postcode" Type="nvarchar" MaxLength="100" />
+          <Property Name="Website" Type="nvarchar(max)" />
+          <Property Name="RegisDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="Size" Type="nvarchar" MaxLength="100" />
+          <Property Name="Tax" Type="bit" />
+          <Property Name="Beneficiaries" Type="nvarchar(max)" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OtherName" Type="nvarchar(max)" />
+          <Property Name="BRC" Type="bit" />
+          <Property Name="ConductedActivity" Type="bit" />
+          <Property Name="MainActivity" Type="nvarchar(max)" />
+          <Property Name="Activities" Type="nvarchar(max)" />
+          <Property Name="OperateStates" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ABNStatus" Type="bit" />
+          <Property Name="StaffFull" Type="int" />
+          <Property Name="StaffPart" Type="int" />
+          <Property Name="StaffCasual" Type="int" />
+          <Property Name="StaffVolun" Type="int" />
+        </EntityType>
+        <EntityContainer Name="CharityTableDBModelStoreContainer">
+          <EntitySet Name="Charities" EntityType="Self.Charities" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CharityTableDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Charity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="ABN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TownCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Postcode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RegisDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Tax" Type="Boolean" />
+          <Property Name="Beneficiaries" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OtherName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BRC" Type="Boolean" />
+          <Property Name="ConductedActivity" Type="Boolean" />
+          <Property Name="MainActivity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Activities" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OperateStates" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ABNStatus" Type="Boolean" />
+          <Property Name="StaffFull" Type="Int32" />
+          <Property Name="StaffPart" Type="Int32" />
+          <Property Name="StaffCasual" Type="Int32" />
+          <Property Name="StaffVolun" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="CharityTableDBEntities5" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Charities" EntityType="Self.Charity" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CharityTableDBModelStoreContainer" CdmEntityContainer="CharityTableDBEntities5">
+          <EntitySetMapping Name="Charities">
+            <EntityTypeMapping TypeName="CharityTableDBModel.Charity">
+              <MappingFragment StoreEntitySet="Charities">
+                <ScalarProperty Name="ABN" ColumnName="ABN" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="TownCity" ColumnName="TownCity" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="RegisDate" ColumnName="RegisDate" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="Beneficiaries" ColumnName="Beneficiaries" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OtherName" ColumnName="OtherName" />
+                <ScalarProperty Name="BRC" ColumnName="BRC" />
+                <ScalarProperty Name="ConductedActivity" ColumnName="ConductedActivity" />
+                <ScalarProperty Name="MainActivity" ColumnName="MainActivity" />
+                <ScalarProperty Name="Activities" ColumnName="Activities" />
+                <ScalarProperty Name="OperateStates" ColumnName="OperateStates" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ABNStatus" ColumnName="ABNStatus" />
+                <ScalarProperty Name="StaffFull" ColumnName="StaffFull" />
+                <ScalarProperty Name="StaffPart" ColumnName="StaffPart" />
+                <ScalarProperty Name="StaffCasual" ColumnName="StaffCasual" />
+                <ScalarProperty Name="StaffVolun" ColumnName="StaffVolun" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

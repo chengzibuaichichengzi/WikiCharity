@@ -140,6 +140,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -231,8 +233,25 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Charity.cs">
+      <DependentUpon>CharityResult.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CharityModel.cs" />
-    <Compile Include="Models\DataTableDataModel.cs" />
+    <Compile Include="Models\CharityResult.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CharityResult.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CharityResult.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CharityResult.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CharityResult.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CharityResult.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\EmailFormModel.cs" />
     <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -242,6 +261,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\CharityTableDB.mdf" />
+    <Content Include="App_Data\CharityTableDB_log.ldf">
+      <DependentUpon>CharityTableDB.mdf</DependentUpon>
+    </Content>
     <Content Include="assets\css\app.min.css" />
     <Content Include="assets\css\custom.css" />
     <Content Include="assets\css\thejobs.css" />
@@ -559,6 +582,16 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\CharityResult.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CharityResult.edmx</DependentUpon>
+      <LastGenOutput>CharityResult.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\CharityResult.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CharityResult.edmx</DependentUpon>
+      <LastGenOutput>CharityResult.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -774,6 +807,13 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="Models\CharityResult.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CharityResult.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\CharityResult.edmx.diagram">
+      <DependentUpon>CharityResult.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\WikiCharity20180324033921 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\WikiCharity20180324033921 - Web Deploy.pubxml" />
     <Content Include="Scripts\bootstrap.min.js.map" />
@@ -861,16 +901,17 @@
     <Content Include="Uploads\FinalData4.csv" />
     <Content Include="Uploads\PartData.csv" />
     <Content Include="Views\Home\FAQs.cshtml" />
+    <Content Include="Uploads\desData.csv" />
+    <Content Include="Uploads\newData1.csv" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

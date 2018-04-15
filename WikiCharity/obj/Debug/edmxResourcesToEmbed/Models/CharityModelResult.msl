@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CharityTableDBModelStoreContainer" CdmEntityContainer="CharityTableDBEntities4">
+    <EntitySetMapping Name="Charities">
+      <EntityTypeMapping TypeName="CharityTableDBModel.Charity">
+        <MappingFragment StoreEntitySet="Charities">
+          <ScalarProperty Name="ABN" ColumnName="ABN" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="TownCity" ColumnName="TownCity" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="RegisDate" ColumnName="RegisDate" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="Beneficiaries" ColumnName="Beneficiaries" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

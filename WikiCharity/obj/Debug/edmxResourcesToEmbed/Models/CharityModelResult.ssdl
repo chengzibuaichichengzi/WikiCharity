@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CharityTableDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Charities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="ABN" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="State" Type="nvarchar" MaxLength="100" />
+    <Property Name="TownCity" Type="nvarchar(max)" />
+    <Property Name="AddressLine1" Type="nvarchar(max)" />
+    <Property Name="AddressLine2" Type="nvarchar(max)" />
+    <Property Name="Postcode" Type="nvarchar" MaxLength="100" />
+    <Property Name="Website" Type="nvarchar(max)" />
+    <Property Name="RegisDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="Size" Type="nvarchar" MaxLength="100" />
+    <Property Name="Tax" Type="bit" />
+    <Property Name="Beneficiaries" Type="nvarchar(max)" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="CharityTableDBModelStoreContainer">
+    <EntitySet Name="Charities" EntityType="Self.Charities" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
