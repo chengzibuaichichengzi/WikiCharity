@@ -234,7 +234,22 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Charity.cs">
-      <DependentUpon>CharityResult.tt</DependentUpon>
+      <DependentUpon>Charity1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Charity1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Charity1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Charity1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Charity1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Charity1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Charity1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\CharityModel.cs" />
     <Compile Include="Models\CharityResult.Context.cs">
@@ -582,6 +597,16 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Charity1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Charity1.edmx</DependentUpon>
+      <LastGenOutput>Charity1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Charity1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Charity1.edmx</DependentUpon>
+      <LastGenOutput>Charity1.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\CharityResult.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CharityResult.edmx</DependentUpon>
@@ -750,7 +775,6 @@
     <Content Include="assets\fonts\lg.woff" />
     <Content Include="assets\fonts\themify.eot" />
     <Content Include="assets\fonts\themify.ttf" />
-    <Content Include="assets\fonts\themify.woff" />
     <Content Include="assets\vendors\bootstrap\css\bootstrap-theme.css.map" />
     <Content Include="assets\vendors\bootstrap\css\bootstrap-theme.min.css.map" />
     <Content Include="assets\vendors\bootstrap\css\bootstrap.css.map" />
@@ -813,6 +837,13 @@
     </EntityDeploy>
     <Content Include="Models\CharityResult.edmx.diagram">
       <DependentUpon>CharityResult.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\Charity1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Charity1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Charity1.edmx.diagram">
+      <DependentUpon>Charity1.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\WikiCharity20180324033921 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\WikiCharity20180324033921 - Web Deploy.pubxml" />

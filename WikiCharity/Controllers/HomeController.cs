@@ -19,7 +19,9 @@ namespace WikiCharity.Controllers
 
         private static CharityTableDBEntities5 db = new CharityTableDBEntities5();
         private static List<Charity> allCharities = db.Charities.ToList<Charity>();
-        
+        //private static WIKICHARITYEntities db = new WIKICHARITYEntities();
+        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+
         public ActionResult Index()
         {
             var benes = GetAllBenes();
