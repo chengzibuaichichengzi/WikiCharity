@@ -11,6 +11,7 @@ namespace WikiCharity.Models
         public string name { get; set; }
         public string beneficial { get; set; }
         public IEnumerable<SelectListItem> beneficials { get; set; }
+        //public MultiSelectList selectes { get; set; }
         public string isDGR { get; set; }
         public IEnumerable<SelectListItem> isDGRs { get; set; }
         public string size { get; set; }
@@ -18,6 +19,9 @@ namespace WikiCharity.Models
         public string state { get; set; }
         public IEnumerable<SelectListItem> states { get; set; }
         public string countNum { get; set; }
+
+        public List<string> beneString { get; set; }
+        public MultiSelectList selectedBenes { get; set; }
 
     }
 }

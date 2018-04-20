@@ -305,7 +305,7 @@
     width: 32px;
     height: 32px;
     line-height: 32px;
-    text-align: center;
+    text-align: right;
     border-radius: 100%;
     font-size: 15px;
     margin-left: 5px;
@@ -729,7 +729,6 @@ form .text-muted {
 }
 
 
-
 .select-state,
 .select-bene,
 .select-size,
@@ -744,30 +743,37 @@ form .text-muted {
     float: left;
 }
 
+.labe-state,
 .select-state {
     position: relative;
     width: 15%;
+    text-align:left;
+    
 }
 
-
+.label-bene,
 .select-bene {
     position: relative;
     width: 40%;
+    text-align:left;
 }
-
+.label-size,
 .select-size {
     position: relative;
     width: 20%;
+    text-align:left;
 }
-
+.label-tax,
 .select-tax {
     position: relative;
     width: 25%;
+    text-align:left;
 }
 
 .input-search{
     position:relative;
     width:100%;
+    text-align:left;
 }
 
 .header-job-search .input-keyword,
@@ -2781,7 +2787,7 @@ dl {
 
 .nav-menu {
     display: block;
-    text-align: center;
+    text-align: right;
 }
 
     .nav-menu > li {

@@ -23,7 +23,7 @@
             data: data,
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                var text = "Show the " + data.countNum + " charities"
+                var text = "Click to show the " + data.countNum + " charities"
                 $('#button1').text(text);
             },
             error: function () {

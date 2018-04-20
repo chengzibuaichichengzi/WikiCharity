@@ -17,10 +17,10 @@ namespace WikiCharity.Controllers
     public class HomeController : Controller
     {
 
-        private static CharityTableDBEntities5 db = new CharityTableDBEntities5();
-        private static List<Charity> allCharities = db.Charities.ToList<Charity>();
-        //private static WIKICHARITYEntities db = new WIKICHARITYEntities();
+        //private static CharityTableDBEntities5 db = new CharityTableDBEntities5();
         //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        private static WIKICHARITYEntities db = new WIKICHARITYEntities();
+        private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
         public ActionResult Index()
         {
@@ -33,6 +33,9 @@ namespace WikiCharity.Controllers
             model.isDGRs = GetSelectListItems(DGRs);
             model.sizes = GetSelectListItems(sizes);
             model.states = GetSelectListItems(states);
+            MultiSelectList beneList = new MultiSelectList(model.beneficials, "Value", "Text");
+            ViewBag.multiSelectBenes = GetBeneSelect(null);
+            model.selectedBenes = beneList;
             allCharities = db.Charities.ToList<Charity>();
 
             //store all data into database for the first time
@@ -96,10 +99,19 @@ namespace WikiCharity.Controllers
             return View(model);
         }
 
-        
+        public MultiSelectList GetBeneSelect(string[] selectedValue)
+        {
+            var benes = GetAllBenes();
+            var n = 1;
+            List<Bene> list = new List<Bene>();
+            foreach (var i in benes){
+                list.Add(new Bene() { ID = n, Name = i });
+            }
+            return new MultiSelectList(list, "ID", "Name", selectedValue);
+        }
 
         [HttpPost]
-        public ActionResult Index(FilterModel model)
+        public ActionResult Index(FilterModel model, FormCollection form)
         {
                 var benes = GetAllBenes();
                 var sizes = GetAllSizes();
@@ -110,6 +122,11 @@ namespace WikiCharity.Controllers
                 model.isDGRs = GetSelectListItems(DGRs);
                 model.states = GetSelectListItems(states);
                 Session["FilterModel"] = model;
+            ViewBag.youSelected = form["multiBenes"];
+            string selectedBenes = form["multiBenes"];
+            //ViewBag.multiSelectBenes = 
+
+
                 return RedirectToAction("FilterResult");
             
         }
@@ -126,11 +143,19 @@ namespace WikiCharity.Controllers
         {
             var model = Session["FilterModel"] as FilterModel;
             List<Charity> finalResult = new List<Charity>();
+            List<Charity> finalResult2 = new List<Charity>();
             finalResult = allCharities;
-            if (!string.IsNullOrEmpty(model.beneficial))
+
+            if (model.beneString != null)
             {
                 //finalResult = IntersectCharity(SearchByBene(model), finalResult);
-                finalResult = finalResult.Where(x => x.Beneficiaries.Contains(model.beneficial)).ToList<Charity>();
+                foreach (var i in model.beneString)
+                {
+                    List<Charity> tempList = new List<Charity>();
+                    tempList = finalResult.Where(x => x.Beneficiaries.Contains(i)).ToList<Charity>();
+                    finalResult2.AddRange(tempList);
+                }
+                finalResult = finalResult2;
             }
             if (!string.IsNullOrEmpty(model.size))
             {
@@ -224,11 +249,20 @@ namespace WikiCharity.Controllers
             model.size = size;
             model.isDGR = tax;
             List<Charity> finalResult = new List<Charity>();
+            List<Charity> beneResult = new List<Charity>();
+            List<string> names = model.beneficial.Split(',').ToList();
+            names.RemoveAt(names.Count - 1);
             finalResult = allCharities;
             if (!string.IsNullOrEmpty(model.beneficial))
             {
-                //finalResult = IntersectCharity(SearchByBene(model), finalResult);
-                finalResult = finalResult.Where(x => x.Beneficiaries.Contains(model.beneficial)).ToList<Charity>();
+                foreach (var i in names)
+                {
+                    //finalResult = IntersectCharity(SearchByBene(model), finalResult);
+                    List<Charity> tempResult = new List<Charity>();
+                    tempResult = finalResult.Where(x => x.Beneficiaries.Contains(i)).ToList<Charity>();
+                    beneResult.AddRange(tempResult);
+                }
+                finalResult = beneResult;
             }
             if (!string.IsNullOrEmpty(model.size))
             {
