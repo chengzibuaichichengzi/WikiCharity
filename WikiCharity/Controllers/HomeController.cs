@@ -16,9 +16,10 @@ namespace WikiCharity.Controllers
 {
     public class HomeController : Controller
     {
-
+        //Server side DB
         //private static CharityTableDBEntities5 db = new CharityTableDBEntities5();
         //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        //Local DB
         private static WIKICHARITYEntities db = new WIKICHARITYEntities();
         private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
@@ -34,14 +35,14 @@ namespace WikiCharity.Controllers
             model.sizes = GetSelectListItems(sizes);
             model.states = GetSelectListItems(states);
             MultiSelectList beneList = new MultiSelectList(model.beneficials, "Value", "Text");
-            ViewBag.multiSelectBenes = GetBeneSelect(null);
+            ViewBag.multiSelectBenes = beneList;
             model.selectedBenes = beneList;
             allCharities = db.Charities.ToList<Charity>();
 
             //store all data into database for the first time
             //List<Charity> list = new List<Charity>();
             //list = GetAllCharity();
-            
+
             /*foreach (var i in list)
             {
                 Charity c = new Charity();
@@ -94,12 +95,12 @@ namespace WikiCharity.Controllers
                 }
                 
             }*/
-            
 
+            GetAllFinancial();
             return View(model);
         }
 
-        public MultiSelectList GetBeneSelect(string[] selectedValue)
+        /*public MultiSelectList GetBeneSelect(string[] selectedValue)
         {
             var benes = GetAllBenes();
             var n = 1;
@@ -108,7 +109,7 @@ namespace WikiCharity.Controllers
                 list.Add(new Bene() { ID = n, Name = i });
             }
             return new MultiSelectList(list, "ID", "Name", selectedValue);
-        }
+        }A*/
 
         [HttpPost]
         public ActionResult Index(FilterModel model, FormCollection form)
@@ -122,8 +123,8 @@ namespace WikiCharity.Controllers
                 model.isDGRs = GetSelectListItems(DGRs);
                 model.states = GetSelectListItems(states);
                 Session["FilterModel"] = model;
-            ViewBag.youSelected = form["multiBenes"];
-            string selectedBenes = form["multiBenes"];
+            //model.beneficial = form["multiBenes"].;
+            //string selectedBenes = form["multiBenes"];
             //ViewBag.multiSelectBenes = 
 
 
@@ -141,25 +142,33 @@ namespace WikiCharity.Controllers
 
         public List<Charity> getFinalList()
         {
+            //get current filter model
             var model = Session["FilterModel"] as FilterModel;
+            //get all charities first
             List<Charity> finalResult = new List<Charity>();
-            List<Charity> finalResult2 = new List<Charity>();
             finalResult = allCharities;
 
-            if (model.beneString != null)
+            //create a new list to store multi selected result from beneficiaries
+            List<Charity> beneResult = new List<Charity>();
+            //create a new list to store selected benes
+            List<string> names = model.beneString;
+
+
+            if (names != null)
             {
-                //finalResult = IntersectCharity(SearchByBene(model), finalResult);
-                foreach (var i in model.beneString)
+                //do a search for each selected beneficiary
+                foreach (var i in names)
                 {
-                    List<Charity> tempList = new List<Charity>();
-                    tempList = finalResult.Where(x => x.Beneficiaries.Contains(i)).ToList<Charity>();
-                    finalResult2.AddRange(tempList);
+                    
+                    List<Charity> tempResult = new List<Charity>();
+                    tempResult = finalResult.Where(x => x.Beneficiaries.Contains(i)).ToList<Charity>();
+                    //add every result to a final list
+                    beneResult.AddRange(tempResult);
                 }
-                finalResult = finalResult2;
+                finalResult = beneResult;
             }
             if (!string.IsNullOrEmpty(model.size))
             {
-                //finalResult = IntersectCharity(SearchBySize(model), finalResult);
                 finalResult = finalResult.Where(x => x.Size.Contains(model.size)).ToList<Charity>();
             }
             if (!string.IsNullOrEmpty(model.isDGR))
@@ -168,7 +177,6 @@ namespace WikiCharity.Controllers
                 {
                     finalResult = finalResult.Where(x => x.Tax == true).ToList<Charity>();
                 }
-                //finalResult = IntersectCharity(SearchByTax(model), finalResult);
                 else
                 {
                     finalResult = finalResult.Where(x => x.Tax == false).ToList<Charity>();
@@ -516,343 +524,391 @@ namespace WikiCharity.Controllers
             return charities;
         }
 
-
-        /*private List<CharityModel> GetAllCharity()
+        private List<FinancialCSV> GetAllFinancial()
         {
-            List<CharityModel> charities = new List<CharityModel>();
-            string filePath = Server.MapPath("~/Uploads/newData1.csv");
-            string filePath2 = Server.MapPath("~/Uploads/desData.csv");
+            List<FinancialCSV> charities = new List<FinancialCSV>();
+            string filePath = Server.MapPath("~/Uploads/FinancialData3.csv");
             string csvData = System.IO.File.ReadAllText(filePath);
-            string desData = System.IO.File.ReadAllText(filePath2);
             foreach (string row in csvData.Split('\n'))
             {
                 if (!string.IsNullOrEmpty(row))
                 {
-                    CharityModel newCharity = new CharityModel();
+                    FinancialCSV newCharity = new FinancialCSV();
                     newCharity.ABN = row.Split(',')[0];
-                    newCharity.CharityName = row.Split(',')[1];
-                    newCharity.OtherName = row.Split(',')[2];
-                    newCharity.AddressLine1 = row.Split(',')[3];
-                    newCharity.AddressLine2 = row.Split(',')[4];
-                    newCharity.TownCity = row.Split(',')[5];
-                    newCharity.State = row.Split(',')[6];
-                    newCharity.Postcode = row.Split(',')[7];
-                    newCharity.Size = row.Split(',')[8];
-                    if (row.Split(',')[9] == "Y")
-                    {
-                        newCharity.BRC = true;
-                    }
-                    else
-                    {
-                        newCharity.BRC = false;
-                    }
-                    if (row.Split(',')[10] == "Y")
-                    {
-                        newCharity.ConductedActivity = true;
-                    }
-                    else
-                    {
-                        newCharity.ConductedActivity = false;
-                    }
-                    newCharity.MainActivity = row.Split(',')[11];
-                    if (row.Split(',')[12] != "N")
-                    {
-                        newCharity.activities.Add("Animal protection");
-                    }
-                    if (row.Split(',')[13] != "N")
-                    {
-                        newCharity.activities.Add("Aged care activities");
-                    }
-                    if (row.Split(',')[14] != "N")
-                    {
-                        newCharity.activities.Add("Civic and advocacy activities");
-                    }
-                    if (row.Split(',')[15] != "N")
-                    {
-                        newCharity.activities.Add("Culture and arts");
-                    }
-                    if (row.Split(',')[16] != "N")
-                    {
-                        newCharity.activities.Add("Economic social and community development");
-                    }
-                    if (row.Split(',')[17] != "N")
-                    {
-                        newCharity.activities.Add("Emergency relief");
-                    }
-                    if (row.Split(',')[18] != "N")
-                    {
-                        newCharity.activities.Add("Employment and training");
-                    }
-                    if (row.Split(',')[19] != "N")
-                    {
-                        newCharity.activities.Add("Environmental activities");
-                    }
-                    if (row.Split(',')[20] != "N")
-                    {
-                        newCharity.activities.Add("Grant-making activities");
-                    }
-                    if (row.Split(',')[21] != "N")
-                    {
-                        newCharity.activities.Add("Higher education");
-                    }
-                    if (row.Split(',')[22] != "N")
-                    {
-                        newCharity.activities.Add("Hospital services and rehabilitation activities");
-                    }
-                    if (row.Split(',')[23] != "N")
-                    {
-                        newCharity.activities.Add("Housing activities");
-                    }
-                    if (row.Split(',')[24] != "N")
-                    {
-                        newCharity.activities.Add("Income support and maintenance");
-                    }
-                    if (row.Split(',')[25] != "N")
-                    {
-                        newCharity.activities.Add("International activities");
-                    }
-                    if (row.Split(',')[26] != "N")
-                    {
-                        newCharity.activities.Add("Law and legal services");
-                    }
-                    if (row.Split(',')[27] != "N")
-                    {
-                        newCharity.activities.Add("Mental health and crisis intervention");
-                    }
-                    if (row.Split(',')[28] != "N")
-                    {
-                        newCharity.activities.Add("Primary and secondary education");
-                    }
-                    if (row.Split(',')[29] != "N")
-                    {
-                        newCharity.activities.Add("Religious activities");
-                    }
-                    if (row.Split(',')[30] != "N")
-                    {
-                        newCharity.activities.Add("Research");
-                    }
-                    if (row.Split(',')[31] != "N")
-                    {
-                        newCharity.activities.Add("Social Services");
-                    }
-                    if (row.Split(',')[32] != "N")
-                    {
-                        newCharity.activities.Add("Sports");
-                    }
-                    if (row.Split(',')[33] != "N")
-                    {
-                        newCharity.activities.Add("Other education");
-                    }
-                    if (row.Split(',')[34] != "N")
-                    {
-                        newCharity.activities.Add("Other health service delivery");
-                    }
-                    if (row.Split(',')[35] != "N")
-                    {
-                        newCharity.activities.Add("Other recreation and social club activity");
-                    }
-                    if (row.Split(',')[36] != "N")
-                    {
-                        newCharity.activities.Add("Other philanthropic intermediaries and voluntarism promotion");
-                    }
-                    if (row.Split(',')[37] != "N")
-                    {
-                        newCharity.activities.Add("Other activity");
-                    }
-                    if (row.Split(',')[38] != "N")
-                    {
-                        newCharity.operateStates.Add("ACT");
-                    }
-                    if (row.Split(',')[39] != "N")
-                    {
-                        newCharity.operateStates.Add("NSW");
-                    }
-                    if (row.Split(',')[40] != "N")
-                    {
-                        newCharity.operateStates.Add("NT");
-                    }
-                    if (row.Split(',')[41] != "N")
-                    {
-                        newCharity.operateStates.Add("QLD");
-                    }
-                    if (row.Split(',')[42] != "N")
-                    {
-                        newCharity.operateStates.Add("SA");
-                    }
-                    if (row.Split(',')[43] != "N")
-                    {
-                        newCharity.operateStates.Add("TAS");
-                    }
-                    if (row.Split(',')[44] != "N")
-                    {
-                        newCharity.operateStates.Add("VIC");
-                    }
-                    if (row.Split(',')[45] != "N")
-                    {
-                        newCharity.operateStates.Add("WA");
-                    }
-                    if (row.Split(',')[46] != "N")
-                    {
-                        newCharity.operateStates.Add("Overseas");
-                    }
-                    if (row.Split(',')[47] != "N")
-                    {
-                        newCharity.beneficiaries.Add("General community in Australia");
-                    }
-                    if (row.Split(',')[48] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Females");
-                    }
-                    if (row.Split(',')[49] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Males");
-                    }
-                    if (row.Split(',')[50] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Early childhood – under 6");
-                    }
-                    if (row.Split(',')[51] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Children – 6 to under 15");
-                    }
-                    if (row.Split(',')[52] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Youth – 15 to under 25");
-                    }
-                    if (row.Split(',')[53] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Adults -25 to under 65");
-                    }
-                    if (row.Split(',')[54] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Adults – 65 and over");
-                    }
-                    if (row.Split(',')[55] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Aboriginal and Torres Strait Islander people (ATSI)");
-                    }
-                    if (row.Split(',')[56] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Gay, lesbian, bisexual, transgender or intersex persons (GLBTI)");
-                    }
-                    if (row.Split(',')[57] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Migrants, refugees or asylum seekers");
-                    }
-                    if (row.Split(',')[58] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Other charities");
-                    }
-                    if (row.Split(',')[59] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Other beneficiaries not listed");
-                    }
-                    if (row.Split(',')[60] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Overseas communities or charities");
-                    }
-                    if (row.Split(',')[61] != "N")
-                    {
-                        newCharity.beneficiaries.Add("People in rural/regional/remote communities");
-                    }
-                    if (row.Split(',')[62] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Families");
-                    }
-                    if (row.Split(',')[63] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Financially disadvantaged people");
-                    }
-                    if (row.Split(',')[64] != "N")
-                    {
-                        newCharity.beneficiaries.Add("People at risk of homelessness");
-                    }
-                    if (row.Split(',')[65] != "N")
-                    {
-                        newCharity.beneficiaries.Add("People with chronic or terminal illness");
-                    }
-                    if (row.Split(',')[66] != "N")
-                    {
-                        newCharity.beneficiaries.Add("People with disabilities");
-                    }
-                    if (row.Split(',')[67] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Pre or Post Release Offenders and Families");
-                    }
-                    if (row.Split(',')[68] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Unemployed persons");
-                    }
-                    if (row.Split(',')[69] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Veterans or their families");
-                    }
-                    if (row.Split(',')[70] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Victims of crime");
-                    }
-                    if (row.Split(',')[71] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Victims of disasters");
-                    }
-                    if (row.Split(',')[72] != "N")
-                    {
-                        newCharity.beneficiaries.Add("Culturally and Linguistically Diverse");
-                    }
-                    if (!row.Split(',')[73].Contains("NA"))
-                    {
-                        newCharity.StaffFull = Int32.Parse(row.Split(',')[73]);
-                    }
-                    else
-                    {
-                        newCharity.StaffFull = 0;
-                    }
-                    if (!row.Split(',')[74].Contains("NA"))
-                    {
-                        newCharity.StaffPart = Int32.Parse(row.Split(',')[74]);
-                    }
-                    else
-                    {
-                        newCharity.StaffPart = 0;
-                    }
-                    if (!row.Split(',')[75].Contains("NA"))
-                    {
-                        newCharity.StaffCasual = Int32.Parse(row.Split(',')[75]);
-                    }
-                    else
-                    {
-                        newCharity.StaffCasual = 0;
-                    }
-                    if (!row.Split(',')[76].Contains("NA"))
-                    {
-                        newCharity.StaffVolun = Int32.Parse(row.Split(',')[76]);
-                    }
-                    else
-                    {
-                        newCharity.StaffVolun = 0;
-                    }
-                    if (!row.Split(',')[77].Contains("NA"))
-                    {
-                        
-                        newCharity.DGR = true;
-                        
-
-                    }
-                    newCharity.Website = row.Split(',')[78];
+                    newCharity.AccountInfo = row.Split(',')[1];
+                    newCharity.Donations = Convert.ToDouble(row.Split(',')[2]);
+                    newCharity.EmpExpense = Convert.ToDouble(row.Split(',')[3]);
+                    newCharity.ReportFrom = row.Split(',')[4];
+                    newCharity.ReportTo = row.Split(',')[5];
+                    newCharity.GoverGrant = Convert.ToDouble(row.Split(',')[6]);
+                    newCharity.GDInAus = Convert.ToDouble(row.Split(',')[7]);
+                    newCharity.GDOutAus = Convert.ToDouble(row.Split(',')[8]);
+                    newCharity.NetAssets = Convert.ToDouble(row.Split(',')[9]);
+                    newCharity.NetSurplus = Convert.ToDouble(row.Split(',')[10]);
+                    newCharity.TotalAssets = Convert.ToDouble(row.Split(',')[11]);
+                    newCharity.TotalCurrentAssets = Convert.ToDouble(row.Split(',')[12]);
+                    newCharity.TotalCurrentLia = Convert.ToDouble(row.Split(',')[13]);
+                    newCharity.Expense = Convert.ToDouble(row.Split(',')[14]);
+                    newCharity.TotalGrossIncome = Convert.ToDouble(row.Split(',')[15]);
+                    newCharity.TotalLia = Convert.ToDouble(row.Split(',')[16]);
+                    newCharity.TotalNotCurrentAssets = Convert.ToDouble(row.Split(',')[17]);
+                    newCharity.TotalNotCurrentLia = Convert.ToDouble(row.Split(',')[18]);
+                    newCharity.Year = row.Split(',')[19];
+                    newCharity.EmpExpensePersentage = Convert.ToDouble(row.Split(',')[20]);
+                    newCharity.OtherIncome = Convert.ToDouble(row.Split(',')[21]);
+                    newCharity.AllOtherExpense = Convert.ToDouble(row.Split(',')[22]);
+                    newCharity.DebtEquityRadio = Convert.ToDouble(row.Split(',')[23]);
+                    newCharity.SavingRadio = Convert.ToDouble(row.Split(',')[24]);
+                    newCharity.CurrentRadio = Convert.ToDouble(row.Split(',')[25]);
+                    newCharity.DebtRadio = Convert.ToDouble(row.Split(',')[26]);
+                    newCharity.EmpExpInSizeMedian = Convert.ToDouble(row.Split(',')[27]);
+                    newCharity.DebtEquityInSizeMedian = Convert.ToDouble(row.Split(',')[28]);
+                    newCharity.SavingRadioInSizeMedian = Convert.ToDouble(row.Split(',')[29]);
+                    newCharity.CurrentRadioInSizeMedian = Convert.ToDouble(row.Split(',')[30]);
+                    newCharity.DebtRadioInSizeMedian = Convert.ToDouble(row.Split(',')[31]);
                     charities.Add(newCharity);
                 }
             }
-            int a = 0;
-            foreach (string row in desData.Split('\n'))
-            {
-                charities[a].description = row;
-                a++;
-            }
-                return charities;
-        }*/
+            return charities;
+        }
+
+
+                    /*private List<CharityModel> GetAllCharity()
+                    {
+                        List<CharityModel> charities = new List<CharityModel>();
+                        string filePath = Server.MapPath("~/Uploads/newData1.csv");
+                        string filePath2 = Server.MapPath("~/Uploads/desData.csv");
+                        string csvData = System.IO.File.ReadAllText(filePath);
+                        string desData = System.IO.File.ReadAllText(filePath2);
+                        foreach (string row in csvData.Split('\n'))
+                        {
+                            if (!string.IsNullOrEmpty(row))
+                            {
+                                CharityModel newCharity = new CharityModel();
+                                newCharity.ABN = row.Split(',')[0];
+                                newCharity.CharityName = row.Split(',')[1];
+                                newCharity.OtherName = row.Split(',')[2];
+                                newCharity.AddressLine1 = row.Split(',')[3];
+                                newCharity.AddressLine2 = row.Split(',')[4];
+                                newCharity.TownCity = row.Split(',')[5];
+                                newCharity.State = row.Split(',')[6];
+                                newCharity.Postcode = row.Split(',')[7];
+                                newCharity.Size = row.Split(',')[8];
+                                if (row.Split(',')[9] == "Y")
+                                {
+                                    newCharity.BRC = true;
+                                }
+                                else
+                                {
+                                    newCharity.BRC = false;
+                                }
+                                if (row.Split(',')[10] == "Y")
+                                {
+                                    newCharity.ConductedActivity = true;
+                                }
+                                else
+                                {
+                                    newCharity.ConductedActivity = false;
+                                }
+                                newCharity.MainActivity = row.Split(',')[11];
+                                if (row.Split(',')[12] != "N")
+                                {
+                                    newCharity.activities.Add("Animal protection");
+                                }
+                                if (row.Split(',')[13] != "N")
+                                {
+                                    newCharity.activities.Add("Aged care activities");
+                                }
+                                if (row.Split(',')[14] != "N")
+                                {
+                                    newCharity.activities.Add("Civic and advocacy activities");
+                                }
+                                if (row.Split(',')[15] != "N")
+                                {
+                                    newCharity.activities.Add("Culture and arts");
+                                }
+                                if (row.Split(',')[16] != "N")
+                                {
+                                    newCharity.activities.Add("Economic social and community development");
+                                }
+                                if (row.Split(',')[17] != "N")
+                                {
+                                    newCharity.activities.Add("Emergency relief");
+                                }
+                                if (row.Split(',')[18] != "N")
+                                {
+                                    newCharity.activities.Add("Employment and training");
+                                }
+                                if (row.Split(',')[19] != "N")
+                                {
+                                    newCharity.activities.Add("Environmental activities");
+                                }
+                                if (row.Split(',')[20] != "N")
+                                {
+                                    newCharity.activities.Add("Grant-making activities");
+                                }
+                                if (row.Split(',')[21] != "N")
+                                {
+                                    newCharity.activities.Add("Higher education");
+                                }
+                                if (row.Split(',')[22] != "N")
+                                {
+                                    newCharity.activities.Add("Hospital services and rehabilitation activities");
+                                }
+                                if (row.Split(',')[23] != "N")
+                                {
+                                    newCharity.activities.Add("Housing activities");
+                                }
+                                if (row.Split(',')[24] != "N")
+                                {
+                                    newCharity.activities.Add("Income support and maintenance");
+                                }
+                                if (row.Split(',')[25] != "N")
+                                {
+                                    newCharity.activities.Add("International activities");
+                                }
+                                if (row.Split(',')[26] != "N")
+                                {
+                                    newCharity.activities.Add("Law and legal services");
+                                }
+                                if (row.Split(',')[27] != "N")
+                                {
+                                    newCharity.activities.Add("Mental health and crisis intervention");
+                                }
+                                if (row.Split(',')[28] != "N")
+                                {
+                                    newCharity.activities.Add("Primary and secondary education");
+                                }
+                                if (row.Split(',')[29] != "N")
+                                {
+                                    newCharity.activities.Add("Religious activities");
+                                }
+                                if (row.Split(',')[30] != "N")
+                                {
+                                    newCharity.activities.Add("Research");
+                                }
+                                if (row.Split(',')[31] != "N")
+                                {
+                                    newCharity.activities.Add("Social Services");
+                                }
+                                if (row.Split(',')[32] != "N")
+                                {
+                                    newCharity.activities.Add("Sports");
+                                }
+                                if (row.Split(',')[33] != "N")
+                                {
+                                    newCharity.activities.Add("Other education");
+                                }
+                                if (row.Split(',')[34] != "N")
+                                {
+                                    newCharity.activities.Add("Other health service delivery");
+                                }
+                                if (row.Split(',')[35] != "N")
+                                {
+                                    newCharity.activities.Add("Other recreation and social club activity");
+                                }
+                                if (row.Split(',')[36] != "N")
+                                {
+                                    newCharity.activities.Add("Other philanthropic intermediaries and voluntarism promotion");
+                                }
+                                if (row.Split(',')[37] != "N")
+                                {
+                                    newCharity.activities.Add("Other activity");
+                                }
+                                if (row.Split(',')[38] != "N")
+                                {
+                                    newCharity.operateStates.Add("ACT");
+                                }
+                                if (row.Split(',')[39] != "N")
+                                {
+                                    newCharity.operateStates.Add("NSW");
+                                }
+                                if (row.Split(',')[40] != "N")
+                                {
+                                    newCharity.operateStates.Add("NT");
+                                }
+                                if (row.Split(',')[41] != "N")
+                                {
+                                    newCharity.operateStates.Add("QLD");
+                                }
+                                if (row.Split(',')[42] != "N")
+                                {
+                                    newCharity.operateStates.Add("SA");
+                                }
+                                if (row.Split(',')[43] != "N")
+                                {
+                                    newCharity.operateStates.Add("TAS");
+                                }
+                                if (row.Split(',')[44] != "N")
+                                {
+                                    newCharity.operateStates.Add("VIC");
+                                }
+                                if (row.Split(',')[45] != "N")
+                                {
+                                    newCharity.operateStates.Add("WA");
+                                }
+                                if (row.Split(',')[46] != "N")
+                                {
+                                    newCharity.operateStates.Add("Overseas");
+                                }
+                                if (row.Split(',')[47] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("General community in Australia");
+                                }
+                                if (row.Split(',')[48] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Females");
+                                }
+                                if (row.Split(',')[49] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Males");
+                                }
+                                if (row.Split(',')[50] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Early childhood – under 6");
+                                }
+                                if (row.Split(',')[51] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Children – 6 to under 15");
+                                }
+                                if (row.Split(',')[52] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Youth – 15 to under 25");
+                                }
+                                if (row.Split(',')[53] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Adults -25 to under 65");
+                                }
+                                if (row.Split(',')[54] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Adults – 65 and over");
+                                }
+                                if (row.Split(',')[55] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Aboriginal and Torres Strait Islander people (ATSI)");
+                                }
+                                if (row.Split(',')[56] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Gay, lesbian, bisexual, transgender or intersex persons (GLBTI)");
+                                }
+                                if (row.Split(',')[57] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Migrants, refugees or asylum seekers");
+                                }
+                                if (row.Split(',')[58] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Other charities");
+                                }
+                                if (row.Split(',')[59] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Other beneficiaries not listed");
+                                }
+                                if (row.Split(',')[60] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Overseas communities or charities");
+                                }
+                                if (row.Split(',')[61] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("People in rural/regional/remote communities");
+                                }
+                                if (row.Split(',')[62] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Families");
+                                }
+                                if (row.Split(',')[63] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Financially disadvantaged people");
+                                }
+                                if (row.Split(',')[64] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("People at risk of homelessness");
+                                }
+                                if (row.Split(',')[65] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("People with chronic or terminal illness");
+                                }
+                                if (row.Split(',')[66] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("People with disabilities");
+                                }
+                                if (row.Split(',')[67] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Pre or Post Release Offenders and Families");
+                                }
+                                if (row.Split(',')[68] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Unemployed persons");
+                                }
+                                if (row.Split(',')[69] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Veterans or their families");
+                                }
+                                if (row.Split(',')[70] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Victims of crime");
+                                }
+                                if (row.Split(',')[71] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Victims of disasters");
+                                }
+                                if (row.Split(',')[72] != "N")
+                                {
+                                    newCharity.beneficiaries.Add("Culturally and Linguistically Diverse");
+                                }
+                                if (!row.Split(',')[73].Contains("NA"))
+                                {
+                                    newCharity.StaffFull = Int32.Parse(row.Split(',')[73]);
+                                }
+                                else
+                                {
+                                    newCharity.StaffFull = 0;
+                                }
+                                if (!row.Split(',')[74].Contains("NA"))
+                                {
+                                    newCharity.StaffPart = Int32.Parse(row.Split(',')[74]);
+                                }
+                                else
+                                {
+                                    newCharity.StaffPart = 0;
+                                }
+                                if (!row.Split(',')[75].Contains("NA"))
+                                {
+                                    newCharity.StaffCasual = Int32.Parse(row.Split(',')[75]);
+                                }
+                                else
+                                {
+                                    newCharity.StaffCasual = 0;
+                                }
+                                if (!row.Split(',')[76].Contains("NA"))
+                                {
+                                    newCharity.StaffVolun = Int32.Parse(row.Split(',')[76]);
+                                }
+                                else
+                                {
+                                    newCharity.StaffVolun = 0;
+                                }
+                                if (!row.Split(',')[77].Contains("NA"))
+                                {
+
+                                    newCharity.DGR = true;
+
+
+                                }
+                                newCharity.Website = row.Split(',')[78];
+                                charities.Add(newCharity);
+                            }
+                        }
+                        int a = 0;
+                        foreach (string row in desData.Split('\n'))
+                        {
+                            charities[a].description = row;
+                            a++;
+                        }
+                            return charities;
+                    }*/
 
 
 
 
-    }
+                }
 }

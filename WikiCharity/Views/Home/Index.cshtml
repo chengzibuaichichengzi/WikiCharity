@@ -86,7 +86,7 @@
                     </div>
                     <div class="select-bene">
                         Beneficiaries:
-                        @Html.ListBox("multiBenes", ViewBag.multiSelectBenes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "bene" })
+                        @Html.ListBoxFor(m => m.beneString, ViewBag.multiSelectBenes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "bene" })
                     </div>
                     
                     <div class="select-size">

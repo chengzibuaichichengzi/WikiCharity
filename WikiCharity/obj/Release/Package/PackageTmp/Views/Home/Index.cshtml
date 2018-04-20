@@ -23,7 +23,7 @@
     <link href="~/assets/css/thejobs.css" rel="stylesheet">
     <link href="~/assets/css/custom.css" rel="stylesheet">
     <link href="~/Content/HomeStyle.css" rel="stylesheet" />
-
+    <link href="~/Content/chosen.css" rel="stylesheet" />
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
 
@@ -86,12 +86,12 @@
                     </div>
                     <div class="select-bene">
                         Beneficiaries:
-                        @Html.DropDownListFor(m => m.beneficial, Model.beneficials, "Any Beneficiaries", new { @class = "form-control", @id = "bene" })
+                        @Html.ListBoxFor(m => m.beneString, ViewBag.multiSelectBenes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "bene" })
                     </div>
                     
                     <div class="select-size">
                         Charity Size:
-                        @Html.DropDownListFor(m => m.size, Model.sizes, "Any Charity Size", new { @class = "form-control", @id = "size" })
+                        @Html.DropDownListFor(m => m.size, Model.sizes, "Any Charity Size", new { @class = "form-control ", @id = "size" })
                     </div>
                     <div class="select-tax">
                         Tax Deductable:
@@ -109,7 +109,7 @@
                             <button type="submit" class="btn btn-primary" id="button1">Click to show the 47597 charities</button>
 
                         </div>
-
+                    
 
                 }
                 <!-- END Search Bar-->
@@ -180,14 +180,15 @@
     <!-- Back to top button -->
     <a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
     <!-- END Back to top button -->
-    <!-- Scripts -->
-    @Scripts.Render("~/bundles/jquery")
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/assets/js/app.min.js"></script>
+    <script src="~/Scripts/chosen.jquery.min.js"></script>
+    <script src="~/Scripts/site.js"></script>
     <script src="~/assets/js/thejobs.js"></script>
     <script src="~/assets/js/custom.js"></script>
     
-    <script src="~/Scripts/site.js"></script>
+    
 </body>
 </html>
 

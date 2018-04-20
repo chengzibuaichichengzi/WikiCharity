@@ -233,7 +233,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Bene.cs" />
     <Compile Include="Models\Charity.cs">
       <DependentUpon>Charity1.tt</DependentUpon>
     </Compile>
@@ -270,6 +269,7 @@
     </Compile>
     <Compile Include="Models\EmailFormModel.cs" />
     <Compile Include="Models\FilterModel.cs" />
+    <Compile Include="Models\FinancialCSV.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TableResultModel.cs" />
@@ -947,6 +947,7 @@
     <Content Include="Views\Home\FAQs.cshtml" />
     <Content Include="Uploads\desData.csv" />
     <Content Include="Uploads\newData1.csv" />
+    <Content Include="Uploads\FinancialData3.csv" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
