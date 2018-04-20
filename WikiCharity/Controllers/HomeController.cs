@@ -414,6 +414,13 @@ namespace WikiCharity.Controllers
             return View();
         }
 
+        public ActionResult Detail()
+        {
+
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
 
         public ActionResult Contact()
         {

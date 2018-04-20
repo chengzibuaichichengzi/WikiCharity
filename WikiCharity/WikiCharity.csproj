@@ -598,6 +598,7 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\detailtable.css" />
     <Content Include="Content\HomeStyle.css" />
     <Content Include="Content\ResultTable.css" />
     <Content Include="favicon.ico" />
@@ -948,6 +949,7 @@
     <Content Include="Uploads\desData.csv" />
     <Content Include="Uploads\newData1.csv" />
     <Content Include="Uploads\FinancialData3.csv" />
+    <Content Include="Views\Home\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
