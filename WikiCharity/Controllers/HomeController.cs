@@ -39,62 +39,8 @@ namespace WikiCharity.Controllers
             model.selectedBenes = beneList;
             allCharities = db.Charities.ToList<Charity>();
 
-            //store all data into database for the first time
-            //List<Charity> list = new List<Charity>();
-            //list = GetAllCharity();
+            
 
-            /*foreach (var i in list)
-            {
-                Charity c = new Charity();
-                c.ABN = i.ABN;
-                c.Name = i.CharityName;
-                c.State = i.State;
-                c.TownCity = i.TownCity;
-                c.AddressLine1 = i.AddressLine1;
-                c.AddressLine2 = i.AddressLine2;
-                c.Postcode = i.Postcode;
-                c.Website = i.Website;
-                c.RegisDate = i.RegisDate;
-                c.Size = i.Size;
-                c.Beneficiaries = String.Join(", ", i.beneficiaries.ToArray());
-                c.Tax = i.DGR;
-                c.OtherName = i.OtherName;
-                c.BRC = i.BRC;
-                c.ConductedActivity = i.ConductedActivity;
-                c.MainActivity = i.MainActivity;
-                c.Activities = String.Join(", ", i.activities.ToArray());
-                c.OperateStates = String.Join(", ", i.operateStates.ToArray());
-                c.Description = i.description;
-                c.ABNStatus = i.ABNStatus;
-                c.StaffFull = i.StaffFull;
-                c.StaffPart = i.StaffPart;
-                c.StaffCasual = i.StaffCasual;
-                c.StaffVolun = i.StaffVolun;
-                try
-                {
-                    db.Charities.Add(c);
-                    db.SaveChanges();
-                }
-                catch (System.Data.Entity.Validation.DbEntityValidationException e)
-                {
-                    Exception raise = e;
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                  
-                        foreach (var ve in eve.ValidationErrors)
-                        {
-                            Trace.TraceInformation("- Property: \"{0}\", Error: \"{1}\"",
-                                ve.PropertyName,ve.ErrorMessage);
-                            string message = string.Format("{0}:{1}",
-                                eve.Entry.Entity.ToString(),
-                                ve.ErrorMessage);
-                            raise = new InvalidOperationException(message, raise);
-                        }
-                    }
-                    throw raise;
-                }
-                
-            }*/
 
             GetAllFinancial();
             return View(model);
@@ -414,12 +360,21 @@ namespace WikiCharity.Controllers
             return View();
         }
 
-        public ActionResult Detail()
+        public ActionResult Detail(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Charity charity = db.Charities.Find(id);
+            if (charity == null)
+            {
+                return HttpNotFound();
+            }
 
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            return View(charity);
         }
 
         public ActionResult Contact()

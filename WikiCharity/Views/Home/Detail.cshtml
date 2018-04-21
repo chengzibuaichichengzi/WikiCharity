@@ -1,5 +1,7 @@
-﻿
+﻿@model WikiCharity.Models.Charity
+
 @{
+    ViewBag.Title = "Details";
     Layout = null;
 }
 
@@ -71,40 +73,46 @@
                 </div>
 
                 <hr>
-                <p class="lead">The Charity's description</p>
-                <p class="lead">The Charity's beneficiary</p>
-                <p class="lead">Website</p>
+                <p class="lead">@Html.DisplayFor(i => i.Description)</p>
+                <p class="lead">@Html.DisplayFor(i => i.Beneficiaries)</p>
+                <p class="lead">@Html.DisplayFor(i => i.Website)</p>
                 <ul class="details cols-3">
                     <li>
                         <i class="fa fa-briefcase"></i>
-                        <span>ABN: xxxxxx</span>
+                        <span>ABN: @Html.DisplayFor(i => i.ABN)</span>
                     </li>
 
                     <li>
                         <i class="fa fa-question"></i> @*TODO: Find a icon for size*@
-                        <span>Size: Large</span>
+                        <span>Size: @Html.DisplayFor(i => i.Size)</span>
                     </li>
 
                     <li>
                         <i class="fa fa-money"></i>
-
+                        @if (Model.Tax == true)
+                        {
                         <span>Tax Deductiable: Yes</span>
+                        }
+                        else
+                        {
+                            <span>Tax Deductiable: No</span>
+                        }
                     </li>
 
 
 
                     <li>
-                        <i class="fa fa-users"></i>                        <span>Full time staff: 25</span>
+                        <i class="fa fa-users"></i>                        <span>Full time staff: @Html.DisplayFor(i => i.StaffFull)</span>
                     </li>
 
                     <li>
                         <i class="fa fa-users"></i>
-                        <span>Part time Staff: 25</span>
+                        <span>Part time Staff: @Html.DisplayFor(i => i.StaffPart)</span>
                     </li>
 
                     <li>
                         <i class="fa fa-users"></i>
-                        <a href="#">Casual Staff: 25</a>
+                        <a href="#">Casual Staff: @Html.DisplayFor(i => i.StaffCasual)</a>
                     </li>
                 </ul>
             </div>

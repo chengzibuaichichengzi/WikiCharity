@@ -67,7 +67,7 @@
     <header class="site-header size-lg text-center" style="background-image: url(/Uploads/BackImage.png);height:100%;">
         <div class="container">
             <div class="col-xs-12">
-                
+
                 <h2>Find Charities that Suit <mark>Your Needs</mark></h2>
                 <h6 class="font-alt">Want to get involved with Corporate Social Responsibility?</h6>
                 <h6 class="font-alt">We can help you...</h6>
@@ -78,17 +78,18 @@
 
                 @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { role = "form" }))
                 {
+                    <div class="input-search">
+                        Seach by Charity Name:
+                        @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name (optional)" })
+                    </div>
 
                     <div class="select-state">
                         <!--<label style="color:cornflowerblue;font-size:18px;text-align:left;position:inherit;">State</label>-->
                         State:
                         @Html.DropDownListFor(m => m.state, Model.states, "Any State", new { @class = "form-control", @id = "state" })
                     </div>
-                    <div class="select-bene">
-                        Beneficiaries:
-                        @Html.ListBoxFor(m => m.beneString, ViewBag.multiSelectBenes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "bene" })
-                    </div>
-                    
+
+
                     <div class="select-size">
                         Charity Size:
                         @Html.DropDownListFor(m => m.size, Model.sizes, "Any Charity Size", new { @class = "form-control ", @id = "size" })
@@ -98,18 +99,19 @@
                         @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "No Matter Tax Deductable", new { @class = "form-control", @id = "tax" })
 
                     </div>
-                    <div class="input-search">
-                        Seach by Charity Name:
-                        @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name (optional)" })
+                    <div class="select-bene">
+                        Beneficiaries:
+                        @Html.ListBoxFor(m => m.beneString, ViewBag.multiSelectBenes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "bene" })
                     </div>
+
                     <br />
-                    <br />
+                        <br />
 
                         <div class="btn-search">
                             <button type="submit" class="btn btn-primary" id="button1">Click to show the 47597 charities</button>
 
                         </div>
-                    
+
 
                 }
                 <!-- END Search Bar-->
@@ -181,14 +183,17 @@
     <a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
     <!-- END Back to top button -->
 
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Scripts/chosen.jquery.min.js"></script>
-    <script src="~/Scripts/site.js"></script>
+
+    <script src="~/assets/js/app.min.js"></script>
     <script src="~/assets/js/thejobs.js"></script>
-    <script src="~/assets/js/custom.js"></script>
-    
-    
+    <script src="~/Scripts/chosen.jquery.min.js"></script>
+    <script src="~/Scripts/chosen.proto.min.js"></script>
+    <script src="~/Scripts/site.js"></script>
+
+
+
 </body>
 </html>
 
