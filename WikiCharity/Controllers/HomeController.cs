@@ -17,10 +17,10 @@ namespace WikiCharity.Controllers
     public class HomeController : Controller
     {
         //Server side DB
-        //private static CharityTableDBEntities5 db = new CharityTableDBEntities5();
+        //private static DetailEntities db = new DetailEntities();
         //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
         //Local DB
-        private static WIKICHARITYEntities db = new WIKICHARITYEntities();
+        private static LocalDetailCharityDBEntities db = new LocalDetailCharityDBEntities();
         private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
         public ActionResult Index()

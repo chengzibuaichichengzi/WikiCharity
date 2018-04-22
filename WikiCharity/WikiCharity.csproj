@@ -234,7 +234,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Charity.cs">
-      <DependentUpon>Charity1.tt</DependentUpon>
+      <DependentUpon>LocalDetailModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Charity1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -267,14 +267,44 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CharityResult.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DetailModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DetailModel.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DetailModel.cs" />
+    <Compile Include="Models\DetailModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DetailModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DetailModel1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DetailModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EmailFormModel.cs" />
     <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\FinancialCSV.cs" />
     <Compile Include="Models\FinancialNew.cs">
-      <DependentUpon>Charity1.tt</DependentUpon>
+      <DependentUpon>LocalDetailModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LocalDetailModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalDetailModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LocalDetailModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalDetailModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LocalDetailModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalDetailModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TableResultModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -628,6 +658,26 @@
       <DependentUpon>CharityResult.edmx</DependentUpon>
       <LastGenOutput>CharityResult.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\DetailModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DetailModel.edmx</DependentUpon>
+      <LastGenOutput>DetailModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DetailModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DetailModel.edmx</DependentUpon>
+      <LastGenOutput>DetailModel1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\LocalDetailModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LocalDetailModel.edmx</DependentUpon>
+      <LastGenOutput>LocalDetailModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\LocalDetailModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LocalDetailModel.edmx</DependentUpon>
+      <LastGenOutput>LocalDetailModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -641,6 +691,7 @@
     <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\chosen.proto.js" />
     <Content Include="Scripts\chosen.proto.min.js" />
+    <Content Include="Scripts\cusGraph.js" />
     <Content Include="Scripts\cusTable.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -862,6 +913,20 @@
     </Content>
     <Content Include="Content\bootstrap-chosen.scss" />
     <Content Include="Content\bootstrap-chosen.less" />
+    <EntityDeploy Include="Models\DetailModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DetailModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DetailModel.edmx.diagram">
+      <DependentUpon>DetailModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\LocalDetailModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LocalDetailModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\LocalDetailModel.edmx.diagram">
+      <DependentUpon>LocalDetailModel.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\WikiCharity20180324033921 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\WikiCharity20180324033921 - Web Deploy.pubxml" />
     <Content Include="Scripts\bootstrap.min.js.map" />
