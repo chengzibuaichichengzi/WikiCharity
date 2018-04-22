@@ -343,6 +343,61 @@
                     </table>
                 </div>
 
+                                @*
+    <table>
+        <caption>Ratios Part</caption>
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">2014</th>
+                <th scope="col">2015</th>
+                <th scope="col">2016</th>
+                <th scope="col">Industry M???</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="Year">Employee Expenses Persentage </td>
+                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].EmpExpensePersentage)</td>
+                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].EmpExpensePersentage)</td>
+                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].EmpExpensePersentage)</td>
+                <td data-label="Industry M???">what</td>
+            </tr>
+            <tr>
+                <td data-label="Year">Debt Equity Ratio</td>
+                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].DebtEquityRadio)</td>
+                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].DebtEquityRadio)</td>
+                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtEquityRadio)</td>
+                <td data-label="Industry M???">what</td>
+
+            </tr>
+            <tr>
+                <td data-label="Year">Saving Ratio</td>
+                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].SavingRadio)</td>
+                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].SavingRadio)</td>
+                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].SavingRadio)</td>
+                <td data-label="Industry M???">what</td>
+
+            </tr>
+            <tr>
+                <td data-label="Year">Current Ratio</td>
+                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].CurrentRadio)</td>
+                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].CurrentRadio)</td>
+                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].CurrentRadio)</td>
+                <td data-label="Industry M???">what</td>
+
+            </tr>
+            <tr>
+                <td data-label="Year">Debt Ratio</td>
+                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].DebtRadio)</td>
+                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].DebtRadio)</td>
+                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtRadio)</td>
+                <td data-label="Industry M???">what</td>
+
+            </tr>
+        </tbody>
+    </table>*@
+
                 <br>
                 <h4>Bar Chart</h4>
                 <p><img src="~/assets/img/bar.png" alt=""></p>

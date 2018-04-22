@@ -81,7 +81,15 @@ namespace WikiCharity.Controllers
         public ActionResult FilterResult()
         {
             var model = Session["FilterModel"] as FilterModel;
-            ViewBag.State = model.state;
+            if (model.state != null)
+            {
+                ViewBag.State = model.state;
+            }
+            else
+            {
+                ViewBag.State = "All States";
+            }
+            
             if (model.beneString != null)
             {
                 ViewBag.Bene = string.Join(", ", model.beneString.ToArray());
@@ -91,8 +99,31 @@ namespace WikiCharity.Controllers
                 ViewBag.Bene = "All Beneficiaries";
             }
             
-            ViewBag.Tax = model.isDGR;
-            ViewBag.Size = model.size;
+            if (model.isDGR != null)
+            {
+                ViewBag.Tax = model.isDGR;
+            }
+            else
+            {
+                ViewBag.Tax = "Any Tax";
+            }
+
+            if (model.size != null)
+            {
+                ViewBag.Size = model.size;
+            }
+            else
+            {
+                ViewBag.Size = "Any Size";
+            }
+            if (model.name != null)
+            {
+                ViewBag.Name = model.name;
+            }
+            else
+            {
+                ViewBag.Name = "Any Charity Name";
+            }
             List<Charity> finalResult = new List<Charity>();
             finalResult = getFinalList();
             return View(finalResult);

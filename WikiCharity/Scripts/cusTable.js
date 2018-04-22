@@ -1,10 +1,5 @@
 ﻿$(document).ready(function () {
-    var tableInit = $('#example ').DataTable({
-        rowReorder: {
-            selector: 'td:nth-child(2)'
-        },
-        responsive: true,
-        
+    var tableInit = $('#example ').DataTable({     
         "ajax": {
             "url": "/Home/AjaxGetJsonData",
             "type": "POST",

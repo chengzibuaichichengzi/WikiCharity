@@ -59,7 +59,7 @@ $(function() {
   });
 
   // Dropify
-  $('.dropify').dropify();
+  //$('.dropify').dropify();
 
   // Upload group
   $('.upload-group input[type="file"]').on('change', function() {
@@ -90,7 +90,7 @@ $(function() {
   }
 
   // Equal height for grid view
-  $('.category-grid > a, .equal-team-members .team-member').matchHeight();
+  //$('.category-grid > a, .equal-team-members .team-member').matchHeight();
 
   //
   // Add a .body-scrolled to body, when page scrolled
