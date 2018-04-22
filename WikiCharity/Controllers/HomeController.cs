@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Linq.Dynamic;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.Web.Script.Services;
+using System.Web.Services;
 
 namespace WikiCharity.Controllers
 {
@@ -496,6 +498,89 @@ namespace WikiCharity.Controllers
                 
             return View(finalModelList);
         }
+
+        [HttpPost]
+        public ActionResult GetChartData(string Id)
+        {
+            
+            int id = Convert.ToInt32(Id);
+            List<LineModel> data = new List<LineModel>();
+            Charity charity = db.Charities.Find(id);
+            //Here MyDatabaseEntities  is our dbContext
+            var ABN = charity.ABN;
+            List<FinancialNew> finList = db.FinancialNews.Where(i => i.ABN == ABN).ToList();
+            LineModel line2014 = new LineModel();
+            line2014.year = "2014";
+            line2014.NetSurplus = finList.Where(f => f.FYear == "2014").ToList()[0].NetSurplus.Value;
+            LineModel line2015 = new LineModel();
+            line2015.year = "2015";
+            line2015.NetSurplus = finList.Where(f => f.FYear == "2015").ToList()[0].NetSurplus.Value;
+            LineModel line2016 = new LineModel();
+            line2016.year = "2016";
+            line2016.NetSurplus = finList.Where(f => f.FYear == "2016").ToList()[0].NetSurplus.Value;
+            data.Add(line2014);
+            data.Add(line2015);
+            data.Add(line2016);
+
+
+            var chartData = new object[data.Count + 1];
+            chartData[0] = new object[]{
+                "Year",
+                "Net Surplus Deficit"
+            };
+
+            int j = 0;
+            foreach (var i in data)
+            {
+                j++;
+                chartData[j] = new object[] { i.year, i.NetSurplus};
+            }
+            return Json(chartData, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetBarData(string Id)
+        {
+
+            int id = Convert.ToInt32(Id);
+            List<BarModel> data = new List<BarModel>();
+            Charity charity = db.Charities.Find(id);
+            //Here MyDatabaseEntities  is our dbContext
+            var ABN = charity.ABN;
+            List<FinancialNew> finList = db.FinancialNews.Where(i => i.ABN == ABN).ToList();
+            BarModel bar2014 = new BarModel();
+            bar2014.year = "2014";
+            bar2014.TotalGrossIncome = finList.Where(f => f.FYear == "2014").ToList()[0].TotalGrossIncome.Value;
+            bar2014.Expense = finList.Where(f => f.FYear == "2014").ToList()[0].Expense.Value;
+            BarModel bar2015 = new BarModel();
+            bar2015.year = "2015";
+            bar2015.TotalGrossIncome = finList.Where(f => f.FYear == "2015").ToList()[0].TotalGrossIncome.Value;
+            bar2015.Expense = finList.Where(f => f.FYear == "2015").ToList()[0].Expense.Value;
+            BarModel bar2016 = new BarModel();
+            bar2016.year = "2016";
+            bar2016.TotalGrossIncome = finList.Where(f => f.FYear == "2016").ToList()[0].TotalGrossIncome.Value;
+            bar2016.Expense = finList.Where(f => f.FYear == "2016").ToList()[0].Expense.Value;
+            data.Add(bar2014);
+            data.Add(bar2015);
+            data.Add(bar2016);
+
+
+            var chartData = new object[data.Count + 1];
+            chartData[0] = new object[]{
+                "Year",
+                "Revenue",
+                "Expense"
+            };
+
+            int j = 0;
+            foreach (var i in data)
+            {
+                j++;
+                chartData[j] = new object[] { i.year, i.TotalGrossIncome, i.Expense };
+            }
+            return Json(chartData, JsonRequestBehavior.AllowGet);
+        }
+
+
 
         public ActionResult Contact()
         {

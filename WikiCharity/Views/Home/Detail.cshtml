@@ -27,6 +27,16 @@
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="icon" href="~/assets/img/favicon.ico">
+
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <script src="~/Scripts/Bar.js"></script>
+    <script src="~/Scripts/cusGraph.js"></script>
+    
+    
 </head>
 
 <body class="nav-on-header smart-nav">
@@ -401,10 +411,16 @@
                 <br>
                 <h4>Bar Chart</h4>
                 <p><img src="~/assets/img/bar.png" alt=""></p>
+                <div id="chart_div2" style="width:500px;height:400px">
+                    <%-- Here Chart Will Load --%>
+                </div>
 
                 <br>
                 <h4>Line Chart</h4>
                 <p><img src="~/assets/img/line.png" alt=""></p>
+                <div id="chart_div" style="width:500px;height:400px">
+                    <%-- Here Chart Will Load --%>
+                </div>
 
                 <br>
                 <h4>Chart 3</h4>
@@ -451,11 +467,12 @@
     <a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
     <!-- END Back to top button -->
     <!-- Scripts -->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script src="~/Scripts/cusGraph.js"></script>
+
     <script src="~/assets/js/app.min.js"></script>
     <script src="~/assets/js/thejobs.js"></script>
     <script src="~/assets/js/custom.js"></script>
+
+
 
 </body>
 </html>
