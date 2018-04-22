@@ -385,10 +385,8 @@ namespace WikiCharity.Controllers
             }
             var ABN = charity.ABN;
             ViewBag.Message = "Your application description page.";
-            /*List<FinancialNew> finList = db.FinancialNews.Where(i => i.ABN == ABN).ToList();
-            FinancialNew fin2014 = finList.Where(i => i.FYear == "2014").ToList()[0];
-            FinancialNew fin2015 = finList.Where(i => i.FYear == "2015").ToList()[0];
-            FinancialNew fin2016 = finList.Where(i => i.FYear == "2016").ToList()[0];
+            List<FinancialNew> finList = db.FinancialNews.Where(i => i.ABN == ABN).ToList();
+
             var address = "";
             if (!charity.AddressLine2.Contains("NA"))
             {
@@ -401,49 +399,71 @@ namespace WikiCharity.Controllers
                     + charity.State + "," + charity.Postcode;
             }
 
-            DetailModel detailModel2014 = new DetailModel();
-            detailModel2014.Name = charity.Name;
-            detailModel2014.Address = address;
-            detailModel2014.Website = charity.Website;
-            detailModel2014.Description = charity.Description;
-            detailModel2014.Beneficiaries = charity.Beneficiaries;
-            detailModel2014.Name = charity.Name;
+            List<DetailModel> finalModelList = new List<DetailModel>();
+            var a = 2014;
+            var b = a.ToString();
+            for (int i=0;i<3;i++)
+            {
+                DetailModel detailModel = new DetailModel();
+                FinancialNew fin = new FinancialNew();
+                fin = finList.Where(f => f.FYear == b).ToList()[0];
+                detailModel.ABN = charity.ABN;
+                detailModel.Size = charity.Size;
+                if (charity.Tax == true)
+                {
+                    detailModel.Tax = "Yes";
+                }
+                else
+                {
+                    detailModel.Tax = "No";
+                }
+                detailModel.StaffFull = charity.StaffFull.Value;
+                detailModel.StaffPart = charity.StaffPart.Value;
+                detailModel.StaffCasual = charity.StaffCasual.Value;
+                detailModel.StaffVolun = charity.StaffVolun.Value;
+                detailModel.Name = charity.Name;
+                detailModel.Address = address;
+                detailModel.Website = charity.Website;
+                detailModel.Description = charity.Description;
+                detailModel.Beneficiaries = charity.Beneficiaries;
+                detailModel.AccountInfo = fin.AccountInfo;
+                detailModel.Donations = fin.Donations.Value;
+                detailModel.EmpExpense = fin.EmpExpense.Value;
+                detailModel.ReportFrom = fin.ReportFrom;
+                detailModel.ReportTo = fin.ReportTo;
+                detailModel.GoverGrant = fin.GoverGrant.Value;
+                detailModel.GDInAus = fin.GDInAus.Value;
+                detailModel.GDOutAus = fin.GDOutAus.Value;
+                detailModel.NetAssets = fin.NetAssets.Value;
+                detailModel.NetSurplus = fin.NetSurplus.Value;
+                detailModel.TotalAssets = fin.TotalAssets.Value;
+                detailModel.TotalCurrentLia = fin.TotalCurrentLia.Value;
+                detailModel.TotalNotCurrentLia = fin.TotalNotCurrentLia.Value;
+                detailModel.TotalCurrentAssets = fin.TotalCurrentAssets.Value;
+                detailModel.TotalNotCurrentAssets = fin.TotalNotCurrentAssets.Value;
+                detailModel.Expense = fin.Expense.Value;
+                detailModel.TotalGrossIncome = fin.TotalGrossIncome.Value;
+                detailModel.TotalLia = fin.TotalLia.Value;
+                detailModel.Year = fin.FYear;
+                detailModel.EmpExpensePersentage = fin.EmpExpensePersentage.Value;
+                detailModel.OtherIncome = fin.OtherIncome.Value;
+                detailModel.AllOtherExpense = fin.AllOtherExpense.Value;
+                detailModel.DebtEquityRadio = fin.DebtEquityRadio.Value;
+                detailModel.SavingRadio = fin.SavingRadio.Value;
+                detailModel.CurrentRadio = fin.CurrentRadio.Value;
+                detailModel.DebtRadio = fin.DebtRadio.Value;
+                detailModel.EmpExpInSizeMedian = fin.EmpExpInSizeMedian.Value;
+                detailModel.DebtEquityInSizeMedian = fin.DebtEquityInSizeMedian.Value;
+                detailModel.SavingRadioInSizeMedian = fin.SavingRadioInSizeMedian.Value;
+                detailModel.CurrentRadioInSizeMedian = fin.CurrentRadioInSizeMedian.Value;
+                detailModel.DebtRadioInSizeMedian = fin.DebtRadioInSizeMedian.Value;
 
-        public string AccountInfo { get; set; }
-        public double Donations { get; set; }
-        public double EmpExpense { get; set; }
-        public string ReportFrom { get; set; }
-        public string ReportTo { get; set; }
-        public double GoverGrant { get; set; }
-        public double GDInAus { get; set; }
-        public double GDOutAus { get; set; }
-        public double NetAssets { get; set; }
-        public double NetSurplus { get; set; }
-        public double TotalAssets { get; set; }
-        public double TotalCurrentLia { get; set; }
-        public double TotalNotCurrentLia { get; set; }
-        public double TotalCurrentAssets { get; set; }
-        public double TotalNotCurrentAssets { get; set; }
-        public double Expense { get; set; }
-        public double TotalGrossIncome { get; set; }
-        public double TotalLia { get; set; }
-        public string Year { get; set; }
-
-        public double EmpExpensePersentage { get; set; }
-        public double OtherIncome { get; set; }
-        public double AllOtherExpense { get; set; }
-        public double DebtEquityRadio { get; set; }
-        public double SavingRadio { get; set; }
-        public double CurrentRadio { get; set; }
-        public double DebtRadio { get; set; }
-        public double EmpExpInSizeMedian { get; set; }
-        public double DebtEquityInSizeMedian { get; set; }
-        public double SavingRadioInSizeMedian { get; set; }
-        public double CurrentRadioInSizeMedian { get; set; }
-        public double DebtRadioInSizeMedian { get; set; }*/
+                finalModelList.Add(detailModel);
+                a++;
+                b = a.ToString();
+            }              
                 
-                
-            return View(charity);
+            return View(finalModelList);
         }
 
         public ActionResult Contact()

@@ -7,9 +7,14 @@ namespace WikiCharity.Models
 {
     public class DetailModel
     {
-        
+        public string ABN { get; set; }
+        public string Size { get; set; }
         public string Name { get; set; }
-
+        public string Tax { get; set; }
+        public int StaffFull { get; set; }
+        public int StaffPart { get; set; }
+        public int StaffCasual { get; set; }
+        public int StaffVolun { get; set; }
         public string Address { get; set; }
 
         public string Website { get; set; }
