@@ -81,6 +81,18 @@ namespace WikiCharity.Controllers
         public ActionResult FilterResult()
         {
             var model = Session["FilterModel"] as FilterModel;
+            ViewBag.State = model.state;
+            if (model.beneString != null)
+            {
+                ViewBag.Bene = string.Join(", ", model.beneString.ToArray());
+            }
+            else
+            {
+                ViewBag.Bene = "All Beneficiaries";
+            }
+            
+            ViewBag.Tax = model.isDGR;
+            ViewBag.Size = model.size;
             List<Charity> finalResult = new List<Charity>();
             finalResult = getFinalList();
             return View(finalResult);
@@ -371,9 +383,66 @@ namespace WikiCharity.Controllers
             {
                 return HttpNotFound();
             }
-
+            var ABN = charity.ABN;
             ViewBag.Message = "Your application description page.";
+            /*List<FinancialNew> finList = db.FinancialNews.Where(i => i.ABN == ABN).ToList();
+            FinancialNew fin2014 = finList.Where(i => i.FYear == "2014").ToList()[0];
+            FinancialNew fin2015 = finList.Where(i => i.FYear == "2015").ToList()[0];
+            FinancialNew fin2016 = finList.Where(i => i.FYear == "2016").ToList()[0];
+            var address = "";
+            if (!charity.AddressLine2.Contains("NA"))
+            {
+                address = charity.AddressLine1 + ", " + charity.AddressLine2 + ", " + charity.TownCity + ", "
+                    + charity.State + "," + charity.Postcode;
+            }
+            else
+            {
+                address = charity.AddressLine1 + ", " + charity.TownCity + ", "
+                    + charity.State + "," + charity.Postcode;
+            }
 
+            DetailModel detailModel2014 = new DetailModel();
+            detailModel2014.Name = charity.Name;
+            detailModel2014.Address = address;
+            detailModel2014.Website = charity.Website;
+            detailModel2014.Description = charity.Description;
+            detailModel2014.Beneficiaries = charity.Beneficiaries;
+            detailModel2014.Name = charity.Name;
+
+        public string AccountInfo { get; set; }
+        public double Donations { get; set; }
+        public double EmpExpense { get; set; }
+        public string ReportFrom { get; set; }
+        public string ReportTo { get; set; }
+        public double GoverGrant { get; set; }
+        public double GDInAus { get; set; }
+        public double GDOutAus { get; set; }
+        public double NetAssets { get; set; }
+        public double NetSurplus { get; set; }
+        public double TotalAssets { get; set; }
+        public double TotalCurrentLia { get; set; }
+        public double TotalNotCurrentLia { get; set; }
+        public double TotalCurrentAssets { get; set; }
+        public double TotalNotCurrentAssets { get; set; }
+        public double Expense { get; set; }
+        public double TotalGrossIncome { get; set; }
+        public double TotalLia { get; set; }
+        public string Year { get; set; }
+
+        public double EmpExpensePersentage { get; set; }
+        public double OtherIncome { get; set; }
+        public double AllOtherExpense { get; set; }
+        public double DebtEquityRadio { get; set; }
+        public double SavingRadio { get; set; }
+        public double CurrentRadio { get; set; }
+        public double DebtRadio { get; set; }
+        public double EmpExpInSizeMedian { get; set; }
+        public double DebtEquityInSizeMedian { get; set; }
+        public double SavingRadioInSizeMedian { get; set; }
+        public double CurrentRadioInSizeMedian { get; set; }
+        public double DebtRadioInSizeMedian { get; set; }*/
+                
+                
             return View(charity);
         }
 

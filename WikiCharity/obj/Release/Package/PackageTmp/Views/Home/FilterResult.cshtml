@@ -75,31 +75,37 @@
     <!-- END Page header -->
     <!-- Result Table-->
     <main>
-        @if (Model.Count() != 0)
-        {
+        
+            
+      
+            @if (Model.Count() != 0)
+            {
         <!-- Filter Table-->
-            <div class="container">
-                <table id="example" class="display " style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Charity Name</th>
-                            <th>Benificiaries</th>
-                            <th>Tax Deductable</th>
-                            <th>Charity Size</th>
-                            <th>State</th>
+                <div class="container">
+                    <h4>You seleceted:</h4>
+                    <h6>State: @ViewBag.State, Size: @ViewBag.Size, Tax Deducable: @ViewBag.Tax</h6>
+                    <h6>Beneficiaries: @ViewBag.Bene</h6>
+                    <table id="example" class="display " style="width:100%">
+                        <thead>
+                            <tr>
 
-                        </tr>
-                    </thead>
-                </table>
+                                <th>Charity Name</th>
+                                <th>Description</th>
 
-            </div>
-        }
+                                <th>Details</th>
 
-        else
-        {
-            <h3 style="text-align:center;">Sorry, no result. You can try other filters.</h3>
-        }
-    </main>
+                            </tr>
+                        </thead>
+                    </table>
+
+                </div>
+            }
+
+            else
+            {
+                <h3 style="text-align:center;">Sorry, no result. You can try other filters.</h3>
+            }
+</main>
 
     <!-- END Filter Table-->
     <!-- Site footer -->

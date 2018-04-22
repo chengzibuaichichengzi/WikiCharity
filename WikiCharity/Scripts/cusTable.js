@@ -13,8 +13,16 @@
         "columns": [
             
             {"data": "Name", "name": "Name"},
-            {"data": "Description", "name": "Description" },
             {
+                //only show fisrt 300 chars in the datatable row of description
+                "data": "Description", "name": "Description", "render": function (data, type, row) {
+                    return type == 'display' && data.length > 300 ?
+                    data.substr(0, 300) + '......' :
+                        data;
+                }
+            },
+            {
+                //use id column as detail button
                 "data": "Id", "name": "Id", "render": function (data, type, full) {
                     return '<a class="btn btn-info btn-sm" href=/Home/Detail/' + data + '>' + 'Detail' + '</a>';
                 }
@@ -28,12 +36,6 @@
         }
     });
     
-    $('example tbody').on('dblclick', 'tr', function () {
-        var currentRowData = tableInit.row(this).data();
-        alert(currentRowData[0]);
-        //var table = $('#example ').DataTable();
-        //console.log('TD Cell textContent: ', this.textContent)
-        //console.log('value by API: ', table.cell({ row: this.ParentNode, column: this.cellIndex }).data());
-    });
+    
     
 });

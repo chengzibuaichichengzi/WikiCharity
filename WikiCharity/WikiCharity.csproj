@@ -267,9 +267,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CharityResult.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DetailModel.cs" />
     <Compile Include="Models\EmailFormModel.cs" />
     <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\FinancialCSV.cs" />
+    <Compile Include="Models\FinancialNew.cs">
+      <DependentUpon>Charity1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TableResultModel.cs" />

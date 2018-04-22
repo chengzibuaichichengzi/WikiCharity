@@ -14,7 +14,6 @@ namespace WikiCharity.Models
     
     public partial class Charity
     {
-
         public string ABN { get; set; }
         public string Name { get; set; }
         public string State { get; set; }

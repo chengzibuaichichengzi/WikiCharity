@@ -30,7 +30,46 @@
     <Property Name="StaffCasual" Type="int" />
     <Property Name="StaffVolun" Type="int" />
   </EntityType>
+  <EntityType Name="FinancialNew">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="ABN" Type="nvarchar" MaxLength="100" />
+    <Property Name="AccountInfo" Type="varchar" MaxLength="100" />
+    <Property Name="Donations" Type="float" />
+    <Property Name="EmpExpense" Type="float" />
+    <Property Name="ReportFrom" Type="varchar" MaxLength="100" />
+    <Property Name="ReportTo" Type="varchar" MaxLength="100" />
+    <Property Name="GoverGrant" Type="float" />
+    <Property Name="GDInAus" Type="float" />
+    <Property Name="GDOutAus" Type="float" />
+    <Property Name="NetAssets" Type="float" />
+    <Property Name="NetSurplus" Type="float" />
+    <Property Name="TotalAssets" Type="float" />
+    <Property Name="TotalCurrentAssets" Type="float" />
+    <Property Name="TotalCurrentLia" Type="float" />
+    <Property Name="Expense" Type="float" />
+    <Property Name="TotalGrossIncome" Type="float" />
+    <Property Name="TotalLia" Type="float" />
+    <Property Name="TotalNotCurrentAssets" Type="float" />
+    <Property Name="TotalNotCurrentLia" Type="float" />
+    <Property Name="FYear" Type="varchar" MaxLength="100" />
+    <Property Name="EmpExpensePersentage" Type="float" />
+    <Property Name="OtherIncome" Type="float" />
+    <Property Name="AllOtherExpense" Type="float" />
+    <Property Name="DebtEquityRadio" Type="float" />
+    <Property Name="SavingRadio" Type="float" />
+    <Property Name="CurrentRadio" Type="float" />
+    <Property Name="DebtRadio" Type="float" />
+    <Property Name="EmpExpInSizeMedian" Type="float" />
+    <Property Name="DebtEquityInSizeMedian" Type="float" />
+    <Property Name="SavingRadioInSizeMedian" Type="float" />
+    <Property Name="CurrentRadioInSizeMedian" Type="float" />
+    <Property Name="DebtRadioInSizeMedian" Type="float" />
+  </EntityType>
   <EntityContainer Name="WIKICHARITYModelStoreContainer">
     <EntitySet Name="Charities" EntityType="Self.Charities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FinancialNew" EntityType="Self.FinancialNew" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

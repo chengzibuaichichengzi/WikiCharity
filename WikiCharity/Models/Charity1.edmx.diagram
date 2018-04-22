@@ -4,8 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fac06b67f1354dddb36a0df4a3266dec" Name="Diagram1">
+      <Diagram DiagramId="fac06b67f1354dddb36a0df4a3266dec" Name="Diagram1" ZoomLevel="91">
         <EntityTypeShape EntityType="WIKICHARITYModel.Charity" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WIKICHARITYModel.FinancialNew" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

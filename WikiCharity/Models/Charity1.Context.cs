@@ -26,5 +26,6 @@ namespace WikiCharity.Models
         }
     
         public virtual DbSet<Charity> Charities { get; set; }
+        public virtual DbSet<FinancialNew> FinancialNews { get; set; }
     }
 }

@@ -32,5 +32,44 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="FinancialNews">
+      <EntityTypeMapping TypeName="WIKICHARITYModel.FinancialNew">
+        <MappingFragment StoreEntitySet="FinancialNew">
+          <ScalarProperty Name="DebtRadioInSizeMedian" ColumnName="DebtRadioInSizeMedian" />
+          <ScalarProperty Name="CurrentRadioInSizeMedian" ColumnName="CurrentRadioInSizeMedian" />
+          <ScalarProperty Name="SavingRadioInSizeMedian" ColumnName="SavingRadioInSizeMedian" />
+          <ScalarProperty Name="DebtEquityInSizeMedian" ColumnName="DebtEquityInSizeMedian" />
+          <ScalarProperty Name="EmpExpInSizeMedian" ColumnName="EmpExpInSizeMedian" />
+          <ScalarProperty Name="DebtRadio" ColumnName="DebtRadio" />
+          <ScalarProperty Name="CurrentRadio" ColumnName="CurrentRadio" />
+          <ScalarProperty Name="SavingRadio" ColumnName="SavingRadio" />
+          <ScalarProperty Name="DebtEquityRadio" ColumnName="DebtEquityRadio" />
+          <ScalarProperty Name="AllOtherExpense" ColumnName="AllOtherExpense" />
+          <ScalarProperty Name="OtherIncome" ColumnName="OtherIncome" />
+          <ScalarProperty Name="EmpExpensePersentage" ColumnName="EmpExpensePersentage" />
+          <ScalarProperty Name="FYear" ColumnName="FYear" />
+          <ScalarProperty Name="TotalNotCurrentLia" ColumnName="TotalNotCurrentLia" />
+          <ScalarProperty Name="TotalNotCurrentAssets" ColumnName="TotalNotCurrentAssets" />
+          <ScalarProperty Name="TotalLia" ColumnName="TotalLia" />
+          <ScalarProperty Name="TotalGrossIncome" ColumnName="TotalGrossIncome" />
+          <ScalarProperty Name="Expense" ColumnName="Expense" />
+          <ScalarProperty Name="TotalCurrentLia" ColumnName="TotalCurrentLia" />
+          <ScalarProperty Name="TotalCurrentAssets" ColumnName="TotalCurrentAssets" />
+          <ScalarProperty Name="TotalAssets" ColumnName="TotalAssets" />
+          <ScalarProperty Name="NetSurplus" ColumnName="NetSurplus" />
+          <ScalarProperty Name="NetAssets" ColumnName="NetAssets" />
+          <ScalarProperty Name="GDOutAus" ColumnName="GDOutAus" />
+          <ScalarProperty Name="GDInAus" ColumnName="GDInAus" />
+          <ScalarProperty Name="GoverGrant" ColumnName="GoverGrant" />
+          <ScalarProperty Name="ReportTo" ColumnName="ReportTo" />
+          <ScalarProperty Name="ReportFrom" ColumnName="ReportFrom" />
+          <ScalarProperty Name="EmpExpense" ColumnName="EmpExpense" />
+          <ScalarProperty Name="Donations" ColumnName="Donations" />
+          <ScalarProperty Name="AccountInfo" ColumnName="AccountInfo" />
+          <ScalarProperty Name="ABN" ColumnName="ABN" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WIKICHARITYModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WIKICHARITYModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Charities">
           <Key>
             <PropertyRef Name="Id" />
@@ -35,11 +35,49 @@
           <Property Name="StaffCasual" Type="int" />
           <Property Name="StaffVolun" Type="int" />
         </EntityType>
+        <EntityType Name="FinancialNew">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ABN" Type="nvarchar" MaxLength="100" />
+          <Property Name="AccountInfo" Type="varchar" MaxLength="100" />
+          <Property Name="Donations" Type="float" />
+          <Property Name="EmpExpense" Type="float" />
+          <Property Name="ReportFrom" Type="varchar" MaxLength="100" />
+          <Property Name="ReportTo" Type="varchar" MaxLength="100" />
+          <Property Name="GoverGrant" Type="float" />
+          <Property Name="GDInAus" Type="float" />
+          <Property Name="GDOutAus" Type="float" />
+          <Property Name="NetAssets" Type="float" />
+          <Property Name="NetSurplus" Type="float" />
+          <Property Name="TotalAssets" Type="float" />
+          <Property Name="TotalCurrentAssets" Type="float" />
+          <Property Name="TotalCurrentLia" Type="float" />
+          <Property Name="Expense" Type="float" />
+          <Property Name="TotalGrossIncome" Type="float" />
+          <Property Name="TotalLia" Type="float" />
+          <Property Name="TotalNotCurrentAssets" Type="float" />
+          <Property Name="TotalNotCurrentLia" Type="float" />
+          <Property Name="FYear" Type="varchar" MaxLength="100" />
+          <Property Name="EmpExpensePersentage" Type="float" />
+          <Property Name="OtherIncome" Type="float" />
+          <Property Name="AllOtherExpense" Type="float" />
+          <Property Name="DebtEquityRadio" Type="float" />
+          <Property Name="SavingRadio" Type="float" />
+          <Property Name="CurrentRadio" Type="float" />
+          <Property Name="DebtRadio" Type="float" />
+          <Property Name="EmpExpInSizeMedian" Type="float" />
+          <Property Name="DebtEquityInSizeMedian" Type="float" />
+          <Property Name="SavingRadioInSizeMedian" Type="float" />
+          <Property Name="CurrentRadioInSizeMedian" Type="float" />
+          <Property Name="DebtRadioInSizeMedian" Type="float" />
+        </EntityType>
         <EntityContainer Name="WIKICHARITYModelStoreContainer">
           <EntitySet Name="Charities" EntityType="Self.Charities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FinancialNew" EntityType="Self.FinancialNew" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WIKICHARITYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -75,7 +113,46 @@
         </EntityType>
         <EntityContainer Name="WIKICHARITYEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Charities" EntityType="Self.Charity" />
+          <EntitySet Name="FinancialNews" EntityType="WIKICHARITYModel.FinancialNew" />
         </EntityContainer>
+        <EntityType Name="FinancialNew">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ABN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AccountInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Donations" Type="Double" />
+          <Property Name="EmpExpense" Type="Double" />
+          <Property Name="ReportFrom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ReportTo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GoverGrant" Type="Double" />
+          <Property Name="GDInAus" Type="Double" />
+          <Property Name="GDOutAus" Type="Double" />
+          <Property Name="NetAssets" Type="Double" />
+          <Property Name="NetSurplus" Type="Double" />
+          <Property Name="TotalAssets" Type="Double" />
+          <Property Name="TotalCurrentAssets" Type="Double" />
+          <Property Name="TotalCurrentLia" Type="Double" />
+          <Property Name="Expense" Type="Double" />
+          <Property Name="TotalGrossIncome" Type="Double" />
+          <Property Name="TotalLia" Type="Double" />
+          <Property Name="TotalNotCurrentAssets" Type="Double" />
+          <Property Name="TotalNotCurrentLia" Type="Double" />
+          <Property Name="FYear" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EmpExpensePersentage" Type="Double" />
+          <Property Name="OtherIncome" Type="Double" />
+          <Property Name="AllOtherExpense" Type="Double" />
+          <Property Name="DebtEquityRadio" Type="Double" />
+          <Property Name="SavingRadio" Type="Double" />
+          <Property Name="CurrentRadio" Type="Double" />
+          <Property Name="DebtRadio" Type="Double" />
+          <Property Name="EmpExpInSizeMedian" Type="Double" />
+          <Property Name="DebtEquityInSizeMedian" Type="Double" />
+          <Property Name="SavingRadioInSizeMedian" Type="Double" />
+          <Property Name="CurrentRadioInSizeMedian" Type="Double" />
+          <Property Name="DebtRadioInSizeMedian" Type="Double" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -110,6 +187,45 @@
                 <ScalarProperty Name="StaffPart" ColumnName="StaffPart" />
                 <ScalarProperty Name="StaffCasual" ColumnName="StaffCasual" />
                 <ScalarProperty Name="StaffVolun" ColumnName="StaffVolun" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FinancialNews">
+            <EntityTypeMapping TypeName="WIKICHARITYModel.FinancialNew">
+              <MappingFragment StoreEntitySet="FinancialNew">
+                <ScalarProperty Name="DebtRadioInSizeMedian" ColumnName="DebtRadioInSizeMedian" />
+                <ScalarProperty Name="CurrentRadioInSizeMedian" ColumnName="CurrentRadioInSizeMedian" />
+                <ScalarProperty Name="SavingRadioInSizeMedian" ColumnName="SavingRadioInSizeMedian" />
+                <ScalarProperty Name="DebtEquityInSizeMedian" ColumnName="DebtEquityInSizeMedian" />
+                <ScalarProperty Name="EmpExpInSizeMedian" ColumnName="EmpExpInSizeMedian" />
+                <ScalarProperty Name="DebtRadio" ColumnName="DebtRadio" />
+                <ScalarProperty Name="CurrentRadio" ColumnName="CurrentRadio" />
+                <ScalarProperty Name="SavingRadio" ColumnName="SavingRadio" />
+                <ScalarProperty Name="DebtEquityRadio" ColumnName="DebtEquityRadio" />
+                <ScalarProperty Name="AllOtherExpense" ColumnName="AllOtherExpense" />
+                <ScalarProperty Name="OtherIncome" ColumnName="OtherIncome" />
+                <ScalarProperty Name="EmpExpensePersentage" ColumnName="EmpExpensePersentage" />
+                <ScalarProperty Name="FYear" ColumnName="FYear" />
+                <ScalarProperty Name="TotalNotCurrentLia" ColumnName="TotalNotCurrentLia" />
+                <ScalarProperty Name="TotalNotCurrentAssets" ColumnName="TotalNotCurrentAssets" />
+                <ScalarProperty Name="TotalLia" ColumnName="TotalLia" />
+                <ScalarProperty Name="TotalGrossIncome" ColumnName="TotalGrossIncome" />
+                <ScalarProperty Name="Expense" ColumnName="Expense" />
+                <ScalarProperty Name="TotalCurrentLia" ColumnName="TotalCurrentLia" />
+                <ScalarProperty Name="TotalCurrentAssets" ColumnName="TotalCurrentAssets" />
+                <ScalarProperty Name="TotalAssets" ColumnName="TotalAssets" />
+                <ScalarProperty Name="NetSurplus" ColumnName="NetSurplus" />
+                <ScalarProperty Name="NetAssets" ColumnName="NetAssets" />
+                <ScalarProperty Name="GDOutAus" ColumnName="GDOutAus" />
+                <ScalarProperty Name="GDInAus" ColumnName="GDInAus" />
+                <ScalarProperty Name="GoverGrant" ColumnName="GoverGrant" />
+                <ScalarProperty Name="ReportTo" ColumnName="ReportTo" />
+                <ScalarProperty Name="ReportFrom" ColumnName="ReportFrom" />
+                <ScalarProperty Name="EmpExpense" ColumnName="EmpExpense" />
+                <ScalarProperty Name="Donations" ColumnName="Donations" />
+                <ScalarProperty Name="AccountInfo" ColumnName="AccountInfo" />
+                <ScalarProperty Name="ABN" ColumnName="ABN" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
