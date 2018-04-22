@@ -8,8 +8,8 @@ namespace WikiCharity.Models
     public class BarModel
     {
         public string year { get; set; }
-        public double TotalGrossIncome { get; set; }
+        public double TotalGrossIncome { get; set; } = 0;
 
-        public double Expense { get; set; }
+        public double Expense { get; set; } = 0;
     }
 }

@@ -21,37 +21,37 @@ namespace WikiCharity.Models
         public string Description { get; set; }
         public string Beneficiaries { get; set; }
 
-        public string AccountInfo { get; set; }
-        public double Donations { get; set; }
-        public double EmpExpense { get; set; }
-        public string ReportFrom { get; set; }
-        public string ReportTo { get; set; }
-        public double GoverGrant { get; set; }
-        public double GDInAus { get; set; }
-        public double GDOutAus { get; set; }
-        public double NetAssets { get; set; }
-        public double NetSurplus { get; set; }
-        public double TotalAssets { get; set; }
-        public double TotalCurrentLia { get; set; }
-        public double TotalNotCurrentLia { get; set; }
-        public double TotalCurrentAssets { get; set; }
-        public double TotalNotCurrentAssets { get; set; }
-        public double Expense { get; set; }
-        public double TotalGrossIncome { get; set; }
-        public double TotalLia { get; set; }
-        public string Year { get; set; }
+        public string AccountInfo { get; set; } = "";
+        public double Donations { get; set; } = 0;
+        public double EmpExpense { get; set; } = 0;
+        public string ReportFrom { get; set; } = "";
+        public string ReportTo { get; set; } = "";
+        public double GoverGrant { get; set; } = 0;
+        public double GDInAus { get; set; } = 0;
+        public double GDOutAus { get; set; } = 0;
+        public double NetAssets { get; set; } = 0;
+        public double NetSurplus { get; set; } = 0;
+        public double TotalAssets { get; set; } = 0;
+        public double TotalCurrentLia { get; set; } = 0;
+        public double TotalNotCurrentLia { get; set; } = 0;
+        public double TotalCurrentAssets { get; set; } = 0;
+        public double TotalNotCurrentAssets { get; set; } = 0;
+        public double Expense { get; set; } = 0;
+        public double TotalGrossIncome { get; set; } = 0;
+        public double TotalLia { get; set; } = 0;
+        public string Year { get; set; } = "";
 
-        public double EmpExpensePersentage { get; set; }
-        public double OtherIncome { get; set; }
-        public double AllOtherExpense { get; set; }
-        public double DebtEquityRadio { get; set; }
-        public double SavingRadio { get; set; }
-        public double CurrentRadio { get; set; }
-        public double DebtRadio { get; set; }
-        public double EmpExpInSizeMedian { get; set; }
-        public double DebtEquityInSizeMedian { get; set; }
-        public double SavingRadioInSizeMedian { get; set; }
-        public double CurrentRadioInSizeMedian { get; set; }
-        public double DebtRadioInSizeMedian { get; set; }
+        public double EmpExpensePersentage { get; set; } = 0;
+        public double OtherIncome { get; set; } = 0;
+        public double AllOtherExpense { get; set; } = 0;
+        public double DebtEquityRadio { get; set; } = 0;
+        public double SavingRadio { get; set; } = 0;
+        public double CurrentRadio { get; set; } = 0;
+        public double DebtRadio { get; set; } = 0;
+        public double EmpExpInSizeMedian { get; set; } = 0;
+        public double DebtEquityInSizeMedian { get; set; } = 0;
+        public double SavingRadioInSizeMedian { get; set; } = 0;
+        public double CurrentRadioInSizeMedian { get; set; } = 0;
+        public double DebtRadioInSizeMedian { get; set; } = 0;
     }
 }

@@ -19,11 +19,11 @@ namespace WikiCharity.Controllers
     public class HomeController : Controller
     {
         //Server side DB
-        //private static DetailEntities db = new DetailEntities();
-        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
-        //Local DB
-        private static LocalDetailCharityDBEntities db = new LocalDetailCharityDBEntities();
+        private static DetailEntities db = new DetailEntities();
         private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        //Local DB
+        //private static LocalDetailCharityDBEntities db = new LocalDetailCharityDBEntities();
+        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
         public ActionResult Index()
         {
@@ -439,7 +439,6 @@ namespace WikiCharity.Controllers
             {
                 DetailModel detailModel = new DetailModel();
                 FinancialNew fin = new FinancialNew();
-                fin = finList.Where(f => f.FYear == b).ToList()[0];
                 detailModel.ABN = charity.ABN;
                 detailModel.Size = charity.Size;
                 if (charity.Tax == true)
@@ -459,37 +458,46 @@ namespace WikiCharity.Controllers
                 detailModel.Website = charity.Website;
                 detailModel.Description = charity.Description;
                 detailModel.Beneficiaries = charity.Beneficiaries;
-                detailModel.AccountInfo = fin.AccountInfo;
-                detailModel.Donations = fin.Donations.Value;
-                detailModel.EmpExpense = fin.EmpExpense.Value;
-                detailModel.ReportFrom = fin.ReportFrom;
-                detailModel.ReportTo = fin.ReportTo;
-                detailModel.GoverGrant = fin.GoverGrant.Value;
-                detailModel.GDInAus = fin.GDInAus.Value;
-                detailModel.GDOutAus = fin.GDOutAus.Value;
-                detailModel.NetAssets = fin.NetAssets.Value;
-                detailModel.NetSurplus = fin.NetSurplus.Value;
-                detailModel.TotalAssets = fin.TotalAssets.Value;
-                detailModel.TotalCurrentLia = fin.TotalCurrentLia.Value;
-                detailModel.TotalNotCurrentLia = fin.TotalNotCurrentLia.Value;
-                detailModel.TotalCurrentAssets = fin.TotalCurrentAssets.Value;
-                detailModel.TotalNotCurrentAssets = fin.TotalNotCurrentAssets.Value;
-                detailModel.Expense = fin.Expense.Value;
-                detailModel.TotalGrossIncome = fin.TotalGrossIncome.Value;
-                detailModel.TotalLia = fin.TotalLia.Value;
-                detailModel.Year = fin.FYear;
-                detailModel.EmpExpensePersentage = fin.EmpExpensePersentage.Value;
-                detailModel.OtherIncome = fin.OtherIncome.Value;
-                detailModel.AllOtherExpense = fin.AllOtherExpense.Value;
-                detailModel.DebtEquityRadio = fin.DebtEquityRadio.Value;
-                detailModel.SavingRadio = fin.SavingRadio.Value;
-                detailModel.CurrentRadio = fin.CurrentRadio.Value;
-                detailModel.DebtRadio = fin.DebtRadio.Value;
-                detailModel.EmpExpInSizeMedian = fin.EmpExpInSizeMedian.Value;
-                detailModel.DebtEquityInSizeMedian = fin.DebtEquityInSizeMedian.Value;
-                detailModel.SavingRadioInSizeMedian = fin.SavingRadioInSizeMedian.Value;
-                detailModel.CurrentRadioInSizeMedian = fin.CurrentRadioInSizeMedian.Value;
-                detailModel.DebtRadioInSizeMedian = fin.DebtRadioInSizeMedian.Value;
+                List<FinancialNew> flist = finList.Where(f => f.FYear == b).ToList();
+                if (flist.Count != 0)
+                {
+                    fin = finList.Where(f => f.FYear == b).ToList()[0];
+                    detailModel.AccountInfo = fin.AccountInfo;
+                    detailModel.Donations = fin.Donations.Value;
+                    detailModel.EmpExpense = fin.EmpExpense.Value;
+                    detailModel.ReportFrom = fin.ReportFrom;
+                    detailModel.ReportTo = fin.ReportTo;
+                    detailModel.GoverGrant = fin.GoverGrant.Value;
+                    detailModel.GDInAus = fin.GDInAus.Value;
+                    detailModel.GDOutAus = fin.GDOutAus.Value;
+                    detailModel.NetAssets = fin.NetAssets.Value;
+                    detailModel.NetSurplus = fin.NetSurplus.Value;
+                    detailModel.TotalAssets = fin.TotalAssets.Value;
+                    detailModel.TotalCurrentLia = fin.TotalCurrentLia.Value;
+                    detailModel.TotalNotCurrentLia = fin.TotalNotCurrentLia.Value;
+                    detailModel.TotalCurrentAssets = fin.TotalCurrentAssets.Value;
+                    detailModel.TotalNotCurrentAssets = fin.TotalNotCurrentAssets.Value;
+                    detailModel.Expense = fin.Expense.Value;
+                    detailModel.TotalGrossIncome = fin.TotalGrossIncome.Value;
+                    detailModel.TotalLia = fin.TotalLia.Value;
+                    detailModel.Year = fin.FYear;
+                    detailModel.EmpExpensePersentage = fin.EmpExpensePersentage.Value;
+                    detailModel.OtherIncome = fin.OtherIncome.Value;
+                    detailModel.AllOtherExpense = fin.AllOtherExpense.Value;
+                    detailModel.DebtEquityRadio = fin.DebtEquityRadio.Value;
+                    detailModel.SavingRadio = fin.SavingRadio.Value;
+                    detailModel.CurrentRadio = fin.CurrentRadio.Value;
+                    detailModel.DebtRadio = fin.DebtRadio.Value;
+                    detailModel.EmpExpInSizeMedian = fin.EmpExpInSizeMedian.Value;
+                    detailModel.DebtEquityInSizeMedian = fin.DebtEquityInSizeMedian.Value;
+                    detailModel.SavingRadioInSizeMedian = fin.SavingRadioInSizeMedian.Value;
+                    detailModel.CurrentRadioInSizeMedian = fin.CurrentRadioInSizeMedian.Value;
+                    detailModel.DebtRadioInSizeMedian = fin.DebtRadioInSizeMedian.Value;
+                }
+                else
+                {
+                    detailModel.Year = b;
+                }
 
                 finalModelList.Add(detailModel);
                 a++;
@@ -511,13 +519,25 @@ namespace WikiCharity.Controllers
             List<FinancialNew> finList = db.FinancialNews.Where(i => i.ABN == ABN).ToList();
             LineModel line2014 = new LineModel();
             line2014.year = "2014";
-            line2014.NetSurplus = finList.Where(f => f.FYear == "2014").ToList()[0].NetSurplus.Value;
+            List<FinancialNew> flist = finList.Where(f => f.FYear == "2014").ToList();
+            if (flist.Count != 0)
+            {
+                line2014.NetSurplus = finList.Where(f => f.FYear == "2014").ToList()[0].NetSurplus.Value;
+            }
             LineModel line2015 = new LineModel();
             line2015.year = "2015";
-            line2015.NetSurplus = finList.Where(f => f.FYear == "2015").ToList()[0].NetSurplus.Value;
+            flist = finList.Where(f => f.FYear == "2014").ToList();
+            if (flist.Count != 0)
+            {
+                line2015.NetSurplus = finList.Where(f => f.FYear == "2015").ToList()[0].NetSurplus.Value;
+            }
             LineModel line2016 = new LineModel();
             line2016.year = "2016";
-            line2016.NetSurplus = finList.Where(f => f.FYear == "2016").ToList()[0].NetSurplus.Value;
+            flist = finList.Where(f => f.FYear == "2014").ToList();
+            if (flist.Count != 0)
+            {
+                line2016.NetSurplus = finList.Where(f => f.FYear == "2016").ToList()[0].NetSurplus.Value;
+            }
             data.Add(line2014);
             data.Add(line2015);
             data.Add(line2016);
@@ -549,16 +569,29 @@ namespace WikiCharity.Controllers
             List<FinancialNew> finList = db.FinancialNews.Where(i => i.ABN == ABN).ToList();
             BarModel bar2014 = new BarModel();
             bar2014.year = "2014";
-            bar2014.TotalGrossIncome = finList.Where(f => f.FYear == "2014").ToList()[0].TotalGrossIncome.Value;
-            bar2014.Expense = finList.Where(f => f.FYear == "2014").ToList()[0].Expense.Value;
+            List<FinancialNew> flist = finList.Where(f => f.FYear == "2014").ToList();
+            if (flist.Count != 0)
+            {
+                bar2014.TotalGrossIncome = finList.Where(f => f.FYear == "2014").ToList()[0].TotalGrossIncome.Value;
+                bar2014.Expense = finList.Where(f => f.FYear == "2014").ToList()[0].Expense.Value;
+            }
             BarModel bar2015 = new BarModel();
-            bar2015.year = "2015";
-            bar2015.TotalGrossIncome = finList.Where(f => f.FYear == "2015").ToList()[0].TotalGrossIncome.Value;
-            bar2015.Expense = finList.Where(f => f.FYear == "2015").ToList()[0].Expense.Value;
+            
+                bar2015.year = "2015";
+            flist = finList.Where(f => f.FYear == "2015").ToList();
+            if (flist.Count != 0)
+            {
+                bar2015.TotalGrossIncome = finList.Where(f => f.FYear == "2015").ToList()[0].TotalGrossIncome.Value;
+                bar2015.Expense = finList.Where(f => f.FYear == "2015").ToList()[0].Expense.Value;
+            }
             BarModel bar2016 = new BarModel();
             bar2016.year = "2016";
-            bar2016.TotalGrossIncome = finList.Where(f => f.FYear == "2016").ToList()[0].TotalGrossIncome.Value;
-            bar2016.Expense = finList.Where(f => f.FYear == "2016").ToList()[0].Expense.Value;
+            flist = finList.Where(f => f.FYear == "2016").ToList();
+            if (flist.Count != 0)
+            {
+                bar2016.TotalGrossIncome = finList.Where(f => f.FYear == "2016").ToList()[0].TotalGrossIncome.Value;
+                bar2016.Expense = finList.Where(f => f.FYear == "2016").ToList()[0].Expense.Value;
+            }
             data.Add(bar2014);
             data.Add(bar2015);
             data.Add(bar2016);

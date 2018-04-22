@@ -8,7 +8,7 @@ namespace WikiCharity.Models
     public class LineModel
     {
         public string year { get; set; }
-        public double NetSurplus { get; set; }
+        public double NetSurplus { get; set; } = 0;
 
 
     }

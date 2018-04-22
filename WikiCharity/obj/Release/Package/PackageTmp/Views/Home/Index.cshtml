@@ -78,10 +78,7 @@
 
                 @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { role = "form" }))
                 {
-                    <div class="input-search">
-                        Seach by Charity Name:
-                        @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name (optional)" })
-                    </div>
+
 
                     <div class="select-state">
                         <!--<label style="color:cornflowerblue;font-size:18px;text-align:left;position:inherit;">State</label>-->
@@ -99,13 +96,17 @@
                         @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "No Matter Tax Deductable", new { @class = "form-control", @id = "tax" })
 
                     </div>
+                    <div class="input-search">
+                        Seach by Charity Name:
+                        @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name (optional)" })
+                    </div>
                     <div class="select-bene">
-                        Beneficiaries:
+                        Beneficiaries(You can choose up to five options):
                         @Html.ListBoxFor(m => m.beneString, ViewBag.multiSelectBenes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "bene" })
                     </div>
 
                     <br />
-                        <br />
+                    <br />
 
                         <div class="btn-search">
                             <button type="submit" class="btn btn-primary" id="button1">Click to show the 47597 charities</button>
@@ -116,7 +117,10 @@
                 }
                 <!-- END Search Bar-->
 
-
+                <br />
+                <br />
+                <br />
+                <i class="ti-angle-double-down"></i>
             </div>
 
         </div>
