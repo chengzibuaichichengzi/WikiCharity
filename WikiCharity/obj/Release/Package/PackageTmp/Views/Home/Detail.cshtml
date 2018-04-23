@@ -20,6 +20,7 @@
     <link href="~/assets/css/thejobs.css" rel="stylesheet">
     <link href="~/assets/css/custom.css" rel="stylesheet">
     <link href="~/Content/detailtable.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
@@ -29,14 +30,7 @@
     <link rel="icon" href="~/assets/img/favicon.ico">
 
 
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-    
-    <script src="~/Scripts/cusGraph.js"></script>
-    
-    
 </head>
 
 <body class="nav-on-header smart-nav">
@@ -63,6 +57,7 @@
             <ul class="nav-menu">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
                 <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
             </ul>
@@ -72,19 +67,17 @@
     </nav>
     <!-- END Navigation bar -->
     <!-- Page header -->
-    <header class="page-header bg-img size-lg" style="background-image: url(assets/img/bg-banner2.jpg)">
+    <header class="page-header bg-img size-lg" style="background-image: url(/assets/img/bg-banner2.jpg)">
         <div class="container">
             <div class="header-detail">
-                @*<img class="logo" src="~/assets/img/logo-google.jpg" alt="">*@
                 <div class="hgroup">
-                    <h1>Charity Name</h1>
+                    <h1>@Html.DisplayFor(i => Model.ToList()[0].Name)</h1>
                     <h3><a href="#">@Html.DisplayFor(i => Model.ToList()[0].Address)</a></h3>
                 </div>
-
                 <hr>
                 <p class="lead">@Html.DisplayFor(i => Model.ToList()[0].Description)</p>
                 <p class="lead">Beneficiaries: @Html.DisplayFor(i => Model.ToList()[0].Beneficiaries)</p>
-                @if (!Model.ToList()[0].Website.Contains("NA") )
+                @if (!Model.ToList()[0].Website.Contains("NA"))
                 {
                     if (!Model.ToList()[0].Website.Contains("http"))
                     {
@@ -96,8 +89,6 @@
                     }
 
                 }
-               
-                
                 <ul class="details cols-3">
                     <li>
                         <i class="fa fa-briefcase"></i>
@@ -105,22 +96,17 @@
                     </li>
 
                     <li>
-                        <i class="fa fa-question"></i> @*TODO: Find a icon for size*@
+                        <i class="fas fa-warehouse"></i>
                         <span>Size: @Html.DisplayFor(i => Model.ToList()[0].Size)</span>
                     </li>
 
                     <li>
-                        <i class="fa fa-money"></i>
-                        
+                        <i class="fas fa-money-bill-alt"></i>
+
                         <span>Tax Deductiable: @Html.DisplayFor(i => Model.ToList()[0].Tax)</span>
-                        
-
                     </li>
-
-
-
                     <li>
-                        <i class="fa fa-users"></i>                        
+                        <i class="fa fa-users"></i>
                         <span>Full time staff: @Html.DisplayFor(i => Model.ToList()[0].StaffFull)</span>
                     </li>
 
@@ -138,33 +124,51 @@
         </div>
     </header>
     <!-- END Page header -->
+
+    <div style="text-align:center">
+        <i class="ti-angle-double-down"></i>
+    </div>
+
     <!-- Main container -->
     <main>
 
         <!-- Charity detail -->
         <section>
             <div class="container">
-
-                <p>Some Info</p>
-
-                <br>
-                <h4>Financial table</h4>
                 <div>
+                    <p>
+                        When looking at a charity's financial information, always consider potential factors that may affect that information and how you interpret it. If possible, look for other sources of information, including contacting the charity to ask questions. Please read the Donor Advise page for more information.
+                    </p>
+                </div>
+                <div class="chartrow">
+                    <!--Bar Chart-->
+                    <h4>Revenue & Expenses</h4>
+                    <div id="chart_div2" class="chart">
+                        <%-- Here Chart Will Load --%>
+                    </div>
+                    <!--END Bar Chart-->
+                    <!--Line Graph-->
+                    <h4>Surplus / Deficit</h4>
+                    <div id="chart_div1" class="chart">
+                        <%-- Here Chart Will Load --%>
+                    </div>
+                </div>
+                <!--END Line Graph-->
+                <div class="btn-search">
+                    <button class="btn btn-primary" id="show" onclick="showHideCode()">Show/Hide Financial Tables</button>
+                </div>
+                <!--Financial Table-->
+                <div id="showdiv" style="display:none">
+                    <!--Income Table-->
+
                     <table>
+                        <caption>Income</caption>
                         <thead>
                             <tr>
                                 <th scope="col"></th>
                                 <th scope="col">2014</th>
                                 <th scope="col">2015</th>
                                 <th scope="col">2016</th>
-                            </tr>
-                        </thead>
-                        <thead>
-                            <tr>
-                                <th scope="col">Income</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -194,12 +198,17 @@
                             </tr>
 
                         </tbody>
+                    </table>
+                    <!--END Income Table-->
+                    <!--Expense Table-->
+                    <table>
+                        <caption>Expenses</caption>
                         <thead>
                             <tr>
-                                <th scope="col">Expenses</th>
                                 <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
+                                <th scope="col">2014</th>
+                                <th scope="col">2015</th>
+                                <th scope="col">2016</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -223,35 +232,49 @@
                             </tr>
                             <tr>
                                 <td data-label="Year">All Other Expenses</td>
+                                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].AllOtherExpense)</td>
+                                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].AllOtherExpense)</td>
+                                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].AllOtherExpense)</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Year">Total Expenses</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].Expense)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].Expense)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].Expense)</td>
                             </tr>
                         </tbody>
+                    </table>
+                    <!--END Expenses Table-->
+                    <!--Net Surplus Deflicit Table-->
+                    <table>
+                        <caption>Net Surplus Deflcit</caption>
                         <thead>
                             <tr>
                                 <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
+                                <th scope="col">2014</th>
+                                <th scope="col">2015</th>
+                                <th scope="col">2016</th>
                             </tr>
+                        </thead>
+                        <tbody>
                             <tr>
-                                <th scope="col">Net Surplus Deflcit</th>
-                                <th scope="col">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].NetSurplus)</th>
-                                <th scope="col">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].NetSurplus)</th>
-                                <th scope="col">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].NetSurplus)</th>
+                                <td data-label="Year">Net Surplus Deflcit</td>
+                                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].NetSurplus)</td>
+                                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].NetSurplus)</td>
+                                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].NetSurplus)</td>
                             </tr>
+                        </tbody>
+                    </table>
+                    <!--END Net Surplus Deflicit Table-->
+                    <!--Assets and Liabilities Table-->
+                    <table>
+                        <caption>Assets and Liabilities</caption>
+                        <thead>
                             <tr>
                                 <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                            <tr>
-                                <th scope="col">Assets and Liabilities</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
+                                <th scope="col">2014</th>
+                                <th scope="col">2015</th>
+                                <th scope="col">2016</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -292,30 +315,41 @@
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].TotalLia)</td>
                             </tr>
                         </tbody>
+                    </table>
+                    <!--End Assets and Liabilities Table-->
+                    <!--Net Assets Liabilities Table-->
+
+                    <table>
+                        <caption>Net Assets Liabilities</caption>
                         <thead>
                             <tr>
                                 <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
+                                <th scope="col">2014</th>
+                                <th scope="col">2015</th>
+                                <th scope="col">2016</th>
                             </tr>
+                        </thead>
+                        <tbody>
                             <tr>
-                                <th scope="col">Net Assets Liabilities</th>
-                                <th scope="col">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].NetAssets)</th>
-                                <th scope="col">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].NetAssets)</th>
-                                <th scope="col">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].NetAssets)</th>
+                                <td data-label="Year">Net Assets Liabilities</td> @*TODO: Check vaule在这里用的是NetAssets吗？*@
+                                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].NetAssets)</td>
+                                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].NetAssets)</td>
+                                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].NetAssets)</td>
                             </tr>
+                        </tbody>
+                    </table>
+
+                    <!--END Net Assets Liabilities Table-->
+                    <!--Ratios Table-->
+                    <table>
+                        <caption>Ratios</caption>
+                        <thead>
                             <tr>
                                 <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                            <tr>
-                                <th scope="col">Ratios</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
+                                <th scope="col">2014</th>
+                                <th scope="col">2015</th>
+                                <th scope="col">2016</th>
+                                <th scope="col">Industry Median</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -324,105 +358,124 @@
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].EmpExpensePersentage)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].EmpExpensePersentage)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].EmpExpensePersentage)</td>
+                                <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].EmpExpInSizeMedian)</td>
                             </tr>
                             <tr>
                                 <td data-label="Year">Debt Equity Ratio</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].DebtEquityRadio)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].DebtEquityRadio)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtEquityRadio)</td>
+                                <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtEquityInSizeMedian)</td>
+
                             </tr>
                             <tr>
                                 <td data-label="Year">Saving Ratio</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].SavingRadio)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].SavingRadio)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].SavingRadio)</td>
+                                <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].SavingRadioInSizeMedian)</td>
+
                             </tr>
                             <tr>
                                 <td data-label="Year">Current Ratio</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].CurrentRadio)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].CurrentRadio)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].CurrentRadio)</td>
+                                <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].CurrentRadioInSizeMedian)</td>
+
                             </tr>
                             <tr>
                                 <td data-label="Year">Debt Ratio</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].DebtRadio)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].DebtRadio)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtRadio)</td>
+                                <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtRadioInSizeMedian)</td>
+
                             </tr>
                         </tbody>
                     </table>
+                    <!--END Ratios Table-->
+                    <!--END Financial Table-->
+                </div>
+                <div class="btn-search">
+                    <button class="btn btn-primary" id="show1" onclick="showHideCode1()">Show/Hide Ratio Explanation</button>
+                </div>
+                <div id="showdiv1" style="display:none">
+                    <h4>What are the financial ratios and what do they mean?</h4>
+                    <p style="text-align:justify">A financial statement ratio is derived by dividing the dollar amount of one item reported by the dollar amount of another item reported. The purpose is to express a relationship between two relevant items which is easy to interpret and compare. This is done to asses the financial stability of an entity. Financial Stability refers to the ability of an entity to continue operations in the long term.</p>
+                    <p>WikiCharity employs five such ratios as follows:</p>
+                    <p style="text-indent:50px;">
+                        • Employee expenses percentage
+                    </p>
+                    <p style="text-indent:50px;">
+                        • Debt-equity Ratio
+                    </p>
+                    <p style="text-indent:50px;">
+                        • Savings Ratio
+                    </p>
+                    <p style="text-indent:50px;">
+                        • Current Ratio
+                    </p>
+                    <p style="text-indent:50px;">
+                        • Debt Ratio
+                    </p>
+                    <p style="text-align:justify">
+                        WikiCharity also provides the Industry Medians for the respective charity sizes for comparison.
+                    </p>
+                    <h4>Employee Expenses Percentage</h4>
+                    <p style="text-align:justify">
+                        <i>
+                            Employee Expenses Percentage = Employee Expenses / Total Gross Income *100
+                        </i>
+                    </p>
+                    <p style="text-align:justify">This ratio expresses the employee expenses as a percentage of the total gross income. The smaller this number the lesser a percentage the charity usually spends on it’s employees.</p>
+                    <h4>
+                        Debt-equity Ratio
+                    </h4>
+                    <p><i>Debt-to-Equity Ratio = Total Liabilities / Net Equity *100</i></p>
+                    <p style="text-align:justify">This ratio measures the correlation between a charity’s borrowed funds and the net equity of the organization. Clearly, any charity organization with a lot of debt will struggle to continue operating.</p>
+                    <p style="text-align:justify">
+                        A debt equity ratio of greater than 100% tells you that your organization has more debt than assets. As we all do, charities should strive to keep debts as low as possible.
+                    </p>
+                    <h4>
+                        Savings Ratio
+                    </h4>
+                    <p>
+                        <i>
+                            (Total Revenue — Total Expenses) / Total Expenses
+                        </i>
+                    </p>
+
+                    <p style="text-align:justify">
+                        This ratio shows the rate of the charity’s total revenue minus expenses relative to annual savings divided by total expenses. A high ratio indicates excessive savings.
+                    </p>
+
+                    <h4>
+                        Current Ratio
+                    </h4>
+                    <p>
+                        <i>
+                            Current Ratio = Current Assets / Current Liabilities
+                        </i>
+                    </p>
+                    <p style="text-align:justify">
+                        The current ratio measures the organization’s ability to pay short-term liabilities. Charities should try to keep their current ratios above 1.0 as anything less than 1.0 indicates that the assets are vulnerable.
+                    </p>
+
+                    <h4>
+                        Debt Ratio
+                    </h4>
+                    <p>
+                        <i>
+                            Debt Ratio = Total Liabilities / Total Assets
+                        </i>
+                    </p>
+                    <p style="text-align:justify">
+                        The Debt Ratio, also referred to as the Gearing Ratio, is one of the most common ratios used to assess financial stability. The ratio measures the margin of safety to the creditors of an entity in the event of liquidation; thus the lower the ratio, the greater asset protection to creditors.
+                    </p>
+
                 </div>
 
-                                @*
-    <table>
-        <caption>Ratios Part</caption>
-        <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">2014</th>
-                <th scope="col">2015</th>
-                <th scope="col">2016</th>
-                <th scope="col">Industry M???</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td data-label="Year">Employee Expenses Persentage </td>
-                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].EmpExpensePersentage)</td>
-                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].EmpExpensePersentage)</td>
-                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].EmpExpensePersentage)</td>
-                <td data-label="Industry M???">what</td>
-            </tr>
-            <tr>
-                <td data-label="Year">Debt Equity Ratio</td>
-                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].DebtEquityRadio)</td>
-                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].DebtEquityRadio)</td>
-                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtEquityRadio)</td>
-                <td data-label="Industry M???">what</td>
-
-            </tr>
-            <tr>
-                <td data-label="Year">Saving Ratio</td>
-                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].SavingRadio)</td>
-                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].SavingRadio)</td>
-                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].SavingRadio)</td>
-                <td data-label="Industry M???">what</td>
-
-            </tr>
-            <tr>
-                <td data-label="Year">Current Ratio</td>
-                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].CurrentRadio)</td>
-                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].CurrentRadio)</td>
-                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].CurrentRadio)</td>
-                <td data-label="Industry M???">what</td>
-
-            </tr>
-            <tr>
-                <td data-label="Year">Debt Ratio</td>
-                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].DebtRadio)</td>
-                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].DebtRadio)</td>
-                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtRadio)</td>
-                <td data-label="Industry M???">what</td>
-
-            </tr>
-        </tbody>
-    </table>*@
-
-                <br>
-                <h4>Bar Chart</h4>
-                <p><img src="~/assets/img/bar.png" alt=""></p>
-                <div id="chart_div2" style="width:600px;height:500px">
-                    <%-- Here Chart Will Load --%>
-                </div>
-
-                <br>
-                <h4>Line Chart</h4>
-                <p><img src="~/assets/img/line.png" alt=""></p>
-                <div id="chart_div1" style="width:600px;height:500px">
-                    <%-- Here Chart Will Load --%>
-                </div>
-
-                
 
 
 
@@ -438,9 +491,9 @@
         <!-- Top section -->
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 col-md-6">
+                <div>
                     <h6>About</h6>
-                    <p class="text-justify">WikiCharity aims to create partnerships between both individuals & business, and charities. With the rise of corporate social responsibility programs in the corporate sector, opportunities arise for charities to build stronger relationships with businesses and thus, have a positive impact on people and the environment. </p>
+                    <p class="text-justify">WikiCharity is a digital platform which is used to connect businesses and charities across Australia. The website would serve as a bridge which would enable the user to search charities according to his preference, provide and compare information on the charity’s basic financial data as well.  This will help the users to narrow down on the charities which they want to donate. </p>
                 </div>
 
             </div>
@@ -466,9 +519,13 @@
     <!-- END Back to top button -->
     <!-- Scripts -->
 
-    <script src="~/assets/js/app.min.js"></script>
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="~/Scripts/cusGraph.js"></script>
+
     <script src="~/assets/js/thejobs.js"></script>
-    <script src="~/assets/js/custom.js"></script>
 
 
 

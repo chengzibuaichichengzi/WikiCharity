@@ -7,6 +7,15 @@
     border-radius: 2px;
 }
 
+.chart {
+  width: 100%; 
+  min-height: 450px;
+}
+.chartrow {
+  margin:0 !important;
+}
+.ui-tooltip
+
 .btn {
     height: 44px;
     line-height: 44px;
@@ -724,8 +733,8 @@ form .text-muted {
         float: left;
     }
 
-.btn-search{
-    margin-top:100px;
+.btn-search {
+    margin-top: 100px;
 }
 
 
@@ -738,9 +747,9 @@ form .text-muted {
     float: left;
 }
 
- .chosen-select-multiple,
-.select-bene{
-    display:inline-block;
+.chosen-select-multiple,
+.select-bene {
+    display: inline-block;
     float: left;
 }
 
@@ -748,31 +757,32 @@ form .text-muted {
 .select-state {
     position: relative;
     width: 15%;
-    text-align:left;
-    
+    text-align: left;
 }
-.input-search{
+
+.input-search {
     position: relative;
     width: 40%;
-    text-align:left;
+    text-align: left;
 }
 
 .select-size {
     position: relative;
     width: 20%;
-    text-align:left;
+    text-align: left;
 }
 
 .select-tax {
     position: relative;
     width: 25%;
-    text-align:left;
+    text-align: left;
 }
+
 .chosen-select-multiple,
-.select-bene{
-    position:relative;
-    width:100%;
-    text-align:left;
+.select-bene {
+    position: relative;
+    width: 100%;
+    text-align: left;
 }
 
 .header-job-search .input-keyword,
@@ -896,7 +906,7 @@ form .text-muted {
         font-size: 22px;
     }
 
-     .chosen-select-multiple::before,
+    .chosen-select-multiple::before,
     .input-search::before,
     .select-state::before,
     .select-bene::before,

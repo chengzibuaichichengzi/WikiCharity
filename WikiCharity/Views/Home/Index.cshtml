@@ -24,6 +24,8 @@
     <link href="~/assets/css/custom.css" rel="stylesheet">
     <link href="~/Content/HomeStyle.css" rel="stylesheet" />
     <link href="~/Content/chosen.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
 
@@ -89,7 +91,7 @@
 
                     <div class="select-size">
                         Charity Size:
-                        @Html.DropDownListFor(m => m.size, Model.sizes, "Any Charity Size", new { @class = "form-control ", @id = "size" })
+                        @Html.DropDownListFor(m => m.size, Model.sizes, "Any Charity Size", new { @class = "form-control ", @id = "size", @title= "Small -- Revenue less than $250,000 <br/>Medium -- Revenue between $250,000 and $999,999 <br/>Large -- Revenue more than $999,999" })
                     </div>
                     <div class="select-tax">
                         Tax Deductible Status
@@ -194,8 +196,10 @@
     <script src="~/assets/js/thejobs.js"></script>
     <script src="~/Scripts/chosen.jquery.min.js"></script>
     <script src="~/Scripts/chosen.proto.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="~/Scripts/site.js"></script>
-
+    
 
 
 </body>

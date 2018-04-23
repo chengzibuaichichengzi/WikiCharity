@@ -43,5 +43,12 @@
     $('#button2').click(function () {
         alert("Your message has been sent");
     });
+
+    $("#size").tooltip({
+        
+        content: function(callback){
+            callback($(this).prop('title').replace('|','<br/>'));
+    }
+    });
 });
 

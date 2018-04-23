@@ -24,6 +24,8 @@
     <link href="~/assets/css/custom.css" rel="stylesheet">
     <link href="~/Content/HomeStyle.css" rel="stylesheet" />
     <link href="~/Content/chosen.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
 
@@ -55,6 +57,7 @@
             <ul class="nav-menu">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
                 <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
             </ul>
@@ -71,15 +74,14 @@
                 <h2>Find Charities that Suit <mark>Your Needs</mark></h2>
                 <h6 class="font-alt">Want to get involved with Corporate Social Responsibility?</h6>
                 <h6 class="font-alt">We can help you...</h6>
-                <br><br><br>
+                <h6 class="font-alt">Select Any of the options below and click search button.</h6>
+                <br><br>
 
                 <!--Search Bar-->
 
 
                 @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { role = "form" }))
                 {
-
-
                     <div class="select-state">
                         <!--<label style="color:cornflowerblue;font-size:18px;text-align:left;position:inherit;">State</label>-->
                         State:
@@ -89,11 +91,11 @@
 
                     <div class="select-size">
                         Charity Size:
-                        @Html.DropDownListFor(m => m.size, Model.sizes, "Any Charity Size", new { @class = "form-control ", @id = "size" })
+                        @Html.DropDownListFor(m => m.size, Model.sizes, "Any Charity Size", new { @class = "form-control ", @id = "size", @title= "Small -- Revenue less than $250,000 <br/>Medium -- Revenue between $250,000 and $999,999 <br/>Large -- Revenue more than $999,999" })
                     </div>
                     <div class="select-tax">
-                        Tax Deductable:
-                        @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "No Matter Tax Deductable", new { @class = "form-control", @id = "tax" })
+                        Tax Deductible Status
+                        @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Show All Charities", new { @class = "form-control", @id = "tax" })
 
                     </div>
                     <div class="input-search">
@@ -101,17 +103,17 @@
                         @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name (optional)" })
                     </div>
                     <div class="select-bene">
-                        Beneficiaries(You can choose up to five options):
+                        Beneficiaries&nbsp;&nbsp;(You can choose up to five options):
                         @Html.ListBoxFor(m => m.beneString, ViewBag.multiSelectBenes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "bene" })
                     </div>
 
                     <br />
                     <br />
+                    <br />
+                    <div class="btn-search">
+                        <button type="submit" class="btn btn-primary" id="button1">Click to show the 47597 charities</button>
 
-                        <div class="btn-search">
-                            <button type="submit" class="btn btn-primary" id="button1">Click to show the 47597 charities</button>
-
-                        </div>
+                    </div>
 
 
                 }
@@ -160,9 +162,9 @@
         <!-- Top section -->
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 col-md-6">
+                <div>
                     <h6>About</h6>
-                    <p class="text-justify">WikiCharity aims to create partnerships between both individuals & business, and charities. With the rise of corporate social responsibility programs in the corporate sector, opportunities arise for charities to build stronger relationships with businesses and thus, have a positive impact on people and the environment. </p>
+                    <p class="text-justify">WikiCharity is a digital platform which is used to connect businesses and charities across Australia. The website would serve as a bridge which would enable the user to search charities according to his preference, provide and compare information on the charity’s basic financial data as well.  This will help the users to narrow down on the charities which they want to donate. </p>
                 </div>
 
             </div>
@@ -194,8 +196,10 @@
     <script src="~/assets/js/thejobs.js"></script>
     <script src="~/Scripts/chosen.jquery.min.js"></script>
     <script src="~/Scripts/chosen.proto.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="~/Scripts/site.js"></script>
-
+    
 
 
 </body>

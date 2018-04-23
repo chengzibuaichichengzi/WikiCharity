@@ -41,10 +41,7 @@ namespace WikiCharity.Controllers
             model.selectedBenes = beneList;
             allCharities = db.Charities.ToList<Charity>();
 
-            
-
-
-            GetAllFinancial();
+           
             return View(model);
         }
 
@@ -733,7 +730,7 @@ namespace WikiCharity.Controllers
             return charities;
         }
 
-        private List<FinancialCSV> GetAllFinancial()
+       /* private List<FinancialCSV> GetAllFinancial()
         {
             List<FinancialCSV> charities = new List<FinancialCSV>();
             string filePath = Server.MapPath("~/Uploads/FinancialData3.csv");
@@ -779,7 +776,7 @@ namespace WikiCharity.Controllers
                 }
             }
             return charities;
-        }
+        }*/
 
 
                     /*private List<CharityModel> GetAllCharity()
