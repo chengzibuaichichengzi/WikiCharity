@@ -775,6 +775,7 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Scripts\email.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -1022,6 +1023,7 @@
     <Content Include="Uploads\newData1.csv" />
     <Content Include="Uploads\FinancialData3.csv" />
     <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\Home\DonorAdvice.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

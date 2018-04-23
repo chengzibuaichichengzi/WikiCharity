@@ -1,0 +1,206 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="TheJobs is a directory listing template.">
+    <meta name="keywords" content="">
+
+    <title>WikiCharity - Donor Advices</title>
+
+    <!-- Styles -->
+    <link href="~/assets/css/app.min.css" rel="stylesheet">
+    <link href="~/assets/css/thejobs.css" rel="stylesheet">
+    <link href="~/assets/css/custom.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="~/assets/img/favicon.ico">
+</head>
+
+<body class="nav-on-header smart-nav">
+
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="container">
+            <!-- Logo -->
+            <div class="pull-left">
+                <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
+
+                <div class="logo-wrapper">
+                    <a href="@Url.Action("Index", "Home", null)">
+                        <img class="logo-alt" src="~/Uploads/logo.png" alt="logo-alt" style="width:90px;height:60px;">
+                    </a>
+                </div>
+
+            </div>
+            <!-- END Logo -->
+            <!-- Navigation menu -->
+            <ul class="nav-menu">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
+                <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+            <!-- END Navigation menu -->
+
+        </div>
+    </nav>
+    <!-- END Navigation bar -->
+    <!-- Site header -->
+    <header class="page-header bg-img size-lg">
+        <div class="container no-shadow">
+            <h1 class="text-center">Advice for Potential Donors</h1>
+            @*<p class="lead text-center">Probably you'll find your answer here. Contact us if you don't find what you're looking for.</p>*@
+        </div>
+    </header>
+    <!-- END Site header -->
+    <!-- Main container -->
+    <main id="faq-result">
+        <section>
+            <div class="container">
+                <header class="section-header text-left">
+                    <h2>What is a charity and are all donations to charities tax deductable? </h2>
+                </header>
+
+
+                <ul class="faq-items">
+                    <li>
+                        <p style="text-align:justify">
+                            Charity itself as a word has multiple definitions. WikiCharity defines charities as the Australian Charities and Not-for-profits Commission (ACNC) does:
+                        </p>
+                        <p style="text-align:justify">
+                            To be eligible to be registered as a charity with the ACNC, your organisation must be able to show that it is a ‘charity’. In other words, it must:
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	be not-for-profit
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	have only charitable purposes that are for the public benefit
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	be complying with ACNC governance standards
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	not have any disqualifying purposes ( for example engaging in, or promoting activities that are unlawful or contrary to public policy or promote or oppose a political party or candidate for political office),
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	not be an individual, political party or government entity, and
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	has an Australian Business Number (ABN).”
+                        </p>
+                        <p style="text-align:justify">
+                            It is important to note that not all donations to charities are tax deductable. For donations to organisations to be tax deductable, the organisations have to be a deductible gift recipient (DGR).
+                        </p>
+                        <p style="text-align:justify">
+                            For your donation to be eligible as tax deduction, the donation:
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	Must be made to an organisation that is a DGR.
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	Must be an actual gift. That means that you can’t receive any material benefit from the donation or gift. For example, buying a piece of art at a charity auction is not a tax deductible donation, because you receive the piece of art as a material benefit. If you’d donated money to the charity without receiving the artwork in return, then the donation would be tax deductible.
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	Must be a gift of:
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	Money over $2.
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	Property, including shares, purchased in the last 12 months of any value, or property valued at over $500.
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	Stocks traded outside usual business operations.
+                        </p>
+                        <p style="text-align:justify">
+                            The next question that arises is how much of each type of donation can you claim as a tax deduction? The following is a brief summary of how much you can claim as a tax deductible donation:
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	Gift of money: as long as the donation was more than $2 then you can claim the amount of the donation, as long as it doesn’t create a tax loss.
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	Property above $5,000: you can claim the entire value of the property as a tax deduction, as long as it was not purchased within the 12 months prior to the date on which the donation was. The ATO will decide the value of the property.
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	Property purchased within the last 12 months: you can claim the lesser amount of either:
+                        </p>
+                        <p style="text-indent:50px;">
+
+                            •	The market value of the property on the day it was donated. In this case you can set the market value of the property (rather than the ATO setting it on your behlalf). Valuation expenses are also tax deductible, as long as the valuation was conducted for the purpose of valuing the property for the purposes of the tax deduction claim.
+                        </p>
+                        <p style="text-indent:50px;">
+
+                            •	Amount you paid for the property.
+                        </p>
+                        <p style="text-indent:50px;">
+
+                            •	Stocks: you can claim the market value of the stock on the day on which it was donated, as long as this doesn’t create a tax loss.
+                        </p>
+                        <p style="text-indent:50px;">
+                            •	Shares: you can claim the market value of the shares, as long the value is greater that $2 and less than $5,000.
+                        </p>
+                        <p style="text-align:justify">
+                            Usually, a claim is made in the year that the tax deductible donation took place. You can also spread any tax deductible donation claims over a five year period. The reasons for spreading out your claim could be to avoid creating a tax loss or deduct tax in years of higher income.
+                        </p>
+                    </li>
+
+                </ul>
+            </div>
+        </section>
+
+
+    </main>
+    <!-- END Main container -->
+    <!-- Site footer -->
+    <footer class="site-footer">
+
+        <!-- Top section -->
+        <div class="container">
+            <div class="row">
+                <div>
+                    <h6>About</h6>
+                    <p class="text-justify">WikiCharity is a digital platform which is used to connect businesses and charities across Australia. The website would serve as a bridge which would enable the user to search charities according to his preference, provide and compare information on the charity’s basic financial data as well.  This will help the users to narrow down on the charities which they want to donate. </p>
+                </div>
+
+
+            </div>
+
+            <hr>
+        </div>
+        <!-- END Top section -->
+        <!-- Bottom section -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+
+                    <p class="copyright-text">Copyrights &copy; @DateTime.Now.Year All Rights Reserved by QingGari</p>
+                </div>
+            </div>
+        </div>
+        <!-- END Bottom section -->
+
+    </footer>
+    <!-- END Site footer -->
+    <!-- Back to top button -->
+    <a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
+    <!-- END Back to top button -->
+    <!-- Scripts -->
+    <script src="~/assets/js/app.min.js"></script>
+    <script src="~/assets/js/thejobs.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+
+</body>
+</html>

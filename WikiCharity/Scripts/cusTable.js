@@ -19,7 +19,7 @@
             {
                 //use id column as detail button
                 "data": "Id", "name": "Id", "render": function (data, type, full) {
-                    return '<a class="btn btn-info btn-sm" href=/Home/Detail/' + data + '>' + 'Detail' + '</a>';
+                    return '<a class="btn btn-info btn-sm" href=/Home/Detail/' + data + '>' + 'More Details >>' + '</a>';
                 }
             },
         ],

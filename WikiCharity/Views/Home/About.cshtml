@@ -47,6 +47,8 @@
             <ul class="nav-menu">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
+
                 <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
             </ul>
@@ -56,22 +58,18 @@
     </nav>
     <!-- END Navigation bar -->
     <!-- Site header -->
-    <header class="page-header bg-img size-lg" >
+    <header class="page-header bg-img size-lg">
         <div class="container no-shadow">
             <h1 class="text-center">About us</h1>
-            <p class="lead text-center">Keep reading this page to figure out how we got started and who is behind it!</p>
+            @*<p class="lead text-center">Keep reading this page to figure out how we got started and who is behind it!</p>*@
         </div>
     </header>
     <!-- END Site header -->
     <!-- Main container -->
     <main>
-
-
-
         <!-- About -->
         <section>
             <div class="container">
-
                 <h5>WikiCharity</h5>
                 <p style="text-align:justify">WikiCharity, is a connection and information service.</p>
                 <p style="text-align:justify">WikiCharity aims to create partnerships between both individuals & business, and charities. With the rise of corporate social responsibility programs in the corporate sector, opportunities arise for charities to build stronger relationships with businesses and thus, have a positive impact on people and the environment. </p>
@@ -89,9 +87,9 @@
         <!-- Top section -->
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 col-md-6">
+                <div>
                     <h6>About</h6>
-                    <p class="text-justify">WikiCharity aims to create partnerships between both individuals & business, and charities. With the rise of corporate social responsibility programs in the corporate sector, opportunities arise for charities to build stronger relationships with businesses and thus, have a positive impact on people and the environment. </p>
+                    <p class="text-justify">WikiCharity is a digital platform which is used to connect businesses and charities across Australia. The website would serve as a bridge which would enable the user to search charities according to his preference, provide and compare information on the charity’s basic financial data as well.  This will help the users to narrow down on the charities which they want to donate. </p>
                 </div>
 
             </div>
@@ -118,7 +116,6 @@
     <!-- Scripts -->
     <script src="~/assets/js/app.min.js"></script>
     <script src="~/assets/js/thejobs.js"></script>
-    <script src="~/assets/js/custom.js"></script>
 
 </body>
 </html>

@@ -18,7 +18,8 @@
     <link href="~/assets/css/app.min.css" rel="stylesheet">
     <link href="~/assets/css/thejobs.css" rel="stylesheet">
     <link href="~/assets/css/custom.css" rel="stylesheet">
- 
+
+
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
@@ -49,6 +50,8 @@
             <ul class="nav-menu">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
+
                 <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
             </ul>
@@ -73,16 +76,16 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-8">
                         <h4>Contact form</h4>
-                       
-                       @using (Html.BeginForm())
-                       {
+
+                        @using (Html.BeginForm())
+                        {
                            <!--to protect website from cross site attack-->
-                           @Html.AntiForgeryToken()
+                            @Html.AntiForgeryToken()
 
                             <div class="form-group">
                                 @Html.TextBoxFor(m => m.name, new { @class = "form-control input-lg", placeholder = "Name" })
-                                @Html.ValidationMessageFor(m => m.name, "", new {@class = "text-danger"})
-                                
+                                @Html.ValidationMessageFor(m => m.name, "", new { @class = "text-danger" })
+
                             </div>
 
                             <div class="form-group">
@@ -91,7 +94,7 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.TextAreaFor(m => m.message, new { @class = "form-control", placeholder = "Message", rows="5" })
+                                @Html.TextAreaFor(m => m.message, new { @class = "form-control", placeholder = "Message", rows = "5" })
                                 @Html.ValidationMessageFor(m => m.message, "", new { @class = "text-danger" })
                             </div>
 
@@ -113,7 +116,7 @@
 
                     </div>
                 </div>
-                
+
 
             </div>
         </section>
@@ -127,9 +130,9 @@
         <!-- Top section -->
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 col-md-6">
+                <div>
                     <h6>About</h6>
-                    <p class="text-justify">WikiCharity aims to create partnerships between both individuals & business, and charities. With the rise of corporate social responsibility programs in the corporate sector, opportunities arise for charities to build stronger relationships with businesses and thus, have a positive impact on people and the environment. </p>
+                    <p class="text-justify">WikiCharity is a digital platform which is used to connect businesses and charities across Australia. The website would serve as a bridge which would enable the user to search charities according to his preference, provide and compare information on the charity’s basic financial data as well.  This will help the users to narrow down on the charities which they want to donate. </p>
                 </div>
 
             </div>
@@ -156,8 +159,9 @@
     <!-- Scripts -->
 
     @Scripts.Render("~/bundles/jquery")
-
     @Scripts.Render("~/bundles/bootstrap")
+
+
     <script src="~/Scripts/site.js"></script>
     <script src="~/assets/js/app.min.js"></script>
     <script src="~/assets/js/thejobs.js"></script>

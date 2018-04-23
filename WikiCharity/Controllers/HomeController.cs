@@ -19,11 +19,11 @@ namespace WikiCharity.Controllers
     public class HomeController : Controller
     {
         //Server side DB
-        private static DetailEntities db = new DetailEntities();
-        private static List<Charity> allCharities = db.Charities.ToList<Charity>();
-        //Local DB
-        //private static LocalDetailCharityDBEntities db = new LocalDetailCharityDBEntities();
+        //private static DetailEntities db = new DetailEntities();
         //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        //Local DB
+        private static LocalDetailCharityDBEntities db = new LocalDetailCharityDBEntities();
+        private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
         public ActionResult Index()
         {
@@ -402,6 +402,14 @@ namespace WikiCharity.Controllers
         {
 
             ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult DonorAdvice()
+        {
+
+            ViewBag.Message = "Your application DonorAdvice page.";
 
             return View();
         }
