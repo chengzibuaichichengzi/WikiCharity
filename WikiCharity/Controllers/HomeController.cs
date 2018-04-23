@@ -19,11 +19,11 @@ namespace WikiCharity.Controllers
     public class HomeController : Controller
     {
         //Server side DB
-        //private static DetailEntities db = new DetailEntities();
-        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
-        //Local DB
-        private static LocalDetailCharityDBEntities db = new LocalDetailCharityDBEntities();
+        private static DetailEntities db = new DetailEntities();
         private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        //Local DB
+        //private static LocalDetailCharityDBEntities db = new LocalDetailCharityDBEntities();
+        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
         public ActionResult Index()
         {
@@ -527,14 +527,14 @@ namespace WikiCharity.Controllers
             }
             LineModel line2015 = new LineModel();
             line2015.year = "2015";
-            flist = finList.Where(f => f.FYear == "2014").ToList();
+            flist = finList.Where(f => f.FYear == "2015").ToList();
             if (flist.Count != 0)
             {
                 line2015.NetSurplus = finList.Where(f => f.FYear == "2015").ToList()[0].NetSurplus.Value;
             }
             LineModel line2016 = new LineModel();
             line2016.year = "2016";
-            flist = finList.Where(f => f.FYear == "2014").ToList();
+            flist = finList.Where(f => f.FYear == "2016").ToList();
             if (flist.Count != 0)
             {
                 line2016.NetSurplus = finList.Where(f => f.FYear == "2016").ToList()[0].NetSurplus.Value;

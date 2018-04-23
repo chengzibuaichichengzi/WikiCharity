@@ -313,10 +313,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\CharityTableDB.mdf" />
-    <Content Include="App_Data\CharityTableDB_log.ldf">
+    <None Include="App_Data\CharityTableDB.mdf" />
+    <None Include="App_Data\CharityTableDB_log.ldf">
       <DependentUpon>CharityTableDB.mdf</DependentUpon>
-    </Content>
+    </None>
     <Content Include="assets\css\app.min.css" />
     <Content Include="assets\css\custom.css" />
     <Content Include="assets\css\thejobs.css" />
