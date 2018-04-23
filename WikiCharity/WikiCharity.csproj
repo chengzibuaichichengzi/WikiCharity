@@ -1009,6 +1009,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="test.html" />
     <Content Include="Uploads\arrow.png" />
     <Content Include="Uploads\BackImage.png" />
     <Content Include="Uploads\fanren.png" />
@@ -1016,7 +1017,9 @@
     <Content Include="Uploads\logo2.png" />
     <Content Include="Uploads\QingGariLogo.jpg" />
     <Content Include="Uploads\Rectangle4.png" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1063,6 +1066,7 @@
     <Content Include="Views\Home\FAQs.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Home\DonorAdvice.cshtml" />
+    <Content Include="Views\Home\Sent.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

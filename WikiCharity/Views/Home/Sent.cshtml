@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@model WikiCharity.Models.EmailFormModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -6,12 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="">
 
-    <title>WikiCharity - Error</title>
+    <title>WikiCharity - Contact us</title>
 
     <!-- Styles -->
-    <link href="assets/css/app.min.css" rel="stylesheet">
-    <link href="assets/css/thejobs.css" rel="stylesheet">
-    <link href="assets/css/custom.css" rel="stylesheet">
+    <link href="~/assets/css/app.min.css" rel="stylesheet">
+    <link href="~/assets/css/thejobs.css" rel="stylesheet">
+    <link href="~/assets/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 
 
 
@@ -20,7 +26,7 @@
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="icon" href="assets/img/favicon.ico">
+    <link rel="icon" href="~/assets/img/favicon.ico">
 </head>
 
 <body class="nav-on-header smart-nav">
@@ -31,9 +37,10 @@
             <!-- Logo -->
             <div class="pull-left">
                 <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
+
                 <div class="logo-wrapper">
-                    <a href="Home">
-                        <img class="logo-alt" src="/Uploads/logo.png" alt="logo-alt" style="width:90px;height:60px;">
+                    <a href="@Url.Action("Index", "Home", null)">
+                        <img class="logo-alt" src="~/Uploads/logo.png" alt="logo-alt" style="width:90px;height:60px;">
                     </a>
                 </div>
 
@@ -41,13 +48,12 @@
             <!-- END Logo -->
             <!-- Navigation menu -->
             <ul class="nav-menu">
-                <li><a href="Home/Index">Home</a></li>
-                <li><a href="Home/About">About</a></li>
-                <li><a href="Home/DonorAdvice">Donor Advice</a></li>
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
 
-                <li><a href="Home/FAQs">FAQs</a></li>
-                <li><a href="Home/Contact">Contact</a></li>
-
+                <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
             </ul>
             <!-- END Navigation menu -->
 
@@ -57,23 +63,22 @@
     <!-- Site header -->
     <header class="page-header bg-img size-lg">
         <div class="container no-shadow">
-            <h1 class="text-center">Error</h1>
-      
+            <h1 class="text-center">Email Sent!</h1>
+            
         </div>
     </header>
     <!-- END Site header -->
     <!-- Main container -->
     <main>
-
         <section>
-            <div class="container">
-
-
-                <h3>Oops Some Thing Went Wrong</h3>
-
+            <div style="text-align:center;font-size:8em; color:#265473">
+                <i class="far fa-check-circle"></i>
+                <h3>
+                    The Email has been sent successfully.
+                </h3>
             </div>
         </section>
-
+        
 
     </main>
     <!-- END Main container -->
@@ -83,7 +88,7 @@
         <!-- Top section -->
         <div class="container">
             <div class="row">
-                <div>
+                <div class="col-sm-12 col-md-12">
                     <h6>About</h6>
                     <p class="text-justify">WikiCharity is a digital platform which is used to connect businesses and charities across Australia. The website would serve as a bridge which would enable the user to search charities according to his preference, provide and compare information on the charity’s basic financial data as well.  This will help the users to narrow down on the charities which they want to donate. </p>
                 </div>
@@ -111,9 +116,12 @@
     <!-- END Back to top button -->
     <!-- Scripts -->
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 
-    <script src="assets/js/app.min.js"></script>
-    <script src="assets/js/thejobs.js"></script>
+
+    <script src="~/assets/js/app.min.js"></script>
+    <script src="~/assets/js/thejobs.js"></script>
 
 </body>
 </html>

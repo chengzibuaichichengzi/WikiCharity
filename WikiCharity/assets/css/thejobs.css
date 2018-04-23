@@ -747,7 +747,7 @@ form .text-muted {
     float: left;
 }
 
-.chosen-select-multiple,
+
 .select-bene {
     display: inline-block;
     float: left;
@@ -778,7 +778,7 @@ form .text-muted {
     text-align: left;
 }
 
-.chosen-select-multiple,
+
 .select-bene {
     position: relative;
     width: 100%;
@@ -791,7 +791,7 @@ form .text-muted {
     width: 40%;
 }
 
-.chosen-select-multiple::before,
+
 .input-search::before,
 .select-state::before,
 .select-bene::before,
@@ -869,7 +869,7 @@ form .text-muted {
         width: 100%;
     }
 
-    .chosen-select-multiple,
+
     .input-search,
     .select-state,
     .select-bene,
@@ -888,7 +888,7 @@ form .text-muted {
         margin-bottom: 20px;
     }
 
-    .chosen-select-multiple,
+  
     .input-search,
     .select-state,
     .select-bene,
@@ -906,7 +906,6 @@ form .text-muted {
         font-size: 22px;
     }
 
-    .chosen-select-multiple::before,
     .input-search::before,
     .select-state::before,
     .select-bene::before,

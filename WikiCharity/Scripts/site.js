@@ -40,9 +40,9 @@
         });
     });
 
-    $('#button2').click(function () {
-        alert("Your message has been sent");
-    });
+   // $('#button2').click(function () {
+     //   alert("Your message has been sent");
+    //});
 
     $("#size").tooltip({
         

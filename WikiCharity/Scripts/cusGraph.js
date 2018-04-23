@@ -2,7 +2,7 @@
 var chartData1; // globar variable for hold chart data
 var chartData2;
 google.load("visualization", "1", { packages: ["corechart"] });
-google.setOnLoadCallback(drawChart);
+
 // Here We will fill chartData
 
 $(document).ready(function () {
@@ -65,6 +65,7 @@ function drawChart() {
     barChart.draw(data2, options);
 
 }
+
 
 $(window).resize(function () {
     drawChart();

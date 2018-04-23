@@ -647,13 +647,17 @@ namespace WikiCharity.Controllers
                 {
                     
                     await smtp.SendMailAsync(message);
-                    return View(model);
+                    return RedirectToAction("Sent");
                 }
             }
             return View(model);
         }
 
-      
+        public ActionResult Sent()
+        {
+            return View();
+        }
+
         public ActionResult FAQs()
         {
             ViewBag.Message = "Your FAQs page.";
