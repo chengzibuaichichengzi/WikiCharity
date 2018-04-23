@@ -19,11 +19,11 @@ namespace WikiCharity.Controllers
     public class HomeController : Controller
     {
         //Server side DB
-        private static DetailEntities db = new DetailEntities();
-        private static List<Charity> allCharities = db.Charities.ToList<Charity>();
-        //Local DB
-        //private static LocalDetailCharityDBEntities db = new LocalDetailCharityDBEntities();
+        //private static DetailEntities db = new DetailEntities();
         //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        //Local DB
+        private static LocalDetailCharityDBEntities db = new LocalDetailCharityDBEntities();
+        private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
         public ActionResult Index()
         {
@@ -189,6 +189,7 @@ namespace WikiCharity.Controllers
         public ActionResult AjaxGetJsonData()
         {
             var model = Session["FilterModel"] as FilterModel;
+            //TODO:Check why some rows get twice in datatable(eg. Wami Kata Old)
             List<Charity> finalResult = new List<Charity>();
             finalResult = getFinalList();
             //List<TableResultModel> list = new List<TableResultModel>();
