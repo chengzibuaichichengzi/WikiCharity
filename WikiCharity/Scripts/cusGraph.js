@@ -74,6 +74,6 @@ function showHideCode() {
     $("#showdiv").toggle();
 }
 
-function showHideCode() {
+function showHideCode1() {
     $("#showdiv1").toggle();
 }
