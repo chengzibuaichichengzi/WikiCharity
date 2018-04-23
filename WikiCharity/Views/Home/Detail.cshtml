@@ -74,7 +74,6 @@
                     <h1>@Html.DisplayFor(i => Model.ToList()[0].Name)</h1>
                     <h3><a href="#">@Html.DisplayFor(i => Model.ToList()[0].Address)</a></h3>
                 </div>
-
                 <hr>
                 <p class="lead">@Html.DisplayFor(i => Model.ToList()[0].Description)</p>
                 <p class="lead">Beneficiaries: @Html.DisplayFor(i => Model.ToList()[0].Beneficiaries)</p>
@@ -90,8 +89,6 @@
                     }
 
                 }
-
-
                 <ul class="details cols-3">
                     <li>
                         <i class="fa fa-briefcase"></i>
@@ -138,6 +135,11 @@
         <!-- Charity detail -->
         <section>
             <div class="container">
+                <div>
+                    <p>
+                        When looking at a charity's financial information, always consider potential factors that may affect that information and how you interpret it. If possible, look for other sources of information, including contacting the charity to ask questions. Please read the Donor Advise page for more information.
+                    </p>
+                </div>
                 <div class="chartrow">
                     <!--Bar Chart-->
                     <h4>Revenue & Expenses</h4>
@@ -150,10 +152,10 @@
                     <div id="chart_div1" class="chart">
                         <%-- Here Chart Will Load --%>
                     </div>
-                </div>  
+                </div>
                 <!--END Line Graph-->
                 <div class="btn-search">
-                    <button class="btn btn-primary" id="show" onclick="showHideCode()">Show & Hide Financial Tables</button>
+                    <button class="btn btn-primary" id="show" onclick="showHideCode()">Show/Hide Financial Tables</button>
                 </div>
                 <!--Financial Table-->
                 <div id="showdiv" style="display:none">
@@ -394,6 +396,84 @@
                     </table>
                     <!--END Ratios Table-->
                     <!--END Financial Table-->
+                </div>
+                <div class="btn-search">
+                    <button class="btn btn-primary" id="show1" onclick="showHideCode1()">Show/Hide Ratio Explanation</button>
+                </div>
+                <div id="showdiv1" style="display:none">
+                    <h4>What are the financial ratios and what do they mean?</h4>
+                    <p style="text-align:justify">A financial statement ratio is derived by dividing the dollar amount of one item reported by the dollar amount of another item reported. The purpose is to express a relationship between two relevant items which is easy to interpret and compare. This is done to asses the financial stability of an entity. Financial Stability refers to the ability of an entity to continue operations in the long term.</p>
+                    <p>WikiCharity employs five such ratios as follows:</p>
+                    <p style="text-indent:50px;">
+                        • Employee expenses percentage
+                    </p>
+                    <p style="text-indent:50px;">
+                        • Debt-equity Ratio
+                    </p>
+                    <p style="text-indent:50px;">
+                        • Savings Ratio
+                    </p>
+                    <p style="text-indent:50px;">
+                        • Current Ratio
+                    </p>
+                    <p style="text-indent:50px;">
+                        • Debt Ratio
+                    </p>
+                    <p style="text-align:justify">
+                        WikiCharity also provides the Industry Medians for the respective charity sizes for comparison.
+                    </p>
+                    <h4>Employee Expenses Percentage</h4>
+                    <p style="text-align:justify">
+                        <i>
+                            Employee Expenses Percentage = Employee Expenses / Total Gross Income *100
+                        </i>
+                    </p>
+                    <p style="text-align:justify">This ratio expresses the employee expenses as a percentage of the total gross income. The smaller this number the lesser a percentage the charity usually spends on it’s employees.</p>
+                    <h4>
+                        Debt-equity Ratio
+                    </h4>
+                    <p><i>Debt-to-Equity Ratio = Total Liabilities / Net Equity *100</i></p>
+                    <p style="text-align:justify">This ratio measures the correlation between a charity’s borrowed funds and the net equity of the organization. Clearly, any charity organization with a lot of debt will struggle to continue operating.</p>
+                    <p style="text-align:justify">
+                        A debt equity ratio of greater than 100% tells you that your organization has more debt than assets. As we all do, charities should strive to keep debts as low as possible.
+                    </p>
+                    <h4>
+                        Savings Ratio
+                    </h4>
+                    <p>
+                        <i>
+                            (Total Revenue — Total Expenses) / Total Expenses
+                        </i>
+                    </p>
+
+                    <p style="text-align:justify">
+                        This ratio shows the rate of the charity’s total revenue minus expenses relative to annual savings divided by total expenses. A high ratio indicates excessive savings.
+                    </p>
+
+                    <h4>
+                        Current Ratio
+                    </h4>
+                    <p>
+                        <i>
+                            Current Ratio = Current Assets / Current Liabilities
+                        </i>
+                    </p>
+                    <p style="text-align:justify">
+                        The current ratio measures the organization’s ability to pay short-term liabilities. Charities should try to keep their current ratios above 1.0 as anything less than 1.0 indicates that the assets are vulnerable.
+                    </p>
+
+                    <h4>
+                        Debt Ratio
+                    </h4>
+                    <p>
+                        <i>
+                            Debt Ratio = Total Liabilities / Total Assets
+                        </i>
+                    </p>
+                    <p style="text-align:justify">
+                        The Debt Ratio, also referred to as the Gearing Ratio, is one of the most common ratios used to assess financial stability. The ratio measures the margin of safety to the creditors of an entity in the event of liquidation; thus the lower the ratio, the greater asset protection to creditors.
+                    </p>
+
                 </div>
 
 
