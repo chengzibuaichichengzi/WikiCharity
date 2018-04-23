@@ -69,3 +69,7 @@ function drawChart() {
 $(window).resize(function () {
     drawChart();
 });
+
+function showHideCode() {
+    $("#showdiv").toggle();
+}
