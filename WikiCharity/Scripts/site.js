@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
 
     $(".chosen-select-multiple").chosen({
+        width: "100%",
         max_selected_options: 5
     });
 

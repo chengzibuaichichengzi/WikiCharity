@@ -102,19 +102,16 @@
                         Seach by Charity Name:
                         @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name (optional)" })
                     </div>
-                    <div class="select-bene">
+                    <div style="text-align:left">
                         Beneficiaries&nbsp;&nbsp;(You can choose up to five options):
-                        @Html.ListBoxFor(m => m.beneString, ViewBag.multiSelectBenes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "bene" })
                     </div>
-   
+                    <div class="chosen-container-multi">                       
+                            @Html.ListBoxFor(m => m.beneString, ViewBag.multiSelectBenes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "bene" })    
+                    </div>                                             
+                            <div class="btn-search">
+                                <button type="submit" class="btn btn-primary" id="button1">Click to show the 47597 charities</button>
 
-                    <br />
-                    <br />
-                    <br />
-                    <div class="btn-search">
-                        <button type="submit" class="btn btn-primary" id="button1">Click to show the 47597 charities</button>
-
-                    </div>
+                            </div>
 
 
                 }
