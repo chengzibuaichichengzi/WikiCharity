@@ -19,11 +19,11 @@ namespace WikiCharity.Controllers
     public class HomeController : Controller
     {
         //Server side DB
-        //private static DetailEntities db = new DetailEntities();
-        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
-        //Local DB
-        private static LocalDetailCharityDBEntities db = new LocalDetailCharityDBEntities();
+        private static DetailEntities db = new DetailEntities();
         private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        //Local DB
+        //private static LocalDetailCharityDBEntities db = new LocalDetailCharityDBEntities();
+        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
         public ActionResult Index()
         {
@@ -238,13 +238,14 @@ namespace WikiCharity.Controllers
        
 
         [HttpPost]
-        public ActionResult CountResult(string state, string bene, string size, string tax)
+        public ActionResult CountResult(string state, string bene, string size, string tax, string name)
         {
             var model = new FilterModel();
             model.state = state;
             model.beneficial = bene;
             model.size = size;
             model.isDGR = tax;
+            model.name = name;
             List<Charity> finalResult = new List<Charity>();
             List<Charity> beneResult = new List<Charity>();
             List<string> names = model.beneficial.Split(',').ToList();
@@ -283,7 +284,11 @@ namespace WikiCharity.Controllers
                 //finalResult = IntersectCharity(SearchByState(model), finalResult);
                 finalResult = finalResult.Where(x => x.State.Contains(model.state)).ToList<Charity>();
             }
-            model.countNum = finalResult.Count().ToString();
+            if (!string.IsNullOrEmpty(model.name))
+            {
+                finalResult = finalResult.Where(x => x.Name.ToLower().Contains(model.name.ToLower())).ToList<Charity>();
+            }
+                model.countNum = finalResult.Count().ToString();
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 

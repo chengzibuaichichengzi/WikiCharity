@@ -337,3 +337,4 @@ C:\Users\zyua27\Desktop\wiki2\WikiCharity\WikiCharity\bin\Microsoft.AspNet.Ident
 C:\Users\zyua27\Desktop\wiki2\WikiCharity\WikiCharity\obj\Debug\WikiCharity.csprojResolveAssemblyReference.cache
 C:\Users\zyua27\Desktop\wiki2\WikiCharity\WikiCharity\obj\Debug\WikiCharity.dll
 C:\Users\zyua27\Desktop\wiki2\WikiCharity\WikiCharity\obj\Debug\WikiCharity.pdb
+C:\Users\zyua27\Desktop\wiki2\wikicharity\WikiCharity\bin\assets\fonts\themify.woff

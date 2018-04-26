@@ -78,52 +78,54 @@
                 <br><br>
 
                 <!--Search Bar-->
-
-
                 @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { role = "form" }))
                 {
-                    <div class="select-state">
-                        <!--<label style="color:cornflowerblue;font-size:18px;text-align:left;position:inherit;">State</label>-->
-                        State:
-                        @Html.DropDownListFor(m => m.state, Model.states, "Any State", new { @class = "form-control", @id = "state" })
-                    </div>
+                <div class="select-state">
+                    <!--<label style="color:cornflowerblue;font-size:18px;text-align:left;position:inherit;">State</label>-->
+                    State:
+                    @Html.DropDownListFor(m => m.state, Model.states, "Any State", new { @class = "form-control", @id = "state" })
+                </div>
 
 
-                    <div class="select-size">
-                        Charity Size:
-                        @Html.DropDownListFor(m => m.size, Model.sizes, "Any Charity Size", new { @class = "form-control ", @id = "size", @title= "Small -- Revenue less than $250,000 <br/>Medium -- Revenue between $250,000 and $999,999 <br/>Large -- Revenue more than $999,999" })
-                    </div>
-                    <div class="select-tax">
-                        Tax Deductible Status
-                        @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Show All Charities", new { @class = "form-control", @id = "tax" })
+                <div class="select-size">
+                    Charity Size:
+                    @Html.DropDownListFor(m => m.size, Model.sizes, "Any Charity Size", new { @class = "form-control ", @id = "size", @title = "Small -- Revenue less than $250,000 <br/>Medium -- Revenue between $250,000 and $999,999 <br/>Large -- Revenue more than $999,999" })
+                </div>
+                <div class="select-tax">
+                    Tax Deductible Status
+                    @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Show All Charities", new { @class = "form-control", @id = "tax" })
 
-                    </div>
-                    <div class="input-search">
-                        Seach by Charity Name:
-                        @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name (optional)" })
-                    </div>
-                    <div class="select-bene">
-                        Beneficiaries&nbsp;&nbsp;(You can choose up to five options):
+                </div>
+                <div class="input-search">
+                    Seach by Charity Name:
+                    @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name (optional)" })
+                </div>
+                <div style="text-align:left">
+                    Beneficiaries&nbsp;&nbsp;(You can choose up to five options):
+                </div>
+                <div class="select-bene">
+                    <div class="chosen-container-multi">
                         @Html.ListBoxFor(m => m.beneString, ViewBag.multiSelectBenes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "bene" })
                     </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="btn-search">
+                    <button type="submit" class="btn btn-primary" id="button1">Click to show the 47597 charities</button>
 
-                    <br />
-                    <br />
-                    <br />
-                    <div class="btn-search">
-                        <button type="submit" class="btn btn-primary" id="button1">Click to show the 47597 charities</button>
-
-                    </div>
+                </div>
 
 
                 }
                 <!-- END Search Bar-->
 
-                <br />
-                <br />
+
                 <br />
                 <i class="ti-angle-double-down"></i>
             </div>
+
+
 
         </div>
     </header>
@@ -162,7 +164,7 @@
         <!-- Top section -->
         <div class="container">
             <div class="row">
-                <div>
+                <div class="col-sm-12 col-md-12">
                     <h6>About</h6>
                     <p class="text-justify">WikiCharity is a digital platform which is used to connect businesses and charities across Australia. The website would serve as a bridge which would enable the user to search charities according to his preference, provide and compare information on the charity’s basic financial data as well.  This will help the users to narrow down on the charities which they want to donate. </p>
                 </div>
@@ -188,7 +190,6 @@
     <!-- Back to top button -->
     <a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
     <!-- END Back to top button -->
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 
@@ -199,7 +200,7 @@
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="~/Scripts/site.js"></script>
-    
+
 
 
 </body>

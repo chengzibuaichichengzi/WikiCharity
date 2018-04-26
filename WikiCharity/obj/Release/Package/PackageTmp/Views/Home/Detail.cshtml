@@ -136,7 +136,7 @@
         <section>
             <div class="container">
                 <div>
-                    <p>
+                    <p style="text-align:justify">
                         When looking at a charity's financial information, always consider potential factors that may affect that information and how you interpret it. If possible, look for other sources of information, including contacting the charity to ask questions. Please read the Donor Advise page for more information.
                     </p>
                 </div>
@@ -144,13 +144,21 @@
                     <!--Bar Chart-->
                     <h4>Revenue & Expenses</h4>
                     <div id="chart_div2" class="chart">
-                        <%-- Here Chart Will Load --%>
+                        <div class="spinner">
+                            <span class="dot1"></span>
+                            <span class="dot2"></span>
+                            <span class="dot3"></span>
+                        </div>
                     </div>
                     <!--END Bar Chart-->
                     <!--Line Graph-->
                     <h4>Surplus / Deficit</h4>
                     <div id="chart_div1" class="chart">
-                        <%-- Here Chart Will Load --%>
+                        <div class="spinner">
+                            <span class="dot1"></span>
+                            <span class="dot2"></span>
+                            <span class="dot3"></span>
+                        </div>
                     </div>
                 </div>
                 <!--END Line Graph-->
@@ -173,25 +181,25 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Year">Donations and Bequests</td>
+                                <td data-label="Year">Donations and Bequests($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].Donations)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].Donations)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].Donations)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Government Grants</td>
+                                <td data-label="Year">Government Grants($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].GoverGrant)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].GoverGrant)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].GoverGrant)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Other Income</td>
+                                <td data-label="Year">Other Income($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].OtherIncome)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].OtherIncome)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].OtherIncome)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Total Gross Income</td>
+                                <td data-label="Year">Total Gross Income($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].TotalGrossIncome)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].TotalGrossIncome)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].TotalGrossIncome)</td>
@@ -213,31 +221,31 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Year">Employee Expenses</td>
+                                <td data-label="Year">Employee Expenses($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].EmpExpense)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].EmpExpense)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].EmpExpense)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Grants and Donations used in Australia</td>
+                                <td data-label="Year">Grants and Donations used in Australia($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].GDInAus)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].GDInAus)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].GDInAus)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Grants and Donations used outside Australia</td>
+                                <td data-label="Year">Grants and Donations used outside Australia($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].GDOutAus)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].GDOutAus)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].GDOutAus)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">All Other Expenses</td>
+                                <td data-label="Year">All Other Expenses($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].AllOtherExpense)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].AllOtherExpense)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].AllOtherExpense)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Total Expenses</td>
+                                <td data-label="Year">Total Expenses($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].Expense)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].Expense)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].Expense)</td>
@@ -258,7 +266,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Year">Net Surplus Deflcit</td>
+                                <td data-label="Year">Net Surplus Deflcit($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].NetSurplus)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].NetSurplus)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].NetSurplus)</td>
@@ -279,37 +287,37 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Year">Total Current Assets</td>
+                                <td data-label="Year">Total Current Assets($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].TotalCurrentAssets)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].TotalCurrentAssets)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].TotalCurrentAssets)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Total No Current Assets</td>
+                                <td data-label="Year">Total Non Current Assets($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].TotalNotCurrentAssets)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].TotalNotCurrentAssets)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].TotalNotCurrentAssets)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Total Assets</td>
+                                <td data-label="Year">Total Assets($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].TotalAssets)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].TotalAssets)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].TotalAssets)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Total Current Liabilities</td>
+                                <td data-label="Year">Total Current Liabilities($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].TotalCurrentLia)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].TotalCurrentLia)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].TotalCurrentLia)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Total No Current Liabilities</td>
+                                <td data-label="Year">Total Non Current Liabilities($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].TotalNotCurrentLia)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].TotalNotCurrentLia)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].TotalNotCurrentLia)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Total Liabilities</td>
+                                <td data-label="Year">Total Liabilities($)</td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].TotalLia)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].TotalLia)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].TotalLia)</td>
@@ -331,7 +339,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Year">Net Assets Liabilities</td> @*TODO: Check vaule在这里用的是NetAssets吗？*@
+                                <td data-label="Year">Net Assets Liabilities($)</td> @*TODO: Check vaule在这里用的是NetAssets吗？*@
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].NetAssets)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].NetAssets)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].NetAssets)</td>
@@ -491,13 +499,12 @@
         <!-- Top section -->
         <div class="container">
             <div class="row">
-                <div>
+                <div class="col-sm-12 col-md-12">
                     <h6>About</h6>
                     <p class="text-justify">WikiCharity is a digital platform which is used to connect businesses and charities across Australia. The website would serve as a bridge which would enable the user to search charities according to his preference, provide and compare information on the charity’s basic financial data as well.  This will help the users to narrow down on the charities which they want to donate. </p>
                 </div>
 
             </div>
-
             <hr>
         </div>
         <!-- END Top section -->

@@ -973,12 +973,20 @@
     <Content Include="Models\LocalDetailModel.edmx.diagram">
       <DependentUpon>LocalDetailModel.edmx</DependentUpon>
     </Content>
+    <Content Include="assets\fonts\themify.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\PublishProfiles\new.pubxml" />
     <None Include="Properties\PublishProfiles\WikiCharity20180324033921 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\WikiCharity20180324033921 - Web Deploy.pubxml" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <None Include="Properties\PublishProfiles\WikicharityWebsite - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\WikicharityWebsite - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\WikicharityWebsite - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\WikicharityWebsite - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1009,7 +1017,6 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="test.html" />
     <Content Include="Uploads\arrow.png" />
     <Content Include="Uploads\BackImage.png" />
     <Content Include="Uploads\fanren.png" />
