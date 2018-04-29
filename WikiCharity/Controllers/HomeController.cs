@@ -21,9 +21,13 @@ namespace WikiCharity.Controllers
         //Server side DB
         private static DetailEntities db = new DetailEntities();
         private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+
         //Local DB
         //private static LocalDetailCharityDBEntities db = new LocalDetailCharityDBEntities();
         //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+
+
+        
 
         public ActionResult Index()
         {
@@ -39,7 +43,7 @@ namespace WikiCharity.Controllers
             MultiSelectList beneList = new MultiSelectList(model.beneficials, "Value", "Text");
             ViewBag.multiSelectBenes = beneList;
             model.selectedBenes = beneList;
-            allCharities = db.Charities.ToList<Charity>();
+            //allCharities = db.Charities.ToList<Charity>();
 
            
             return View(model);
@@ -140,7 +144,6 @@ namespace WikiCharity.Controllers
             List<Charity> beneResult = new List<Charity>();
             //create a new list to store selected benes
             List<string> names = model.beneString;
-
 
             if (names != null)
             {

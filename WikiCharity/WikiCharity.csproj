@@ -268,6 +268,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CharityResult.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CharitySearchModel.cs" />
     <Compile Include="Models\DetailModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1018,6 +1019,7 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Uploads\arrow.png" />
+    <Content Include="Uploads\BackImage.jpg" />
     <Content Include="Uploads\BackImage.png" />
     <Content Include="Uploads\fanren.png" />
     <Content Include="Uploads\logo.png" />

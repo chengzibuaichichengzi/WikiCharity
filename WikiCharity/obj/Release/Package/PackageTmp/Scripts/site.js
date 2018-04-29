@@ -39,8 +39,18 @@
                 data: data,
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    var text = "Click to show the " + data.countNum + " charities"
-                    $('#button1').text(text);
+                    if (data.countNum != 0) {
+
+                        var text = "Click to show the " + data.countNum + " charities";
+                        $('#button1').text(text);
+                        document.getElementById("button1").disabled = false;
+                    }
+                    else {
+                        var text = "No charities available";
+                        $('#button1').text(text);
+                        document.getElementById("button1").disabled = true;
+                    }
+                    
                 },
                 error: function (e) {
                     console.log(e);
@@ -79,8 +89,17 @@
             data: data,
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                var text = "Click to show the " + data.countNum + " charities"
-                $('#button1').text(text);
+                if (data.countNum != 0) {
+
+                    var text = "Click to show the " + data.countNum + " charities";
+                    $('#button1').text(text);
+                    document.getElementById("button1").disabled = false;
+                }
+                else {
+                    var text = "No charities available";
+                    $('#button1').text(text);
+                    document.getElementById("button1").disabled = true;
+                }
             },
             error: function () {
                 
