@@ -31,16 +31,20 @@ namespace WikiCharity.Controllers
 
         public ActionResult Index()
         {
+            //create lists to store all string
             var benes = GetAllBenes();
             var DGRs = GetAllDGRs();
             var sizes = GetAllSizes();
             var states = GetAllStates();
+            //create a filter model to store all select lists
             var model = new FilterModel();
             model.beneficials = GetSelectListItems(benes);
             model.isDGRs = GetSelectListItems(DGRs);
             model.sizes = GetSelectListItems(sizes);
             model.states = GetSelectListItems(states);
+            //multiple selection list
             MultiSelectList beneList = new MultiSelectList(model.beneficials, "Value", "Text");
+            //stote in Viewbag
             ViewBag.multiSelectBenes = beneList;
             model.selectedBenes = beneList;
             //allCharities = db.Charities.ToList<Charity>();
@@ -49,43 +53,36 @@ namespace WikiCharity.Controllers
             return View(model);
         }
 
-        /*public MultiSelectList GetBeneSelect(string[] selectedValue)
-        {
-            var benes = GetAllBenes();
-            var n = 1;
-            List<Bene> list = new List<Bene>();
-            foreach (var i in benes){
-                list.Add(new Bene() { ID = n, Name = i });
-            }
-            return new MultiSelectList(list, "ID", "Name", selectedValue);
-        }A*/
+        
 
         [HttpPost]
-        public ActionResult Index(FilterModel model, FormCollection form)
+        public ActionResult Index(FilterModel model)
         {
-                var benes = GetAllBenes();
-                var sizes = GetAllSizes();
-                var DGRs = GetAllDGRs();
-                var states = GetAllStates();
-                model.beneficials = GetSelectListItems(benes);
-                model.sizes = GetSelectListItems(sizes);
-                model.isDGRs = GetSelectListItems(DGRs);
-                model.states = GetSelectListItems(states);
-                Session["FilterModel"] = model;
-            //model.beneficial = form["multiBenes"].;
-            //string selectedBenes = form["multiBenes"];
-            //ViewBag.multiSelectBenes = 
+            var benes = GetAllBenes();
+            var sizes = GetAllSizes();
+            var DGRs = GetAllDGRs();
+            var states = GetAllStates();
+            //use custom method GetSelectListItem to pass a list and then get select list items
+            model.beneficials = GetSelectListItems(benes);
+            model.sizes = GetSelectListItems(sizes);
+            model.isDGRs = GetSelectListItems(DGRs);
+            model.states = GetSelectListItems(states);
 
+            //store the filter model in the session
+            Session["FilterModel"] = model;
 
-                return RedirectToAction("FilterResult");
+            //go to filter result page
+            return RedirectToAction("FilterResult");
             
         }
 
         public ActionResult FilterResult()
         {
+            //get inout model through session
             var model = Session["FilterModel"] as FilterModel;
             if (model.state != null)
             {
+                //store state in view bag
                 ViewBag.State = model.state;
             }
             else
@@ -95,6 +92,7 @@ namespace WikiCharity.Controllers
             
             if (model.beneString != null)
             {
+                //convert list of beneficiaries to a list and store it in Viewbag
                 ViewBag.Bene = string.Join(", ", model.beneString.ToArray());
             }
             else
@@ -128,10 +126,12 @@ namespace WikiCharity.Controllers
                 ViewBag.Name = "Any Charity Name";
             }
             List<Charity> finalResult = new List<Charity>();
+            //search for final result based on filter and name
             finalResult = getFinalList();
             return View(finalResult);
         }
 
+        //get search result based on 4 filters and search by name
         public List<Charity> getFinalList()
         {
             //get current filter model
@@ -158,10 +158,12 @@ namespace WikiCharity.Controllers
                 }
                 finalResult = beneResult;
             }
+            //do size filtering
             if (!string.IsNullOrEmpty(model.size))
             {
                 finalResult = finalResult.Where(x => x.Size.Contains(model.size)).ToList<Charity>();
             }
+            //do tax filtering
             if (!string.IsNullOrEmpty(model.isDGR))
             {
                 if (model.isDGR == "Yes")
@@ -173,11 +175,13 @@ namespace WikiCharity.Controllers
                     finalResult = finalResult.Where(x => x.Tax == false).ToList<Charity>();
                 }
             }
+            //do state filtering
             if (!string.IsNullOrEmpty(model.state))
             {
                 finalResult = finalResult.Where(x => x.State.Contains(model.state)).ToList<Charity>();
             }
             ViewBag.Count = finalResult.Count();
+            //do name searching
             if (!string.IsNullOrEmpty(model.name))
             {
                 finalResult = finalResult.Where(x => x.Name.ToLower().Contains(model.name.ToLower())).ToList<Charity>();
@@ -185,32 +189,16 @@ namespace WikiCharity.Controllers
             return finalResult;
         }
 
+        //return json data for server-side loading of datatable
         [HttpPost]
         public ActionResult AjaxGetJsonData()
         {
             var model = Session["FilterModel"] as FilterModel;
             //TODO:Check why some rows get twice in datatable(eg. Wami Kata Old)
             List<Charity> finalResult = new List<Charity>();
+            //get search result for datatable
             finalResult = getFinalList();
-            //List<TableResultModel> list = new List<TableResultModel>();
             
-            /*foreach (var i in finalResult)
-            {
-                TableResultModel result = new TableResultModel();
-                result.Name = i.CharityName;
-                result.Beneficiaries = String.Join(", ", i.beneficiaries.ToArray());
-                if (i.DGR == true)
-                {
-                    result.Tax = "Yes";
-                }
-                else
-                {
-                    result.Tax = "No";
-                }
-                result.Size = i.Size;
-                result.State = i.State;
-                list.Add(result);
-            }*/
 
             //server side parameters
             int start = Convert.ToInt32(Request["start"]);
@@ -219,9 +207,11 @@ namespace WikiCharity.Controllers
             string sortColumnName = Request["columns[" + Request["order[0][column]"] + "][name]"];
             string sortDirection = Request["order[0][dir]"];
             int totalRows = finalResult.Count;
+
             //do filtering
             if (!string.IsNullOrEmpty(searchValue))
             {
+                //name, beneficiaries, tax, size and state filtering
                 finalResult = finalResult.Where(x => x.Name.ToLower().Contains(searchValue.ToLower()) ||
                 x.Beneficiaries.ToLower().Contains(searchValue.ToLower()) ||
                 x.Size.ToLower().Contains(searchValue.ToLower()) ||
@@ -235,11 +225,13 @@ namespace WikiCharity.Controllers
             //do paging
             finalResult = finalResult.Skip(start).Take(length).ToList<Charity>();
  
+            //return all the result in json format
             return Json(new { data = finalResult, draw = Request["draw"], recordsTotal = totalRows, recordsFiltered = totalRowsAfter }, JsonRequestBehavior.AllowGet);
         }
 
        
-
+        //return the count of searching result based on current filtering
+        //the button on home page will be changed by this number
         [HttpPost]
         public ActionResult CountResult(string state, string bene, string size, string tax, string name)
         {
@@ -251,157 +243,55 @@ namespace WikiCharity.Controllers
             model.name = name;
             List<Charity> finalResult = new List<Charity>();
             List<Charity> beneResult = new List<Charity>();
+            //a list to store selected beneficiaries
             List<string> names = model.beneficial.Split(',').ToList();
+            //remove the last white space
             names.RemoveAt(names.Count - 1);
+            //in the first, finalresult is all charities
             finalResult = allCharities;
             if (!string.IsNullOrEmpty(model.beneficial))
             {
+                //for every selected beneficiary, get a search result, and them combine them
                 foreach (var i in names)
                 {
-                    //finalResult = IntersectCharity(SearchByBene(model), finalResult);
                     List<Charity> tempResult = new List<Charity>();
                     tempResult = finalResult.Where(x => x.Beneficiaries.Contains(i)).ToList<Charity>();
                     beneResult.AddRange(tempResult);
                 }
                 finalResult = beneResult;
             }
+            //do size filtering
             if (!string.IsNullOrEmpty(model.size))
             {
-                //finalResult = IntersectCharity(SearchBySize(model), finalResult);
                 finalResult = finalResult.Where(x => x.Size.Contains(model.size)).ToList<Charity>();
             }
+            //do tax filtering
             if (!string.IsNullOrEmpty(model.isDGR) )
             {
                 if (model.isDGR == "Yes")
                 {
                     finalResult = finalResult.Where(x => x.Tax == true).ToList<Charity>();
                 }
-                //finalResult = IntersectCharity(SearchByTax(model), finalResult);
                 else
                 {
                     finalResult = finalResult.Where(x => x.Tax == false).ToList<Charity>();
                 }
             }
+            //do state filtering
             if (!string.IsNullOrEmpty(model.state))
             {
-                //finalResult = IntersectCharity(SearchByState(model), finalResult);
                 finalResult = finalResult.Where(x => x.State.Contains(model.state)).ToList<Charity>();
             }
+            //do name filtering
             if (!string.IsNullOrEmpty(model.name))
             {
                 finalResult = finalResult.Where(x => x.Name.ToLower().Contains(model.name.ToLower())).ToList<Charity>();
             }
-                model.countNum = finalResult.Count().ToString();
+            //count the result number
+            model.countNum = finalResult.Count().ToString();
+            //return to home button
             return Json(model, JsonRequestBehavior.AllowGet);
         }
-
-        /*private List<CharityModel> IntersectCharity(List<CharityModel> list1, List<CharityModel> list2)
-        {
-            List<CharityModel> finalResult = new List<CharityModel>();
-            foreach (var c1 in list1)
-            {
-                foreach (var c2 in list2)
-                {
-                    if (c1.ABN == c2.ABN)
-                    {
-                        finalResult.Add(c1);
-                        break;
-                    }
-                }
-            }
-            return finalResult;
-        }*/
-
-        /*private List<CharityModel> SearchByBene(FilterModel model)
-        {
-            List<CharityModel> charities = new List<CharityModel>();
-            List<CharityModel> result = new List<CharityModel>();
-            charities = GetAllCharity();
-            foreach (var charity in charities)
-            {
-                foreach (var t in charity.beneficiaries)
-                {
-                    if (t == model.beneficial)
-                    {
-                        result.Add(charity);
-                        break;
-                    }
-                }
-            }
-            return result;
-        }
-
-        private List<CharityModel> SearchByTax(FilterModel model)
-        {
-            List<CharityModel> charities = new List<CharityModel>();
-            List<CharityModel> result = new List<CharityModel>();
-            charities = GetAllCharity();
-            foreach (var charity in charities)
-            {
-                if (model.isDGR == "Yes")
-                {
-                    if (charity.DGR == true)
-                    {
-                        result.Add(charity);
-                    }
-                }
-                if (model.isDGR == "No")
-                {
-                    if (charity.DGR == false)
-                    {
-                        result.Add(charity);
-                    }
-                }
-                
-            }
-            return result;
-        }
-
-        private List<CharityModel> SearchBySize(FilterModel model)
-        {
-            List<CharityModel> charities = new List<CharityModel>();
-            List<CharityModel> result = new List<CharityModel>();
-            charities = GetAllCharity();
-            foreach (var charity in charities)
-            {
-                if (charity.Size == model.size)
-                {
-                    result.Add(charity);
-                }
-            }
-            return result;
-        }
-
-        private List<CharityModel> SearchByState(FilterModel model)
-        {
-            List<CharityModel> charities = new List<CharityModel>();
-            List<CharityModel> result = new List<CharityModel>();
-            charities = GetAllCharity();
-            foreach (var charity in charities)
-            {
-                if (charity.State == model.state)
-                {
-                    result.Add(charity);
-                }
-            }
-            return result;
-        }
-
-        private List<CharityModel> SearchByName(FilterModel model)
-        {
-            List<CharityModel> charities = new List<CharityModel>();
-            List<CharityModel> result = new List<CharityModel>();
-            charities = GetAllCharity();
-            foreach (var charity in charities)
-            {
-                if (charity.CharityName.ToUpper().Contains(model.name.ToUpper()))
-                {
-                    result.Add(charity);
-                }
-            }
-            return result;
-        }
-        */
 
         public ActionResult About()
         {
@@ -419,12 +309,14 @@ namespace WikiCharity.Controllers
             return View();
         }
 
+        //Detail page for each charity
         public ActionResult Detail(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //search charity by id
             Charity charity = db.Charities.Find(id);
             if (charity == null)
             {
@@ -432,8 +324,10 @@ namespace WikiCharity.Controllers
             }
             var ABN = charity.ABN;
             ViewBag.Message = "Your application description page.";
+            //search charities in the financial table through ABN, cause may have 3 rows for each charity 
             List<FinancialNew> finList = db.FinancialNews.Where(i => i.ABN == ABN).ToList();
 
+            //combine address, state, towncity and postcode
             var address = "";
             if (!charity.AddressLine2.Contains("NA"))
             {
@@ -446,11 +340,15 @@ namespace WikiCharity.Controllers
                     + charity.State + "," + charity.Postcode;
             }
 
+
             List<DetailModel> finalModelList = new List<DetailModel>();
+            //do a 3 times loop to generate 3 models for each charity
             var a = 2014;
             var b = a.ToString();
+            //3 times loop for 2014, 2015 and 2016
             for (int i=0;i<3;i++)
             {
+                //get all attrbutes
                 DetailModel detailModel = new DetailModel();
                 FinancialNew fin = new FinancialNew();
                 detailModel.ABN = charity.ABN;
@@ -473,6 +371,7 @@ namespace WikiCharity.Controllers
                 detailModel.Description = charity.Description;
                 detailModel.Beneficiaries = charity.Beneficiaries;
                 List<FinancialNew> flist = finList.Where(f => f.FYear == b).ToList();
+                //if charity has the financial data for current year (b yaer)
                 if (flist.Count != 0)
                 {
                     fin = finList.Where(f => f.FYear == b).ToList()[0];
@@ -508,6 +407,7 @@ namespace WikiCharity.Controllers
                     detailModel.CurrentRadioInSizeMedian = fin.CurrentRadioInSizeMedian.Value;
                     detailModel.DebtRadioInSizeMedian = fin.DebtRadioInSizeMedian.Value;
                 }
+                //if charity dosen't have the financial data for current year (b yaer)
                 else
                 {
                     detailModel.Year = b;
@@ -521,6 +421,7 @@ namespace WikiCharity.Controllers
             return View(finalModelList);
         }
 
+        //return json data for line chart on detail page
         [HttpPost]
         public ActionResult GetChartData(string Id)
         {
@@ -534,6 +435,7 @@ namespace WikiCharity.Controllers
             LineModel line2014 = new LineModel();
             line2014.year = "2014";
             List<FinancialNew> flist = finList.Where(f => f.FYear == "2014").ToList();
+            //if this charity has 2014 financial data
             if (flist.Count != 0)
             {
                 line2014.NetSurplus = finList.Where(f => f.FYear == "2014").ToList()[0].NetSurplus.Value;
@@ -541,6 +443,7 @@ namespace WikiCharity.Controllers
             LineModel line2015 = new LineModel();
             line2015.year = "2015";
             flist = finList.Where(f => f.FYear == "2015").ToList();
+            //if this charity has 2015 financial data
             if (flist.Count != 0)
             {
                 line2015.NetSurplus = finList.Where(f => f.FYear == "2015").ToList()[0].NetSurplus.Value;
@@ -548,6 +451,7 @@ namespace WikiCharity.Controllers
             LineModel line2016 = new LineModel();
             line2016.year = "2016";
             flist = finList.Where(f => f.FYear == "2016").ToList();
+            //if this charity has 2016 financial data
             if (flist.Count != 0)
             {
                 line2016.NetSurplus = finList.Where(f => f.FYear == "2016").ToList()[0].NetSurplus.Value;
@@ -572,26 +476,28 @@ namespace WikiCharity.Controllers
             return Json(chartData, JsonRequestBehavior.AllowGet);
         }
 
+        //return json data for bar chart on detail page
         public ActionResult GetBarData(string Id)
         {
 
             int id = Convert.ToInt32(Id);
             List<BarModel> data = new List<BarModel>();
             Charity charity = db.Charities.Find(id);
-            //Here MyDatabaseEntities  is our dbContext
+            //Here MyDatabaseEntities is our dbContext
             var ABN = charity.ABN;
             List<FinancialNew> finList = db.FinancialNews.Where(i => i.ABN == ABN).ToList();
             BarModel bar2014 = new BarModel();
             bar2014.year = "2014";
             List<FinancialNew> flist = finList.Where(f => f.FYear == "2014").ToList();
+            //if this charity has 2014 financial data
             if (flist.Count != 0)
             {
                 bar2014.TotalGrossIncome = finList.Where(f => f.FYear == "2014").ToList()[0].TotalGrossIncome.Value;
                 bar2014.Expense = finList.Where(f => f.FYear == "2014").ToList()[0].Expense.Value;
             }
             BarModel bar2015 = new BarModel();
-            
-                bar2015.year = "2015";
+            bar2015.year = "2015";
+            //if this charity has 2015 financial data
             flist = finList.Where(f => f.FYear == "2015").ToList();
             if (flist.Count != 0)
             {
@@ -600,6 +506,7 @@ namespace WikiCharity.Controllers
             }
             BarModel bar2016 = new BarModel();
             bar2016.year = "2016";
+            //if this charity has 2016 financial data
             flist = finList.Where(f => f.FYear == "2016").ToList();
             if (flist.Count != 0)
             {
@@ -643,8 +550,10 @@ namespace WikiCharity.Controllers
         {
             if (ModelState.IsValid)
             {
+                //custom email body and message
                 var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
                 var message = new MailMessage();
+                //send to our team email
                 message.To.Add(new MailAddress("qinggari@gmail.com"));
                 
                 message.Subject = "Form from WikiCharity";
@@ -673,7 +582,7 @@ namespace WikiCharity.Controllers
             return View();
         }
 
-
+        //get all beneficiary names which will be used in the filter select list
         private IEnumerable<string> GetAllBenes()
         {
             List<string> list = new List<string>
@@ -695,6 +604,7 @@ namespace WikiCharity.Controllers
             return list;
         }
 
+        //get tax deductable filter select list
         private IEnumerable<string> GetAllDGRs()
         {
             return new List<string>
@@ -703,6 +613,7 @@ namespace WikiCharity.Controllers
             };
         }
 
+        //get state filter select list
         private IEnumerable<string> GetAllStates()
         {
             List<string> list = new List<string>
@@ -713,6 +624,7 @@ namespace WikiCharity.Controllers
             return list;
         }
 
+        //get charity size filter select list
         private IEnumerable<string> GetAllSizes()
         {
             return new List<string>
@@ -721,6 +633,7 @@ namespace WikiCharity.Controllers
             };
         }
 
+        //convert list of string to list of select list items
         private IEnumerable<SelectListItem> GetSelectListItems(IEnumerable<string> elements)
         {
             var selectList = new List<SelectListItem>();
@@ -735,398 +648,5 @@ namespace WikiCharity.Controllers
             return selectList;
         }
 
-        private List<Charity> GetAllCharity()
-        {
-            List<Charity> charities = new List<Charity>();
-            charities = db.Charities.ToList<Charity>();
-            return charities;
-        }
-
-       /* private List<FinancialCSV> GetAllFinancial()
-        {
-            List<FinancialCSV> charities = new List<FinancialCSV>();
-            string filePath = Server.MapPath("~/Uploads/FinancialData3.csv");
-            string csvData = System.IO.File.ReadAllText(filePath);
-            foreach (string row in csvData.Split('\n'))
-            {
-                if (!string.IsNullOrEmpty(row))
-                {
-                    FinancialCSV newCharity = new FinancialCSV();
-                    newCharity.ABN = row.Split(',')[0];
-                    newCharity.AccountInfo = row.Split(',')[1];
-                    newCharity.Donations = Convert.ToDouble(row.Split(',')[2]);
-                    newCharity.EmpExpense = Convert.ToDouble(row.Split(',')[3]);
-                    newCharity.ReportFrom = row.Split(',')[4];
-                    newCharity.ReportTo = row.Split(',')[5];
-                    newCharity.GoverGrant = Convert.ToDouble(row.Split(',')[6]);
-                    newCharity.GDInAus = Convert.ToDouble(row.Split(',')[7]);
-                    newCharity.GDOutAus = Convert.ToDouble(row.Split(',')[8]);
-                    newCharity.NetAssets = Convert.ToDouble(row.Split(',')[9]);
-                    newCharity.NetSurplus = Convert.ToDouble(row.Split(',')[10]);
-                    newCharity.TotalAssets = Convert.ToDouble(row.Split(',')[11]);
-                    newCharity.TotalCurrentAssets = Convert.ToDouble(row.Split(',')[12]);
-                    newCharity.TotalCurrentLia = Convert.ToDouble(row.Split(',')[13]);
-                    newCharity.Expense = Convert.ToDouble(row.Split(',')[14]);
-                    newCharity.TotalGrossIncome = Convert.ToDouble(row.Split(',')[15]);
-                    newCharity.TotalLia = Convert.ToDouble(row.Split(',')[16]);
-                    newCharity.TotalNotCurrentAssets = Convert.ToDouble(row.Split(',')[17]);
-                    newCharity.TotalNotCurrentLia = Convert.ToDouble(row.Split(',')[18]);
-                    newCharity.Year = row.Split(',')[19];
-                    newCharity.EmpExpensePersentage = Convert.ToDouble(row.Split(',')[20]);
-                    newCharity.OtherIncome = Convert.ToDouble(row.Split(',')[21]);
-                    newCharity.AllOtherExpense = Convert.ToDouble(row.Split(',')[22]);
-                    newCharity.DebtEquityRadio = Convert.ToDouble(row.Split(',')[23]);
-                    newCharity.SavingRadio = Convert.ToDouble(row.Split(',')[24]);
-                    newCharity.CurrentRadio = Convert.ToDouble(row.Split(',')[25]);
-                    newCharity.DebtRadio = Convert.ToDouble(row.Split(',')[26]);
-                    newCharity.EmpExpInSizeMedian = Convert.ToDouble(row.Split(',')[27]);
-                    newCharity.DebtEquityInSizeMedian = Convert.ToDouble(row.Split(',')[28]);
-                    newCharity.SavingRadioInSizeMedian = Convert.ToDouble(row.Split(',')[29]);
-                    newCharity.CurrentRadioInSizeMedian = Convert.ToDouble(row.Split(',')[30]);
-                    newCharity.DebtRadioInSizeMedian = Convert.ToDouble(row.Split(',')[31]);
-                    charities.Add(newCharity);
-                }
-            }
-            return charities;
-        }*/
-
-
-                    /*private List<CharityModel> GetAllCharity()
-                    {
-                        List<CharityModel> charities = new List<CharityModel>();
-                        string filePath = Server.MapPath("~/Uploads/newData1.csv");
-                        string filePath2 = Server.MapPath("~/Uploads/desData.csv");
-                        string csvData = System.IO.File.ReadAllText(filePath);
-                        string desData = System.IO.File.ReadAllText(filePath2);
-                        foreach (string row in csvData.Split('\n'))
-                        {
-                            if (!string.IsNullOrEmpty(row))
-                            {
-                                CharityModel newCharity = new CharityModel();
-                                newCharity.ABN = row.Split(',')[0];
-                                newCharity.CharityName = row.Split(',')[1];
-                                newCharity.OtherName = row.Split(',')[2];
-                                newCharity.AddressLine1 = row.Split(',')[3];
-                                newCharity.AddressLine2 = row.Split(',')[4];
-                                newCharity.TownCity = row.Split(',')[5];
-                                newCharity.State = row.Split(',')[6];
-                                newCharity.Postcode = row.Split(',')[7];
-                                newCharity.Size = row.Split(',')[8];
-                                if (row.Split(',')[9] == "Y")
-                                {
-                                    newCharity.BRC = true;
-                                }
-                                else
-                                {
-                                    newCharity.BRC = false;
-                                }
-                                if (row.Split(',')[10] == "Y")
-                                {
-                                    newCharity.ConductedActivity = true;
-                                }
-                                else
-                                {
-                                    newCharity.ConductedActivity = false;
-                                }
-                                newCharity.MainActivity = row.Split(',')[11];
-                                if (row.Split(',')[12] != "N")
-                                {
-                                    newCharity.activities.Add("Animal protection");
-                                }
-                                if (row.Split(',')[13] != "N")
-                                {
-                                    newCharity.activities.Add("Aged care activities");
-                                }
-                                if (row.Split(',')[14] != "N")
-                                {
-                                    newCharity.activities.Add("Civic and advocacy activities");
-                                }
-                                if (row.Split(',')[15] != "N")
-                                {
-                                    newCharity.activities.Add("Culture and arts");
-                                }
-                                if (row.Split(',')[16] != "N")
-                                {
-                                    newCharity.activities.Add("Economic social and community development");
-                                }
-                                if (row.Split(',')[17] != "N")
-                                {
-                                    newCharity.activities.Add("Emergency relief");
-                                }
-                                if (row.Split(',')[18] != "N")
-                                {
-                                    newCharity.activities.Add("Employment and training");
-                                }
-                                if (row.Split(',')[19] != "N")
-                                {
-                                    newCharity.activities.Add("Environmental activities");
-                                }
-                                if (row.Split(',')[20] != "N")
-                                {
-                                    newCharity.activities.Add("Grant-making activities");
-                                }
-                                if (row.Split(',')[21] != "N")
-                                {
-                                    newCharity.activities.Add("Higher education");
-                                }
-                                if (row.Split(',')[22] != "N")
-                                {
-                                    newCharity.activities.Add("Hospital services and rehabilitation activities");
-                                }
-                                if (row.Split(',')[23] != "N")
-                                {
-                                    newCharity.activities.Add("Housing activities");
-                                }
-                                if (row.Split(',')[24] != "N")
-                                {
-                                    newCharity.activities.Add("Income support and maintenance");
-                                }
-                                if (row.Split(',')[25] != "N")
-                                {
-                                    newCharity.activities.Add("International activities");
-                                }
-                                if (row.Split(',')[26] != "N")
-                                {
-                                    newCharity.activities.Add("Law and legal services");
-                                }
-                                if (row.Split(',')[27] != "N")
-                                {
-                                    newCharity.activities.Add("Mental health and crisis intervention");
-                                }
-                                if (row.Split(',')[28] != "N")
-                                {
-                                    newCharity.activities.Add("Primary and secondary education");
-                                }
-                                if (row.Split(',')[29] != "N")
-                                {
-                                    newCharity.activities.Add("Religious activities");
-                                }
-                                if (row.Split(',')[30] != "N")
-                                {
-                                    newCharity.activities.Add("Research");
-                                }
-                                if (row.Split(',')[31] != "N")
-                                {
-                                    newCharity.activities.Add("Social Services");
-                                }
-                                if (row.Split(',')[32] != "N")
-                                {
-                                    newCharity.activities.Add("Sports");
-                                }
-                                if (row.Split(',')[33] != "N")
-                                {
-                                    newCharity.activities.Add("Other education");
-                                }
-                                if (row.Split(',')[34] != "N")
-                                {
-                                    newCharity.activities.Add("Other health service delivery");
-                                }
-                                if (row.Split(',')[35] != "N")
-                                {
-                                    newCharity.activities.Add("Other recreation and social club activity");
-                                }
-                                if (row.Split(',')[36] != "N")
-                                {
-                                    newCharity.activities.Add("Other philanthropic intermediaries and voluntarism promotion");
-                                }
-                                if (row.Split(',')[37] != "N")
-                                {
-                                    newCharity.activities.Add("Other activity");
-                                }
-                                if (row.Split(',')[38] != "N")
-                                {
-                                    newCharity.operateStates.Add("ACT");
-                                }
-                                if (row.Split(',')[39] != "N")
-                                {
-                                    newCharity.operateStates.Add("NSW");
-                                }
-                                if (row.Split(',')[40] != "N")
-                                {
-                                    newCharity.operateStates.Add("NT");
-                                }
-                                if (row.Split(',')[41] != "N")
-                                {
-                                    newCharity.operateStates.Add("QLD");
-                                }
-                                if (row.Split(',')[42] != "N")
-                                {
-                                    newCharity.operateStates.Add("SA");
-                                }
-                                if (row.Split(',')[43] != "N")
-                                {
-                                    newCharity.operateStates.Add("TAS");
-                                }
-                                if (row.Split(',')[44] != "N")
-                                {
-                                    newCharity.operateStates.Add("VIC");
-                                }
-                                if (row.Split(',')[45] != "N")
-                                {
-                                    newCharity.operateStates.Add("WA");
-                                }
-                                if (row.Split(',')[46] != "N")
-                                {
-                                    newCharity.operateStates.Add("Overseas");
-                                }
-                                if (row.Split(',')[47] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("General community in Australia");
-                                }
-                                if (row.Split(',')[48] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Females");
-                                }
-                                if (row.Split(',')[49] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Males");
-                                }
-                                if (row.Split(',')[50] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Early childhood – under 6");
-                                }
-                                if (row.Split(',')[51] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Children – 6 to under 15");
-                                }
-                                if (row.Split(',')[52] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Youth – 15 to under 25");
-                                }
-                                if (row.Split(',')[53] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Adults -25 to under 65");
-                                }
-                                if (row.Split(',')[54] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Adults – 65 and over");
-                                }
-                                if (row.Split(',')[55] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Aboriginal and Torres Strait Islander people (ATSI)");
-                                }
-                                if (row.Split(',')[56] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Gay, lesbian, bisexual, transgender or intersex persons (GLBTI)");
-                                }
-                                if (row.Split(',')[57] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Migrants, refugees or asylum seekers");
-                                }
-                                if (row.Split(',')[58] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Other charities");
-                                }
-                                if (row.Split(',')[59] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Other beneficiaries not listed");
-                                }
-                                if (row.Split(',')[60] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Overseas communities or charities");
-                                }
-                                if (row.Split(',')[61] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("People in rural/regional/remote communities");
-                                }
-                                if (row.Split(',')[62] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Families");
-                                }
-                                if (row.Split(',')[63] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Financially disadvantaged people");
-                                }
-                                if (row.Split(',')[64] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("People at risk of homelessness");
-                                }
-                                if (row.Split(',')[65] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("People with chronic or terminal illness");
-                                }
-                                if (row.Split(',')[66] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("People with disabilities");
-                                }
-                                if (row.Split(',')[67] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Pre or Post Release Offenders and Families");
-                                }
-                                if (row.Split(',')[68] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Unemployed persons");
-                                }
-                                if (row.Split(',')[69] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Veterans or their families");
-                                }
-                                if (row.Split(',')[70] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Victims of crime");
-                                }
-                                if (row.Split(',')[71] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Victims of disasters");
-                                }
-                                if (row.Split(',')[72] != "N")
-                                {
-                                    newCharity.beneficiaries.Add("Culturally and Linguistically Diverse");
-                                }
-                                if (!row.Split(',')[73].Contains("NA"))
-                                {
-                                    newCharity.StaffFull = Int32.Parse(row.Split(',')[73]);
-                                }
-                                else
-                                {
-                                    newCharity.StaffFull = 0;
-                                }
-                                if (!row.Split(',')[74].Contains("NA"))
-                                {
-                                    newCharity.StaffPart = Int32.Parse(row.Split(',')[74]);
-                                }
-                                else
-                                {
-                                    newCharity.StaffPart = 0;
-                                }
-                                if (!row.Split(',')[75].Contains("NA"))
-                                {
-                                    newCharity.StaffCasual = Int32.Parse(row.Split(',')[75]);
-                                }
-                                else
-                                {
-                                    newCharity.StaffCasual = 0;
-                                }
-                                if (!row.Split(',')[76].Contains("NA"))
-                                {
-                                    newCharity.StaffVolun = Int32.Parse(row.Split(',')[76]);
-                                }
-                                else
-                                {
-                                    newCharity.StaffVolun = 0;
-                                }
-                                if (!row.Split(',')[77].Contains("NA"))
-                                {
-
-                                    newCharity.DGR = true;
-
-
-                                }
-                                newCharity.Website = row.Split(',')[78];
-                                charities.Add(newCharity);
-                            }
-                        }
-                        int a = 0;
-                        foreach (string row in desData.Split('\n'))
-                        {
-                            charities[a].description = row;
-                            a++;
-                        }
-                            return charities;
-                    }*/
-
-
-
-
-                }
+    }
 }
