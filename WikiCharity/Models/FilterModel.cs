@@ -21,7 +21,10 @@ namespace WikiCharity.Models
         public string countNum { get; set; }
 
         public List<string> beneString { get; set; }
-        public MultiSelectList selectedBenes { get; set; }
+        //public MultiSelectList selectedBenes { get; set; }
+        public List<string> stateString { get; set; }
+        public List<string> sizeString { get; set; }
+        //public MultiSelectList selectedBenes { get; set; }
 
     }
 }

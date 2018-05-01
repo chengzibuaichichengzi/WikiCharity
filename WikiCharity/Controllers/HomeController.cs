@@ -19,12 +19,12 @@ namespace WikiCharity.Controllers
     public class HomeController : Controller
     {
         //Server side DB
-        private static DetailEntities db = new DetailEntities();
-        private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        //private static DetailEntities db = new DetailEntities();
+        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
         //Local DB
-        //private static LocalDetailCharityDBEntities db = new LocalDetailCharityDBEntities();
-        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        private static LocalDetailCharityDBEntities db = new LocalDetailCharityDBEntities();
+        private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
 
         
@@ -44,12 +44,16 @@ namespace WikiCharity.Controllers
             model.states = GetSelectListItems(states);
             //multiple selection list
             MultiSelectList beneList = new MultiSelectList(model.beneficials, "Value", "Text");
+            MultiSelectList stateList = new MultiSelectList(model.states, "Value", "Text");
+            MultiSelectList sizeList = new MultiSelectList(model.sizes, "Value", "Text");
             //stote in Viewbag
             ViewBag.multiSelectBenes = beneList;
-            model.selectedBenes = beneList;
+            ViewBag.multiSelectStates = stateList;
+            ViewBag.multiSelectSizes = sizeList;
+            //model.selectedBenes = beneList;
             //allCharities = db.Charities.ToList<Charity>();
 
-           
+
             return View(model);
         }
 
@@ -80,10 +84,10 @@ namespace WikiCharity.Controllers
         {
             //get inout model through session
             var model = Session["FilterModel"] as FilterModel;
-            if (model.state != null)
+            if (model.stateString != null)
             {
                 //store state in view bag
-                ViewBag.State = model.state;
+                ViewBag.State = string.Join(", ", model.stateString.ToArray());
             }
             else
             {
@@ -109,9 +113,9 @@ namespace WikiCharity.Controllers
                 ViewBag.Tax = "Any Tax";
             }
 
-            if (model.size != null)
+            if (model.sizeString != null)
             {
-                ViewBag.Size = model.size;
+                ViewBag.Size = string.Join(", ", model.sizeString.ToArray());
             }
             else
             {
@@ -142,15 +146,18 @@ namespace WikiCharity.Controllers
 
             //create a new list to store multi selected result from beneficiaries
             List<Charity> beneResult = new List<Charity>();
+            List<Charity> stateResult = new List<Charity>();
+            List<Charity> sizeResult = new List<Charity>();
             //create a new list to store selected benes
-            List<string> names = model.beneString;
+            List<string> benes = model.beneString;
+            List<string> states = model.stateString;
+            List<string> sizes = model.sizeString;
 
-            if (names != null)
+            if (benes != null)
             {
                 //do a search for each selected beneficiary
-                foreach (var i in names)
+                foreach (var i in benes)
                 {
-                    
                     List<Charity> tempResult = new List<Charity>();
                     tempResult = finalResult.Where(x => x.Beneficiaries.Contains(i)).ToList<Charity>();
                     //add every result to a final list
@@ -159,9 +166,17 @@ namespace WikiCharity.Controllers
                 finalResult = beneResult;
             }
             //do size filtering
-            if (!string.IsNullOrEmpty(model.size))
+            if (sizes != null)
             {
-                finalResult = finalResult.Where(x => x.Size.Contains(model.size)).ToList<Charity>();
+                //finalResult = finalResult.Where(x => x.Size.Contains(model.size)).ToList<Charity>();
+                foreach (var i in sizes)
+                {
+                    List<Charity> tempResult = new List<Charity>();
+                    tempResult = finalResult.Where(x => x.Size.Contains(i)).ToList<Charity>();
+                    //add every result to a final list
+                    sizeResult.AddRange(tempResult);
+                }
+                finalResult = sizeResult;
             }
             //do tax filtering
             if (!string.IsNullOrEmpty(model.isDGR))
@@ -176,9 +191,17 @@ namespace WikiCharity.Controllers
                 }
             }
             //do state filtering
-            if (!string.IsNullOrEmpty(model.state))
+            if (states != null)
             {
-                finalResult = finalResult.Where(x => x.State.Contains(model.state)).ToList<Charity>();
+                //finalResult = finalResult.Where(x => x.State.Contains(model.state)).ToList<Charity>();
+                foreach (var i in states)
+                {
+                    List<Charity> tempResult = new List<Charity>();
+                    tempResult = finalResult.Where(x => x.State.Contains(i)).ToList<Charity>();
+                    //add every result to a final list
+                    stateResult.AddRange(tempResult);
+                }
+                finalResult = stateResult;
             }
             ViewBag.Count = finalResult.Count();
             //do name searching
@@ -243,16 +266,22 @@ namespace WikiCharity.Controllers
             model.name = name;
             List<Charity> finalResult = new List<Charity>();
             List<Charity> beneResult = new List<Charity>();
+            List<Charity> sizeResult = new List<Charity>();
+            List<Charity> stateResult = new List<Charity>();
             //a list to store selected beneficiaries
-            List<string> names = model.beneficial.Split(',').ToList();
+            List<string> benes = model.beneficial.Split(',').ToList();
+            List<string> states = model.state.Split(',').ToList();
+            List<string> sizes = model.size.Split(',').ToList();
             //remove the last white space
-            names.RemoveAt(names.Count - 1);
+            benes.RemoveAt(benes.Count - 1);
+            states.RemoveAt(states.Count - 1);
+            sizes.RemoveAt(sizes.Count - 1);
             //in the first, finalresult is all charities
             finalResult = allCharities;
             if (!string.IsNullOrEmpty(model.beneficial))
             {
                 //for every selected beneficiary, get a search result, and them combine them
-                foreach (var i in names)
+                foreach (var i in benes)
                 {
                     List<Charity> tempResult = new List<Charity>();
                     tempResult = finalResult.Where(x => x.Beneficiaries.Contains(i)).ToList<Charity>();
@@ -263,8 +292,16 @@ namespace WikiCharity.Controllers
             //do size filtering
             if (!string.IsNullOrEmpty(model.size))
             {
-                finalResult = finalResult.Where(x => x.Size.Contains(model.size)).ToList<Charity>();
+                
+                foreach (var i in sizes)
+                {
+                    List<Charity> tempResult = new List<Charity>();
+                    tempResult = finalResult.Where(x => x.Size.Contains(i)).ToList<Charity>();
+                    sizeResult.AddRange(tempResult);
+                }
+                finalResult = sizeResult;
             }
+            
             //do tax filtering
             if (!string.IsNullOrEmpty(model.isDGR) )
             {
@@ -277,10 +314,18 @@ namespace WikiCharity.Controllers
                     finalResult = finalResult.Where(x => x.Tax == false).ToList<Charity>();
                 }
             }
+
             //do state filtering
             if (!string.IsNullOrEmpty(model.state))
             {
-                finalResult = finalResult.Where(x => x.State.Contains(model.state)).ToList<Charity>();
+               
+                foreach (var i in states)
+                {
+                    List<Charity> tempResult = new List<Charity>();
+                    tempResult = finalResult.Where(x => x.State.Contains(i)).ToList<Charity>();
+                    stateResult.AddRange(tempResult);
+                }
+                finalResult = stateResult;
             }
             //do name filtering
             if (!string.IsNullOrEmpty(model.name))

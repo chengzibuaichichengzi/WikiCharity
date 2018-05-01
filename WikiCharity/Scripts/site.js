@@ -1,24 +1,53 @@
 ﻿$(document).ready(function () {
-
-    $(".chosen-select-multiple").chosen({
+    //.chosen-select-multiple
+    $("#size").chosen({
         width: "100%",
-        max_selected_options: 5
+        //max_selected_options: 3,
+        placeholder_text_multiple: "Any Charity Size"
+    });
+
+    $("#state").chosen({
+        width: "100%",
+        max_selected_options: 3,
+        placeholder_text_multiple: "Any State"
+    });
+
+    $("#bene").chosen({
+        width: "100%",
+        max_selected_options: 5,
+        placeholder_text_multiple: "Any Beneficiary"
     });
 
     var textInput = document.getElementById('name');
     var timeout = null;
     textInput.onkeyup = function (e) {
         clearTimeout(timeout);
-        var state1 = $('#state').val();
+        //var state1 = $('#state').val();
         //var bene1 = $("#bene").val();
-        var size1 = $("#size").val();
+        //var size1 = $("#size").val();
         var tax1 = $("#tax").val();
         var beneAll = document.getElementById("bene");
+        var sizeAll = document.getElementById("size");
+        var stateAll = document.getElementById("state");
         var bene1 = "";
         var len = beneAll.options.length;
         for (var i = 0; i < len; i++) {
             if (beneAll.options[i].selected) {
                 bene1 = bene1 + beneAll.options[i].text + ",";
+            }
+        }
+        var size1 = "";
+        var len = sizeAll.options.length;
+        for (var i = 0; i < len; i++) {
+            if (sizeAll.options[i].selected) {
+                size1 = size1 + sizeAll.options[i].text + ",";
+            }
+        }
+        var state1 = "";
+        var len = stateAll.options.length;
+        for (var i = 0; i < len; i++) {
+            if (stateAll.options[i].selected) {
+                state1 = state1 + stateAll.options[i].text + ",";
             }
         }
 
@@ -62,16 +91,32 @@
     };
 
     $('.select-state, .select-bene, .select-size, .select-tax').change(function () {
-        var state1 = $('#state').val();
+        //var state1 = $('#state').val();
         //var bene1 = $("#bene").val();
-        var size1 = $("#size").val();
+        //var size1 = $("#size").val();
         var tax1 = $("#tax").val();
         var beneAll = document.getElementById("bene");
+        var sizeAll = document.getElementById("size");
+        var stateAll = document.getElementById("state");
         var bene1 = "";
-        var len = beneAll.options.length;
-        for (var i = 0; i < len; i++) {
+        var benelen = beneAll.options.length;
+        for (var i = 0; i < benelen; i++) {
             if (beneAll.options[i].selected) {
                 bene1 = bene1 + beneAll.options[i].text + ",";
+            }
+        }
+        var size1 = "";
+        var sizelen = sizeAll.options.length;
+        for (var i = 0; i < sizelen; i++) {
+            if (sizeAll.options[i].selected) {
+                size1 = size1 + sizeAll.options[i].text + ",";
+            }
+        }
+        var state1 = "";
+        var statelen = stateAll.options.length;
+        for (var i = 0; i < statelen; i++) {
+            if (stateAll.options[i].selected) {
+                state1 = state1 + stateAll.options[i].text + ",";
             }
         }
         var data = JSON.stringify({

@@ -237,37 +237,7 @@
     <Compile Include="Models\Charity.cs">
       <DependentUpon>LocalDetailModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Charity1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Charity1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Charity1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Charity1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Charity1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Charity1.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\CharityModel.cs" />
-    <Compile Include="Models\CharityResult.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CharityResult.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CharityResult.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CharityResult.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CharityResult.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CharityResult.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\CharitySearchModel.cs" />
     <Compile Include="Models\DetailModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -683,26 +653,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Charity1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Charity1.edmx</DependentUpon>
-      <LastGenOutput>Charity1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Charity1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Charity1.edmx</DependentUpon>
-      <LastGenOutput>Charity1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\CharityResult.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CharityResult.edmx</DependentUpon>
-      <LastGenOutput>CharityResult.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\CharityResult.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CharityResult.edmx</DependentUpon>
-      <LastGenOutput>CharityResult.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\DetailModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DetailModel.edmx</DependentUpon>
@@ -944,20 +894,6 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <EntityDeploy Include="Models\CharityResult.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CharityResult.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\CharityResult.edmx.diagram">
-      <DependentUpon>CharityResult.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\Charity1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Charity1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Charity1.edmx.diagram">
-      <DependentUpon>Charity1.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-chosen.scss" />
     <Content Include="Content\bootstrap-chosen.less" />
     <EntityDeploy Include="Models\DetailModel.edmx">
