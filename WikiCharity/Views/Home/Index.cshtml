@@ -83,7 +83,7 @@
                 <div class="select-state">
                     <!--<label style="color:cornflowerblue;font-size:18px;text-align:left;position:inherit;">State</label>-->
                     State:
-                    @Html.ListBoxFor(m => m.stateString, ViewBag.multiSelectStates as MultiSelectList, new { @class = "chosen-select-multiple", @id = "state" })
+                    @Html.DropDownListFor(m => m.state, Model.states, "All States", new { @class = "form-control", @id = "state" })
                 </div>
 
 

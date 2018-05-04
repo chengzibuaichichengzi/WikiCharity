@@ -6,11 +6,7 @@
         placeholder_text_multiple: "Any Charity Size"
     });
 
-    $("#state").chosen({
-        width: "100%",
-        max_selected_options: 3,
-        placeholder_text_multiple: "Any State"
-    });
+    
 
     $("#bene").chosen({
         width: "100%",
@@ -28,13 +24,13 @@
     var timeout = null;
     textInput.onkeyup = function (e) {
         clearTimeout(timeout);
-        //var state1 = $('#state').val();
+        var state1 = $('#state').val();
         //var bene1 = $("#bene").val();
         //var size1 = $("#size").val();
         var tax1 = $("#tax").val();
         var beneAll = document.getElementById("bene");
         var sizeAll = document.getElementById("size");
-        var stateAll = document.getElementById("state");
+        //var stateAll = document.getElementById("state");
         var actiAll = document.getElementById("acti");
         var acti1 = "";
         var len = actiAll.options.length;
@@ -57,13 +53,7 @@
                 size1 = size1 + sizeAll.options[i].text + ",";
             }
         }
-        var state1 = "";
-        var len = stateAll.options.length;
-        for (var i = 0; i < len; i++) {
-            if (stateAll.options[i].selected) {
-                state1 = state1 + stateAll.options[i].text + ",";
-            }
-        }
+        
 
         
         timeout = setTimeout(function () {
@@ -106,13 +96,13 @@
     };
 
     $('.select-state, .select-bene, .select-size, .select-tax').change(function () {
-        //var state1 = $('#state').val();
+        var state1 = $('#state').val();
         //var bene1 = $("#bene").val();
         //var size1 = $("#size").val();
         var tax1 = $("#tax").val();
         var beneAll = document.getElementById("bene");
         var sizeAll = document.getElementById("size");
-        var stateAll = document.getElementById("state");
+        //var stateAll = document.getElementById("state");
         var actiAll = document.getElementById("acti");
         var acti1 = "";
         var actiLen = actiAll.options.length;
@@ -135,13 +125,7 @@
                 size1 = size1 + sizeAll.options[i].text + ",";
             }
         }
-        var state1 = "";
-        var statelen = stateAll.options.length;
-        for (var i = 0; i < statelen; i++) {
-            if (stateAll.options[i].selected) {
-                state1 = state1 + stateAll.options[i].text + ",";
-            }
-        }
+        
         var data = JSON.stringify({
             'state': state1,
             'bene': bene1,
