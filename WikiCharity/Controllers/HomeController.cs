@@ -36,24 +36,25 @@ namespace WikiCharity.Controllers
             var DGRs = GetAllDGRs();
             var sizes = GetAllSizes();
             var states = GetAllStates();
+            var actis = GetAllActis();
             //create a filter model to store all select lists
             var model = new FilterModel();
             model.beneficials = GetSelectListItems(benes);
             model.isDGRs = GetSelectListItems(DGRs);
             model.sizes = GetSelectListItems(sizes);
             model.states = GetSelectListItems(states);
+            model.actis = GetSelectListItems(actis);
             //multiple selection list
             MultiSelectList beneList = new MultiSelectList(model.beneficials, "Value", "Text");
             MultiSelectList stateList = new MultiSelectList(model.states, "Value", "Text");
             MultiSelectList sizeList = new MultiSelectList(model.sizes, "Value", "Text");
+            MultiSelectList actiList = new MultiSelectList(model.actis, "Value", "Text");
             //stote in Viewbag
             ViewBag.multiSelectBenes = beneList;
             ViewBag.multiSelectStates = stateList;
             ViewBag.multiSelectSizes = sizeList;
-            //model.selectedBenes = beneList;
-            //allCharities = db.Charities.ToList<Charity>();
-
-
+            ViewBag.multiSelectActis = actiList;
+            
             return View(model);
         }
 
@@ -66,12 +67,13 @@ namespace WikiCharity.Controllers
             var sizes = GetAllSizes();
             var DGRs = GetAllDGRs();
             var states = GetAllStates();
+            var actis = GetAllActis();
             //use custom method GetSelectListItem to pass a list and then get select list items
             model.beneficials = GetSelectListItems(benes);
             model.sizes = GetSelectListItems(sizes);
             model.isDGRs = GetSelectListItems(DGRs);
             model.states = GetSelectListItems(states);
-
+            model.actis = GetSelectListItems(actis);
             //store the filter model in the session
             Session["FilterModel"] = model;
 
@@ -84,54 +86,77 @@ namespace WikiCharity.Controllers
         {
             //get inout model through session
             var model = Session["FilterModel"] as FilterModel;
-            if (model.stateString != null)
+            List<Charity> finalResult = new List<Charity>();
+            if (model != null)
             {
-                //store state in view bag
-                ViewBag.State = string.Join(", ", model.stateString.ToArray());
-            }
-            else
-            {
-                ViewBag.State = "All States";
-            }
-            
-            if (model.beneString != null)
-            {
-                //convert list of beneficiaries to a list and store it in Viewbag
-                ViewBag.Bene = string.Join(", ", model.beneString.ToArray());
-            }
-            else
-            {
-                ViewBag.Bene = "All Beneficiaries";
-            }
-            
-            if (model.isDGR != null)
-            {
-                ViewBag.Tax = model.isDGR;
-            }
-            else
-            {
-                ViewBag.Tax = "Any Tax";
-            }
+                if (model.stateString != null)
+                {
+                    //store state in view bag
+                    ViewBag.State = string.Join(", ", model.stateString.ToArray());
+                }
+                else
+                {
+                    ViewBag.State = "All States";
+                }
+                if (model.actiString != null)
+                {
+                    //store main activities in view bag
+                    ViewBag.Acti = string.Join(", ", model.actiString.ToArray());
+                }
+                else
+                {
+                    ViewBag.State = "All Activities";
+                }
+                if (model.beneString != null)
+                {
+                    //convert list of beneficiaries to a list and store it in Viewbag
+                    ViewBag.Bene = string.Join(", ", model.beneString.ToArray());
+                }
+                else
+                {
+                    ViewBag.Bene = "All Beneficiaries";
+                }
 
-            if (model.sizeString != null)
-            {
-                ViewBag.Size = string.Join(", ", model.sizeString.ToArray());
+                if (model.isDGR != null)
+                {
+                    ViewBag.Tax = model.isDGR;
+                }
+                else
+                {
+                    ViewBag.Tax = "Any Tax";
+                }
+
+                if (model.sizeString != null)
+                {
+                    ViewBag.Size = string.Join(", ", model.sizeString.ToArray());
+                }
+                else
+                {
+                    ViewBag.Size = "Any Size";
+                }
+                if (model.name != null)
+                {
+                    ViewBag.Name = model.name;
+                }
+                else
+                {
+                    ViewBag.Name = "Any Charity Name";
+                }
+
+                //search for final result based on filter and name
+                finalResult = getFinalList();
             }
             else
             {
+                finalResult = allCharities;
+                ViewBag.State = "All States";
+                ViewBag.State = "All Activities";
+                ViewBag.Bene = "All Beneficiaries";
+                ViewBag.Tax = "Any Tax";
                 ViewBag.Size = "Any Size";
-            }
-            if (model.name != null)
-            {
-                ViewBag.Name = model.name;
-            }
-            else
-            {
                 ViewBag.Name = "Any Charity Name";
             }
-            List<Charity> finalResult = new List<Charity>();
-            //search for final result based on filter and name
-            finalResult = getFinalList();
+
             return View(finalResult);
         }
 
@@ -148,10 +173,25 @@ namespace WikiCharity.Controllers
             List<Charity> beneResult = new List<Charity>();
             List<Charity> stateResult = new List<Charity>();
             List<Charity> sizeResult = new List<Charity>();
+            List<Charity> actiResult = new List<Charity>();
             //create a new list to store selected benes
             List<string> benes = model.beneString;
             List<string> states = model.stateString;
             List<string> sizes = model.sizeString;
+            List<string> actis = model.actiString;
+
+            if (actis != null)
+            {
+                //do a search for each selected beneficiary
+                foreach (var i in actis)
+                {
+                    List<Charity> tempResult = new List<Charity>();
+                    tempResult = finalResult.Where(x => x.MainActivity.Contains(i)).ToList<Charity>();
+                    //add every result to a final list
+                    actiResult.AddRange(tempResult);
+                }
+                finalResult = actiResult;
+            }
 
             if (benes != null)
             {
@@ -219,9 +259,15 @@ namespace WikiCharity.Controllers
             var model = Session["FilterModel"] as FilterModel;
             //TODO:Check why some rows get twice in datatable(eg. Wami Kata Old)
             List<Charity> finalResult = new List<Charity>();
-            //get search result for datatable
-            finalResult = getFinalList();
-            
+            if (model != null)
+            {
+                //get search result for datatable
+                finalResult = getFinalList();
+            }
+            else
+            {
+                finalResult = allCharities;
+            }
 
             //server side parameters
             int start = Convert.ToInt32(Request["start"]);
@@ -238,7 +284,8 @@ namespace WikiCharity.Controllers
                 finalResult = finalResult.Where(x => x.Name.ToLower().Contains(searchValue.ToLower()) ||
                 x.Beneficiaries.ToLower().Contains(searchValue.ToLower()) ||
                 x.Size.ToLower().Contains(searchValue.ToLower()) ||
-                x.State.ToLower().Contains(searchValue.ToLower())).ToList<Charity>();
+                x.State.ToLower().Contains(searchValue.ToLower()) ||
+                x.MainActivity.ToLower().Contains(searchValue.ToLower())).ToList<Charity>();
             }
             int totalRowsAfter = finalResult.Count;
 
@@ -256,7 +303,7 @@ namespace WikiCharity.Controllers
         //return the count of searching result based on current filtering
         //the button on home page will be changed by this number
         [HttpPost]
-        public ActionResult CountResult(string state, string bene, string size, string tax, string name)
+        public ActionResult CountResult(string state, string bene, string size, string tax, string name, string acti)
         {
             var model = new FilterModel();
             model.state = state;
@@ -264,20 +311,35 @@ namespace WikiCharity.Controllers
             model.size = size;
             model.isDGR = tax;
             model.name = name;
+            model.acti = acti;
             List<Charity> finalResult = new List<Charity>();
             List<Charity> beneResult = new List<Charity>();
             List<Charity> sizeResult = new List<Charity>();
             List<Charity> stateResult = new List<Charity>();
+            List<Charity> actiResult = new List<Charity>();
             //a list to store selected beneficiaries
             List<string> benes = model.beneficial.Split(',').ToList();
             List<string> states = model.state.Split(',').ToList();
             List<string> sizes = model.size.Split(',').ToList();
+            List<string> actis = model.acti.Split(',').ToList();
             //remove the last white space
             benes.RemoveAt(benes.Count - 1);
             states.RemoveAt(states.Count - 1);
             sizes.RemoveAt(sizes.Count - 1);
+            actis.RemoveAt(actis.Count - 1);
             //in the first, finalresult is all charities
             finalResult = allCharities;
+            if (!string.IsNullOrEmpty(model.acti))
+            {
+                //for every selected beneficiary, get a search result, and them combine them
+                foreach (var i in actis)
+                {
+                    List<Charity> tempResult = new List<Charity>();
+                    tempResult = finalResult.Where(x => x.MainActivity.Contains(i)).ToList<Charity>();
+                    actiResult.AddRange(tempResult);
+                }
+                finalResult = actiResult;
+            }
             if (!string.IsNullOrEmpty(model.beneficial))
             {
                 //for every selected beneficiary, get a search result, and them combine them
@@ -369,6 +431,7 @@ namespace WikiCharity.Controllers
             }
             var ABN = charity.ABN;
             ViewBag.Message = "Your application description page.";
+            ViewBag.PartDes = charity.Description.Substring(0, Math.Min(charity.Description.Length, 130)) + "...";
             //search charities in the financial table through ABN, cause may have 3 rows for each charity 
             List<FinancialNew> finList = db.FinancialNews.Where(i => i.ABN == ABN).ToList();
 
@@ -626,6 +689,22 @@ namespace WikiCharity.Controllers
 
             return View();
         }
+
+        private IEnumerable<string> GetAllActis()
+        {
+            List<string> list = new List<string>
+            {
+                "Aged Care Activities", "Animal Protection", "Civic and advocacy activities", "Culture and arts", "Economic/ social and community development",
+                "Emergency Relief", "Employment and training", "Environmental activities", "Grant-making activities", "Higher education", "Hospital services and rehabilitation activities",
+                "Housing activities", "Income support and maintenance", "International activities", "Law and legal services", "Mental health and crisis intervention",
+                "Other Education", "Other health service delivery", "Other recreation and social club activity", "Other Philanthropic", "Others", "Primary and secondary education",
+                "Religious activities", "Research", "Social services", "Sports",
+            };
+            list.Sort();
+            return list;
+
+        }
+        
 
         //get all beneficiary names which will be used in the filter select list
         private IEnumerable<string> GetAllBenes()

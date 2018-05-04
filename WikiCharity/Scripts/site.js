@@ -18,6 +18,12 @@
         placeholder_text_multiple: "Any Beneficiary"
     });
 
+    $("#acti").chosen({
+        width: "100%",
+        max_selected_options: 5,
+        placeholder_text_multiple: "Any Activity"
+    });
+
     var textInput = document.getElementById('name');
     var timeout = null;
     textInput.onkeyup = function (e) {
@@ -29,6 +35,14 @@
         var beneAll = document.getElementById("bene");
         var sizeAll = document.getElementById("size");
         var stateAll = document.getElementById("state");
+        var actiAll = document.getElementById("acti");
+        var acti1 = "";
+        var len = actiAll.options.length;
+        for (var i = 0; i < len; i++) {
+            if (actiAll.options[i].selected) {
+                acti1 = acti1 + actiAll.options[i].text + ",";
+            }
+        }
         var bene1 = "";
         var len = beneAll.options.length;
         for (var i = 0; i < len; i++) {
@@ -58,7 +72,8 @@
                 'bene': bene1,
                 'size': size1,
                 'tax': tax1,
-                'name': textInput.value
+                'name': textInput.value,
+                'acti': acti1
             });
 
             $.ajax({
@@ -98,6 +113,14 @@
         var beneAll = document.getElementById("bene");
         var sizeAll = document.getElementById("size");
         var stateAll = document.getElementById("state");
+        var actiAll = document.getElementById("acti");
+        var acti1 = "";
+        var actiLen = actiAll.options.length;
+        for (var i = 0; i < actiLen; i++) {
+            if (actiAll.options[i].selected) {
+                acti1 = acti1 + actiAll.options[i].text + ",";
+            }
+        }
         var bene1 = "";
         var benelen = beneAll.options.length;
         for (var i = 0; i < benelen; i++) {
@@ -124,7 +147,8 @@
             'bene': bene1,
             'size': size1,
             'tax': tax1,
-            'name': ""
+            'name': "",
+            'acti': acti1
         });
         
         $.ajax({

@@ -7,11 +7,14 @@
         },
         "columns": [
             
-            {"data": "Name", "name": "Name"},
+            { "data": "Name", "name": "Name" },
+            { "data": "MainActivity", "name": "MainActivity" },
+            { "data": "ConductedActivity", "name": "ConductedActivity" },
+            { "data": "Beneficiaries", "name": "Beneficiaries" },
             {
                 //only show fisrt 300 chars in the datatable row of description
                 "data": "Description", "name": "Description", "render": function (data, type, row) {
-                    return type == 'display' && data.length > 300 ?
+                    return type == 'display' && data.length > 100 ?
                     data.substr(0, 300) + '......' :
                         data;
                 }
@@ -30,7 +33,5 @@
             "processing": "Loading data.........Please wait"
         }
     });
-    
-    
     
 });

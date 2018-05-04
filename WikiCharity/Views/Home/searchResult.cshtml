@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WikiCharity.Models.Charity>
+﻿
 @{
     ViewBag.Title = "FilterResult";
     Layout = null;
@@ -71,51 +71,17 @@
             <h1 class="text-center">Charity Search Results</h1>
             <p class="lead text-center">Helping you find charities that meet your criteria</p>
         </div>
-        <div class="container no-shadow">
-            <h1 class="text-center">Frequently asked questions</h1>
-            <p class="lead text-center">Probably you'll find your answer here. Contact us if you don't find what you're looking for.</p>
-        </div>
     </header>
     <!-- END Page header -->
     <!-- Result Table-->
     <main>
 
+        <input id="btnSearch" type="button" value="search" />
+        <span id="totalRecords"></span>
+        <div id="result"></div>
+        <div id="paging"></div>
 
-
-        @if (Model.Count() != 0)
-            {
-        <!-- Filter Table-->
-            <div class="container">
-                <h4>You selected:</h4>
-                <h6><b>State:</b> @ViewBag.State,   <b>Size:</b> @ViewBag.Size,   <b>Tax Deductible Status:</b>@ViewBag.Tax, <b>Name: </b>@ViewBag.Name</h6>
-                <h6><b>Beneficiaries: </b>@ViewBag.Bene</h6>
-
-
-                <table id="example" class="display responsive" style="width:100%;">
-                    <thead>
-                        <tr>
-                            <th>Charity Name</th>
-                            <th>Main Activity</th>
-                            <th>Conducted Activity</th>
-                            <th>Beneficiaries</th>
-                            <th>Description</th>
-                            <th>Details</th>
-                        </tr>
-                    </thead>
-                </table>
-
-            </div>
-        }
-
-        else
-        {
-            <div class="container">
-                <h4>You selected:</h4>
-                <h6><b>State:</b> @ViewBag.State,   <b>Size:</b> @ViewBag.Size,   <b>Tax Deductible Status:</b>@ViewBag.Tax, <b>Name: </b>@ViewBag.Name</h6>
-                <h6><b>Beneficiaries: </b>@ViewBag.Bene</h6>
-                <h3 style="text-align:center;">Sorry, no result. You can try other filters.</h3>
-            </div>
-        }
+       
     </main>
 
     <!-- END Filter Table-->
@@ -153,9 +119,9 @@
     <!-- END Back to top button -->
     <!-- Scripts -->
     <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
-    <script src="~/Scripts/DataTables/dataTables.responsive.min.js"></script>
-    <script src="~/Scripts/cusTable.js"></script>
+    
+
+    <script src="~/Scripts/newSearchResult.js"></script>
 
 
     <script src="~/assets/js/thejobs.js"></script>

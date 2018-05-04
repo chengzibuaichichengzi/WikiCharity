@@ -86,6 +86,8 @@
                     @Html.ListBoxFor(m => m.stateString, ViewBag.multiSelectStates as MultiSelectList, new { @class = "chosen-select-multiple", @id = "state" })
                 </div>
 
+
+
                 <div class="select-size">
                     Charity Size:
                     @Html.ListBoxFor(m => m.sizeString, ViewBag.multiSelectSizes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "size" })
@@ -95,6 +97,13 @@
                     @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Show All Charities", new { @class = "form-control", @id = "tax" })
 
                 </div>
+
+                <div class="select-bene">
+                    <div class="chosen-container-multi">
+                        @Html.ListBoxFor(m => m.actiString, ViewBag.multiSelectActis as MultiSelectList, new { @class = "chosen-select-multiple", @id = "acti" })
+                    </div>
+                </div>
+
                 <div class="input-search">
                     Seach by Charity Name:
                     @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name (optional)" })
