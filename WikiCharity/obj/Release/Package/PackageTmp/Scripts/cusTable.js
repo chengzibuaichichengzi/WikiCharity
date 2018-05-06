@@ -7,15 +7,19 @@
         },
         "columns": [
             
-            {"data": "Name", "name": "Name"},
-            {
+            { "data": "Name", "name": "Name" },
+            { "data": "Size", "name": "Size" },
+            { "data": "conActivity", "name": "conActivity" },
+            { "data": "MainActivity", "name": "MainActivity" },
+            { "data": "selectedBenes", "name": "selectedBenes" },
+            /*{
                 //only show fisrt 300 chars in the datatable row of description
                 "data": "Description", "name": "Description", "render": function (data, type, row) {
-                    return type == 'display' && data.length > 300 ?
+                    return type == 'display' && data.length > 100 ?
                     data.substr(0, 300) + '......' :
                         data;
                 }
-            },
+            },*/
             {
                 //use id column as detail button
                 "data": "Id", "name": "Id", "render": function (data, type, full) {
@@ -30,7 +34,5 @@
             "processing": "Loading data.........Please wait"
         }
     });
-    
-    
     
 });

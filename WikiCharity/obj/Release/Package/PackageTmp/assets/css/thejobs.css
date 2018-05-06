@@ -756,7 +756,7 @@ form .text-muted {
 .labe-state,
 .select-state {
     position: relative;
-    width: 15%;
+    width: 25%;
     text-align: left;
 }
 
@@ -774,7 +774,7 @@ form .text-muted {
 
 .select-tax {
     position: relative;
-    width: 25%;
+    width: 15%;
     text-align: left;
 }
 

@@ -19,15 +19,15 @@ namespace WikiCharity.Controllers
     public class HomeController : Controller
     {
         //Server side DB
-        //private static DetailEntities db = new DetailEntities();
-        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        private static DetailCharityDBEntities db = new DetailCharityDBEntities();
+        private static List<Charity> allCharities = db.Charities.ToList();
 
         //Local DB
-        private static LocalDetailCharityDBEntities db = new LocalDetailCharityDBEntities();
-        private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        //private static DetailDB1Entities db = new DetailDB1Entities();
+        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
 
-        
+
 
         public ActionResult Index()
         {
@@ -286,7 +286,31 @@ namespace WikiCharity.Controllers
 
             //do paging
             finalResult = finalResult.Skip(start).Take(length).ToList<Charity>();
- 
+
+            if (model.beneString != null)
+            {
+                var selectedBene = string.Join(", ", model.beneString.ToArray());
+                foreach (var i in finalResult)
+                {
+                    var benes = new List<string>();
+                    foreach (var x in model.beneString)
+                    {
+                        if (i.Beneficiaries.Contains(x))
+                        {
+                            benes.Add(x);
+                        }
+                    }
+                    i.selectedBenes = string.Join(", ", benes.ToArray());
+                }
+            }
+            else
+            {
+                foreach (var i in finalResult)
+                {
+                    i.selectedBenes = i.Beneficiaries;
+                }
+            }
+            
             //return all the result in json format
             return Json(new { data = finalResult, draw = Request["draw"], recordsTotal = totalRows, recordsFiltered = totalRowsAfter }, JsonRequestBehavior.AllowGet);
         }
@@ -572,7 +596,6 @@ namespace WikiCharity.Controllers
         //return json data for bar chart on detail page
         public ActionResult GetBarData(string Id)
         {
-
             int id = Convert.ToInt32(Id);
             List<BarModel> data = new List<BarModel>();
             Charity charity = db.Charities.Find(id);
@@ -606,10 +629,10 @@ namespace WikiCharity.Controllers
                 bar2016.TotalGrossIncome = finList.Where(f => f.FYear == "2016").ToList()[0].TotalGrossIncome.Value;
                 bar2016.Expense = finList.Where(f => f.FYear == "2016").ToList()[0].Expense.Value;
             }
-            data.Add(bar2014);
-            data.Add(bar2015);
+            
             data.Add(bar2016);
-
+            data.Add(bar2015);
+            data.Add(bar2014);
 
             var chartData = new object[data.Count + 1];
             chartData[0] = new object[]{
@@ -627,13 +650,64 @@ namespace WikiCharity.Controllers
             return Json(chartData, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetBar2Data(string Id)
+        {
+            int id = Convert.ToInt32(Id);
+            List<Bar2Model> data = new List<Bar2Model>();
+            Charity charity = db.Charities.Find(id);
+            //Here MyDatabaseEntities is our dbContext
+            var ABN = charity.ABN;
+            List<FinancialNew> finList = db.FinancialNews.Where(i => i.ABN == ABN).ToList();
+            Bar2Model bar2014 = new Bar2Model();
+            bar2014.year = "2014";
+            List<FinancialNew> flist = finList.Where(f => f.FYear == "2014").ToList();
+            //if this charity has 2014 financial data
+            if (flist.Count != 0)
+            {
+                bar2014.TotalAssets = finList.Where(f => f.FYear == "2014").ToList()[0].TotalAssets.Value;
+                bar2014.TotalLia = finList.Where(f => f.FYear == "2014").ToList()[0].TotalLia.Value;
+            }
+            Bar2Model bar2015 = new Bar2Model();
+            bar2015.year = "2015";
+            //if this charity has 2015 financial data
+            flist = finList.Where(f => f.FYear == "2015").ToList();
+            if (flist.Count != 0)
+            {
+                bar2015.TotalAssets = finList.Where(f => f.FYear == "2015").ToList()[0].TotalAssets.Value;
+                bar2015.TotalLia = finList.Where(f => f.FYear == "2015").ToList()[0].TotalLia.Value;
+            }
+            Bar2Model bar2016 = new Bar2Model();
+            bar2016.year = "2016";
+            //if this charity has 2016 financial data
+            flist = finList.Where(f => f.FYear == "2016").ToList();
+            if (flist.Count != 0)
+            {
+                bar2016.TotalAssets = finList.Where(f => f.FYear == "2016").ToList()[0].TotalAssets.Value;
+                bar2016.TotalLia = finList.Where(f => f.FYear == "2016").ToList()[0].TotalLia.Value;
+            }
+            data.Add(bar2014);
+            data.Add(bar2015);
+            data.Add(bar2016);
+            
+            
+            var chartData = new object[data.Count + 1];
+            chartData[0] = new object[]{
+                "Year",
+                "Total Assets",
+                "Total Liabilities"
+            };
 
+            int j = 0;
+            foreach (var i in data)
+            {
+                j++;
+                chartData[j] = new object[] { i.year, i.TotalAssets, i.TotalLia };
+            }
+            return Json(chartData, JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult Contact()
         {
-
-           
-
             return View();
         }
 

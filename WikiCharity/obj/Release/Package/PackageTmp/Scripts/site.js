@@ -1,8 +1,23 @@
 ﻿$(document).ready(function () {
-
-    $(".chosen-select-multiple").chosen({
+    //.chosen-select-multiple
+    $("#size").chosen({
         width: "100%",
-        max_selected_options: 5
+        //max_selected_options: 3,
+        placeholder_text_multiple: "Any Charity Size"
+    });
+
+    
+
+    $("#bene").chosen({
+        width: "100%",
+        max_selected_options: 5,
+        placeholder_text_multiple: "Any Beneficiary"
+    });
+
+    $("#acti").chosen({
+        width: "100%",
+        max_selected_options: 5,
+        placeholder_text_multiple: "Any Activity"
     });
 
     var textInput = document.getElementById('name');
@@ -11,9 +26,19 @@
         clearTimeout(timeout);
         var state1 = $('#state').val();
         //var bene1 = $("#bene").val();
-        var size1 = $("#size").val();
+        //var size1 = $("#size").val();
         var tax1 = $("#tax").val();
         var beneAll = document.getElementById("bene");
+        var sizeAll = document.getElementById("size");
+        //var stateAll = document.getElementById("state");
+        var actiAll = document.getElementById("acti");
+        var acti1 = "";
+        var len = actiAll.options.length;
+        for (var i = 0; i < len; i++) {
+            if (actiAll.options[i].selected) {
+                acti1 = acti1 + actiAll.options[i].text + ",";
+            }
+        }
         var bene1 = "";
         var len = beneAll.options.length;
         for (var i = 0; i < len; i++) {
@@ -21,6 +46,14 @@
                 bene1 = bene1 + beneAll.options[i].text + ",";
             }
         }
+        var size1 = "";
+        var len = sizeAll.options.length;
+        for (var i = 0; i < len; i++) {
+            if (sizeAll.options[i].selected) {
+                size1 = size1 + sizeAll.options[i].text + ",";
+            }
+        }
+        
 
         
         timeout = setTimeout(function () {
@@ -29,7 +62,8 @@
                 'bene': bene1,
                 'size': size1,
                 'tax': tax1,
-                'name': textInput.value
+                'name': textInput.value,
+                'acti': acti1
             });
 
             $.ajax({
@@ -64,22 +98,41 @@
     $('.select-state, .select-bene, .select-size, .select-tax').change(function () {
         var state1 = $('#state').val();
         //var bene1 = $("#bene").val();
-        var size1 = $("#size").val();
+        //var size1 = $("#size").val();
         var tax1 = $("#tax").val();
         var beneAll = document.getElementById("bene");
+        var sizeAll = document.getElementById("size");
+        //var stateAll = document.getElementById("state");
+        var actiAll = document.getElementById("acti");
+        var acti1 = "";
+        var actiLen = actiAll.options.length;
+        for (var i = 0; i < actiLen; i++) {
+            if (actiAll.options[i].selected) {
+                acti1 = acti1 + actiAll.options[i].text + ",";
+            }
+        }
         var bene1 = "";
-        var len = beneAll.options.length;
-        for (var i = 0; i < len; i++) {
+        var benelen = beneAll.options.length;
+        for (var i = 0; i < benelen; i++) {
             if (beneAll.options[i].selected) {
                 bene1 = bene1 + beneAll.options[i].text + ",";
             }
         }
+        var size1 = "";
+        var sizelen = sizeAll.options.length;
+        for (var i = 0; i < sizelen; i++) {
+            if (sizeAll.options[i].selected) {
+                size1 = size1 + sizeAll.options[i].text + ",";
+            }
+        }
+        
         var data = JSON.stringify({
             'state': state1,
             'bene': bene1,
             'size': size1,
             'tax': tax1,
-            'name': ""
+            'name': "",
+            'acti': acti1
         });
         
         $.ajax({

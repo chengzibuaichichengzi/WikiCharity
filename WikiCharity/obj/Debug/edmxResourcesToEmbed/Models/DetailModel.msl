@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="WIKICHARITYModel1StoreContainer" CdmEntityContainer="DetailEntities">
+  <EntityContainerMapping StorageEntityContainer="DetailCharityDBModel1StoreContainer" CdmEntityContainer="DetailCharityDBEntities">
     <EntitySetMapping Name="Charities">
-      <EntityTypeMapping TypeName="WIKICHARITYModel1.Charity">
+      <EntityTypeMapping TypeName="DetailCharityDBModel1.Charity">
         <MappingFragment StoreEntitySet="Charities">
           <ScalarProperty Name="ABN" ColumnName="ABN" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -29,11 +29,13 @@
           <ScalarProperty Name="StaffPart" ColumnName="StaffPart" />
           <ScalarProperty Name="StaffCasual" ColumnName="StaffCasual" />
           <ScalarProperty Name="StaffVolun" ColumnName="StaffVolun" />
+          <ScalarProperty Name="conActivity" ColumnName="conActivity" />
+          <ScalarProperty Name="selectedBenes" ColumnName="selectedBenes" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FinancialNews">
-      <EntityTypeMapping TypeName="WIKICHARITYModel1.FinancialNew">
+      <EntityTypeMapping TypeName="DetailCharityDBModel1.FinancialNew">
         <MappingFragment StoreEntitySet="FinancialNew">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ABN" ColumnName="ABN" />

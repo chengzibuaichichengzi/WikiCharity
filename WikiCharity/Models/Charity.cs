@@ -39,5 +39,7 @@ namespace WikiCharity.Models
         public Nullable<int> StaffPart { get; set; }
         public Nullable<int> StaffCasual { get; set; }
         public Nullable<int> StaffVolun { get; set; }
+        public string conActivity { get; set; }
+        public string selectedBenes { get; set; }
     }
 }
