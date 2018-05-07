@@ -1913,7 +1913,7 @@ dl {
         right: 0;
         bottom: 0;
         z-index: -1;
-        background-color: rgba(0, 24, 40, 0.55);
+        background-color: rgba(0, 24, 40, 0.70);
     }
 
     .site-header.bg-repeat {
@@ -1926,7 +1926,7 @@ dl {
     }
 
     .site-header.size-lg {
-        padding: 180px 0;
+        padding: 50px 0;
     }
 
     .site-header.size-full {

@@ -16,7 +16,7 @@ $(function() {
 
     // Scroll Down
   $('#scroll-down').on('click', function () {
-      $('html, body').animate({ scrollTop: 1000 }, 600);
+      $('html, body').animate({ scrollTop: 700 }, 600);
       return false;
   });
 
