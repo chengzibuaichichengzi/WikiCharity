@@ -14,6 +14,12 @@ $(function() {
     return false;
   });
 
+    // Scroll Down
+  $('#scroll-down').on('click', function () {
+      $('html, body').animate({ scrollTop: 1000 }, 600);
+      return false;
+  });
+
   // Smoothscroll to anchor
   $('a[href^="#"]:not([href="#"])').on('click', function(){
     var id = $(this).attr('href');

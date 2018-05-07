@@ -25,6 +25,8 @@
     <link href="~/Content/HomeStyle.css" rel="stylesheet" />
     <link href="~/Content/chosen.css" rel="stylesheet" />
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
@@ -131,7 +133,7 @@
 
 
                 <br />
-                <i class="ti-angle-double-down"></i>
+                <a id="scroll-down" href="#"><i class="ti-angle-double-down"></i></a>
             </div>
 
 
@@ -159,36 +161,37 @@
             </div>
         </section>
         <!-- END Facts -->
-
         <!-- How it Works start -->
         <div class="section howitwrap">
             <div class="container">
                 <!-- title start -->
                 <div class="titleTop">
                     @*<div class="subtitle">Here You Can See</div>
-                    <h3>How It <span>Works?</span></h3>*@
+                        <h3>How It <span>Works?</span></h3>*@
                 </div>
                 <!-- title end -->
                 <ul class="howlist row">
                     <!--step 1-->
                     <li class="col-md-4 col-sm-4">
-                        <div class="iconcircle"><i class="fa fa-user" aria-hidden="true"></i></div>
-                        <h4>Create An Account</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua.</p>
+                        <div class="iconcircle"><i class="fas fa-search"></i></div>
+                        <h4>Find sutiable charities</h4>
+                        <p>Search and get charity details based on their name, size, beneficiary, etc. </p>
                     </li>
                     <!--step 1 end-->
                     <!--step 2-->
                     <li class="col-md-4 col-sm-4">
-                        <div class="iconcircle"><i class="fa fa-black-tie" aria-hidden="true"></i></div>
-                        <h4>Search Desired Job</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua.</p>
+                        <div class="iconcircle"><i class="fas fa-chart-bar"></i></div>
+                        <h4>Get detailed information </h4>
+                        <p>Access to basic charity organisation details and financial data, like financial charts and ratios to help you make better decisions.</p>
                     </li>
                     <!--step 2 end-->
                     <!--step 3-->
                     <li class="col-md-4 col-sm-4">
-                        <div class="iconcircle"><i class="fa fa-file-text" aria-hidden="true"></i></div>
-                        <h4>Send Your Resume</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua.</p>
+                        <div class="iconcircle"><i class="fas fa-balance-scale"></i></div>
+                        <h4>Compare the charities</h4>
+                        <p>
+                            A side by side view of charities with the compare fuction. 
+                        </p>
                     </li>
                     <!--step 3 end-->
                 </ul>

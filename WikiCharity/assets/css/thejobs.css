@@ -4461,39 +4461,52 @@ section.no-overlay::before {
            == How it works css==
 *************************************************/
 .howlist {
-	list-style: none;
+    list-style: none;
 }
-.howlist li {
-	margin-top: 30px;
-	text-align: center;
-}
-.howlist li .iconcircle {
-	width: 100px;
-	height: 100px;
-	border: 3px solid #78ceff;
-	border-radius: 50%;
-	text-align: center;
-	line-height: 115px;
-	margin-bottom: 15px;
-	display: inline-block;
-	background: #263bd6;
-}
-.howlist li:nth-child(2) .iconcircle{background:#6ACA00; border-color:#83ec0f;}
-.howlist li:last-child .iconcircle{background:#f8a60c; border-color:#ffc456;}
-.howlist li .iconcircle i {
-	font-size: 48px;
-	color: #fff;
-}
-.howlist li h4 {
-	font-size: 24px;
-	font-weight: 700;
-	color: #000;
-	margin-bottom: 10px;
-}
-.howlist li p {
-	font-size: 16px;
-	line-height: 24px;
-	color: #555;
-}
+
+    .howlist li {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+        .howlist li .iconcircle {
+            width: 100px;
+            height: 100px;
+            border: 3px solid #29aafe;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 115px;
+            margin-bottom: 15px;
+            display: inline-block;
+            /*background: #263bd6;*/
+        }
+
+        .howlist li:nth-child(2) .iconcircle {
+            /*background: #6ACA00;*/
+            border-color: #29aafe;
+        }
+
+        .howlist li:last-child .iconcircle {
+            /*background: #f8a60c;*/
+            border-color: #29aafe;
+        }
+
+        .howlist li .iconcircle i {
+            font-size: 48px;
+            color: #29aafe;
+        }
+
+        .howlist li h4 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .howlist li p {
+            font-size: 16px;
+            line-height: 24px;
+            color: #555;
+        }
 
 /*# sourceMappingURL=thejobs.css.map */
