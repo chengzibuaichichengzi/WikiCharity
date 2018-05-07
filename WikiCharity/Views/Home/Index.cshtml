@@ -80,50 +80,50 @@
                 <!--Search Bar-->
                 @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { role = "form" }))
                 {
-                <div class="select-state">
-                    <!--<label style="color:cornflowerblue;font-size:18px;text-align:left;position:inherit;">State</label>-->
-                    State:
-                    @Html.DropDownListFor(m => m.state, Model.states, "All States", new { @class = "form-control", @id = "state" })
-                </div>
-
-
-
-                <div class="select-size">
-                    Charity Size:
-                    @Html.ListBoxFor(m => m.sizeString, ViewBag.multiSelectSizes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "size" })
-                </div>
-                <div class="select-tax">
-                    Tax Deductible Status
-                    @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Show All Charities", new { @class = "form-control", @id = "tax" })
-
-                </div>
-
-                <div class="select-bene">
-                    <div class="chosen-container-multi">
-                        @Html.ListBoxFor(m => m.actiString, ViewBag.multiSelectActis as MultiSelectList, new { @class = "chosen-select-multiple", @id = "acti" })
+                    <div class="select-state">
+                        <!--<label style="color:cornflowerblue;font-size:18px;text-align:left;position:inherit;">State</label>-->
+                        State:
+                        @Html.DropDownListFor(m => m.state, Model.states, "All States", new { @class = "form-control", @id = "state" })
                     </div>
-                </div>
+                    <div class="select-tax">
+                        Tax Deductible Status
+                        @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Show All Charities", new { @class = "form-control", @id = "tax" })
 
-                <div class="input-search">
-                    Seach by Charity Name:
-                    @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name (optional)" })
-                </div>
-                <div style="text-align:left">
-                    Beneficiaries&nbsp;&nbsp;(You can choose up to five options):
-                </div>
-                <div class="select-bene">
-                    <div class="chosen-container-multi">
-                        @Html.ListBoxFor(m => m.beneString, ViewBag.multiSelectBenes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "bene" })
                     </div>
-                </div>
-                <br />
-                <br />
-                <br />
-                <div class="btn-search">
-                    
-                    <button type="submit" class="btn btn-primary" id="button1">Click to show the 47597 charities</button>
+                    <div class="input-search">
+                        Seach by Charity Name:
+                        @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name (optional)" })
+                    </div>
 
-                </div>
+                    <div class="select-size">
+                        Charity Size:
+                        @Html.ListBoxFor(m => m.sizeString, ViewBag.multiSelectSizes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "size" })
+                    </div>
+
+
+                    <div class="select-act">
+                        Main Purpose:
+                        <div class="chosen-container-multi">
+                            @Html.ListBoxFor(m => m.actiString, ViewBag.multiSelectActis as MultiSelectList, new { @class = "chosen-select-multiple", @id = "acti" })
+                        </div>
+                    </div>
+
+
+                    <div style="text-align:left">
+                        Beneficiaries&nbsp;&nbsp;(You can choose up to five options):
+                    </div>
+                    <div class="select-bene">
+                        <div class="chosen-container-multi">
+                            @Html.ListBoxFor(m => m.beneString, ViewBag.multiSelectBenes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "bene" })
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="btn-search">
+
+                        <button type="submit" class="btn btn-primary" id="button1">Click to show the 47597 charities</button>
+
+                    </div>
 
 
                 }
@@ -141,8 +141,6 @@
     <!-- END Site header -->
     <!-- Main container -->
     <main>
-
-
         <!-- Facts -->
         <section class="bg-img bg-repeat no-overlay section-sm">
             <div class="container">
@@ -157,14 +155,49 @@
                         <p><span data-from="0" data-to="30"></span>+</p>
                         <h6>Beneficiaries</h6>
                     </div>
-
-
                 </div>
-
             </div>
         </section>
         <!-- END Facts -->
 
+        <!-- How it Works start -->
+        <div class="section howitwrap">
+            <div class="container">
+                <!-- title start -->
+                <div class="titleTop">
+                    @*<div class="subtitle">Here You Can See</div>
+                    <h3>How It <span>Works?</span></h3>*@
+                </div>
+                <!-- title end -->
+                <ul class="howlist row">
+                    <!--step 1-->
+                    <li class="col-md-4 col-sm-4">
+                        <div class="iconcircle"><i class="fa fa-user" aria-hidden="true"></i></div>
+                        <h4>Create An Account</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua.</p>
+                    </li>
+                    <!--step 1 end-->
+                    <!--step 2-->
+                    <li class="col-md-4 col-sm-4">
+                        <div class="iconcircle"><i class="fa fa-black-tie" aria-hidden="true"></i></div>
+                        <h4>Search Desired Job</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua.</p>
+                    </li>
+                    <!--step 2 end-->
+                    <!--step 3-->
+                    <li class="col-md-4 col-sm-4">
+                        <div class="iconcircle"><i class="fa fa-file-text" aria-hidden="true"></i></div>
+                        <h4>Send Your Resume</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua.</p>
+                    </li>
+                    <!--step 3 end-->
+                </ul>
+            </div>
+        </div>
+        <!-- How it Works Ends -->
+
+        <br />
+        <br />
     </main>
     <!-- END Main container -->
     <!-- Site footer -->

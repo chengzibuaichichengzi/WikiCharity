@@ -109,3 +109,9 @@ function showHideCode() {
 function showHideCode1() {
     $("#showdiv1").toggle();
 }
+
+function showHideDesc() {
+    $("#showDesc").toggle();
+    $("#lessDesc").toggle();
+
+}

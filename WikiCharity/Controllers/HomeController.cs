@@ -19,12 +19,12 @@ namespace WikiCharity.Controllers
     public class HomeController : Controller
     {
         //Server side DB
-        private static DetailCharityDBEntities db = new DetailCharityDBEntities();
-        private static List<Charity> allCharities = db.Charities.ToList();
+        //private static DetailCharityDBEntities db = new DetailCharityDBEntities();
+        //private static List<Charity> allCharities = db.Charities.ToList();
 
         //Local DB
-        //private static DetailDB1Entities db = new DetailDB1Entities();
-        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        private static DetailDB1Entities db = new DetailDB1Entities();
+        private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
 
 

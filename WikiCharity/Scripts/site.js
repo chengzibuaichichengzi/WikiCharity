@@ -16,8 +16,8 @@
 
     $("#acti").chosen({
         width: "100%",
-        max_selected_options: 5,
-        placeholder_text_multiple: "Any Activity"
+        max_selected_options: 3,
+        placeholder_text_multiple: "Any Purpose"
     });
 
     var textInput = document.getElementById('name');
@@ -95,7 +95,7 @@
         }, 500);
     };
 
-    $('.select-state, .select-bene, .select-size, .select-tax').change(function () {
+    $('.select-state, .select-bene, .select-size, .select-tax, .select-act').change(function () {
         var state1 = $('#state').val();
         //var bene1 = $("#bene").val();
         //var size1 = $("#size").val();

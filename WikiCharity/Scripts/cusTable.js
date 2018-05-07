@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
-    var tableInit = $('#example ').DataTable({     
+    var tableInit = $('#example ').DataTable({
+        fixedHeader: true,
         "ajax": {
             "url": "/Home/AjaxGetJsonData",
             "type": "POST",
