@@ -88,8 +88,13 @@
                 <div id="showDesc" style="display:none">
                     <p class="lead">@Html.DisplayFor(i => Model.ToList()[0].Description)</p>
                 </div>
-
-                <button class="btn btn-primary" id="showDescbtn" onclick="showHideDesc()">Show More</button>
+                <div style="text-align:right; display:none " id="showlessbtn">
+                    <button class="btn btn-primary" id="showDescbtn1" onclick="hideDesc()">Show Less</button>
+                </div>
+                
+                <div style="text-align:right; display:normal" id="showmorebtn">
+                    <button class="btn btn-primary" id="showDescbtn" onclick="showHideDesc()">Show More</button>
+                </div>
 
 
 
@@ -102,7 +107,7 @@
                     }
                     else
                     {
-                        <p class="lead"><a href="@Model.ToList()[0].Website">@Model.ToList()[0].Website</a></p>
+                        <p class="lead"><a href="@Model.ToList()[0].Website" target="_blank">@Model.ToList()[0].Website</a></p>
                     }
 
                 }
@@ -148,7 +153,7 @@
     <!-- END Page header -->
 
     <div style="text-align:center">
-        <i class="ti-angle-double-down"></i>
+        <a id="scroll-down" href="#"><i class="ti-angle-double-down"></i></a>
     </div>
 
     <!-- Main container -->

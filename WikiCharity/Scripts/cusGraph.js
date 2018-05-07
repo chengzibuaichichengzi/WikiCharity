@@ -107,7 +107,15 @@ function showHideCode1() {
 }
 
 function showHideDesc() {
+    $("#showDesc").show(0);
+    $("#lessDesc").hide(0);
+    $("#showlessbtn").show(0);
+    $("#showmorebtn").hide(0);
+}
+
+function hideDesc() {
     $("#showDesc").toggle();
     $("#lessDesc").toggle();
-
+    $("#showlessbtn").toggle();
+    $("#showmorebtn").toggle();
 }

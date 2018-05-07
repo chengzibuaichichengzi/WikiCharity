@@ -470,7 +470,7 @@ namespace WikiCharity.Controllers
             }
             var ABN = charity.ABN;
             ViewBag.Message = "Your application description page.";
-            ViewBag.PartDes = charity.Description.Substring(0, Math.Min(charity.Description.Length, 130)) + "...";
+            ViewBag.PartDes = charity.Description.Substring(0, Math.Min(charity.Description.Length, 200)) + "...";
             //search charities in the financial table through ABN, cause may have 3 rows for each charity 
             List<FinancialNew> finList = db.FinancialNews.Where(i => i.ABN == ABN).ToList();
 
