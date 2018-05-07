@@ -63,11 +63,14 @@ namespace WikiCharity.Controllers
         [HttpPost]
         public ActionResult Index(FilterModel model)
         {
+            //create lists to store all string
             var benes = GetAllBenes();
-            var sizes = GetAllSizes();
             var DGRs = GetAllDGRs();
+            var sizes = GetAllSizes();
             var states = GetAllStates();
             var actis = GetAllActis();
+            
+            
             //use custom method GetSelectListItem to pass a list and then get select list items
             model.beneficials = GetSelectListItems(benes);
             model.sizes = GetSelectListItems(sizes);
@@ -78,14 +81,40 @@ namespace WikiCharity.Controllers
             Session["FilterModel"] = model;
 
             //go to filter result page
-            return RedirectToAction("FilterResult");
+            return FilterResult(model);
             
         }
 
-        public ActionResult FilterResult()
+        public ActionResult FilterResult(FilterModel model)
         {
+            //create lists to store all string
+            var benes = GetAllBenes();
+            var DGRs = GetAllDGRs();
+            var sizes = GetAllSizes();
+            var states = GetAllStates();
+            var actis = GetAllActis();
+
+
+            //use custom method GetSelectListItem to pass a list and then get select list items
+            model.beneficials = GetSelectListItems(benes);
+            model.sizes = GetSelectListItems(sizes);
+            model.isDGRs = GetSelectListItems(DGRs);
+            model.states = GetSelectListItems(states);
+            model.actis = GetSelectListItems(actis);
+            //store the filter model in the session
+            Session["FilterModel"] = model;
+            //multiple selection list
+            MultiSelectList beneList = new MultiSelectList(model.beneficials, "Value", "Text");
+            //MultiSelectList stateList = new MultiSelectList(model.states, "Value", "Text");
+            MultiSelectList sizeList = new MultiSelectList(model.sizes, "Value", "Text");
+            MultiSelectList actiList = new MultiSelectList(model.actis, "Value", "Text");
+            //stote in Viewbag
+            ViewBag.multiSelectBenes = beneList;
+            //ViewBag.multiSelectStates = stateList;
+            ViewBag.multiSelectSizes = sizeList;
+            ViewBag.multiSelectActis = actiList;
             //get inout model through session
-            var model = Session["FilterModel"] as FilterModel;
+            //var model = Session["FilterModel"] as FilterModel;
             List<Charity> finalResult = new List<Charity>();
             if (model != null)
             {
@@ -144,7 +173,8 @@ namespace WikiCharity.Controllers
                 }
 
                 //search for final result based on filter and name
-                finalResult = getFinalList();
+                //finalResult = getFinalList();
+                finalResult = getFinalList(model);
             }
             else
             {
@@ -157,14 +187,14 @@ namespace WikiCharity.Controllers
                 ViewBag.Name = "Any Charity Name";
             }
 
-            return View(finalResult);
+            return View(model);
         }
 
         //get search result based on 4 filters and search by name
-        public List<Charity> getFinalList()
+        public List<Charity> getFinalList(FilterModel model)
         {
             //get current filter model
-            var model = Session["FilterModel"] as FilterModel;
+            //var model = Session["FilterModel"] as FilterModel;
             //get all charities first
             List<Charity> finalResult = new List<Charity>();
             finalResult = allCharities;
@@ -254,7 +284,7 @@ namespace WikiCharity.Controllers
             if (model != null)
             {
                 //get search result for datatable
-                finalResult = getFinalList();
+                finalResult = getFinalList(model);
             }
             else
             {

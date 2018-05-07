@@ -27,10 +27,6 @@ $(document).ready(function () {
         error: function () {
             alert("Error loading data! Please try again.");
         }
-    }).done(function () {
-        // after complete loading data
-        //google.setOnLoadCallback(drawChart);
-        //drawChart();
     });
 
     //get the data for revenue and expense bar chart
@@ -46,10 +42,6 @@ $(document).ready(function () {
         error: function () {
             alert("Error loading data! Please try again.");
         }
-    }).done(function () {
-        // after complete loading data
-        //google.setOnLoadCallback(drawChart);
-        //drawChart();
     });
 
     //get the data for total assets and liabilities bar chart
@@ -67,11 +59,15 @@ $(document).ready(function () {
         }
     }).done(function () {
         // after complete loading data
-        google.setOnLoadCallback(drawChart);
-        drawChart();
+        
     });
 });
 
+$(document).ajaxStop(function () {
+
+    google.setOnLoadCallback(drawChart);
+    drawChart();
+});
 
 function drawChart() {
     var data1 = google.visualization.arrayToDataTable(chartData1);

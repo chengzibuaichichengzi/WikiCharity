@@ -1,4 +1,24 @@
 ﻿$(document).ready(function () {
+    $("#size").chosen({
+        width: "100%",
+        //max_selected_options: 3,
+        placeholder_text_multiple: "Any Charity Size"
+    });
+
+
+
+    $("#bene").chosen({
+        width: "100%",
+        max_selected_options: 5,
+        placeholder_text_multiple: "Any Beneficiary"
+    });
+
+    $("#acti").chosen({
+        width: "100%",
+        max_selected_options: 3,
+        placeholder_text_multiple: "Any Purpose"
+    });
+
     var tableInit = $('#example ').DataTable({
         fixedHeader: true,
         responsive:true,
