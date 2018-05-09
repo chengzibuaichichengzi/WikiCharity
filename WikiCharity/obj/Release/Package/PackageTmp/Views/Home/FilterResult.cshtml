@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WikiCharity.Models.Charity>
+﻿@model WikiCharity.Models.FilterModel
 @{
     ViewBag.Title = "FilterResult";
     Layout = null;
@@ -23,12 +23,14 @@
 
     <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/DataTables/css/responsive.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/fixedHeader.dataTables.min.css" rel="stylesheet" />
 
 
     <link href="~/assets/css/app.min.css" rel="stylesheet">
     <link href="~/assets/css/thejobs.css" rel="stylesheet">
     <link href="~/assets/css/custom.css" rel="stylesheet">
-
+    <link href="~/Content/chosen.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
 
@@ -72,8 +74,49 @@
             <p class="lead text-center">Helping you find charities that meet your criteria</p>
         </div>
         <div class="container no-shadow">
-            <h1 class="text-center">Frequently asked questions</h1>
-            <p class="lead text-center">Probably you'll find your answer here. Contact us if you don't find what you're looking for.</p>
+            @using (Html.BeginForm("FilterResult", "Home"))
+            {
+                <div class="select-state">
+                    <!--<label style="color:cornflowerblue;font-size:18px;text-align:left;position:inherit;">State</label>-->
+                    State:
+                    @Html.DropDownListFor(m => m.state, Model.states, "All States", new { @class = "form-control", @id = "state" })
+                </div>
+                    <div class="select-tax">
+                        Tax Deductible Status
+                        @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Show All Charities", new { @class = "form-control", @id = "tax" })
+
+                    </div>
+                    <div class="input-search">
+                        Seach by Charity Name:
+                        @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name (optional)" })
+                    </div>
+
+                    <div class="select-size">
+                        Charity Size:
+                        @Html.ListBoxFor(m => m.sizeString, ViewBag.multiSelectSizes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "size" })
+                    </div>
+                    <div class="select-act">
+                        Main Purpose:
+                        <div class="chosen-container-multi">
+                            @Html.ListBoxFor(m => m.actiString, ViewBag.multiSelectActis as MultiSelectList, new { @class = "chosen-select-multiple", @id = "acti" })
+                        </div>
+                    </div>
+
+                    <div style="text-align:left">
+                        Beneficiaries&nbsp;&nbsp;(You can choose up to five options):
+                    </div>
+                    <div class="select-bene">
+                        <div class="chosen-container-multi">
+                            @Html.ListBoxFor(m => m.beneString, ViewBag.multiSelectBenes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "bene" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="btn-search">
+
+                        <button type="submit" class="btn btn-primary" id="button1">Search</button>
+
+                    </div>
+            }
         </div>
     </header>
     <!-- END Page header -->
@@ -82,40 +125,32 @@
 
 
 
-        @if (Model.Count() != 0)
-            {
+        
         <!-- Filter Table-->
             <div class="container">
-                <h4>You selected:</h4>
-                <h6><b>State:</b> @ViewBag.State,   <b>Size:</b> @ViewBag.Size,   <b>Tax Deductible Status:</b>@ViewBag.Tax, <b>Name: </b>@ViewBag.Name</h6>
-                <h6><b>Beneficiaries: </b>@ViewBag.Bene</h6>
+                
 
 
-                <table id="example" class="display responsive" style="width:100%;">
+                <table id="example" class="display" style="width:100%;">
                     <thead>
                         <tr>
-                            <th>Charity Name</th>
-                            <th>Size</th>
-                            <th>Conducted Activity</th>
+                            <th style="width:20%">Charity Name</th>
+                            <th style="width:6%">Size</th>
+                            <th style="width:8%">Is Active?</th>
                             <th>Purpose</th>
                             <th>Beneficiaries</th>
                             <th>Details</th>
+                            <th>Add to list</th>
+                            
                         </tr>
                     </thead>
+                    
                 </table>
-
-            </div>
-        }
-
-        else
-        {
-            <div class="container">
-                <h4>You selected:</h4>
-                <h6><b>State:</b> @ViewBag.State,   <b>Size:</b> @ViewBag.Size,   <b>Tax Deductible Status:</b>@ViewBag.Tax, <b>Name: </b>@ViewBag.Name</h6>
-                <h6><b>Beneficiaries: </b>@ViewBag.Bene</h6>
-                <h3 style="text-align:center;">Sorry, no result. You can try other filters.</h3>
-            </div>
-        }
+                <a href="/Compare/FavList" class="btn btn-info btn-sm">Go to favorite list</a>
+            </div>>
+        
+        
+        
     </main>
 
     <!-- END Filter Table-->
@@ -153,8 +188,14 @@
     <!-- END Back to top button -->
     <!-- Scripts -->
     <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/chosen.jquery.min.js"></script>
+    <script src="~/Scripts/chosen.proto.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/DataTables/dataTables.responsive.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.fixedHeader.min.js"></script>
+
     <script src="~/Scripts/cusTable.js"></script>
 
 

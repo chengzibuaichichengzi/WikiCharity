@@ -1,0 +1,231 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+
+    <title>WikiCharity - Compare</title>
+
+    <!-- Styles -->
+    <link href="~/assets/css/app.min.css" rel="stylesheet">
+    <link href="~/assets/css/thejobs.css" rel="stylesheet">
+    <link href="~/assets/css/custom.css" rel="stylesheet">
+    <link href="~/Content/detailtable.css" rel="stylesheet">
+
+
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="~/assets/img/favicon.ico">
+</head>
+
+<body class="nav-on-header smart-nav">
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="container">
+
+            <!-- Logo -->
+            <div class="pull-left">
+                <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
+
+                <div class="logo-wrapper">
+                    <a href="@Url.Action("Index", "Home", null)">
+                        <img class="logo-alt" src="~/Uploads/logo.png" alt="logo-alt" style="width:90px;height:60px;">
+                    </a>
+                </div>
+
+            </div>
+            <!-- END Logo -->
+            <!-- Navigation menu -->
+            <ul class="nav-menu">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Favourite List", "FavList", "Home")</li>
+
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
+
+                <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+            <!-- END Navigation menu -->
+
+        </div>
+    </nav>
+    <!-- END Navigation bar -->
+    <!-- Site header -->
+    <header class="page-header bg-img size-lg">
+        <div class="container no-shadow">
+            <h1 class="text-center">Compare Charities</h1>
+            <p class="lead text-center">Compare different charities</p>
+        </div>
+    </header>
+    <!-- END Site header -->
+    <!-- Main container -->
+    <main>
+        <!--Two Cards-->
+        <section>
+            <div class="container">
+                <header class="section-header">
+                    @*<span>Charities</span>
+                        <h2>Comparing</h2>*@
+                    <p>Choose the charity that fits your needs</p>
+                </header>
+
+                <ul class="pricing1">
+                    <li>
+                        <h6>Charity A</h6>
+                        @*<div class="price">
+                                <sup>$</sup>0
+                                <span>&nbsp;</span>
+                            </div>*@
+                        <hr>
+                        <p>ABN: <strong>xxxxxxx</strong></p>
+                        <p>Size: <strong>Large</strong></p>
+                        <p>Tax Deductiable:<strong>Yes</strong></p>
+                        <p>Full time staff: <strong>11</strong></p>
+                        <p>Part time staff: <strong>1</strong></p>
+                        <p>Casual staff: <strong>11</strong></p>
+                        <p>Volunteer staff: <strong>111</strong></p>
+                        <br>
+                        <a class="btn btn-primary btn-block" href="#">More Details</a>
+                    </li>
+
+                    <li>
+                        <h6>Charity B</h6>
+                        @*<div class="price">
+                                <sup>$</sup>0
+                                <span>&nbsp;</span>
+                            </div>*@
+                        <hr>
+                        <p>ABN: <strong>xxxxxxx</strong></p>
+                        <p>Size: <strong>Large</strong></p>
+                        <p>Tax Deductiable:<strong>Yes</strong></p>
+                        <p>Full time staff: <strong>11</strong></p>
+                        <p>Part time staff: <strong>1</strong></p>
+                        <p>Casual staff: <strong>11</strong></p>
+                        <p>Volunteer staff: <strong>111</strong></p>
+                        <br>
+                        <a class="btn btn-primary btn-block" href="#">More Details</a>
+                    </li>
+                </ul>
+            </div>
+            <!--END Two Cards-->
+            <!--Expene/Income Graph for two Charities-->
+            <div class="container">
+                <div class="chartrow">
+                    <h4>Revenue & Expenses</h4>
+
+                    <div id="There is a Chart">
+
+                    </div>
+
+                </div>
+            </div>
+            <!--END Graph-->
+
+
+            <!--Financial Table-->
+            <div class="container">
+
+                <table>
+                    <caption>Ratios</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Charity A</th>
+                            <th scope="col">Charity B</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="">Employee Expenses Percentage </td>
+                            <td data-label="Charity A">11</td>
+                            <td data-label="Charity B">22</td>
+                        </tr>
+                        <tr>
+                            <td data-label="">Debt Equity Ratio</td>
+                            <td data-label="Charity A">44</td>
+                            <td data-label="Charity B">332</td>
+
+                        </tr>
+                        <tr>
+                            <td data-label="">Saving Ratio</td>
+                            <td data-label="Charity A">2</td>
+                            <td data-label="Charity B">22</td>
+
+                        </tr>
+                        <tr>
+                            <td data-label="">Current Ratio</td>
+                            <td data-label="Charity A">13</td>
+                            <td data-label="Charity B">rwr</td>
+
+                        </tr>
+                        <tr>
+                            <td data-label="">Debt Ratio</td>
+                            <td data-label="Charity A">243</td>
+                            <td data-label="Charity B">243</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--END Financial Table-->
+
+
+        </section>
+
+    </main>
+    <!-- END Main container -->
+    <!-- Site footer -->
+    <footer class="site-footer">
+
+        <!-- Top section -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <h6>WikiCharity</h6>
+                    <p class="text-justify">
+                        WikiCharity is a platform to connect individuals, and businesses with charities & not-for-profits across Australia. The highly customizable search function will allow users to find charities based on their criteria. Search results will provide basic charity details, and the charity’s historical financial details and financial ratios. Users will also be able to compare charities to aid users to narrow down on the charities which they would like to donate to.
+                    </p>
+                </div>
+
+            </div>
+
+            <hr>
+        </div>
+        <!-- END Top section -->
+        <!-- Bottom section -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+
+                    <p class="copyright-text">Copyrights &copy; @DateTime.Now.Year All Rights Reserved by QingGari</p>
+                </div>
+            </div>
+        </div>
+        <!-- END Bottom section -->
+
+    </footer>
+    <!-- END Site footer -->
+    <!-- Back to top button -->
+    <a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
+    <!-- END Back to top button -->
+    <!-- Scripts -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    <script src="~/assets/js/app.min.js"></script>
+    <script src="~/assets/js/thejobs.js"></script>
+
+</body>
+</html>

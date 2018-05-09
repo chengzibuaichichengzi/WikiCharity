@@ -1991,7 +1991,7 @@ dl {
         }
 
         .site-header.size-lg {
-            padding: 100px;
+            padding: 0px;
         }
 
         .site-header h1 {
@@ -3352,9 +3352,97 @@ dl {
         }
 }
 
+.pricing1 {
+    list-style: none;
+    padding-left: 0;
+}
+
+    .pricing1 li {
+        background-color: #fff;
+        padding: 30px 20px;
+        float: left;
+        width: 40%;
+        margin-left: 5%;
+        margin-right: 5%;
+        text-align: center;
+        border: 1px solid #eeeeee;
+        transition: .3s ease-in-out;
+    }
+
+        .pricing1 li:hover {
+            box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing1 li:nth-child(3n+3) {
+            margin-right: 0;
+        }
+
+        .pricing1 li h6 {
+            font-family: "Open Sans", sans-serif;
+            text-transform: uppercase;
+            color: #96a2b2;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .pricing1 li .price {
+            font-family: Oswald, sans-serif;
+            font-weight: bold;
+            font-size: 75px;
+            line-height: 75px;
+            color: #000;
+            padding: 10px 0;
+        }
+
+            .pricing1 li .price span {
+                display: block;
+                font-family: Montserrat, sans-serif;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 25px;
+                color: #96a2b2;
+            }
+
+            .pricing1 li .price sup {
+                font-size: 28px;
+                vertical-align: super;
+            }
+
+        .pricing1 li hr {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .pricing1 li strong {
+            color: #55595c;
+        }
+
+    .pricing1.cols-6 li {
+        width: 40%;
+        margin-right: 2%;
+    }
+
+        .pricing1.cols-6 li:nth-child(4n+4) {
+            margin-right: 0;
+        }
+
+@media (max-width: 991px) {
+    .pricing1 {
+        margin: 0 auto;
+        max-width: 400px;
+    }
+
+        .pricing1 li {
+            display: block;
+            width: 100% !important;
+            margin-right: 0 !important;
+            margin-bottom: 30px;
+        }
+}
+
 section {
     position: relative;
-    padding: 96px 0;
+    padding: 45px 0;
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;

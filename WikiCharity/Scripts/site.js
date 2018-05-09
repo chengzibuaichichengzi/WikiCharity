@@ -165,7 +165,6 @@
     //});
 
     $("#size").tooltip({
-        
         content: function(callback){
             callback($(this).prop('title').replace('|','<br/>'));
     }

@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
+
     $("#size").chosen({
         width: "100%",
         //max_selected_options: 3,
@@ -19,7 +21,7 @@
         placeholder_text_multiple: "Any Purpose"
     });
 
-    var tableInit = $('#example ').DataTable({
+    var tableInit = $('#example').DataTable({
         fixedHeader: true,
         responsive:true,
         "ajax": {
@@ -45,7 +47,14 @@
             {
                 //use id column as detail button
                 "data": "Id", "name": "Id", "render": function (data, type, full) {
+                    id = data;
                     return '<a class="btn btn-info btn-sm" href=/Home/Detail/' + data + '>' + 'More Details >>' + '</a>';
+                }
+            },
+            {
+                //use id column as detail button
+                "data": "Id", "name": "Id", "render": function (data, type, full) {
+                    return '<button id="'+data+'">Add to list</button>';
                 }
             },
         ],
@@ -56,5 +65,56 @@
             "processing": "Loading data.........Please wait"
         }
     });
+
+
+    $('#example').on('click', 'button', function () {
+
+        //full screen
+        var data1 = tableInit.row(this.closest('tr')).data().Id;
+        //small screen
+        //var data1 = tableInit.row(this).data().Id;
+        var data = JSON.stringify({
+            'id': data1
+        });
+        $.ajax({
+            type: 'POST',
+            url: "/Home/AddToList",
+            dataType: "json",
+            data: data,
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                if (data.isSelected == true) {
+
+                    var text = "Stored in list";
+                    //this.value = text;
+                    var a = document.getElementById(data1.toString());
+                    a.innerText = text;
+                }
+                else {
+                    var text = "Add to list";
+                    //this.value = text;
+                    var a = document.getElementById(data1.toString());
+                    a.innerText = text;
+                }
+            },
+            error: function () {
+
+            }
+        });
+    });
+    
     
 });
+
+/*$('#example').on('click', '#btn1', function () {
+    //var $btn = $(this);
+    //var $tr = $btn.closest('tr');
+    var $tr = $(this).closest('tr');
+    //var dataTableRow = tableInit.row($tr[0]);
+    var dataTableRow = tableInit.row($tr);
+    var data = dataTableRow.data();
+    console.log(data[0] + "size is" + data[1]);
+});*/
+
+
+

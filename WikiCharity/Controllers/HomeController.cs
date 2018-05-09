@@ -19,13 +19,14 @@ namespace WikiCharity.Controllers
     public class HomeController : Controller
     {
         //Server side DB
-        //private static DetailCharityDBEntities db = new DetailCharityDBEntities();
-        //private static List<Charity> allCharities = db.Charities.ToList();
+        private static CharityV2ServerEntities db = new CharityV2ServerEntities();
+        private static List<Charity> allCharities = db.Charities.ToList();
 
         //Local DB
-        private static DetailDB1Entities db = new DetailDB1Entities();
-        private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        //private static CharityV2Entities db = new CharityV2Entities();
+        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
+        private static List<Charity> myList = new List<Charity>();
 
 
 
@@ -54,7 +55,9 @@ namespace WikiCharity.Controllers
             //ViewBag.multiSelectStates = stateList;
             ViewBag.multiSelectSizes = sizeList;
             ViewBag.multiSelectActis = actiList;
-            
+
+            Session["MyList"] = myList;
+
             return View(model);
         }
 
@@ -765,6 +768,50 @@ namespace WikiCharity.Controllers
                 }
             }
             return View(model);
+        }
+
+        public ActionResult AddToList(int? Id)
+        {
+            Charity charity = db.Charities.Find(Id);
+            myList = Session["MyList"] as List<Charity>;
+            SelectedModel model = new SelectedModel();
+            if (myList != null)
+            {
+                //using index to store matching critiaria
+                int index = myList.FindIndex(item => item.Id == Id);
+                //already exist in my list
+                if (index >= 0)
+                {
+                    //remove from list
+                    myList = myList.Where(item => item.Id != Id).ToList();
+                    model.isSelected = false;
+                    Session["MyList"] = myList;
+                }
+                //does not exist in current list
+                else
+                {
+                    myList.Add(charity);
+                    model.isSelected = true;
+                    Session["MyList"] = myList;
+                }
+            }
+            else
+            {
+                myList = new List<Charity>();
+                myList.Add(charity);
+                model.isSelected = true;
+                Session["MyList"] = myList;
+            }
+            
+            
+            return Json(model, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult MyList()
+        {
+            myList = Session["MyList"] as List<Charity>;
+            return View(myList);
         }
 
         public ActionResult Sent()

@@ -13,10 +13,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Post a job position or create your online resume by TheJobs!">
+    <meta name="description" content="">
     <meta name="keywords" content="">
 
-    <title>Charity Info</title>
+    <title>WikiCharity-Charity Info</title>
 
     <!-- Styles -->
     <link href="~/assets/css/app.min.css" rel="stylesheet">
@@ -78,12 +78,26 @@
             <div class="header-detail">
                 <div class="hgroup">
                     <h1>@Html.DisplayFor(i => Model.ToList()[0].Name)</h1>
-                    <h3><a href="#">@Html.DisplayFor(i => Model.ToList()[0].Address)</a></h3>
+                    <h3>@Html.DisplayFor(i => Model.ToList()[0].Address)</h3>
                 </div>
                 <hr>
-                 
-                <p class="lead">@ViewBag.PartDes</p>
-                <p class="lead">@Html.DisplayFor(i => Model.ToList()[0].Description)</p>
+                <div id="lessDesc" style="display:normal">
+                    <p class="lead">@ViewBag.PartDes</p>
+
+                </div>
+                <div id="showDesc" style="display:none">
+                    <p class="lead">@Html.DisplayFor(i => Model.ToList()[0].Description)</p>
+                </div>
+                <div style="text-align:right; display:none " id="showlessbtn">
+                    <button class="btn btn-primary" id="showDescbtn1" onclick="hideDesc()">Show Less</button>
+                </div>
+                
+                <div style="text-align:right; display:normal" id="showmorebtn">
+                    <button class="btn btn-primary" id="showDescbtn" onclick="showHideDesc()">Show More</button>
+                </div>
+
+
+
                 <p class="lead">Beneficiaries: @Html.DisplayFor(i => Model.ToList()[0].Beneficiaries)</p>
                 @if (!Model.ToList()[0].Website.Contains("NA"))
                 {
@@ -93,7 +107,7 @@
                     }
                     else
                     {
-                        <p class="lead"><a href="@Model.ToList()[0].Website">@Model.ToList()[0].Website</a></p>
+                        <p class="lead"><a href="@Model.ToList()[0].Website" target="_blank">@Model.ToList()[0].Website</a></p>
                     }
 
                 }
@@ -125,12 +139,12 @@
 
                     <li>
                         <i class="fa fa-users"></i>
-                        <a href="#">Casual Staff: @Html.DisplayFor(i => Model.ToList()[0].StaffCasual)</a>
+                        <span>Casual Staff: @Html.DisplayFor(i => Model.ToList()[0].StaffCasual)</span>
                     </li>
 
                     <li>
                         <i class="fa fa-users"></i>
-                        <a href="#">Volunteer Staff: @Html.DisplayFor(i => Model.ToList()[0].StaffVolun)</a>
+                        <span>Volunteer Staff: @Html.DisplayFor(i => Model.ToList()[0].StaffVolun)</span>
                     </li>
                 </ul>
             </div>
@@ -139,7 +153,7 @@
     <!-- END Page header -->
 
     <div style="text-align:center">
-        <i class="ti-angle-double-down"></i>
+        <a id="scroll-down" href="#"><i class="ti-angle-double-down"></i></a>
     </div>
 
     <!-- Main container -->
@@ -164,16 +178,7 @@
                         </div>
                     </div>
                     <!--END Bar Chart-->
-                    <!--Bar Chart2-->
-                    <h4>Total Assets & Liabilities</h4>
-                    <div id="chart_div3" class="chart">
-                        <div class="spinner">
-                            <span class="dot1"></span>
-                            <span class="dot2"></span>
-                            <span class="dot3"></span>
-                        </div>
-                    </div>
-                    <!--END Bar Chart2-->
+
                     <!--Line Graph-->
                     <h4>Surplus / Deficit</h4>
                     <div id="chart_div1" class="chart">
@@ -185,6 +190,73 @@
                     </div>
                 </div>
                 <!--END Line Graph-->
+
+                    <!--Bar Chart2-->
+                    <h4>Total Assets & Liabilities</h4>
+                    <div id="chart_div3" class="chart">
+                        <div class="spinner">
+                            <span class="dot1"></span>
+                            <span class="dot2"></span>
+                            <span class="dot3"></span>
+                        </div>
+                    </div>
+                    <!--END Bar Chart2-->
+                    
+                <!--Ratios Table-->
+                <table>
+                    <caption>Ratios</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">2014</th>
+                            <th scope="col">2015</th>
+                            <th scope="col">2016</th>
+                            <th scope="col">Industry Median</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Year">Employee Expenses Percentage </td>
+                            <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].EmpExpensePersentage)</td>
+                            <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].EmpExpensePersentage)</td>
+                            <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].EmpExpensePersentage)</td>
+                            <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].EmpExpInSizeMedian)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Year">Debt Equity Ratio</td>
+                            <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].DebtEquityRadio)</td>
+                            <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].DebtEquityRadio)</td>
+                            <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtEquityRadio)</td>
+                            <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtEquityInSizeMedian)</td>
+
+                        </tr>
+                        <tr>
+                            <td data-label="Year">Saving Ratio</td>
+                            <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].SavingRadio)</td>
+                            <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].SavingRadio)</td>
+                            <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].SavingRadio)</td>
+                            <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].SavingRadioInSizeMedian)</td>
+
+                        </tr>
+                        <tr>
+                            <td data-label="Year">Current Ratio</td>
+                            <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].CurrentRadio)</td>
+                            <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].CurrentRadio)</td>
+                            <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].CurrentRadio)</td>
+                            <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].CurrentRadioInSizeMedian)</td>
+
+                        </tr>
+                        <tr>
+                            <td data-label="Year">Debt Ratio</td>
+                            <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].DebtRadio)</td>
+                            <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].DebtRadio)</td>
+                            <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtRadio)</td>
+                            <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtRadioInSizeMedian)</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <!--END Ratios Table-->
                 <div class="btn-search">
                     <button class="btn btn-primary" id="show" onclick="showHideCode()">Show/Hide Financial Tables</button>
                 </div>
@@ -371,61 +443,6 @@
                     </table>
 
                     <!--END Net Assets Liabilities Table-->
-                    <!--Ratios Table-->
-                    <table>
-                        <caption>Ratios</caption>
-                        <thead>
-                            <tr>
-                                <th scope="col"></th>
-                                <th scope="col">2014</th>
-                                <th scope="col">2015</th>
-                                <th scope="col">2016</th>
-                                <th scope="col">Industry Median</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td data-label="Year">Employee Expenses Persentage </td>
-                                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].EmpExpensePersentage)</td>
-                                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].EmpExpensePersentage)</td>
-                                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].EmpExpensePersentage)</td>
-                                <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].EmpExpInSizeMedian)</td>
-                            </tr>
-                            <tr>
-                                <td data-label="Year">Debt Equity Ratio</td>
-                                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].DebtEquityRadio)</td>
-                                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].DebtEquityRadio)</td>
-                                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtEquityRadio)</td>
-                                <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtEquityInSizeMedian)</td>
-
-                            </tr>
-                            <tr>
-                                <td data-label="Year">Saving Ratio</td>
-                                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].SavingRadio)</td>
-                                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].SavingRadio)</td>
-                                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].SavingRadio)</td>
-                                <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].SavingRadioInSizeMedian)</td>
-
-                            </tr>
-                            <tr>
-                                <td data-label="Year">Current Ratio</td>
-                                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].CurrentRadio)</td>
-                                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].CurrentRadio)</td>
-                                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].CurrentRadio)</td>
-                                <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].CurrentRadioInSizeMedian)</td>
-
-                            </tr>
-                            <tr>
-                                <td data-label="Year">Debt Ratio</td>
-                                <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].DebtRadio)</td>
-                                <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].DebtRadio)</td>
-                                <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtRadio)</td>
-                                <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtRadioInSizeMedian)</td>
-
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!--END Ratios Table-->
                     <!--END Financial Table-->
                 </div>
                 <div class="btn-search">

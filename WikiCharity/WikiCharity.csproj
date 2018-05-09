@@ -227,6 +227,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CompareController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -236,50 +237,50 @@
     <Compile Include="Models\Bar2Model.cs" />
     <Compile Include="Models\BarModel.cs" />
     <Compile Include="Models\Charity.cs">
-      <DependentUpon>Model13.tt</DependentUpon>
+      <DependentUpon>CharityV2Server.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CharityModel.cs" />
     <Compile Include="Models\CharitySearchModel.cs" />
+    <Compile Include="Models\CharityV2.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CharityV2.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CharityV2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CharityV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CharityV2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CharityV2.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CharityV2Server.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CharityV2Server.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CharityV2Server.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CharityV2Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CharityV2Server.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CharityV2Server.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\DetailModel.cs" />
     <Compile Include="Models\EmailFormModel.cs" />
     <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\FinancialCSV.cs" />
     <Compile Include="Models\FinancialNew.cs">
-      <DependentUpon>Model13.tt</DependentUpon>
+      <DependentUpon>CharityV2Server.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LineModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Model12.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model12.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model12.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model12.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model12.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model12.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model13.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model13.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model13.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model13.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model13.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model13.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\SelectedModel.cs" />
     <Compile Include="Models\TableResultModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -650,25 +651,25 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Model12.Context.tt">
+    <Content Include="Models\CharityV2.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model12.edmx</DependentUpon>
-      <LastGenOutput>Model12.Context.cs</LastGenOutput>
+      <DependentUpon>CharityV2.edmx</DependentUpon>
+      <LastGenOutput>CharityV2.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model12.tt">
+    <Content Include="Models\CharityV2.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model12.edmx</DependentUpon>
-      <LastGenOutput>Model12.cs</LastGenOutput>
+      <DependentUpon>CharityV2.edmx</DependentUpon>
+      <LastGenOutput>CharityV2.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model13.Context.tt">
+    <Content Include="Models\CharityV2Server.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model13.edmx</DependentUpon>
-      <LastGenOutput>Model13.Context.cs</LastGenOutput>
+      <DependentUpon>CharityV2Server.edmx</DependentUpon>
+      <LastGenOutput>CharityV2Server.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model13.tt">
+    <Content Include="Models\CharityV2Server.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model13.edmx</DependentUpon>
-      <LastGenOutput>Model13.cs</LastGenOutput>
+      <DependentUpon>CharityV2Server.edmx</DependentUpon>
+      <LastGenOutput>CharityV2Server.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
@@ -896,19 +897,19 @@
     <Content Include="assets\fonts\themify.woff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\Model12.edmx">
+    <EntityDeploy Include="Models\CharityV2.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model12.Designer.cs</LastGenOutput>
+      <LastGenOutput>CharityV2.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model12.edmx.diagram">
-      <DependentUpon>Model12.edmx</DependentUpon>
+    <Content Include="Models\CharityV2.edmx.diagram">
+      <DependentUpon>CharityV2.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="Models\Model13.edmx">
+    <EntityDeploy Include="Models\CharityV2Server.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model13.Designer.cs</LastGenOutput>
+      <LastGenOutput>CharityV2Server.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model13.edmx.diagram">
-      <DependentUpon>Model13.edmx</DependentUpon>
+    <Content Include="Models\CharityV2Server.edmx.diagram">
+      <DependentUpon>CharityV2Server.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\new.pubxml" />
     <None Include="Properties\PublishProfiles\WikiCharity20180324033921 - FTP.pubxml" />
@@ -959,6 +960,7 @@
     <Content Include="Uploads\logo2.png" />
     <Content Include="Uploads\QingGariLogo.jpg" />
     <Content Include="Uploads\Rectangle4.png" />
+    <Content Include="Uploads\sky.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1010,6 +1012,9 @@
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Home\DonorAdvice.cshtml" />
     <Content Include="Views\Home\Sent.cshtml" />
+    <Content Include="Views\Compare\FavList.cshtml" />
+    <Content Include="Views\Compare\compare.cshtml" />
+    <Content Include="Views\Compare\compares.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
