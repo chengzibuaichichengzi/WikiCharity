@@ -1,8 +1,12 @@
 ﻿$(document).ready(function () {
     document.getElementById("compareBtn").disabled = true;
     document.getElementById("compareBtn2").disabled = true;
-    document.getElementById("compareBtn").style.visibility = 'hidden';
-    document.getElementById("compareBtn2").style.visibility = 'visible';
+    //document.getElementById("compareBtn").style.visibility = 'hidden';
+    $("#compareBtn").hide(0);
+
+    //document.getElementById("compareBtn2").style.visibility = 'visible';
+    $("#compareBtn2").show(0);
+
     var tableInit = $('#favTable').DataTable({
         fixedHeader: true,
         responsive: true,
@@ -40,12 +44,15 @@
                     var buttons = document.getElementsByName("all");
                     a.innerText = text;
                     if (data.compareNum == 2) {
-                        document.getElementById("compareBtn").style.visibility = 'hidden';
+                        //document.getElementById("compareBtn").style.visibility = 'hidden';
                         document.getElementById("compareBtn").action = "/Compare/compare";
                         document.getElementById("compareBtn").disabled = false;
-                        document.getElementById("compareBtn2").style.visibility = 'visible';
+                        $("#compareBtn").hide(0);
+                       // document.getElementById("compareBtn2").style.visibility = 'visible';
                         document.getElementById("compareBtn2").action = "/Compare/compare";
                         document.getElementById("compareBtn2").disabled = false;
+                        $("#compareBtn2").show(0);
+
                     }
                     if (data.compareNum == 3) {
                         for (var i = 0; i < buttons.length; i++) {
@@ -56,15 +63,22 @@
                         //go to 3 charities compare page
                         document.getElementById("compareBtn").action = "/Compare/compares";
                         document.getElementById("compareBtn").disabled = false;
-                        document.getElementById("compareBtn").style.visibility = 'visible';
+                        //document.getElementById("compareBtn").style.visibility = 'visible';
+                        $("#compareBtn").show(0);
                         document.getElementById("compareBtn2").action = "/Compare/compares";
                         document.getElementById("compareBtn2").disabled = false;
-                        document.getElementById("compareBtn2").style.visibility = 'hidden';
+                        //document.getElementById("compareBtn2").style.visibility = 'hidden';
+                        $("#compareBtn2").hide(0);
+
                     }
                 }
                 else {
-                    document.getElementById("compareBtn").style.visibility = 'hidden';
-                    document.getElementById("compareBtn2").style.visibility = 'visible';
+                    //document.getElementById("compareBtn").style.visibility = 'hidden';
+                    $("#compareBtn").hide(0);
+
+                    //document.getElementById("compareBtn2").style.visibility = 'visible';
+                    $("#compareBtn2").show(0);
+
                     var text = "Compare it";
                     //this.value = text;
                     var a = document.getElementById(data1.toString());
