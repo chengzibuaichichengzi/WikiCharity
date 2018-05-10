@@ -69,7 +69,7 @@
         </div>
     </nav>
     <!-- END Navigation bar -->
-    <header class="page-header bg-img">
+    <header class="page-header bg-img size-lg" style="background-image: url(/Uploads/pebblesbeachh.jpg)">
         <div class="container page-name">
             <h1 class="text-center">Charity Search Results</h1>
             <p class="lead text-center">Helping you find charities that meet your criteria</p>
@@ -82,11 +82,11 @@
                     State:
                     @Html.DropDownListFor(m => m.state, Model.states, "All States", new { @class = "form-control", @id = "state" })
                 </div>
-                    <div class="select-tax">
-                        Tax Deductible Status
-                        @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Show All Charities", new { @class = "form-control", @id = "tax" })
+                <div class="select-tax">
+                    Tax Deductible Status
+                    @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Show All Charities", new { @class = "form-control", @id = "tax" })
 
-                    </div>
+                </div>
                     <div class="input-search">
                         Seach by Charity Name:
                         @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name (optional)" })
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <br />
-                    <div class="btn-search">
+                    <div class="btn-search" style="text-align:right">
 
                         <button type="submit" class="btn btn-primary" id="button1">Search</button>
 
@@ -126,10 +126,10 @@
 
 
 
-        
-        <!-- Filter Table-->
+        <section>
+            <!-- Filter Table-->
             <div class="container">
-                
+
 
 
                 <table id="example" class="display" style="width:100%;">
@@ -142,16 +142,18 @@
                             <th>Beneficiaries</th>
                             <th>Details</th>
                             <th>Add to list</th>
-                            
+
                         </tr>
                     </thead>
-                    
+
                 </table>
-                <a href="/Compare/FavList" class="btn btn-info btn-sm">Go to favorite list</a>
-            </div>>
-        
-        
-        
+                <div class="btn-search" style="text-align:right">
+                    <a href="/Compare/FavList" class="btn btn-info btn-sm">Go to favorite list</a>
+                </div>
+            </div>
+
+        </section>
+
     </main>
 
     <!-- END Filter Table-->
@@ -162,8 +164,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-12">
-                    <h6>About</h6>
-                    <p class="text-justify">WikiCharity is a digital platform which is used to connect businesses and charities across Australia. The website would serve as a bridge which would enable the user to search charities according to his preference, provide and compare information on the charity’s basic financial data as well.  This will help the users to narrow down on the charities which they want to donate. </p>
+                    <h6>WikiCharity</h6>
+                    <p class="text-justify">
+                        WikiCharity is a platform to connect individuals, and businesses with charities & not-for-profits across Australia. The highly customizable search function will allow users to find charities based on their criteria. Search results will provide basic charity details, and the charity’s historical financial details and financial ratios. Users will also be able to compare charities to aid users to narrow down on the charities which they would like to donate to.
+                    </p>
                 </div>
 
             </div>

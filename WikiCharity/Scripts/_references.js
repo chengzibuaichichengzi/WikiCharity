@@ -99,6 +99,7 @@
 /// <reference path="DataTables/responsive.foundation.js" />
 /// <reference path="DataTables/responsive.jqueryui.js" />
 /// <reference path="DataTables/responsive.semanticui.js" />
+/// <reference path="donor.js" />
 /// <reference path="email.js" />
 /// <reference path="esm/popper.js" />
 /// <reference path="esm/popper-utils.js" />

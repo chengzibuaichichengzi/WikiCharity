@@ -19,6 +19,8 @@
     <title>WikiCharity</title>
 
     <!-- Styles -->
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
     <link href="~/assets/css/app.min.css" rel="stylesheet">
     <link href="~/assets/css/thejobs.css" rel="stylesheet">
     <link href="~/assets/css/custom.css" rel="stylesheet">
@@ -105,21 +107,30 @@
 
                     <div class="select-size">
                         Charity Size:
+                        <span title="Small: Revenue &lt; $250,000
+                              &NewLine;Medium: $250,000 &lt; Revenue &lt; $1,000,000
+                              &#013;Large: Revenue &gt; $1,000,000">
+                            <i class="ti-help-alt" style="color:#29aafe"></i>
+                        </span>
                         @Html.ListBoxFor(m => m.sizeString, ViewBag.multiSelectSizes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "size" })
                     </div>
 
 
                     <div class="select-act">
-                        Main Purpose:
-                        <div class="chosen-container-multi">
+                        Main Purpose&nbsp;&nbsp;(You can choose up to 3 options):
+                        <span title="Main activity the charity carries out">
+                            <i class="ti-help-alt" style="color:#29aafe"></i>
+                        </span>                        <div class="chosen-container-multi">
                             @Html.ListBoxFor(m => m.actiString, ViewBag.multiSelectActis as MultiSelectList, new { @class = "chosen-select-multiple", @id = "acti" })
                         </div>
                     </div>
 
 
                     <div style="text-align:left">
-                        Beneficiaries&nbsp;&nbsp;(You can choose up to five options):
-                    </div>
+                        Beneficiaries&nbsp;&nbsp;(You can choose up to 3 options):
+                        <span title="The group of people the charity helps">
+                            <i class="ti-help-alt" style="color:#29aafe"></i>
+                        </span>                    </div>
                     <div class="select-bene">
                         <div class="chosen-container-multi">
                             @Html.ListBoxFor(m => m.beneString, ViewBag.multiSelectBenes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "bene" })
@@ -171,10 +182,6 @@
         <div class="section howitwrap">
             <div class="container">
                 <!-- title start -->
-                <div class="titleTop">
-                    @*<div class="subtitle">Here You Can See</div>
-                        <h3>How It <span>Works?</span></h3>*@
-                </div>
                 <!-- title end -->
                 <ul class="howlist row">
                     <!--step 1-->
@@ -216,8 +223,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-12">
-                    <h6>About</h6>
-                    <p class="text-justify">WikiCharity is a digital platform which is used to connect businesses and charities across Australia. The website would serve as a bridge which would enable the user to search charities according to his preference, provide and compare information on the charity’s basic financial data as well.  This will help the users to narrow down on the charities which they want to donate. </p>
+                    <h6>WikiCharity</h6>
+                    <p class="text-justify">
+                        WikiCharity is a platform to connect individuals, and businesses with charities & not-for-profits across Australia. The highly customizable search function will allow users to find charities based on their criteria. Search results will provide basic charity details, and the charity’s historical financial details and financial ratios. Users will also be able to compare charities to aid users to narrow down on the charities which they would like to donate to.
+                    </p>
                 </div>
 
             </div>

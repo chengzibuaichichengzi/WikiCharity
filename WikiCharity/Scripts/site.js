@@ -1,4 +1,7 @@
 ﻿$(document).ready(function () {
+    //tooltip
+    $(document).tooltip();
+
     //.chosen-select-multiple
     $("#size").chosen({
         width: "100%",

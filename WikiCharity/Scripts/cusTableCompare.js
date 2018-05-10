@@ -31,9 +31,15 @@ $(document).ready(function () {
 function drawChart() {
     var data1 = google.visualization.arrayToDataTable(chartData1);
     var options = {
-        pointSize: 5
+        pointSize: 5,
+        colors: ['skyblue', '#5574A6']
+
     };
- 
+
     var barChart = new google.visualization.BarChart(document.getElementById('chart_div_new'));
     barChart.draw(data1, options);
 }
+
+$(window).resize(function () {
+    drawChart();
+});
