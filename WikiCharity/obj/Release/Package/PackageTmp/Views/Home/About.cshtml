@@ -46,6 +46,7 @@
             <!-- Navigation menu -->
             <ul class="nav-menu">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Favourite List", "FavList", "Compare")</li>
                 <li>@Html.ActionLink("About", "About", "Home")</li>
                 <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
 
@@ -58,7 +59,7 @@
     </nav>
     <!-- END Navigation bar -->
     <!-- Site header -->
-    <header class="page-header bg-img size-lg">
+    <header class="page-header bg-img size-lg" style="background-image: url(/Uploads/pebblesbeachh.jpg)">
         <div class="container no-shadow">
             <h1 class="text-center">About us</h1>
             @*<p class="lead text-center">Keep reading this page to figure out how we got started and who is behind it!</p>*@
@@ -70,7 +71,6 @@
         <!-- About -->
         <section>
             <div class="container">
-                <h5>WikiCharity</h5>
                 <p style="text-align:justify">WikiCharity, is a connection and information service.</p>
                 <p style="text-align:justify">WikiCharity aims to create partnerships between both individuals & business, and charities. With the rise of corporate social responsibility programs in the corporate sector, opportunities arise for charities to build stronger relationships with businesses and thus, have a positive impact on people and the environment. </p>
                 <p style="text-align:justify">WikiCharity will help users search for relevant charities and their information, with also a comparison function for chosen charities. Searches for charities either can be done with keywords, or by first-level or second-level categories, such as charity beneficiaries or location. Once the search is complete, from the results, various kinds of historical financial figures of the chosen charities, will be displayed.</p>
@@ -88,8 +88,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-12">
-                    <h6>About</h6>
-                    <p class="text-justify">WikiCharity is a digital platform which is used to connect businesses and charities across Australia. The website would serve as a bridge which would enable the user to search charities according to his preference, provide and compare information on the charity’s basic financial data as well.  This will help the users to narrow down on the charities which they want to donate. </p>
+                    <h6>WikiCharity</h6>
+                    <p class="text-justify">
+                        WikiCharity is a platform to connect individuals, and businesses with charities & not-for-profits across Australia. The highly customizable search function will allow users to find charities based on their criteria. Search results will provide basic charity details, and the charity’s historical financial details and financial ratios. Users will also be able to compare charities to aid users to narrow down on the charities which they would like to donate to.
+                    </p>
                 </div>
 
             </div>

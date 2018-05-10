@@ -58,7 +58,7 @@
             <!-- Navigation menu -->
             <ul class="nav-menu">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Favourite List", "FavList", "Home")</li>
+                <li>@Html.ActionLink("Favourite List", "FavList", "Compare")</li>
                 <li>@Html.ActionLink("About", "About", "Home")</li>
                 <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
                 <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
@@ -69,49 +69,68 @@
         </div>
     </nav>
     <!-- END Navigation bar -->
-    <header class="page-header bg-img">
+    <header class="page-header bg-img size-lg" style="background-image: url(/Uploads/pebblesbeachh.jpg)">
         <div class="container no-shadow">
-                <h1 class="text-center">Your Favourite Charity List</h1>
-                <p class="lead text-center">You can compare up to three charities.</p>
+            <h1 class="text-center">Your Favourite Charity List</h1>
+            <p class="lead text-center">You can compare 2 to 3 charities.</p>
         </div>
     </header>
     <!-- END Page header -->
     <main>
-        <!-- Fav Table-->
-        <div class="container">
-            <table id="favTable" class="display" style="width:100%;">
-                <thead>
-                    <tr>
-                        <th style="width:20%">Charity Name</th>
-                        <th style="width:6%">Size</th>
-                        <th style="width:8%">Is Active?</th>
-                        <th>Purpose</th>
-                        <th>Beneficiaries</th>
+        <section>
+            <!-- Fav Table-->
+            <div class="container">
 
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model != null)
-                    {
-                        foreach (var i in Model)
-                        {
+                <div style="text-align:right">
+                    <a class="btn btn-info btn-sm" href="/Home/FilterResult">Clike here to view more charities</a>
+                </div>            @if (Model != null && Model.Count() > 0)
+            {
+                    <table id="favTable" class="display" style="width:100%;">
+                        <thead>
                             <tr>
-                                <td>@Html.DisplayFor(modelItem => i.Name)</td>
-                                <td>@Html.DisplayFor(modelItem => i.Size)</td>
-                                <td>@Html.DisplayFor(modelItem => i.conActivity)</td>
-                                <td>@Html.DisplayFor(modelItem => i.MainActivity)</td>
-                                <td>@Html.DisplayFor(modelItem => i.selectedBenes)</td>
-                                
+                                <th style="width:20%">Charity Name</th>
+                                <th style="width:6%">Size</th>
+                                <th style="width:8%">Is Active?</th>
+                                <th>Purpose</th>
+                                <th>Beneficiaries</th>
+                                <th>Compare it</th>
+                                <th>Id</th>
+
                             </tr>
-                        }
-                    }
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => i.Name)</td>
+                                    <td>@Html.DisplayFor(modelItem => i.Size)</td>
+                                    <td>@Html.DisplayFor(modelItem => i.conActivity)</td>
+                                    <td>@Html.DisplayFor(modelItem => i.MainActivity)</td>
+                                    <td>@Html.DisplayFor(modelItem => i.selectedBenes)</td>
+                                    <td><button class="btn btn-primary" name="all" id="@i.Id">Compare it</button></td>
+                                    <td vis>@Html.DisplayFor(modelItem => i.Id)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <br />
 
+                    <form style="text-align:right">                    
+                        <button class="btn btn-info btn-sm" id="compareBtn2" formaction="/Compare/compare" style="display:inline">Compare selected charities</button>
+                        <button class="btn btn-info btn-sm" id="compareBtn" formaction="/Compare/compares"style="display:inline">Compare selected charities</button>
 
-                </tbody>
-            </table>
+                    </form>
 
-        </div>
+                }
+                else
+                {
+                    <p>Your favorite list is empty, you can choose some charities first</p>
+
+                }
+
+            </div>
+
+        </section>
     </main>
 
     <!-- END Filter Table-->
@@ -158,10 +177,8 @@
     <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/DataTables/dataTables.responsive.min.js"></script>
     <script src="~/Scripts/DataTables/dataTables.fixedHeader.min.js"></script>
-
-    <script src="~/Scripts/cusTable.js"></script>
-
-
+    <script src="~/Scripts/FavList.js"></script>
     <script src="~/assets/js/thejobs.js"></script>
+
 </body>
 </html>

@@ -10,12 +10,12 @@ namespace WikiCharity.Controllers
     public class CompareController : Controller
     {
         //Server side DB
-        //private static CharityV2ServerEntities db = new CharityV2ServerEntities();
-        //private static List<Charity> allCharities = db.Charities.ToList();
+        private static CharityV2ServerEntities db = new CharityV2ServerEntities();
+        private static List<Charity> allCharities = db.Charities.ToList();
 
         //Local DB
-        private static CharityV2Entities db = new CharityV2Entities();
-        private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        //private static CharityV2Entities db = new CharityV2Entities();
+        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
         //my favorite list (maximum 10)
         private static List<Charity> myList = new List<Charity>();

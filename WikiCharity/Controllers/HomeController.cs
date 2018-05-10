@@ -20,12 +20,12 @@ namespace WikiCharity.Controllers
     public class HomeController : Controller
     {
         //Server side DB
-        //private static CharityV2ServerEntities db = new CharityV2ServerEntities();
-        //private static List<Charity> allCharities = db.Charities.ToList();
+        private static CharityV2ServerEntities db = new CharityV2ServerEntities();
+        private static List<Charity> allCharities = db.Charities.ToList();
 
         //Local DB
-        private static CharityV2Entities db = new CharityV2Entities();
-        private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        //private static CharityV2Entities db = new CharityV2Entities();
+        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
         private static List<Charity> myList = new List<Charity>();
 
@@ -771,6 +771,19 @@ namespace WikiCharity.Controllers
             return View(model);
         }
 
+        public ActionResult CheckList()
+        {
+            myList = Session["MyList"] as List<Charity>;
+            List<ListCountModel> list = new List<ListCountModel>();
+            foreach(var i in myList)
+            {
+                ListCountModel listCount = new ListCountModel();
+                listCount.id = i.Id;
+                list.Add(listCount);
+            }
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult AddToList(int? Id)
         {
             Charity charity = db.Charities.Find(Id);
@@ -785,12 +798,7 @@ namespace WikiCharity.Controllers
                 {
                     //remove from list
                     myList = myList.Where(item => item.Id != Id).ToList();
-                    if (ModelState.IsValid)
-                    {
-                        charity.isSelected = "N";
-                        db.Entry(charity).State = EntityState.Modified;
-                        db.SaveChanges();
-                    }
+                   
                     
                     model.isSelected = false;
                     Session["MyList"] = myList;
@@ -798,12 +806,7 @@ namespace WikiCharity.Controllers
                 //does not exist in current list
                 else
                 {
-                    if (ModelState.IsValid)
-                    {
-                        charity.isSelected = "Y";
-                        db.Entry(charity).State = EntityState.Modified;
-                        db.SaveChanges();
-                    }
+                    
                     
                     myList.Add(charity);
                     model.isSelected = true;

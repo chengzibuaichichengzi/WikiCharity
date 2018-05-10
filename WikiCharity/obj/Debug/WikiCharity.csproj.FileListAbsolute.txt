@@ -338,3 +338,4 @@ C:\Users\zyua27\Desktop\WikiCharity\wikicharity\WikiCharity\bin\Microsoft.AspNet
 C:\Users\zyua27\Desktop\WikiCharity\wikicharity\WikiCharity\obj\Debug\WikiCharity.csprojResolveAssemblyReference.cache
 C:\Users\zyua27\Desktop\WikiCharity\wikicharity\WikiCharity\obj\Debug\WikiCharity.dll
 C:\Users\zyua27\Desktop\WikiCharity\wikicharity\WikiCharity\obj\Debug\WikiCharity.pdb
+C:\Users\zyua27\Desktop\wiki2\wikicharity\WikiCharity\obj\Debug\WikiCharity.csprojResolveAssemblyReference.cache

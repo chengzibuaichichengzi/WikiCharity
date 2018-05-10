@@ -280,6 +280,7 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LineModel.cs" />
+    <Compile Include="Models\ListCountModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SelectedModel.cs" />
     <Compile Include="Models\TableResultModel.cs" />
@@ -962,6 +963,7 @@
     <Content Include="Uploads\fanren.png" />
     <Content Include="Uploads\logo.png" />
     <Content Include="Uploads\logo2.png" />
+    <Content Include="Uploads\pebblesbeachh.jpg" />
     <Content Include="Uploads\QingGariLogo.jpg" />
     <Content Include="Uploads\Rectangle4.png" />
     <Content Include="Uploads\sky.jpg" />

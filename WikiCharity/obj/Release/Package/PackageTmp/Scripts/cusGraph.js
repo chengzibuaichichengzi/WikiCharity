@@ -7,6 +7,10 @@ google.load("visualization", "1", { packages: ["corechart"] });
 // Here We will fill chartData
 $(document).ready(function () {
 
+
+    //enable tooltip on mobile
+    $(document).tooltip();
+
     //get the current charity Id through the url
     var url = window.location.pathname;
     var currid = url.substr(url.lastIndexOf('/') + 1);
@@ -75,36 +79,53 @@ function drawChart() {
     var data3 = google.visualization.arrayToDataTable(chartData3);
 
     var options = {
-        title: "Financial Chart",
+        //title: "Financial Chart",
         pointSize: 5
     };
 
     var options2 = {
-        title: "Financial Chart",
+        //title: "Financial Chart",
         pointSize: 5,
         colors: ['orange', 'gray']
+    };
+    var options3 = {
+        //title: "Financial Chart",
+        pointSize: 5,
+        colors: ['skyblue', '#5574A6']
     };
 
     var lineChart = new google.visualization.LineChart(document.getElementById('chart_div1'));
     lineChart.draw(data1, options);
     var barChart = new google.visualization.BarChart(document.getElementById('chart_div2'));
-    barChart.draw(data2, options);
+    barChart.draw(data2, options3);
     var barChart2 = new google.visualization.ColumnChart(document.getElementById('chart_div3'));
     barChart2.draw(data3, options2);
 }
 
+//auto resize
+$(window).resize(function () {
+    drawChart();
+});
 
-//$(window).resize(function () {
- //   drawChart();
-//});
-
-function showHideCode() {
+function showTable() {
     $("#showdiv").toggle();
+    $("#showTable").toggle();
+    $("#hideTable").toggle();
 }
 
-function showHideCode1() {
-    $("#showdiv1").toggle();
+function showExpDiv() {
+    $("#showdiv1").show(0);
+    //$("#showExp").toggle();
+    $("#hideExp").show(0);
+    $("#showExp").hide(0);
 }
+function HideExpDiv() {
+    $("#showdiv1").toggle();
+    //$("#showExp").toggle();
+    $("#hideExp").hide(0);
+    $("#showExp").show(0);
+}
+
 
 function showHideDesc() {
     $("#showDesc").show(0);
@@ -119,3 +140,4 @@ function hideDesc() {
     $("#showlessbtn").toggle();
     $("#showmorebtn").toggle();
 }
+

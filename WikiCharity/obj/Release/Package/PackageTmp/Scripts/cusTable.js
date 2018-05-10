@@ -48,24 +48,79 @@ $(document).ready(function () {
                 //use id column as detail button
                 "data": "Id", "name": "Id", "render": function (data, type, full) {
                     id = data;
+                    
                     return '<a class="btn btn-info btn-sm" href=/Home/Detail/' + data + '>' + 'More Details >>' + '</a>';
                 }
             },
             {
                 //use id column as detail button
-                "data": "Id", "name": "Id", "render": function (data, type, full) {
-                    return '<button id="'+data+'">Add to list</button>';
+                "data": "Id", "name": "Id", "render": function (data, type, full) {                   
+                        //return '<button id="' + data + '">Added</button>';
+                        return '<button class="btn btn-success" id="' + data + '" name="allBtn">Add</button>';
                 }
             },
         ],
+        
         "serverSide": true,
         "order": [0, "asc"],
         "processing": true,
         "language": {
             "processing": "Loading data.........Please wait"
+        },
+
+        //after the table finishing loading, change buttons of charities which are already in favorite list
+        "initComplete": function (settings, json) {
+            
+            
+            $.ajax({
+                type: 'POST',
+                url: "/Home/CheckList",
+                dataType: "json",
+                data: null,
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                        var buttons = document.getElementsByName("allBtn");
+                        for (var i = 0; i < buttons.length; i++) {
+                            for (var x = 0; x < data.length; x++) {
+                                var obj = data[x];
+                                var text = obj.id;
+                                if (obj.id == buttons[i].id) {
+                                    buttons[i].innerText = "Added";
+                                }
+                            }
+                        }
+                },
+                error: function () {
+
+                }
+            });
         }
     });
 
+    $('#example').on('draw.dt', function () {
+        $.ajax({
+            type: 'POST',
+            url: "/Home/CheckList",
+            dataType: "json",
+            data: null,
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                var buttons = document.getElementsByName("allBtn");
+                for (var i = 0; i < buttons.length; i++) {
+                    for (var x = 0; x < data.length; x++) {
+                        var obj = data[x];
+                        var text = obj.id;
+                        if (obj.id == buttons[i].id) {
+                            buttons[i].innerText = "Added";
+                        }
+                    }
+                }
+            },
+            error: function () {
+            }
+        });
+    });
 
     $('#example').on('click', 'button', function () {
 
@@ -85,13 +140,13 @@ $(document).ready(function () {
             success: function (data) {
                 if (data.isSelected == true) {
 
-                    var text = "Stored in list";
+                    var text = "Added";
                     //this.value = text;
                     var a = document.getElementById(data1.toString());
                     a.innerText = text;
                 }
                 else {
-                    var text = "Add to list";
+                    var text = "Add";
                     //this.value = text;
                     var a = document.getElementById(data1.toString());
                     a.innerText = text;

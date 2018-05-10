@@ -18,16 +18,24 @@
 
     <title>WikiCharity-Charity Info</title>
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="~/Scripts/cusGraph.js"></script>
+
     <!-- Styles -->
     <link href="~/assets/css/app.min.css" rel="stylesheet">
     <link href="~/assets/css/thejobs.css" rel="stylesheet">
     <link href="~/assets/css/custom.css" rel="stylesheet">
     <link href="~/Content/detailtable.css" rel="stylesheet">
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script src="~/Scripts/cusGraph.js"></script>
+
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
 
@@ -62,6 +70,7 @@
             <!-- Navigation menu -->
             <ul class="nav-menu">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Favourite List", "FavList", "Compare")</li>
                 <li>@Html.ActionLink("About", "About", "Home")</li>
                 <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
                 <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
@@ -73,7 +82,7 @@
     </nav>
     <!-- END Navigation bar -->
     <!-- Page header -->
-    <header class="page-header bg-img size-lg" style="background-image: url(/assets/img/bg-banner2.jpg)">
+    <header class="page-header bg-img size-lg" style="background-image: url(/Uploads/pebblesbeachh.jpg)">
         <div class="container">
             <div class="header-detail">
                 <div class="hgroup">
@@ -91,7 +100,7 @@
                 <div style="text-align:right; display:none " id="showlessbtn">
                     <button class="btn btn-primary" id="showDescbtn1" onclick="hideDesc()">Show Less</button>
                 </div>
-                
+
                 <div style="text-align:right; display:normal" id="showmorebtn">
                     <button class="btn btn-primary" id="showDescbtn" onclick="showHideDesc()">Show More</button>
                 </div>
@@ -163,10 +172,11 @@
         <section>
             <div class="container">
                 <div>
-                    <p style="text-align:justify">
+                    <p style="text-align:justify; page-break-after:always">
                         When looking at a charity's financial information, always consider potential factors that may affect that information and how you interpret it. If possible, look for other sources of information, including contacting the charity to ask questions. Please read the Donor Advise page for more information.
                     </p>
                 </div>
+                <!--Charts-->
                 <div class="chartrow">
                     <!--Bar Chart-->
                     <h4>Revenue & Expenses</h4>
@@ -178,7 +188,6 @@
                         </div>
                     </div>
                     <!--END Bar Chart-->
-
                     <!--Line Graph-->
                     <h4>Surplus / Deficit</h4>
                     <div id="chart_div1" class="chart">
@@ -188,9 +197,8 @@
                             <span class="dot3"></span>
                         </div>
                     </div>
-                </div>
-                <!--END Line Graph-->
 
+                    <!--END Line Graph-->
                     <!--Bar Chart2-->
                     <h4>Total Assets & Liabilities</h4>
                     <div id="chart_div3" class="chart">
@@ -201,7 +209,8 @@
                         </div>
                     </div>
                     <!--END Bar Chart2-->
-                    
+                </div>
+                <!--END Charts-->
                 <!--Ratios Table-->
                 <table>
                     <caption>Ratios</caption>
@@ -216,14 +225,24 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-label="Year">Employee Expenses Percentage </td>
+                            <td data-label="Year">
+                                Employee Expenses Percentage
+                                <span title="Percentage of income the Charity spends on its employees. Usually the lower this number, the better it is. Exceptions to this rule are charities in the service industry that mainly spend on their employees">
+                                    <i class="ti-help-alt" style="color:#29aafe"></i>
+                                </span>
+                            </td>
                             <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].EmpExpensePersentage)</td>
                             <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].EmpExpensePersentage)</td>
                             <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].EmpExpensePersentage)</td>
                             <td data-label="Industry Median">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].EmpExpInSizeMedian)</td>
                         </tr>
                         <tr>
-                            <td data-label="Year">Debt Equity Ratio</td>
+                            <td data-label="Year">
+                                Debt Equity Ratio
+                                <span title="Ratios of greater than 100% tell indicate that the charity has more debt than assets. Charities should strive to keep debt as low as possible, the lower this number, the better off the charity is.">
+                                    <i class="ti-help-alt" style="color:#29aafe"></i>
+                                </span>
+                            </td>
                             <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].DebtEquityRadio)</td>
                             <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].DebtEquityRadio)</td>
                             <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtEquityRadio)</td>
@@ -231,7 +250,12 @@
 
                         </tr>
                         <tr>
-                            <td data-label="Year">Saving Ratio</td>
+                            <td data-label="Year">
+                                Saving Ratio
+                                <span title="Ratio indicates amount saved after all expenditure. Usually the higher the ratio, the greater the savings but an excessively high ratio indicates excessive savings. A negative ratio indicates that the charity spent more than it received.">
+                                    <i class="ti-help-alt" style="color:#29aafe"></i>
+                                </span>
+                            </td>
                             <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].SavingRadio)</td>
                             <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].SavingRadio)</td>
                             <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].SavingRadio)</td>
@@ -239,7 +263,12 @@
 
                         </tr>
                         <tr>
-                            <td data-label="Year">Current Ratio</td>
+                            <td data-label="Year">
+                                Current Ratio
+                                <span title="Ratio measures the organization’s ability to pay short-term liabilities. Charities should try to keep their current ratios above 1.0 as anything less than 1.0 indicates that the assets are vulnerable.">
+                                    <i class="ti-help-alt" style="color:#29aafe"></i>
+                                </span>
+                            </td>
                             <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].CurrentRadio)</td>
                             <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].CurrentRadio)</td>
                             <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].CurrentRadio)</td>
@@ -247,7 +276,12 @@
 
                         </tr>
                         <tr>
-                            <td data-label="Year">Debt Ratio</td>
+                            <td data-label="Year">
+                                Debt Ratio
+                                <span title="Ratio measures the margin of safety to the creditors of an entity in the event of liquidation; thus the lower the ratio, the greater asset protection to creditors.">
+                                    <i class="ti-help-alt" style="color:#29aafe"></i>
+                                </span>
+                            </td>
                             <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].DebtRadio)</td>
                             <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].DebtRadio)</td>
                             <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].DebtRadio)</td>
@@ -257,8 +291,8 @@
                     </tbody>
                 </table>
                 <!--END Ratios Table-->
-                <div class="btn-search">
-                    <button class="btn btn-primary" id="show" onclick="showHideCode()">Show/Hide Financial Tables</button>
+                <div class="btn-search" id="showTable" style="text-align:right">
+                    <button class="btn btn-primary" onclick="showTable()">Show More Financial Tables</button>
                 </div>
                 <!--Financial Table-->
                 <div id="showdiv" style="display:none">
@@ -443,33 +477,30 @@
                     </table>
 
                     <!--END Net Assets Liabilities Table-->
-                    <!--END Financial Table-->
                 </div>
-                <div class="btn-search">
-                    <button class="btn btn-primary" id="show1" onclick="showHideCode1()">Show/Hide Ratio Explanation</button>
+                <!--END Financial Table-->
+                <div class="btn-search" id="hideTable" style="text-align:right; display:none">
+                    <button class="btn btn-primary" onclick="showTable()">Hide Financial Tables</button>
                 </div>
-                <div id="showdiv1" style="display:none">
+
+                <br />
+                <hr />
+                <div>
                     <h4>What are the financial ratios and what do they mean?</h4>
                     <p style="text-align:justify">A financial statement ratio is derived by dividing the dollar amount of one item reported by the dollar amount of another item reported. The purpose is to express a relationship between two relevant items which is easy to interpret and compare. This is done to asses the financial stability of an entity. Financial Stability refers to the ability of an entity to continue operations in the long term.</p>
-                    <p>WikiCharity employs five such ratios as follows:</p>
-                    <p style="text-indent:50px;">
-                        • Employee expenses percentage
+                    <p style="display:inline">
+                        WikiCharity employs five such ratios and the Industry Medians for the respective charity sizes for comparison.
                     </p>
-                    <p style="text-indent:50px;">
-                        • Debt-equity Ratio
-                    </p>
-                    <p style="text-indent:50px;">
-                        • Savings Ratio
-                    </p>
-                    <p style="text-indent:50px;">
-                        • Current Ratio
-                    </p>
-                    <p style="text-indent:50px;">
-                        • Debt Ratio
-                    </p>
-                    <p style="text-align:justify">
-                        WikiCharity also provides the Industry Medians for the respective charity sizes for comparison.
-                    </p>
+                    <p style="display:inline; cursor:pointer; color:#29aafe" onclick="showExpDiv()" id="showExp"> Click here to read more on financial ratios.</p>
+                </div>
+
+
+                @*<div class="btn-search">
+                        <button class="btn btn-primary" id="show1" onclick="showHideCode1()">Show/Hide Ratio Explanation</button>
+                    </div>*@
+
+
+                <div id="showdiv1" style="display:none">
                     <h4>Employee Expenses Percentage</h4>
                     <p style="text-align:justify">
                         <i>
@@ -523,7 +554,9 @@
                     </p>
 
                 </div>
-
+                <div class="btn-search" id="hideExp" style="text-align:right; display:none">
+                    <button class="btn btn-primary" onclick="HideExpDiv()">Hide Ratio Explanation</button>
+                </div>
 
 
 
@@ -540,8 +573,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-12">
-                    <h6>About</h6>
-                    <p class="text-justify">WikiCharity is a digital platform which is used to connect businesses and charities across Australia. The website would serve as a bridge which would enable the user to search charities according to his preference, provide and compare information on the charity’s basic financial data as well.  This will help the users to narrow down on the charities which they want to donate. </p>
+                    <h6>WikiCharity</h6>
+                    <p class="text-justify">
+                        WikiCharity is a platform to connect individuals, and businesses with charities & not-for-profits across Australia. The highly customizable search function will allow users to find charities based on their criteria. Search results will provide basic charity details, and the charity’s historical financial details and financial ratios. Users will also be able to compare charities to aid users to narrow down on the charities which they would like to donate to.
+                    </p>
                 </div>
 
             </div>

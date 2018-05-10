@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<WikiCharity.Models.DetailModel>
+@{
     Layout = null;
 }
 
@@ -17,7 +18,11 @@
     <link href="~/assets/css/thejobs.css" rel="stylesheet">
     <link href="~/assets/css/custom.css" rel="stylesheet">
     <link href="~/Content/detailtable.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="~/Scripts/cusTableCompare.js"></script>
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
@@ -47,7 +52,7 @@
             <!-- Navigation menu -->
             <ul class="nav-menu">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Favourite List", "FavList", "Home")</li>
+                <li>@Html.ActionLink("Favourite List", "FavList", "Compare")</li>
 
                 <li>@Html.ActionLink("About", "About", "Home")</li>
                 <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
@@ -61,7 +66,7 @@
     </nav>
     <!-- END Navigation bar -->
     <!-- Site header -->
-    <header class="page-header bg-img size-lg">
+    <header class="page-header bg-img size-lg" style="background-image: url(/Uploads/pebblesbeachh.jpg)">
         <div class="container no-shadow">
             <h1 class="text-center">Compare Charities</h1>
             <p class="lead text-center">Compare different charities</p>
@@ -76,73 +81,75 @@
                 <header class="section-header">
                     @*<span>Charities</span>
                         <h2>Comparing</h2>*@
-                    <p>Choose the charity that fits your needs</p>
                 </header>
 
                 <ul class="pricing">
                     <li>
-                        <h6>Charity A</h6>
-                        @*<div class="price">
-                                <sup>$</sup>0
-                                <span>&nbsp;</span>
-                            </div>*@
+                        <h6>@Model.ElementAt(0).Name</h6>
                         <hr>
-                        <p>ABN: <strong>xxxxxxx</strong></p>
-                        <p>Size: <strong>Large</strong></p>
-                        <p>Tax Deductiable:<strong>Yes</strong></p>
-                        <p>Full time staff: <strong>11</strong></p>
-                        <p>Part time staff: <strong>1</strong></p>
-                        <p>Casual staff: <strong>11</strong></p>
-                        <p>Volunteer staff: <strong>111</strong></p>
+                        <p>
+                            <i class="fa fa-briefcase"></i>
+
+                            ABN: @Model.ElementAt(0).ABN
+                        </p>
+                        <p><i class="fas fa-warehouse"></i>Size: @Model.ElementAt(0).Size</p>
+
+                        <p><i class="fas fa-money-bill-alt"></i>Tax Deductiable:@Model.ElementAt(0).Tax</p>
+                        <p><i class="fa fa-users"></i>Full time staff: @Model.ElementAt(0).StaffFull</p>
+                        <p><i class="fa fa-users"></i>Part time staff: @Model.ElementAt(0).StaffPart</p>
+                        <p><i class="fa fa-users"></i>Casual staff: @Model.ElementAt(0).StaffCasual</p>
+                        <p><i class="fa fa-users"></i>Volunteer staff: @Model.ElementAt(0).StaffVolun</p>
                         <br>
-                        <a class="btn btn-primary btn-block" href="#">More Details</a>
+
+                        <a class="btn btn-primary btn-block" id="Todetail1" href="/Home/Detail/@ViewBag.id1">More Details</a>
                     </li>
 
                     <li>
-                        <h6>Charity B</h6>
-                        @*<div class="price">
-                                <sup>$</sup>0
-                                <span>&nbsp;</span>
-                            </div>*@
+                        <h6>@Model.ElementAt(1).Name</h6>
                         <hr>
-                        <p>ABN: <strong>xxxxxxx</strong></p>
-                        <p>Size: <strong>Large</strong></p>
-                        <p>Tax Deductiable:<strong>Yes</strong></p>
-                        <p>Full time staff: <strong>11</strong></p>
-                        <p>Part time staff: <strong>1</strong></p>
-                        <p>Casual staff: <strong>11</strong></p>
-                        <p>Volunteer staff: <strong>111</strong></p>
+                        <p><i class="fa fa-briefcase"></i>ABN: @Model.ElementAt(1).ABN</p>
+                        <p><i class="fas fa-warehouse"></i>Size: @Model.ElementAt(1).Size</p>
+
+                        <p><i class="fas fa-money-bill-alt"></i>Tax Deductiable:@Model.ElementAt(1).Tax</p>
+                        <p><i class="fa fa-users"></i>Full time staff: @Model.ElementAt(1).StaffFull</p>
+                        <p><i class="fa fa-users"></i>Part time staff: @Model.ElementAt(1).StaffPart</p>
+                        <p><i class="fa fa-users"></i>Casual staff: @Model.ElementAt(1).StaffCasual</p>
+                        <p><i class="fa fa-users"></i>Volunteer staff: @Model.ElementAt(1).StaffVolun</p>
                         <br>
-                        <a class="btn btn-primary btn-block" href="#">More Details</a>
+
+                        <a class="btn btn-primary btn-block" id="Todetail2" href="/Home/Detail/@ViewBag.id2">More Details</a>
                     </li>
 
                     <li>
-                        <h6>Charity C</h6>
-                        @*<div class="price">
-                                <sup>$</sup>0
-                                <span>&nbsp;</span>
-                            </div>*@
+                        <h6>@Model.ElementAt(2).Name</h6>
                         <hr>
-                        <p>ABN: <strong>xxxxxxx</strong></p>
-                        <p>Size: <strong>Large</strong></p>
-                        <p>Tax Deductiable:<strong>Yes</strong></p>
-                        <p>Full time staff: <strong>11</strong></p>
-                        <p>Part time staff: <strong>1</strong></p>
-                        <p>Casual staff: <strong>11</strong></p>
-                        <p>Volunteer staff: <strong>111</strong></p>
+                        <p><i class="fas fa-briefcase"></i>ABN: @Model.ElementAt(2).ABN</p>
+                        <p><i class="fas fa-warehouse"></i>Size: @Model.ElementAt(2).Size</p>
+
+                        <p>
+                            <i class="fas fa-money-bill-alt"></i>
+                            Tax Deductiable:@Model.ElementAt(2).Tax
+                        </p>
+                        <p><i class="fa fa-users"></i>Full time staff: @Model.ElementAt(2).StaffFull</p>
+                        <p><i class="fa fa-users"></i>Part time staff: @Model.ElementAt(2).StaffPart</p>
+                        <p><i class="fa fa-users"></i>Casual staff: @Model.ElementAt(2).StaffCasual</p>
+                        <p><i class="fa fa-users"></i>Volunteer staff: @Model.ElementAt(2).StaffVolun</p>
                         <br>
-                        <a class="btn btn-primary btn-block" href="#">More Details</a>
+
+                        <a class="btn btn-primary btn-block" id="Todetail2" href="/Home/Detail/@ViewBag.id3">More Details</a>
                     </li>
                 </ul>
             </div>
 
             <!--END Three Cards-->
+            <br />
+            <br />
             <!--Expene/Income Graph for three charities-->
             <div class="container">
                 <div class="chartrow">
-                    <h4>Revenue & Expenses</h4>
+                    <h4>Revenue & Expenses in 2016</h4>
 
-                    <div id="There is a Chart">
+                    <div id="chart_div_new" class="chart">
 
                     </div>
 
@@ -151,50 +158,49 @@
             <!--END Graph-->
             <!--Financial Table-->
             <div class="container">
-
+                <h4>Ratios</h4>
                 <table>
-                    <caption>Ratios</caption>
                     <thead>
                         <tr>
                             <th scope="col"></th>
-                            <th scope="col">Charity A</th>
-                            <th scope="col">Charity B</th>
-                            <th scope="col">Charity C</th>
+                            <th scope="col">@Model.ElementAt(0).Name</th>
+                            <th scope="col">@Model.ElementAt(1).Name</th>
+                            <th scope="col">@Model.ElementAt(2).Name</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td data-label="">Employee Expenses Percentage </td>
-                            <td data-label="Charity A">11</td>
-                            <td data-label="Charity B">22</td>
-                            <td data-label="Charity C">33</td>
+                            <td data-label=@Model.ElementAt(0).Name>@Model.ElementAt(0).EmpExpensePersentage</td>
+                            <td data-label=@Model.ElementAt(1).Name>@Model.ElementAt(1).EmpExpensePersentage</td>
+                            <td data-label=@Model.ElementAt(2).Name>@Model.ElementAt(2).EmpExpensePersentage</td>
                         </tr>
                         <tr>
                             <td data-label="">Debt Equity Ratio</td>
-                            <td data-label="Charity A">44</td>
-                            <td data-label="Charity B">332</td>
-                            <td data-label="Charity C">24</td>
+                            <td data-label=@Model.ElementAt(0).Name>@Model.ElementAt(0).DebtEquityRadio</td>
+                            <td data-label=@Model.ElementAt(1).Name>@Model.ElementAt(1).DebtEquityRadio</td>
+                            <td data-label=@Model.ElementAt(2).Name>@Model.ElementAt(2).DebtEquityRadio</td>
 
                         </tr>
                         <tr>
                             <td data-label="">Saving Ratio</td>
-                            <td data-label="Charity A">2</td>
-                            <td data-label="Charity B">22</td>
-                            <td data-label="Charity C">33</td>
+                            <td data-label=@Model.ElementAt(0).Name>@Model.ElementAt(0).SavingRadio</td>
+                            <td data-label=@Model.ElementAt(1).Name>@Model.ElementAt(1).SavingRadio</td>
+                            <td data-label=@Model.ElementAt(2).Name>@Model.ElementAt(2).SavingRadio</td>
 
                         </tr>
                         <tr>
                             <td data-label="">Current Ratio</td>
-                            <td data-label="Charity A">13</td>
-                            <td data-label="Charity B">rwr</td>
-                            <td data-label="Charity C">324</td>
+                            <td data-label=@Model.ElementAt(0).Name>@Model.ElementAt(0).CurrentRadio</td>
+                            <td data-label=@Model.ElementAt(1).Name>@Model.ElementAt(1).CurrentRadio</td>
+                            <td data-label=@Model.ElementAt(2).Name>@Model.ElementAt(2).CurrentRadio</td>
 
                         </tr>
                         <tr>
                             <td data-label="">Debt Ratio</td>
-                            <td data-label="Charity A">243</td>
-                            <td data-label="Charity B">243</td>
-                            <td data-label="Charity C">55</td>
+                            <td data-label=@Model.ElementAt(0).Name>@Model.ElementAt(0).DebtRadio</td>
+                            <td data-label=@Model.ElementAt(1).Name>@Model.ElementAt(1).DebtRadio</td>
+                            <td data-label=@Model.ElementAt(2).Name>@Model.ElementAt(2).DebtRadio</td>
 
                         </tr>
                     </tbody>
