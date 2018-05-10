@@ -13,18 +13,19 @@ using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Web.Script.Services;
 using System.Web.Services;
+using System.Data.Entity;
 
 namespace WikiCharity.Controllers
 {
     public class HomeController : Controller
     {
         //Server side DB
-        private static CharityV2ServerEntities db = new CharityV2ServerEntities();
-        private static List<Charity> allCharities = db.Charities.ToList();
+        //private static CharityV2ServerEntities db = new CharityV2ServerEntities();
+        //private static List<Charity> allCharities = db.Charities.ToList();
 
         //Local DB
-        //private static CharityV2Entities db = new CharityV2Entities();
-        //private static List<Charity> allCharities = db.Charities.ToList<Charity>();
+        private static CharityV2Entities db = new CharityV2Entities();
+        private static List<Charity> allCharities = db.Charities.ToList<Charity>();
 
         private static List<Charity> myList = new List<Charity>();
 
@@ -784,12 +785,26 @@ namespace WikiCharity.Controllers
                 {
                     //remove from list
                     myList = myList.Where(item => item.Id != Id).ToList();
+                    if (ModelState.IsValid)
+                    {
+                        charity.isSelected = "N";
+                        db.Entry(charity).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    
                     model.isSelected = false;
                     Session["MyList"] = myList;
                 }
                 //does not exist in current list
                 else
                 {
+                    if (ModelState.IsValid)
+                    {
+                        charity.isSelected = "Y";
+                        db.Entry(charity).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    
                     myList.Add(charity);
                     model.isSelected = true;
                     Session["MyList"] = myList;
@@ -805,7 +820,6 @@ namespace WikiCharity.Controllers
             
             
             return Json(model, JsonRequestBehavior.AllowGet);
-
         }
 
         public ActionResult MyList()

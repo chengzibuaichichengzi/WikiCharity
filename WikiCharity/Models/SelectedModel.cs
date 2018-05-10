@@ -8,6 +8,7 @@ namespace WikiCharity.Models
     public class SelectedModel
     {
         public bool isSelected { get; set; }
+        public int compareNum { get; set; }
 
     }
 }

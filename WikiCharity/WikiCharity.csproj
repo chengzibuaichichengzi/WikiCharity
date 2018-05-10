@@ -270,6 +270,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CharityV2Server.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompareModel.cs" />
     <Compile Include="Models\DetailModel.cs" />
     <Compile Include="Models\EmailFormModel.cs" />
     <Compile Include="Models\FilterModel.cs" />
@@ -687,6 +688,7 @@
     <Content Include="Scripts\chosen.proto.min.js" />
     <Content Include="Scripts\cusGraph.js" />
     <Content Include="Scripts\cusTable.js" />
+    <Content Include="Scripts\cusTableCompare.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
@@ -923,6 +925,7 @@
     <None Include="Properties\PublishProfiles\WikicharityWebsite - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\WikicharityWebsite - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\FavList.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />

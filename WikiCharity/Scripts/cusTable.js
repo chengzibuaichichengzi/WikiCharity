@@ -48,16 +48,23 @@ $(document).ready(function () {
                 //use id column as detail button
                 "data": "Id", "name": "Id", "render": function (data, type, full) {
                     id = data;
+                    
                     return '<a class="btn btn-info btn-sm" href=/Home/Detail/' + data + '>' + 'More Details >>' + '</a>';
                 }
             },
             {
                 //use id column as detail button
                 "data": "Id", "name": "Id", "render": function (data, type, full) {
-                    return '<button id="'+data+'">Add to list</button>';
+                    if (full.isSelected == 'Y') {
+                        return '<button id="' + data + '">Stored in list</button>';
+                    }
+                    else {
+                        return '<button id="' + data + '">Add to list</button>';
+                    }
                 }
             },
         ],
+        
         "serverSide": true,
         "order": [0, "asc"],
         "processing": true,
