@@ -252,3 +252,5 @@ C:\Users\zyua27\Desktop\wiki2\WikiCharity\WikiCharity\obj\Release\WikiCharity.dl
 C:\Users\zyua27\Desktop\wiki2\WikiCharity\WikiCharity\obj\Release\WikiCharity.pdb
 C:\Users\zyua27\Desktop\wiki2\wikicharity\WikiCharity\bin\assets\fonts\themify.woff
 C:\Users\zyua27\Desktop\WikiCharity\wikicharity\WikiCharity\bin\assets\fonts\themify.woff
+C:\Users\zyua27\Desktop\WikiCharity\wikicharity\WikiCharity\bin\itextsharp.dll
+C:\Users\zyua27\Desktop\WikiCharity\wikicharity\WikiCharity\bin\itextsharp.xml

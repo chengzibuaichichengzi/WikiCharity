@@ -36,9 +36,7 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 
-    <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
-
+    
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="icon" href="~/assets/img/favicon.ico">
@@ -156,9 +154,17 @@
                         <span>Volunteer Staff: @Html.DisplayFor(i => Model.ToList()[0].StaffVolun)</span>
                     </li>
                 </ul>
+                <div class="button-group">
+                    <div class="action-buttons">
+                            <button class="btn btn-primary" id="myprint" onclick="beforePrint();window.print();afterPrint();">Print This Page</button>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </header>
+    
     <!-- END Page header -->
 
     <div style="text-align:center">
@@ -558,6 +564,7 @@
                     <button class="btn btn-primary" onclick="HideExpDiv()">Hide Ratio Explanation</button>
                 </div>
 
+                <br />
 
 
             </div>

@@ -1,4 +1,7 @@
-﻿// globar variable for hold chart data
+﻿window.onbeforeprint = beforePrint;
+window.onafterprint = afterPrint;
+
+// globar variable for hold chart data
 var chartData1; 
 var chartData2;
 var chartData3;
@@ -6,7 +9,9 @@ google.load("visualization", "1", { packages: ["corechart"] });
 
 // Here We will fill chartData
 $(document).ready(function () {
-
+    $("#myprint").click(function(){
+        window.print();
+    })
 
     //enable tooltip on mobile
     $(document).tooltip();
@@ -141,3 +146,31 @@ function hideDesc() {
     $("#showmorebtn").toggle();
 }
 
+
+function beforePrint() {
+    $("#showdiv1").show(0);
+    $("#showdiv").show(0);
+    $("#showExp").hide(0);
+    $("#hideExp").hide(0);
+    $("#showTable").hide(0);
+    $("#hideTable").hide(0);
+    $("#showDesc").show(0);
+    $("#lessDesc").hide(0);
+    $("#showlessbtn").hide(0);
+    $("#showmorebtn").hide(0);
+}
+
+function afterPrint() {
+    $("#showdiv1").hide(0);
+    $("#showdiv").hide(0);
+    $("#showExp").show(0);
+    $("#hideExp").hide(0);
+    $("#showTable").show(0);
+    $("#hideTable").hide(0);
+
+    $("#showDesc").hide(0);
+    $("#lessDesc").show(0);
+    $("#showlessbtn").hide(0);
+    $("#showmorebtn").show(0);
+
+}

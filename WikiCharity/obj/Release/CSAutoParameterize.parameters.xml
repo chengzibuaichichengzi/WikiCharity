@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-WikiCharity-20180322045109.mdf;Initial Catalog=aspnet-WikiCharity-20180322045109;Integrated Security=True" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\zyua27\\Desktop\\wiki2\\wikicharity\\WikiCharity\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\zyua27\\Desktop\\WikiCharity\\wikicharity\\WikiCharity\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
   </parameter>
   <parameter name="CharityV2Entities-Web.config Connection String" description="CharityV2Entities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.CharityV2.csdl|res://*/Models.CharityV2.ssdl|res://*/Models.CharityV2.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.\SQLEXPRESS;initial catalog=CharityV2;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\zyua27\\Desktop\\wiki2\\wikicharity\\WikiCharity\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CharityV2Entities']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\zyua27\\Desktop\\WikiCharity\\wikicharity\\WikiCharity\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CharityV2Entities']/@connectionString" />
   </parameter>
   <parameter name="CharityV2ServerEntities-Web.config Connection String" description="CharityV2ServerEntities Connection String used in web.config by the application to access the database." defaultValue="Server=tcp:wikicharitywbsitedbserver.database.windows.net,1433;Initial Catalog=DetailCharityDB;Persist Security Info=False;User ID=qinggari;Password=Cenzi19930707;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\zyua27\\Desktop\\wiki2\\wikicharity\\WikiCharity\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CharityV2ServerEntities']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\zyua27\\Desktop\\WikiCharity\\wikicharity\\WikiCharity\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CharityV2ServerEntities']/@connectionString" />
   </parameter>
 </parameters>

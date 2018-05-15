@@ -15,6 +15,7 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using System.Data.Entity;
 
+
 namespace WikiCharity.Controllers
 {
     public class HomeController : Controller
@@ -462,6 +463,7 @@ namespace WikiCharity.Controllers
         //Detail page for each charity
         public ActionResult Detail(int? id)
         {
+            ViewBag.printID = id;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -568,9 +570,13 @@ namespace WikiCharity.Controllers
                 a++;
                 b = a.ToString();
             }              
+
+
                 
             return View(finalModelList);
         }
+
+        
 
         //return json data for line chart on detail page
         [HttpPost]
