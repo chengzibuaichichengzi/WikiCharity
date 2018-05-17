@@ -970,6 +970,8 @@
     <Content Include="Uploads\BackImage.jpg" />
     <Content Include="Uploads\BackImage.png" />
     <Content Include="Uploads\fanren.png" />
+    <Content Include="Uploads\heart.png" />
+    <Content Include="Uploads\hearted.png" />
     <Content Include="Uploads\logo.png" />
     <Content Include="Uploads\logo2.png" />
     <Content Include="Uploads\pebblesbeachh.jpg" />

@@ -56,7 +56,8 @@ $(document).ready(function () {
                 //use id column as detail button
                 "data": "Id", "name": "Id", "render": function (data, type, full) {                   
                         //return '<button id="' + data + '">Added</button>';
-                        return '<button class="btn btn-success" id="' + data + '" name="allBtn">Add</button>';
+                    //return '<button class="btn btn-success" id="' + data + '" name="allBtn">Add</button>';
+                    return '<input type="image", src="../Uploads/heart.png" name="addtolist" class="btTxt submit" id="' + data + '" />';
                 }
             },
         ],
@@ -80,13 +81,13 @@ $(document).ready(function () {
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
 
-                        var buttons = document.getElementsByName("allBtn");
+                        var buttons = document.getElementsByName("addtolist");
                         for (var i = 0; i < buttons.length; i++) {
                             for (var x = 0; x < data.length; x++) {
                                 var obj = data[x];
                                 var text = obj.id;
                                 if (obj.id == buttons[i].id) {
-                                    buttons[i].innerText = "Added";
+                                    buttons[i].src = "../Uploads/hearted.png";
                                 }
                             }
                         }
@@ -112,7 +113,7 @@ $(document).ready(function () {
                         var obj = data[x];
                         var text = obj.id;
                         if (obj.id == buttons[i].id) {
-                            buttons[i].innerText = "Added";
+                            buttons[i].src = "../Uploads/hearted.png";
                         }
                     }
                 }
@@ -122,12 +123,19 @@ $(document).ready(function () {
         });
     });
 
-    $('#example').on('click', 'button', function () {
+    $('#example').on('click', 'input', function () {
 
+        var x = tableInit.row(this.closest('tr')).data();
         //full screen
-        var data1 = tableInit.row(this.closest('tr')).data().Id;
-        //small screen
-        //var data1 = tableInit.row(this).data().Id;
+        //
+        if (x == null) {
+            //small screen
+            var data1 = tableInit.row(this).data().Id;
+        }
+        else {
+            var data1 = x.Id;
+        }
+        
         var data = JSON.stringify({
             'id': data1
         });
@@ -140,16 +148,16 @@ $(document).ready(function () {
             success: function (data) {
                 if (data.isSelected == true) {
 
-                    var text = "Added";
+                    //var text = "Added";
                     //this.value = text;
                     var a = document.getElementById(data1.toString());
-                    a.innerText = text;
+                    a.src = "../Uploads/hearted.png";
                 }
                 else {
-                    var text = "Add";
+                    //var text = "Add";
                     //this.value = text;
                     var a = document.getElementById(data1.toString());
-                    a.innerText = text;
+                    a.src = "../Uploads/heart.png";
                 }
             },
             error: function () {
