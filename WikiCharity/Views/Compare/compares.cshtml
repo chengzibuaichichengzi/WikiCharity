@@ -18,13 +18,17 @@
     <link href="~/assets/css/thejobs.css" rel="stylesheet">
     <link href="~/assets/css/custom.css" rel="stylesheet">
     <link href="~/Content/detailtable.css" rel="stylesheet">
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script src="~/Scripts/cusTableCompare.js"></script>
 
-    
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="icon" href="~/assets/img/favicon.ico">
@@ -52,10 +56,11 @@
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("Favourite List", "FavList", "Compare")</li>
 
-                <li>@Html.ActionLink("About", "About", "Home")</li>
                 <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
 
                 <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+
                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
             </ul>
             <!-- END Navigation menu -->
@@ -83,55 +88,55 @@
 
                 <ul class="pricing">
                     <li>
-                        <h6>@Model.ElementAt(0).Name</h6>
+                        <h6 style="height:40px">@Model.ElementAt(0).Name</h6>
                         <hr>
                         <p>
                             <i class="fa fa-briefcase"></i>
 
                             ABN: @Model.ElementAt(0).ABN
                         </p>
-                        <p><i class="fas fa-warehouse"></i>Size: @Model.ElementAt(0).Size</p>
+                        <p><i class="fas fa-warehouse"></i>　Size: @Model.ElementAt(0).Size</p>
 
-                        <p><i class="fas fa-money-bill-alt"></i>Tax Deductiable:@Model.ElementAt(0).Tax</p>
-                        <p><i class="fa fa-users"></i>Full time staff: @Model.ElementAt(0).StaffFull</p>
-                        <p><i class="fa fa-users"></i>Part time staff: @Model.ElementAt(0).StaffPart</p>
-                        <p><i class="fa fa-users"></i>Casual staff: @Model.ElementAt(0).StaffCasual</p>
-                        <p><i class="fa fa-users"></i>Volunteer staff: @Model.ElementAt(0).StaffVolun</p>
+                        <p><i class="fas fa-money-bill-alt"></i>　Tax Deductiable: &nbsp;@Model.ElementAt(0).Tax</p>
+                        <p><i class="fa fa-users"></i>　Full time staff:&nbsp; @Model.ElementAt(0).StaffFull</p>
+                        <p><i class="fa fa-users"></i>　Part time staff:&nbsp; @Model.ElementAt(0).StaffPart</p>
+                        <p><i class="fa fa-users"></i>　Casual staff:&nbsp; @Model.ElementAt(0).StaffCasual</p>
+                        <p><i class="fa fa-users"></i>　Volunteer staff: &nbsp;@Model.ElementAt(0).StaffVolun</p>
                         <br>
 
                         <a class="btn btn-primary btn-block" id="Todetail1" href="/Home/Detail/@ViewBag.id1">More Details</a>
                     </li>
 
                     <li>
-                        <h6>@Model.ElementAt(1).Name</h6>
+                        <h6 style="height:40px">@Model.ElementAt(1).Name</h6>
                         <hr>
-                        <p><i class="fa fa-briefcase"></i>ABN: @Model.ElementAt(1).ABN</p>
-                        <p><i class="fas fa-warehouse"></i>Size: @Model.ElementAt(1).Size</p>
+                        <p><i class="fa fa-briefcase"></i>　ABN:&nbsp; @Model.ElementAt(1).ABN</p>
+                        <p><i class="fas fa-warehouse"></i>　Size: &nbsp;@Model.ElementAt(1).Size</p>
 
-                        <p><i class="fas fa-money-bill-alt"></i>Tax Deductiable:@Model.ElementAt(1).Tax</p>
-                        <p><i class="fa fa-users"></i>Full time staff: @Model.ElementAt(1).StaffFull</p>
-                        <p><i class="fa fa-users"></i>Part time staff: @Model.ElementAt(1).StaffPart</p>
-                        <p><i class="fa fa-users"></i>Casual staff: @Model.ElementAt(1).StaffCasual</p>
-                        <p><i class="fa fa-users"></i>Volunteer staff: @Model.ElementAt(1).StaffVolun</p>
+                        <p><i class="fas fa-money-bill-alt"></i>　Tax Deductiable:&nbsp;@Model.ElementAt(1).Tax</p>
+                        <p><i class="fa fa-users"></i>　Full time staff:&nbsp; @Model.ElementAt(1).StaffFull</p>
+                        <p><i class="fa fa-users"></i>　Part time staff:&nbsp; @Model.ElementAt(1).StaffPart</p>
+                        <p><i class="fa fa-users"></i>　Casual staff:&nbsp; @Model.ElementAt(1).StaffCasual</p>
+                        <p><i class="fa fa-users"></i>　Volunteer staff:&nbsp; @Model.ElementAt(1).StaffVolun</p>
                         <br>
 
                         <a class="btn btn-primary btn-block" id="Todetail2" href="/Home/Detail/@ViewBag.id2">More Details</a>
                     </li>
 
                     <li>
-                        <h6>@Model.ElementAt(2).Name</h6>
+                        <h6 style="height:40px">@Model.ElementAt(2).Name</h6>
                         <hr>
-                        <p><i class="fas fa-briefcase"></i>ABN: @Model.ElementAt(2).ABN</p>
-                        <p><i class="fas fa-warehouse"></i>Size: @Model.ElementAt(2).Size</p>
+                        <p><i class="fas fa-briefcase"></i>　ABN:&nbsp; @Model.ElementAt(2).ABN</p>
+                        <p><i class="fas fa-warehouse"></i>　Size:&nbsp; @Model.ElementAt(2).Size</p>
 
                         <p>
                             <i class="fas fa-money-bill-alt"></i>
-                            Tax Deductiable:@Model.ElementAt(2).Tax
+                            Tax Deductiable:&nbsp;@Model.ElementAt(2).Tax
                         </p>
-                        <p><i class="fa fa-users"></i>Full time staff: @Model.ElementAt(2).StaffFull</p>
-                        <p><i class="fa fa-users"></i>Part time staff: @Model.ElementAt(2).StaffPart</p>
-                        <p><i class="fa fa-users"></i>Casual staff: @Model.ElementAt(2).StaffCasual</p>
-                        <p><i class="fa fa-users"></i>Volunteer staff: @Model.ElementAt(2).StaffVolun</p>
+                        <p><i class="fa fa-users"></i>　Full time staff:&nbsp; @Model.ElementAt(2).StaffFull</p>
+                        <p><i class="fa fa-users"></i>　Part time staff:&nbsp; @Model.ElementAt(2).StaffPart</p>
+                        <p><i class="fa fa-users"></i>　Casual staff: &nbsp; @Model.ElementAt(2).StaffCasual</p>
+                        <p><i class="fa fa-users"></i>　Volunteer staff:&nbsp; @Model.ElementAt(2).StaffVolun</p>
                         <br>
 
                         <a class="btn btn-primary btn-block" id="Todetail2" href="/Home/Detail/@ViewBag.id3">More Details</a>
@@ -145,7 +150,7 @@
             <!--Expene/Income Graph for three charities-->
             <div class="container">
                 <div class="chartrow">
-                    <h4>Revenue & Expenses in 2016</h4>
+                    <h4>Revenue & Expenses in 2016 ($)</h4>
 
                     <div id="chart_div_new" class="chart">
 
@@ -168,34 +173,60 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-label="">Employee Expenses Percentage </td>
+                            <td data-label="">
+                                Employee Expenses Percentage(%)
+                                <span title="Percentage of income the Charity spends on its employees. Usually the lower this number, the better it is. Exceptions to this rule are charities in the service industry that mainly spend on their employees">
+                                    <i class="ti-help-alt" style="color:#29aafe"></i>
+                                </span>
+
+                            </td>
                             <td data-label=@Model.ElementAt(0).Name>@Model.ElementAt(0).EmpExpensePersentage</td>
                             <td data-label=@Model.ElementAt(1).Name>@Model.ElementAt(1).EmpExpensePersentage</td>
                             <td data-label=@Model.ElementAt(2).Name>@Model.ElementAt(2).EmpExpensePersentage</td>
                         </tr>
                         <tr>
-                            <td data-label="">Debt Equity Ratio</td>
+                            <td data-label="">
+                                Debt Equity Ratio(%)
+                                <span title="Ratios of greater than 100% tell indicate that the charity has more debt than assets. Charities should strive to keep debt as low as possible, the lower this number, the better off the charity is.">
+                                    <i class="ti-help-alt" style="color:#29aafe"></i>
+                                </span>
+                            </td>
                             <td data-label=@Model.ElementAt(0).Name>@Model.ElementAt(0).DebtEquityRadio</td>
                             <td data-label=@Model.ElementAt(1).Name>@Model.ElementAt(1).DebtEquityRadio</td>
                             <td data-label=@Model.ElementAt(2).Name>@Model.ElementAt(2).DebtEquityRadio</td>
 
                         </tr>
                         <tr>
-                            <td data-label="">Saving Ratio</td>
+                            <td data-label="">
+                                Saving Ratio(%)
+                                <span title="Ratio indicates amount saved after all expenditure. Usually the higher the ratio, the greater the savings but an excessively high ratio indicates excessive savings. A negative ratio indicates that the charity spent more than it received.">
+                                    <i class="ti-help-alt" style="color:#29aafe"></i>
+                                </span>
+                            </td>
                             <td data-label=@Model.ElementAt(0).Name>@Model.ElementAt(0).SavingRadio</td>
                             <td data-label=@Model.ElementAt(1).Name>@Model.ElementAt(1).SavingRadio</td>
                             <td data-label=@Model.ElementAt(2).Name>@Model.ElementAt(2).SavingRadio</td>
 
                         </tr>
                         <tr>
-                            <td data-label="">Current Ratio</td>
+                            <td data-label="">
+                                Current Ratio(%)
+                                <span title="Ratio measures the organization’s ability to pay short-term liabilities. Charities should try to keep their current ratios above 1.0 as anything less than 1.0 indicates that the assets are vulnerable.">
+                                    <i class="ti-help-alt" style="color:#29aafe"></i>
+                                </span>
+                            </td>
                             <td data-label=@Model.ElementAt(0).Name>@Model.ElementAt(0).CurrentRadio</td>
                             <td data-label=@Model.ElementAt(1).Name>@Model.ElementAt(1).CurrentRadio</td>
                             <td data-label=@Model.ElementAt(2).Name>@Model.ElementAt(2).CurrentRadio</td>
 
                         </tr>
                         <tr>
-                            <td data-label="">Debt Ratio</td>
+                            <td data-label="">
+                                Debt Ratio(%)
+                                <span title="Ratio measures the margin of safety to the creditors of an entity in the event of liquidation; thus the lower the ratio, the greater asset protection to creditors.">
+                                    <i class="ti-help-alt" style="color:#29aafe"></i>
+                                </span>
+                            </td>
                             <td data-label=@Model.ElementAt(0).Name>@Model.ElementAt(0).DebtRadio</td>
                             <td data-label=@Model.ElementAt(1).Name>@Model.ElementAt(1).DebtRadio</td>
                             <td data-label=@Model.ElementAt(2).Name>@Model.ElementAt(2).DebtRadio</td>
@@ -217,7 +248,7 @@
                 <div class="col-sm-12 col-md-12">
                     <h6>WikiCharity</h6>
                     <p class="text-justify">
-                        WikiCharity is a platform to connect individuals, and businesses with charities & not-for-profits across Australia. The highly customizable search function will allow users to find charities based on their criteria. Search results will provide basic charity details, and the charity’s historical financial details and financial ratios. Users will also be able to compare charities to aid users to narrow down on the charities which they would like to donate to.
+                        WikiCharity is a platform to connect individuals, and businesses with information about charities & not-for-profits across Australia. The highly customizable search function will allow users to find charities based on their criteria. Search results will provide basic charity details, historical financial details, and calculated financial ratios. To hasten their search, or gain a deeper understanding of the charities, users are also able to compare charities for a side-by-side view of charity details.
                     </p>
                 </div>
 
@@ -244,11 +275,6 @@
     <!-- END Back to top button -->
     <!-- Scripts -->
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-
-
-    <script src="~/assets/js/app.min.js"></script>
     <script src="~/assets/js/thejobs.js"></script>
 
 </body>

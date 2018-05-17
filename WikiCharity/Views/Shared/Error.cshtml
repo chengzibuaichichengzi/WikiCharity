@@ -1,9 +1,124 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
-
+﻿
 @{
-    ViewBag.Title = "Error";
+    Layout = null;
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="TheJobs is a directory listing template.">
+    <meta name="keywords" content="">
+
+    <title>WikiCharity - Error</title>
+
+    <!-- Styles -->
+    <link href="~/assets/css/app.min.css" rel="stylesheet">
+    <link href="~/assets/css/thejobs.css" rel="stylesheet">
+    <link href="~/assets/css/custom.css" rel="stylesheet">
+
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="~/assets/img/favicon.ico">
+</head>
+
+<body class="nav-on-header smart-nav">
+
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="container">
+            <!-- Logo -->
+            <div class="pull-left">
+                <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
+
+                <div class="logo-wrapper">
+                    <a href="@Url.Action("Index", "Home", null)">
+                        <img class="logo-alt" src="~/Uploads/logo.png" alt="logo-alt" style="width:90px;height:60px;">
+                    </a>
+                </div>
+
+            </div>
+            <!-- END Logo -->
+            <!-- Navigation menu -->
+            <ul class="nav-menu">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Favourite List", "FavList", "Compare")</li>
+                <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
+                <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+            <!-- END Navigation menu -->
+
+        </div>
+    </nav>
+    <!-- END Navigation bar -->
+    <!-- Site header -->
+    <header class="page-header bg-img size-lg" style="background-image: url(/Uploads/pebblesbeachh.jpg)">
+        <div class="container no-shadow">
+            <h1 class="text-center">Error</h1>
+
+        </div>
+    </header>
+    <!-- END Site header -->
+    <!-- Main container -->
+    <main>
+
+        <section>
+            <div class="container">
+
+
+                <h3>Oops Some Thing Went Wrong</h3>
+
+            </div>
+        </section>
+
+
+    </main>
+    <!-- END Main container -->
+    <!-- Site footer -->
+    <footer class="site-footer">
+
+        <!-- Top section -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <h6>WikiCharity</h6>
+                    <p class="text-justify">
+                        WikiCharity is a platform to connect individuals, and businesses with information about charities & not-for-profits across Australia. The highly customizable search function will allow users to find charities based on their criteria. Search results will provide basic charity details, historical financial details, and calculated financial ratios. To hasten their search, or gain a deeper understanding of the charities, users are also able to compare charities for a side-by-side view of charity details.
+                    </p>
+                </div>
+
+
+            </div>
+
+            <hr>
+        </div>
+        <!-- END Top section -->
+        <!-- Bottom section -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+
+                    <p class="copyright-text">Copyrights &copy; @DateTime.Now.Year All Rights Reserved by QingGari</p>
+                </div>
+            </div>
+        </div>
+        <!-- END Bottom section -->
+
+    </footer>
+    <!-- END Site footer -->
+    <!-- Back to top button -->
+    <a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
+    <!-- END Back to top button -->
+    <!-- Scripts -->
+    <script src="~/assets/js/app.min.js"></script>
+    <script src="~/assets/js/thejobs.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+
+</body>
+</html>

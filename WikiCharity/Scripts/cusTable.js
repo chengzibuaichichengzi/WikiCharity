@@ -1,5 +1,6 @@
 ﻿
 $(document).ready(function () {
+    $(document).tooltip();
 
     $("#size").chosen({
         width: "100%",
@@ -11,7 +12,7 @@ $(document).ready(function () {
 
     $("#bene").chosen({
         width: "100%",
-        max_selected_options: 5,
+        max_selected_options: 3,
         placeholder_text_multiple: "Any Beneficiary"
     });
 
@@ -23,7 +24,8 @@ $(document).ready(function () {
 
     var tableInit = $('#example').DataTable({
         fixedHeader: true,
-        responsive:true,
+        responsive: true,
+        "bFilter":false,
         "ajax": {
             "url": "/Home/AjaxGetJsonData",
             "type": "POST",

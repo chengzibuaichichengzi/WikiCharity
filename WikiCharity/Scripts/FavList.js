@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    $(document).tooltip();
+
     document.getElementById("compareBtn").disabled = true;
     document.getElementById("compareBtn2").disabled = true;
     //document.getElementById("compareBtn").style.visibility = 'hidden';
@@ -37,7 +39,7 @@
             success: function (data) {
                 if (data.isSelected == true) {
                    
-                    var text = "Prepare to compare";
+                    var text = "Selected";
                     //this.value = text;
                     var a = document.getElementById(data1.toString());
                     //get all buttons
@@ -56,7 +58,7 @@
                     }
                     if (data.compareNum == 3) {
                         for (var i = 0; i < buttons.length; i++) {
-                            if (buttons[i].innerText != "Prepare to compare") {
+                            if (buttons[i].innerText != "Selected") {
                                 buttons[i].disabled = true;
                             }
                         }
@@ -79,7 +81,7 @@
                     //document.getElementById("compareBtn2").style.visibility = 'visible';
                     $("#compareBtn2").show(0);
 
-                    var text = "Compare it";
+                    var text = "Select";
                     //this.value = text;
                     var a = document.getElementById(data1.toString());
                     //get all buttons

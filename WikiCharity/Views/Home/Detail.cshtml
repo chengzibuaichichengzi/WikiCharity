@@ -36,7 +36,7 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 
-    
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="icon" href="~/assets/img/favicon.ico">
@@ -69,9 +69,10 @@
             <ul class="nav-menu">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("Favourite List", "FavList", "Compare")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
                 <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
                 <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+
                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
             </ul>
             <!-- END Navigation menu -->
@@ -156,7 +157,7 @@
                 </ul>
                 <div class="button-group">
                     <div class="action-buttons">
-                            <button class="btn btn-primary" id="myprint" onclick="beforePrint();window.print();afterPrint();">Print This Page</button>
+                        <button class="btn btn-primary" id="myprint" onclick="beforePrint(); window.print(); afterPrint();">Print This Page</button>
                     </div>
 
                 </div>
@@ -164,7 +165,7 @@
             </div>
         </div>
     </header>
-    
+
     <!-- END Page header -->
 
     <div style="text-align:center">
@@ -185,7 +186,7 @@
                 <!--Charts-->
                 <div class="chartrow">
                     <!--Bar Chart-->
-                    <h4>Revenue & Expenses</h4>
+                    <h4>Revenue & Expenses ($)</h4>
                     <div id="chart_div2" class="chart">
                         <div class="spinner">
                             <span class="dot1"></span>
@@ -195,7 +196,7 @@
                     </div>
                     <!--END Bar Chart-->
                     <!--Line Graph-->
-                    <h4>Surplus / Deficit</h4>
+                    <h4>Surplus / Deficit ($)</h4>
                     <div id="chart_div1" class="chart">
                         <div class="spinner">
                             <span class="dot1"></span>
@@ -206,7 +207,7 @@
 
                     <!--END Line Graph-->
                     <!--Bar Chart2-->
-                    <h4>Total Assets & Liabilities</h4>
+                    <h4>Total Assets & Liabilities ($)</h4>
                     <div id="chart_div3" class="chart">
                         <div class="spinner">
                             <span class="dot1"></span>
@@ -232,7 +233,7 @@
                     <tbody>
                         <tr>
                             <td data-label="Year">
-                                Employee Expenses Percentage
+                                Employee Expenses Percentage(%)
                                 <span title="Percentage of income the Charity spends on its employees. Usually the lower this number, the better it is. Exceptions to this rule are charities in the service industry that mainly spend on their employees">
                                     <i class="ti-help-alt" style="color:#29aafe"></i>
                                 </span>
@@ -244,7 +245,7 @@
                         </tr>
                         <tr>
                             <td data-label="Year">
-                                Debt Equity Ratio
+                                Debt Equity Ratio(%)
                                 <span title="Ratios of greater than 100% tell indicate that the charity has more debt than assets. Charities should strive to keep debt as low as possible, the lower this number, the better off the charity is.">
                                     <i class="ti-help-alt" style="color:#29aafe"></i>
                                 </span>
@@ -257,7 +258,7 @@
                         </tr>
                         <tr>
                             <td data-label="Year">
-                                Saving Ratio
+                                Saving Ratio(%)
                                 <span title="Ratio indicates amount saved after all expenditure. Usually the higher the ratio, the greater the savings but an excessively high ratio indicates excessive savings. A negative ratio indicates that the charity spent more than it received.">
                                     <i class="ti-help-alt" style="color:#29aafe"></i>
                                 </span>
@@ -270,7 +271,7 @@
                         </tr>
                         <tr>
                             <td data-label="Year">
-                                Current Ratio
+                                Current Ratio(%)
                                 <span title="Ratio measures the organization’s ability to pay short-term liabilities. Charities should try to keep their current ratios above 1.0 as anything less than 1.0 indicates that the assets are vulnerable.">
                                     <i class="ti-help-alt" style="color:#29aafe"></i>
                                 </span>
@@ -283,7 +284,7 @@
                         </tr>
                         <tr>
                             <td data-label="Year">
-                                Debt Ratio
+                                Debt Ratio(%)
                                 <span title="Ratio measures the margin of safety to the creditors of an entity in the event of liquidation; thus the lower the ratio, the greater asset protection to creditors.">
                                     <i class="ti-help-alt" style="color:#29aafe"></i>
                                 </span>
@@ -297,11 +298,12 @@
                     </tbody>
                 </table>
                 <!--END Ratios Table-->
-                <div class="btn-search" id="showTable" style="text-align:right">
-                    <button class="btn btn-primary" onclick="showTable()">Show More Financial Tables</button>
+                <div class="btn-search" id="hideTable" style="text-align:right; display:normal">
+                    <button class="btn btn-primary" onclick="showTable()">Hide Financial Tables >></button>
                 </div>
+
                 <!--Financial Table-->
-                <div id="showdiv" style="display:none">
+                <div id="showdiv" style="display:normal">
                     <!--Income Table-->
 
                     <table>
@@ -316,25 +318,45 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Year">Donations and Bequests($)</td>
+                                <td data-label="Year">
+                                    Donations and Bequests($)
+                                    <span title="A donation is when a charity receives voluntary support (in cash or gifts in kind) and there is no material benefit to the donor. The item includes donations from public collections, fundraising, members (but not membership fees), supporters and employees. It also includes bequests and memorials, as well as tax deductible donations and gifts from the public, tax deductible donations from members, supporters and employees, and non-tax-deductible gifts and bequests">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].Donations)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].Donations)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].Donations)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Government Grants($)</td>
+                                <td data-label="Year">
+                                    Government Grants($)
+                                    <span title="Financial assistance provided by the government to the charity for a particular purpose, such as for the charity to provide goods or services to others in accordance with the terms of the grant. If the charity reported government grants, the whole dollar amount will appear in this field">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].GoverGrant)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].GoverGrant)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].GoverGrant)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Other Income($)</td>
+                                <td data-label="Year">
+                                    Other Income($)
+                                    <span title="This field includes all other revenue that the charity received from carrying out its ordinary activities during the reporting period, and that was not already included in government grants or donations and bequests, and other income such as gains received from the sale of assets as well as any other income earned outside the ordinary activities of the charity">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].OtherIncome)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].OtherIncome)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].OtherIncome)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Total Gross Income($)</td>
+                                <td data-label="Year">
+                                    Total Gross Income($)
+                                    <span title="Sum of all of the various sources of income">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].TotalGrossIncome)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].TotalGrossIncome)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].TotalGrossIncome)</td>
@@ -356,31 +378,56 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Year">Employee Expenses($)</td>
+                                <td data-label="Year">
+                                    Employee Expenses($)
+                                    <span title="Employee expenses represent all salaries and wages paid (and payable if using accrual accounting) to all staff employed by the charity on a permanent or casual basis (including replacement staff). It includes leave expenses, termination payments, superannuation, fringe benefits tax, workers’ compensation and other costs relating to paying salaries and wages. It also includes the tax paid on behalf of employees so that the amounts reported are gross salary amounts, not the net salary amount">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].EmpExpense)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].EmpExpense)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].EmpExpense)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Grants and Donations used in Australia($)</td>
+                                <td data-label="Year">
+                                    Grants and Donations used in Australia($)
+                                    <span title="Donations made to other entities for use in Australia">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].GDInAus)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].GDInAus)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].GDInAus)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Grants and Donations used outside Australia($)</td>
+                                <td data-label="Year">
+                                    Grants and Donations used outside Australia($)
+                                    <span title="Donations made to other entities for use outside Australia">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].GDOutAus)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].GDOutAus)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].GDOutAus)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">All Other Expenses($)</td>
+                                <td data-label="Year">
+                                    All Other Expenses($)
+                                    <span title="All other expenses or payments that were not included in ‘employee expenses’, ‘grants and donations for use in Australia’ or ‘grants and donations for use outside Australia">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].AllOtherExpense)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].AllOtherExpense)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].AllOtherExpense)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Total Expenses($)</td>
+                                <td data-label="Year">
+                                    Total Expenses($)
+                                    <span title="Sum of all of the various types of expenses mentioned above">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].Expense)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].Expense)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].Expense)</td>
@@ -390,7 +437,7 @@
                     <!--END Expenses Table-->
                     <!--Net Surplus Deflicit Table-->
                     <table>
-                        <caption>Net Surplus Deflcit</caption>
+                        <caption>Net Surplus Deficit</caption>
                         <thead>
                             <tr>
                                 <th scope="col"></th>
@@ -401,7 +448,12 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Year">Net Surplus Deflcit($)</td>
+                                <td data-label="Year">
+                                    Net Surplus Deficit($)
+                                    <span title="Net surplus deficit represents total gross income, minus total expenses">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].NetSurplus)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].NetSurplus)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].NetSurplus)</td>
@@ -422,37 +474,67 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Year">Total Current Assets($)</td>
+                                <td data-label="Year">
+                                    Total Current Assets($)
+                                    <span title="An asset is an item of property owned by a person or company, regarded as having value and available to meet debts, or commitments. Assets are generally current assets if they can be expected to be realised, sold or consumed within a twelve-month period from the end of the financial year">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].TotalCurrentAssets)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].TotalCurrentAssets)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].TotalCurrentAssets)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Total Non Current Assets($)</td>
+                                <td data-label="Year">
+                                    Total Non Current Assets($)
+                                    <span title="An asset is an item of property owned by a person or company, regarded as having value and available to meet debts, or commitments. Assets are generally non-current assets if they can be expected to be realised, sold or consumed greater than a twelve-month period from the end of the financial year">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].TotalNotCurrentAssets)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].TotalNotCurrentAssets)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].TotalNotCurrentAssets)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Total Assets($)</td>
+                                <td data-label="Year">
+                                    Total Assets($)
+                                    <span title="Sum of total current and total non-current assets">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].TotalAssets)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].TotalAssets)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].TotalAssets)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Total Current Liabilities($)</td>
+                                <td data-label="Year">
+                                    Total Current Liabilities($)
+                                    <span title="A liability is a company's financial debt or obligations that arise during the course of its business operations. Liabilities are generally current if they are expected to be paid within a twelve month period from the end of the financial year. Includes loans payable by the charity to other entities in the period within 12 months from the end of the financial year">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].TotalCurrentLia)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].TotalCurrentLia)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].TotalCurrentLia)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Total Non Current Liabilities($)</td>
+                                <td data-label="Year">
+                                    Total Non Current Liabilities($)
+                                    <span title="A liability is a company's financial debt or obligations that arise during the course of its business operations. non-current liabilities relate to balances that are expected to be settled beyond a 12-month period from the end of the financial year. Includes loans payable by the charity to other entities in the period beyond 12 months from the end of the financial year">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].TotalNotCurrentLia)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].TotalNotCurrentLia)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].TotalNotCurrentLia)</td>
                             </tr>
                             <tr>
-                                <td data-label="Year">Total Liabilities($)</td>
+                                <td data-label="Year">
+                                    Total Liabilities($)
+                                    <span title="Sum of total current and total non-current liabilities">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].TotalLia)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].TotalLia)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].TotalLia)</td>
@@ -474,7 +556,12 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Year">Net Assets Liabilities($)</td> @*TODO: Check vaule在这里用的是NetAssets吗？*@
+                                <td data-label="Year">
+                                    Net Assets Liabilities($)
+                                    <span title="Net assets/liabilities represents total assets, minus total liabilities. Also known as owner’s equity. Owner's equity is viewed as a residual claim on the assets because liabilities have a higher claim">
+                                        <i class="ti-help-alt" style="color:#29aafe"></i>
+                                    </span>
+                                </td>
                                 <td data-label="2014">@Html.DisplayFor(i => Model.Where(a => a.Year == "2014").ToList()[0].NetAssets)</td>
                                 <td data-label="2015">@Html.DisplayFor(i => Model.Where(a => a.Year == "2015").ToList()[0].NetAssets)</td>
                                 <td data-label="2016">@Html.DisplayFor(i => Model.Where(a => a.Year == "2016").ToList()[0].NetAssets)</td>
@@ -485,8 +572,8 @@
                     <!--END Net Assets Liabilities Table-->
                 </div>
                 <!--END Financial Table-->
-                <div class="btn-search" id="hideTable" style="text-align:right; display:none">
-                    <button class="btn btn-primary" onclick="showTable()">Hide Financial Tables</button>
+                <div class="btn-search" id="showTable" style="text-align:right; display:none">
+                    <button class="btn btn-primary" onclick="showTable()">Show More Financial Tables >></button>
                 </div>
 
                 <br />
@@ -582,7 +669,7 @@
                 <div class="col-sm-12 col-md-12">
                     <h6>WikiCharity</h6>
                     <p class="text-justify">
-                        WikiCharity is a platform to connect individuals, and businesses with charities & not-for-profits across Australia. The highly customizable search function will allow users to find charities based on their criteria. Search results will provide basic charity details, and the charity’s historical financial details and financial ratios. Users will also be able to compare charities to aid users to narrow down on the charities which they would like to donate to.
+                        WikiCharity is a platform to connect individuals, and businesses with information about charities & not-for-profits across Australia. The highly customizable search function will allow users to find charities based on their criteria. Search results will provide basic charity details, historical financial details, and calculated financial ratios. To hasten their search, or gain a deeper understanding of the charities, users are also able to compare charities for a side-by-side view of charity details.
                     </p>
                 </div>
 

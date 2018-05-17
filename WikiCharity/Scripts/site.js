@@ -13,7 +13,7 @@
 
     $("#bene").chosen({
         width: "100%",
-        max_selected_options: 5,
+        max_selected_options: 3,
         placeholder_text_multiple: "Any Beneficiary"
     });
 

@@ -3,6 +3,7 @@ var chartData1;
 google.load("visualization", "1", { packages: ["corechart"] });
 
 $(document).ready(function () {
+
     //get the data for line chart
     $.ajax({
         url: "/Compare/GetBarData",
@@ -21,6 +22,9 @@ $(document).ready(function () {
         google.setOnLoadCallback(drawChart);
         drawChart();
     });
+
+    //enable tooltip on mobile
+    $(document).tooltip();
 });
 
 /*$(document).ajaxStop(function () {

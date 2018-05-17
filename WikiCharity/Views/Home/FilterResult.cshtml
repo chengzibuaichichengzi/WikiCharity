@@ -24,6 +24,8 @@
     <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/DataTables/css/responsive.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/DataTables/css/fixedHeader.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
 
 
     <link href="~/assets/css/app.min.css" rel="stylesheet">
@@ -32,7 +34,7 @@
     <link href="~/Content/chosen.css" rel="stylesheet" />
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-    
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="icon" href="~/assets/img/favicon.ico">
@@ -58,9 +60,9 @@
             <ul class="nav-menu">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("Favourite List", "FavList", "Compare")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
                 <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
                 <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
             </ul>
             <!-- END Navigation menu -->
@@ -86,15 +88,15 @@
                     @Html.DropDownListFor(m => m.isDGR, Model.isDGRs, "Show All Charities", new { @class = "form-control", @id = "tax" })
 
                 </div>
-                    <div class="input-search">
-                        Seach by Charity Name:
-                        @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name (optional)" })
-                    </div>
+                <div class="input-search">
+                    Seach by Charity Name:
+                    @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name", placeholder = "Search by name (optional)" })
+                </div>
 
-                    <div class="select-size">
-                        Charity Size:
-                        @Html.ListBoxFor(m => m.sizeString, ViewBag.multiSelectSizes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "size" })
-                    </div>
+                <div class="select-size">
+                    Charity Size:
+                    @Html.ListBoxFor(m => m.sizeString, ViewBag.multiSelectSizes as MultiSelectList, new { @class = "chosen-select-multiple", @id = "size" })
+                </div>
                     <div class="select-act">
                         Main Purpose:
                         <div class="chosen-container-multi">
@@ -103,7 +105,7 @@
                     </div>
 
                     <div style="text-align:left">
-                        Beneficiaries&nbsp;&nbsp;(You can choose up to five options):
+                        Beneficiaries&nbsp;&nbsp;(You can choose up to three options):
                     </div>
                     <div class="select-bene">
                         <div class="chosen-container-multi">
@@ -136,18 +138,24 @@
                         <tr>
                             <th style="width:20%">Charity Name</th>
                             <th style="width:6%">Size</th>
-                            <th style="width:8%">Is Active?</th>
+                            <th style="width:8%">
+                                <div style="border-bottom: 1px dotted black;">
+                                    <span title="States whether the charity has been active and conducted any of its said activities in the last year">
+                                        Conducted Activities
+                                    </span>
+                                </div>
+                            </th>
                             <th>Purpose</th>
                             <th>Beneficiaries</th>
                             <th>Details</th>
-                            <th>Add to list</th>
+                            <th>Add to favourite</th>
 
                         </tr>
                     </thead>
 
                 </table>
                 <div class="btn-search" style="text-align:right">
-                    <a href="/Compare/FavList" class="btn btn-info btn-sm">Go to favorite list</a>
+                    <a href="/Compare/FavList" class="btn btn-info btn-sm">Go to my favorite list>></a>
                 </div>
             </div>
 
@@ -192,6 +200,8 @@
     <!-- END Back to top button -->
     <!-- Scripts -->
     <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
     <script src="~/Scripts/chosen.jquery.min.js"></script>
     <script src="~/Scripts/chosen.proto.min.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>

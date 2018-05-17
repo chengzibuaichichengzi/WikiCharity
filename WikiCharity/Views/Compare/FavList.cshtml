@@ -24,6 +24,7 @@
     <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/DataTables/css/responsive.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/DataTables/css/fixedHeader.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 
 
     <link href="~/assets/css/app.min.css" rel="stylesheet">
@@ -31,7 +32,7 @@
     <link href="~/assets/css/custom.css" rel="stylesheet">
     <link href="~/Content/chosen.css" rel="stylesheet" />
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-    
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="icon" href="~/assets/img/favicon.ico">
@@ -57,9 +58,10 @@
             <ul class="nav-menu">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("Favourite List", "FavList", "Compare")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
                 <li>@Html.ActionLink("Donor Advice", "DonorAdvice", "Home")</li>
                 <li>@Html.ActionLink("FAQs", "FAQs", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+
                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
             </ul>
             <!-- END Navigation menu -->
@@ -70,7 +72,7 @@
     <header class="page-header bg-img size-lg" style="background-image: url(/Uploads/pebblesbeachh.jpg)">
         <div class="container no-shadow">
             <h1 class="text-center">Your Favourite Charity List</h1>
-            <p class="lead text-center">You can compare 2 to 3 charities.</p>
+            <p class="lead text-center">You can compare up to three charities.</p>
         </div>
     </header>
     <!-- END Page header -->
@@ -88,10 +90,17 @@
                             <tr>
                                 <th style="width:20%">Charity Name</th>
                                 <th style="width:6%">Size</th>
-                                <th style="width:8%">Is Active?</th>
+                                <th style="width:8%">
+                                    <div style="border-bottom: 1px dotted black;">
+                                        <span title="States whether the charity has been active and conducted any of its said activities in the last year">
+                                            Conducted Activities
+
+                                         </span>
+                                    </div>
+                                </th>
                                 <th>Purpose</th>
                                 <th>Beneficiaries</th>
-                                <th>Compare it</th>
+                                <th>Select to Compare</th>
                                 <th>Id</th>
 
                             </tr>
@@ -105,7 +114,7 @@
                                     <td>@Html.DisplayFor(modelItem => i.conActivity)</td>
                                     <td>@Html.DisplayFor(modelItem => i.MainActivity)</td>
                                     <td>@Html.DisplayFor(modelItem => i.selectedBenes)</td>
-                                    <td><button class="btn btn-primary" name="all" id="@i.Id">Compare it</button></td>
+                                    <td width="8%"><button class="btn btn-primary" name="all" id="@i.Id">Select</button></td>
                                     <td vis>@Html.DisplayFor(modelItem => i.Id)</td>
                                 </tr>
                             }
@@ -113,9 +122,9 @@
                     </table>
                     <br />
 
-                    <form style="text-align:right">                    
-                        <button class="btn btn-info btn-sm" id="compareBtn2" formaction="/Compare/compare" style="display:inline">Compare selected charities</button>
-                        <button class="btn btn-info btn-sm" id="compareBtn" formaction="/Compare/compares"style="display:inline">Compare selected charities</button>
+                    <form style="text-align:right">
+                        <button class="btn btn-info btn-sm" id="compareBtn2" formaction="/Compare/compare" style="display:inline">Compare selected charities >></button>
+                        <button class="btn btn-info btn-sm" id="compareBtn" formaction="/Compare/compares" style="display:inline">Compare selected charities >></button>
 
                     </form>
 
@@ -141,7 +150,7 @@
                 <div class="col-sm-12 col-md-12">
                     <h6>WikiCharity</h6>
                     <p class="text-justify">
-                        WikiCharity is a platform to connect individuals, and businesses with charities & not-for-profits across Australia. The highly customizable search function will allow users to find charities based on their criteria. Search results will provide basic charity details, and the charity’s historical financial details and financial ratios. Users will also be able to compare charities to aid users to narrow down on the charities which they would like to donate to.
+                        WikiCharity is a platform to connect individuals, and businesses with information about charities & not-for-profits across Australia. The highly customizable search function will allow users to find charities based on their criteria. Search results will provide basic charity details, historical financial details, and calculated financial ratios. To hasten their search, or gain a deeper understanding of the charities, users are also able to compare charities for a side-by-side view of charity details.
                     </p>
                 </div>
 
@@ -170,6 +179,8 @@
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/chosen.jquery.min.js"></script>
     <script src="~/Scripts/chosen.proto.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
